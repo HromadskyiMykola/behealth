@@ -1,10 +1,28 @@
-import * as React from "react";
+// import * as React from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, Stack } from "@mui/material";
 
 import { SignInSignUpFormValues } from "../common/types_and_interfaces";
 
+type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
+
+const primaryColor = "#3ABD98";
+const secondaryColor = "#FFFFFF";
+const textColor = "#212121";
+
+const showMode = {
+  LOGIN: "Вхід",
+  REGISTER: "Реєстрація",
+  RECOVERY: "Відновлення паролю",
+};
+
 export default function SignInSignUpForm() {
+  const [mode, setMode] = useState<Mode>("LOGIN");
+  const isLoginMode: boolean = mode === "LOGIN";
+  const isRegisterMode: boolean = mode === "REGISTER";
+  const isRecoveryMode: boolean = mode === "RECOVERY";
+
   const {
     control,
     handleSubmit,
@@ -12,53 +30,83 @@ export default function SignInSignUpForm() {
     watch,
   } = useForm<SignInSignUpFormValues>({ mode: "onChange", delayError: 1000 });
 
-  const password = watch("password");
+  const password: string = watch("password");
 
   const onSubmit = (data: SignInSignUpFormValues) => console.log(data);
 
   return (
-    <fieldset style={{ borderRadius: "10px" }}>
-      <legend>
-        <Typography
-          sx={{ m: "4px", color: "#777", letterSpacing: 4 }}
-          variant="h5"
-        >
-          Форма реєстрації користувача
+    <Stack
+      direction="column"
+      // alignItems="center"
+      // justifyContent="center"
+      spacing={1}
+      sx={{p:2, backgroundColor: secondaryColor, borderRadius: "12px" }}
+    >
+      <Typography sx={{ m: "4px", color: textColor }} variant="h5">
+        {showMode[mode]}
+      </Typography>
+
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography sx={{ m: "4px", color: textColor }}>
+          {isLoginMode && "Ще не зареєстровані?"}
+          {isRegisterMode && "Вже зареєстровані?"}
         </Typography>
-      </legend>
+        <Button
+          variant="text"
+          onClick={() =>
+            (isLoginMode && setMode("REGISTER")) ||
+            (isRegisterMode && setMode("LOGIN"))
+          }
+        >
+          {isLoginMode && "Зареєструватися"}
+          {isRegisterMode && "Увійти"}
+        </Button>
+      </Stack>
+
       <form
-        style={{ display: "flex", flexDirection: "column", gap: 16 }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+          alignItems: "stretch",
+        }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {/* <Controller
-        name="firstName"
-        control={control}
-        defaultValue=""
-        rules={{ required: true, maxLength: 80 }}
-        render={({ field }) => (
-          <TextField
-            label="First name"
-            {...field}
-            error={!!errors.firstName}
-            helperText={errors.firstName ? "This field is required" : ""}
+        {isRegisterMode && (
+          <Controller
+            name="firstName"
+            control={control}
+            defaultValue=""
+            rules={{ required: true, maxLength: 80 }}
+            render={({ field }) => (
+              <TextField
+                autoFocus={isRegisterMode}
+                label="Ім’я"
+                {...field}
+                error={!!errors.firstName}
+                helperText={errors.firstName ? "This field is required" : ""}
+              />
+            )}
           />
         )}
-      /> */}
-
         {/* <Controller
-        name="lastName"
-        control={control}
-        defaultValue=""
-        rules={{ required: true, maxLength: 100 }}
-        render={({ field }) => (
-          <TextField
-            label="Last name"
-            {...field}
-            error={!!errors.lastName}
-            helperText={errors.lastName ? "This field is required" : ""}
-          />
-        )}
-      /> */}
+    name="lastName"
+    control={control}
+    defaultValue=""
+    rules={{ required: true, maxLength: 100 }}
+    render={({ field }) => (
+      <TextField
+        label="Last name"
+        {...field}
+        error={!!errors.lastName}
+        helperText={errors.lastName ? "This field is required" : ""}
+      />
+    )}
+  /> */}
 
         <Controller
           name="email"
@@ -71,6 +119,7 @@ export default function SignInSignUpForm() {
           }}
           render={({ field }) => (
             <TextField
+              autoFocus={isLoginMode || isRecoveryMode}
               label={
                 errors.email
                   ? "Будь ласка, введіть коректну e-mail адресу"
@@ -78,91 +127,91 @@ export default function SignInSignUpForm() {
               }
               {...field}
               error={!!errors.email}
-              // helperText={
-              //   errors.email ? "Please enter a valid email address" : " "
-              // }
             />
           )}
         />
 
         {/* <Controller
-        name="mobileNumber"
-        control={control}
-        defaultValue=""
-        rules={{ required: true, minLength: 6, maxLength: 12 }}
-        render={({ field }) => (
-          <TextField
-            label="Mobile number"
-            {...field}
-            error={!!errors.mobileNumber}
-            helperText={
-              errors.mobileNumber ? "Please enter a valid mobile number" : ""
-            }
+    name="mobileNumber"
+    control={control}
+    defaultValue=""
+    rules={{ required: true, minLength: 6, maxLength: 12 }}
+    render={({ field }) => (
+      <TextField
+        label="Mobile number"
+        {...field}
+        error={!!errors.mobileNumber}
+        helperText={
+          errors.mobileNumber ? "Please enter a valid mobile number" : ""
+        }
+      />
+    )}
+  /> */}
+
+        {(isLoginMode || isRegisterMode) && (
+          <Controller
+            name="password"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+              max: 128,
+              min: 8,
+              pattern:
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()\-_=+[\]{}\\|;:'",./<>?]).+$/i,
+            }}
+            render={({ field }) => (
+              <TextField
+                label={
+                  errors.password
+                    ? "Будь ласка, введіть коректний пароль"
+                    : "Пароль"
+                }
+                type="password"
+                {...field}
+                error={!!errors.password}
+              />
+            )}
           />
         )}
-      /> */}
 
-        <Controller
-          name="password"
-          control={control}
-          defaultValue=""
-          rules={{
-            required: true,
-            max: 128,
-            min: 8,
-            pattern:
-              /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()\-_=+[\]{}\\|;:'",./<>?]).+$/i,
-          }}
-          render={({ field }) => (
-            <TextField
-              label={
-                errors.password
-                  ? "Будь ласка, введіть коректний пароль"
-                  : "Пароль"
-              }
-              type="password"
-              {...field}
-              error={!!errors.password}
-              // helperText={
-              //   errors.password ? "Please enter a valid password" : ""
-              // }
-            />
-          )}
-        />
+        {isRegisterMode && (
+          <Controller
+            name="confirmPassword"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+              validate: (value) =>
+                value === password || "Passwords do not match",
+            }}
+            render={({ field }) => (
+              <TextField
+                fullWidth
+                label={
+                  errors.confirmPassword
+                    ? "Паролі не співпадають"
+                    : "Підтвердження паролю"
+                }
+                type="password"
+                {...field}
+                error={!!errors.confirmPassword}
+              />
+            )}
+          />
+        )}
 
-        <Controller
-          name="confirmPassword"
-          control={control}
-          defaultValue=""
-          rules={{
-            required: true,
-            validate: (value) => value === password || "Passwords do not match",
-          }}
-          render={({ field }) => (
-            <TextField
-              label={
-                errors.confirmPassword
-                  ? "Паролі не співпадають"
-                  : "Підтвердження паролю"
-              }
-              type="password"
-              {...field}
-              error={!!errors.confirmPassword}
-              // helperText={
-              //   errors.confirmPassword ? "Passwords do not match" : ""
-              // }
-            />
-          )}
-        />
-
-        <Button type="submit" variant="contained" color="primary">
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ backgroundColor: primaryColor }}
+        >
           Submit
         </Button>
       </form>
-    </fieldset>
+    </Stack>
   );
 }
-
 
 // Общие требования к полям на сайте
 // Поле не заполнено - граница серая, и в поле нет текста.
