@@ -61,15 +61,15 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
             <DialogTitle
               sx={{ pl: 0, typography: "h3", color: secondaryColor }}
             >
-              Авторизація
+              {"Авторизація"}
             </DialogTitle>
 
             <DialogContentText
               sx={{ pl: 0, typography: "body1", color: secondaryColor }}
             >
-              Слідкуй за здоровʼям за допомогою кабінету
+              {"Слідкуй за здоровʼям за допомогою кабінету"}
               <br />
-              beHealth.ua
+              {"beHealth.ua"}
             </DialogContentText>
 
             <img

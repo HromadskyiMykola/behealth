@@ -1,9 +1,18 @@
 // import * as React from "react";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Box, TextField, Button, Typography, Stack } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Stack,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 
 import { SignInSignUpFormValues } from "../common/types_and_interfaces";
+import PasswordInput from "./PassawordField";
 
 type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
 
@@ -28,21 +37,26 @@ export default function SignInSignUpForm() {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<SignInSignUpFormValues>({ mode: "onChange", delayError: 1000 });
 
   const password: string = watch("password");
 
   const onSubmit = (data: SignInSignUpFormValues) => console.log(data);
 
+  // console.log(errors);
+
   return (
     <Stack
       direction="column"
       // alignItems="center"
-      // justifyContent="center"
       spacing={1}
-      sx={{p:2, backgroundColor: secondaryColor, borderRadius: "12px" }}
+      sx={{ p: 2, backgroundColor: secondaryColor, borderRadius: "12px" }}
     >
-      <Typography sx={{ m: "4px", color: textColor }} variant="h5">
+      <Typography
+        sx={{ alignSelf: "center", m: "4px", color: textColor }}
+        variant="h5"
+      >
         {showMode[mode]}
       </Typography>
 
@@ -57,22 +71,25 @@ export default function SignInSignUpForm() {
         </Typography>
         <Button
           variant="text"
-          onClick={() =>
+          sx={{ color: primaryColor }}
+          onClick={() => {
+            reset();
             (isLoginMode && setMode("REGISTER")) ||
-            (isRegisterMode && setMode("LOGIN"))
-          }
+              (isRegisterMode && setMode("LOGIN"));
+          }}
         >
           {isLoginMode && "Зареєструватися"}
           {isRegisterMode && "Увійти"}
         </Button>
       </Stack>
 
-      <form
+      <Box
+        component="form"
+        noValidate
         style={{
           display: "flex",
           flexDirection: "column",
           gap: 16,
-          alignItems: "stretch",
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -81,14 +98,14 @@ export default function SignInSignUpForm() {
             name="firstName"
             control={control}
             defaultValue=""
-            rules={{ required: true, maxLength: 80 }}
+            rules={{ required: true, min: 2, maxLength: 80 }}
             render={({ field }) => (
               <TextField
                 autoFocus={isRegisterMode}
                 label="Ім’я"
                 {...field}
                 error={!!errors.firstName}
-                helperText={errors.firstName ? "This field is required" : ""}
+                helperText={errors.firstName ? "This field is required" : " "}
               />
             )}
           />
@@ -100,13 +117,13 @@ export default function SignInSignUpForm() {
     rules={{ required: true, maxLength: 100 }}
     render={({ field }) => (
       <TextField
-        label="Last name"
-        {...field}
-        error={!!errors.lastName}
-        helperText={errors.lastName ? "This field is required" : ""}
+      label="Last name"
+      {...field}
+      error={!!errors.lastName}
+      helperText={errors.lastName ? "This field is required" : ""}
       />
-    )}
-  /> */}
+      )}
+    /> */}
 
         <Controller
           name="email"
@@ -120,13 +137,14 @@ export default function SignInSignUpForm() {
           render={({ field }) => (
             <TextField
               autoFocus={isLoginMode || isRecoveryMode}
-              label={
-                errors.email
-                  ? "Будь ласка, введіть коректну e-mail адресу"
-                  : "E-mail"
-              }
+              label="E-mail"
               {...field}
               error={!!errors.email}
+              helperText={
+                errors.email
+                  ? "Будь ласка, введіть коректну e-mail адресу"
+                  : " "
+              }
             />
           )}
         />
@@ -138,15 +156,15 @@ export default function SignInSignUpForm() {
     rules={{ required: true, minLength: 6, maxLength: 12 }}
     render={({ field }) => (
       <TextField
-        label="Mobile number"
-        {...field}
-        error={!!errors.mobileNumber}
-        helperText={
-          errors.mobileNumber ? "Please enter a valid mobile number" : ""
-        }
+      label="Mobile number"
+      {...field}
+      error={!!errors.mobileNumber}
+      helperText={
+        errors.mobileNumber ? "Please enter a valid mobile number" : ""
+      }
       />
-    )}
-  /> */}
+      )}
+    /> */}
 
         {(isLoginMode || isRegisterMode) && (
           <Controller
@@ -161,15 +179,13 @@ export default function SignInSignUpForm() {
                 /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()\-_=+[\]{}\\|;:'",./<>?]).+$/i,
             }}
             render={({ field }) => (
-              <TextField
-                label={
-                  errors.password
-                    ? "Будь ласка, введіть коректний пароль"
-                    : "Пароль"
-                }
-                type="password"
+              <PasswordInput
+                label="Пароль"
                 {...field}
                 error={!!errors.password}
+                helperText={
+                  errors.password ? "Будь ласка, введіть коректний пароль" : " "
+                }
               />
             )}
           />
@@ -186,19 +202,41 @@ export default function SignInSignUpForm() {
                 value === password || "Passwords do not match",
             }}
             render={({ field }) => (
-              <TextField
-                fullWidth
-                label={
-                  errors.confirmPassword
-                    ? "Паролі не співпадають"
-                    : "Підтвердження паролю"
-                }
-                type="password"
+              <PasswordInput
+                label="Підтвердження паролю"
                 {...field}
                 error={!!errors.confirmPassword}
+                helperText={
+                  errors.confirmPassword ? "Паролі не співпадають" : " "
+                }
               />
             )}
           />
+        )}
+
+        {isLoginMode && (
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <FormControlLabel
+              control={
+                <Checkbox value="remember" sx={{ color: primaryColor }} />
+              }
+              label="Запамʼятати мене"
+            />
+            <Button
+              variant="text"
+              sx={{ color: primaryColor }}
+              onClick={() => {
+                reset();
+                setMode("RECOVERY");
+              }}
+            >
+              {"Забули пароль?"}
+            </Button>
+          </Stack>
         )}
 
         <Button
@@ -206,9 +244,9 @@ export default function SignInSignUpForm() {
           variant="contained"
           sx={{ backgroundColor: primaryColor }}
         >
-          Submit
+          {"Submit"}
         </Button>
-      </form>
+      </Box>
     </Stack>
   );
 }
