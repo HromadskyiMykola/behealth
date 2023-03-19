@@ -5,5 +5,4 @@ export type SignInSignUpFormValues = {
   mobileNumber: string;
   password: string;
   confirmPassword: string;
-  checkbox: boolean;
 };
