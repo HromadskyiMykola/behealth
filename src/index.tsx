@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import App from "./App";
-import { theme } from "./theme.provider";
+import { createOverrideTheme} from "./theme.provider";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={createOverrideTheme()}>
       <CssBaseline />
       <App />
     </ThemeProvider>
