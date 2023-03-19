@@ -115,7 +115,7 @@ const Header: FC = (props) => {
           </Box>
 
           <Button variant="contained" className="_headerAppointmentButton">
-            {"Записатися"}
+            <Typography variant="button">Записатися</Typography>
           </Button>
 
           <Button
@@ -124,14 +124,15 @@ const Header: FC = (props) => {
             onClick={handleModalOpen}
             startIcon={<PersonIcon fontSize="small" />}
           >
-            {
-              // userIsLoggedIn ?  "Особистий кабінет" :
-              "Увійти"
-            }
+            <Typography variant="button">
+              {
+                // userIsLoggedIn ?  "Особистий кабінет" :
+                "Увійти"
+              }
+            </Typography>
           </Button>
 
           <FormModal open={open} handleModalClose={handleModalClose} />
-          
         </Box>
       </Container>
     </AppBar>
