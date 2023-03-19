@@ -1,6 +1,6 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { privateRoutes, publicRoutes, RouteNames } from "../routes";
+import { Routes, Route, Navigate, NavLink } from "react-router-dom";
+import { privateRoutes, publicRoutes, RouteNames } from "../../routes";
 
 export const AppRouter = () => {
   const isAuth = false;
