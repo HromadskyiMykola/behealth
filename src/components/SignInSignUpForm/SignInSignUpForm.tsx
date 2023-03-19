@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, Controller, Control, FieldValues } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   Box,
   TextField,
@@ -62,7 +62,7 @@ export default function SignInSignUpForm() {
         justifyContent="center"
       >
         <Typography sx={{ m: "4px", color: textColor }}>
-          {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}.
+          {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
         </Typography>
         <Button
           variant="text"
@@ -193,7 +193,7 @@ export default function SignInSignUpForm() {
           disabled={!formState.isValid}
           type="submit"
           variant="contained"
-          sx={{ backgroundColor: primaryColor }}
+          // sx={{ backgroundColor: primaryColor }}
         >
           {isLoginMode && "Увійти"}
           {isRegisterMode && "Зареєструватися"}
