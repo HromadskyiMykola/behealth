@@ -1,9 +1,12 @@
-import React from 'react';
-import Header from "./components/Header/Header";
+import React from "react";
+import { AppRouter } from "./components";
 
 function App() {
   return (
-      <Header/>
+    <div>
+      <AppRouter />
+      Hello world
+    </div>
   );
 }
 
