@@ -12,7 +12,20 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
 
-const links: string[] = ["Лікарі", "Клініки", "Про beHealth"];
+const links = [
+  {
+    name: "Лікарі",
+    path: RouteNames.DOCTORS,
+  },
+  {
+    name: "Клініки",
+    path: RouteNames.CLINICS,
+  },
+  {
+    name: "Про beHealth",
+    path: RouteNames.ABOUT,
+  },
+];
 const styledBox = {
   display: "flex",
   gap: "24px",
@@ -72,11 +85,25 @@ const Header: React.FC = (props) => {
         </Box>
         <Box sx={styledBox}>
           <Box sx={styledBox}>
-            {links.map((link) => {
+            {links.map(({ name, path }) => {
               return (
-                <Link key={link} variant="body2" className="_headerNavLink">
-                  {link}
-                </Link>
+                // <NavLink to={path} key={name}>
+                //   <Link variant="body2" className="_headerNavLink">
+                //     {name}
+                //   </Link>
+                // </NavLink>
+                <NavLink
+                  to={path}
+                  key={name}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ textDecoration: "none", color: "#000000" }}
+                  >
+                    {name}
+                  </Typography>
+                </NavLink>
               );
             })}
           </Box>
