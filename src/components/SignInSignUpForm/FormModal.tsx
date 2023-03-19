@@ -1,7 +1,5 @@
 // import * as React from "react";
 import {
-  Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,7 +12,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-import logoModal from "../assets/images/logo_modal.png";
+import logoModal from "../../assets/images/logo_modal.png";
 import SignInSignUpForm from "./SignInSignUpForm";
 
 type FormModalProps = {
@@ -33,8 +31,7 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
   return (
     <Dialog
       sx={{
-        "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" }
-        
+        "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" },
       }}
       fullWidth
       maxWidth="md"
@@ -42,7 +39,7 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
       open={open}
       onClose={handleClose}
     >
-      <DialogContent sx={{ backgroundColor: primaryColor}}>
+      <DialogContent sx={{ backgroundColor: primaryColor }}>
         <DialogActions sx={{ p: 0 }}>
           <IconButton
             sx={{ p: 0, color: secondaryColor }}
@@ -54,7 +51,9 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
         </DialogActions>
 
         {/* <Container maxWidth="sm"> */}
-        <Grid container spacing={3}
+        <Grid
+          container
+          spacing={3}
           // sx={{ m }}
         >
           <Grid item xs>

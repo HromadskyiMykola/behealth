@@ -10,7 +10,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { SignInSignUpFormValues } from "../common/types_and_interfaces";
+import { SignInSignUpFormValues } from "../../common/types_and_interfaces";
 import PasswordInput from "./PassawordField";
 import { validationRules } from "./validationRules";
 
@@ -126,7 +126,9 @@ export default function SignInSignUpForm() {
             control={control}
             defaultValue=""
             rules={
-              isRegisterMode ? validationRules.registerPassword : validationRules.loginPassword
+              isRegisterMode
+                ? validationRules.registerPassword
+                : validationRules.loginPassword
             }
             render={({ field }) => (
               <PasswordInput
