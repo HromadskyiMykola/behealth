@@ -39,7 +39,7 @@ const Header: React.FC = (props) => {
     setCity(event.target.value as string);
   };
   return (
-    <AppBar className="appBar">
+    <AppBar className="appBar" position="static">
       <Container className="_containerHeader">
         <Box sx={styledBox}>
           <NavLink to={RouteNames.HOME}>
