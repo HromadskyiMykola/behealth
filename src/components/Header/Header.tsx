@@ -1,4 +1,4 @@
-import React from "react";
+import { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
+import FormModal from "../SignInSignUpForm/FormModal";
 
 const links = [
   {
@@ -26,14 +27,19 @@ const links = [
     path: RouteNames.ABOUT,
   },
 ];
+
 const styledBox = {
   display: "flex",
   gap: "24px",
   alignItems: "center",
 };
 
-const Header: React.FC = (props) => {
-  const [city, setCity] = React.useState("Cherkasy");
+const Header: FC = (props) => {
+  const [city, setCity] = useState("Cherkasy");
+  const [open, setOpen] = useState(false);
+
+  const handleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
@@ -107,15 +113,25 @@ const Header: React.FC = (props) => {
               );
             })}
           </Box>
+
           <Button variant="contained" className="_headerAppointmentButton">
-            <Typography variant="button">Записатися</Typography>
+            {"Записатися"}
           </Button>
-          <Button variant="outlined" className="_headerSingInButton">
-            <Box sx={{ display: "flex", gap: "12px", alignItems: "center" }}>
-              <PersonIcon fontSize="small" />
-              <Typography variant="button">Увійти</Typography>
-            </Box>
+
+          <Button
+            variant="outlined"
+            className="_headerSingInButton"
+            onClick={handleModalOpen}
+            startIcon={<PersonIcon fontSize="small" />}
+          >
+            {
+              // userIsLoggedIn ?  "Особистий кабінет" :
+              "Увійти"
+            }
           </Button>
+
+          <FormModal open={open} handleModalClose={handleModalClose} />
+          
         </Box>
       </Container>
     </AppBar>

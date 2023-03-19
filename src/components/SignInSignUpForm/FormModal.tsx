@@ -17,13 +17,13 @@ import SignInSignUpForm from "./SignInSignUpForm";
 
 type FormModalProps = {
   open: boolean;
-  handleClose: () => void;
+  handleModalClose: () => void;
 };
 
 const primaryColor = "#3ABD98";
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal({ open, handleClose }: FormModalProps) {
+export default function FormModal({ open, handleModalClose }: FormModalProps) {
   const theme = useTheme();
   // const contrastColor = theme.palette.getContrastText(bgColor);
   const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
@@ -37,14 +37,14 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
       maxWidth="md"
       fullScreen={mobileDevice}
       open={open}
-      onClose={handleClose}
+      onClose={handleModalClose}
     >
       <DialogContent sx={{ backgroundColor: primaryColor }}>
         <DialogActions sx={{ p: 0 }}>
           <IconButton
             sx={{ p: 0, color: secondaryColor }}
             aria-label="close"
-            onClick={handleClose}
+            onClick={handleModalClose}
           >
             <CloseIcon fontSize="large" />
           </IconButton>
@@ -85,7 +85,7 @@ export default function FormModal({ open, handleClose }: FormModalProps) {
             <SignInSignUpForm />
 
             {/* <DialogActions>
-              <Button onClick={handleClose}>Subscribe</Button>
+              <Button onClick={handleModalClose}>Subscribe</Button>
             </DialogActions> */}
           </Grid>
         </Grid>
