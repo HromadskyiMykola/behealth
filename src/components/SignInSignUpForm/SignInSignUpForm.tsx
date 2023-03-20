@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, Controller, Control, FieldValues } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   Box,
   TextField,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 import { SignInSignUpFormValues } from "../../common/types_and_interfaces";
-import PasswordInput from "./PassawordField";
+import PasswordInput from "./PasswordField";
 import { validationRules } from "./validationRules";
 
 type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
@@ -62,7 +62,7 @@ export default function SignInSignUpForm() {
         justifyContent="center"
       >
         <Typography sx={{ m: "4px", color: textColor }}>
-          {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}.
+          {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
         </Typography>
         <Button
           variant="text"
@@ -193,7 +193,7 @@ export default function SignInSignUpForm() {
           disabled={!formState.isValid}
           type="submit"
           variant="contained"
-          sx={{ backgroundColor: primaryColor }}
+          // sx={{ backgroundColor: primaryColor }}
         >
           {isLoginMode && "Увійти"}
           {isRegisterMode && "Зареєструватися"}
@@ -257,3 +257,6 @@ export default function SignInSignUpForm() {
 // Не менее 8 символов, но не более 15 символов
 // Не менее одной заглавной и одной строчной буквы
 // Не менее одной цифровой и одного специального символа - ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+
+
+
