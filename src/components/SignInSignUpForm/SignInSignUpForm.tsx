@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 import { SignInSignUpFormValues } from "../../common/types_and_interfaces";
-import PasswordInput from "./PassawordField";
+import PasswordInput from "./PasswordField";
 import { validationRules } from "./validationRules";
 
 type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
@@ -257,3 +257,6 @@ export default function SignInSignUpForm() {
 // Не менее 8 символов, но не более 15 символов
 // Не менее одной заглавной и одной строчной буквы
 // Не менее одной цифровой и одного специального символа - ! # $ % & ' * + - / = ? ^ _ ` { | } ~
+
+
+
