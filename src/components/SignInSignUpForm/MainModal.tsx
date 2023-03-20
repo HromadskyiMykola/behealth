@@ -1,4 +1,4 @@
-// import * as React from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -12,20 +12,27 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-import logoModal from "../../assets/images/logo_modal.png";
+import logoSignIn from "../../assets/images/logo_sign_in.png";
+import logoSignUp from "../../assets/images/logo_sign_up.png";
 import SignInSignUpForm from "./SignInSignUpForm";
+import { authorizationMode } from "../../common/types_and_interfaces";
 
-type FormModalProps = {
+type Props = {
   open: boolean;
-  handleModalClose: () => void;
+  handleMainModalClose: () => void;
 };
 
 const primaryColor = "#3ABD98";
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal({ open, handleModalClose }: FormModalProps) {
+export default function FormModal({ open, handleMainModalClose }: Props) {
+  const [mode, setMode] = useState<authorizationMode>("LOGIN");
+  const isLoginMode: boolean = mode === "LOGIN";
+  const isRegisterMode: boolean = mode === "REGISTER";
+  const isRecoveryMode: boolean = mode === "RECOVERY";
+
   const theme = useTheme();
-  // const contrastColor = theme.palette.getContrastText(bgColor);
+
   const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -37,14 +44,14 @@ export default function FormModal({ open, handleModalClose }: FormModalProps) {
       maxWidth="md"
       fullScreen={mobileDevice}
       open={open}
-      onClose={handleModalClose}
+      onClose={handleMainModalClose}
     >
       <DialogContent sx={{ backgroundColor: primaryColor }}>
         <DialogActions sx={{ p: 0 }}>
           <IconButton
             sx={{ p: 0, color: secondaryColor }}
             aria-label="close"
-            onClick={handleModalClose}
+            onClick={handleMainModalClose}
           >
             <CloseIcon fontSize="large" />
           </IconButton>
@@ -72,7 +79,7 @@ export default function FormModal({ open, handleModalClose }: FormModalProps) {
             </DialogContentText>
 
             <img
-              src={logoModal}
+              src={isLoginMode ? logoSignIn : logoSignUp}
               style={{
                 maxWidth: "100%",
                 display: mobileDevice ? "none" : "block",
@@ -82,7 +89,7 @@ export default function FormModal({ open, handleModalClose }: FormModalProps) {
           </Grid>
 
           <Grid item xs>
-            <SignInSignUpForm />
+            <SignInSignUpForm mode={mode} setMode={setMode} />
 
             {/* <DialogActions>
               <Button onClick={handleModalClose}>Subscribe</Button>

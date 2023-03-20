@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
@@ -10,24 +9,25 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { SignInSignUpFormValues } from "../../common/types_and_interfaces";
+import {
+  authorizationMode,
+  SignInSignUpFormValues,
+} from "../../common/types_and_interfaces";
 import PasswordInput from "./PasswordField";
 import { validationRules } from "./validationRules";
 
-type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
+type Props = {
+  mode: authorizationMode;
+  setMode: (mode: authorizationMode) => void;
+};
 
-const primaryColor = "#3ABD98";
-const secondaryColor = "#FFFFFF";
-const textColor = "#212121";
-
-const showMode: Record<Mode, string> = {
+const showMode = {
   LOGIN: "Вхід",
   REGISTER: "Реєстрація",
   RECOVERY: "Відновлення паролю",
 };
 
-export default function SignInSignUpForm() {
-  const [mode, setMode] = useState<Mode>("LOGIN");
+export default function SignInSignUpForm({ mode, setMode }: Props) {
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";
@@ -47,12 +47,9 @@ export default function SignInSignUpForm() {
       direction="column"
       // alignItems="center"
       spacing={1}
-      sx={{ p: 2, backgroundColor: secondaryColor, borderRadius: "12px" }}
+      sx={{ p: 2, backgroundColor: "#FFF", borderRadius: "12px" }}
     >
-      <Typography
-        sx={{ alignSelf: "center", m: "4px", color: textColor }}
-        variant="h5"
-      >
+      <Typography sx={{ alignSelf: "center", m: "4px" }} variant="h5">
         {showMode[mode]}
       </Typography>
 
@@ -61,12 +58,11 @@ export default function SignInSignUpForm() {
         alignItems="center"
         justifyContent="center"
       >
-        <Typography sx={{ m: "4px", color: textColor }}>
+        <Typography sx={{ m: "4px" }}>
           {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
         </Typography>
         <Button
           variant="text"
-          sx={{ color: primaryColor }}
           onClick={() => {
             reset();
             setMode(isLoginMode ? "REGISTER" : "LOGIN");
@@ -170,7 +166,7 @@ export default function SignInSignUpForm() {
               defaultValue={false}
               render={({ field }) => (
                 <FormControlLabel
-                  control={<Checkbox sx={{ color: primaryColor }} {...field} />}
+                  control={<Checkbox {...field} />}
                   label="Запамʼятати мене"
                 />
               )}
@@ -178,7 +174,6 @@ export default function SignInSignUpForm() {
 
             <Button
               variant="text"
-              sx={{ color: primaryColor }}
               onClick={() => {
                 reset();
                 setMode("RECOVERY");
@@ -199,6 +194,7 @@ export default function SignInSignUpForm() {
           {isRegisterMode && "Зареєструватися"}
           {isRecoveryMode && "Відправити інструкцію"}
         </Button>
+        
       </Box>
     </Stack>
   );
@@ -259,4 +255,25 @@ export default function SignInSignUpForm() {
 // Не менее одной цифровой и одного специального символа - ! # $ % & ' * + - / = ? ^ _ ` { | } ~
 
 
+
+
+
+// /////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function ParentComponent() {
+// return <Button>"Open child modal"</Button>
+// }
+
+
+// function ChildModal () {
+//   const [open, setOpen] = useState(false);
+
+//   const handleThanksModalOpen = () => setOpen(true);
+//   const handleThanksModalClose = () => setOpen(false);
+
+//   return (
+//     <Dialog
+//       open={open}
+//        onClose={handleThanksModalClose}
+//     >
+// )
 
