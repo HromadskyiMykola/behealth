@@ -1,9 +1,16 @@
-import React from 'react';
+import React from "react";
+import { Hero } from "../components/Hero";
+import { ChooseDoctor } from "../components/ChooseDoctor";
+import { HowItWorks } from "../components/HowItWorks";
+import { VideoFrame } from "../components/VideoFrame";
 
 export const HomePage = () => {
-    return (
-        <div>
-            Home
-        </div>
-    );
+  return (
+    <div>
+      <Hero />
+      <ChooseDoctor />
+      <HowItWorks />
+      <VideoFrame />
+    </div>
+  );
 };
