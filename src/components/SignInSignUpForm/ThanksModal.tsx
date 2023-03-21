@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useContext, useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,16 +7,14 @@ import {
 
 import bell from "../../assets/images/bell.svg";
 import { Stack } from "@mui/system";
+import { ModalContext } from "./ModalContext";
 
 export default function ThanksModal() {
-  const [open, setOpen] = useState(false);
-
-  const handleThanksModalOpen = () => setOpen(true);
-  const handleThanksModalClose = () => setOpen(false);
+  const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
 
   return (
     <Dialog
-      open={open}
+      open={openThanksModal}
       fullWidth
       maxWidth="sm"
       sx={{

@@ -1,22 +1,19 @@
-import { useState } from "react";
 import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
+import { ModalContext, useModalState } from "./ModalContext";
 import FormModal from "./MainModal";
 import ThanksModal from "./ThanksModal";
 
 function AuthorizationButton() {
-  const [open, setOpen] = useState(false);
-
-  const handleMainModalOpen = () => setOpen(true);
-  const handleMainModalClose = () => setOpen(false);
+  const modalState = useModalState();
 
   return (
-    <>
+    <ModalContext.Provider value={modalState}>
       <Button
         variant="outlined"
         className="_headerSingInButton"
-        onClick={handleMainModalOpen}
+        onClick={modalState.handleMainModalOpen}
         startIcon={<PersonIcon fontSize="small" />}
       >
         {
@@ -25,10 +22,10 @@ function AuthorizationButton() {
         }
       </Button>
 
-          <FormModal open={open} handleMainModalClose={handleMainModalClose} />
-          
-          {/* <ThanksModal /> */}
-    </>
+      <FormModal />
+
+      <ThanksModal />
+    </ModalContext.Provider>
   );
 }
 

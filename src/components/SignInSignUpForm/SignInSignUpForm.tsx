@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
@@ -13,8 +14,12 @@ import {
   authorizationMode,
   SignInSignUpFormValues,
 } from "../../common/types_and_interfaces";
+
+import { ModalContext } from "./ModalContext";
+
 import PasswordInput from "./PasswordField";
 import { validationRules } from "./validationRules";
+import UserAgreement from "./UserAgreement";
 
 type Props = {
   mode: authorizationMode;
@@ -28,6 +33,8 @@ const showMode = {
 };
 
 export default function SignInSignUpForm({ mode, setMode }: Props) {
+  const { handleThanksModalOpen } = useContext(ModalContext);
+
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";
@@ -37,10 +44,11 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
 
   const { errors } = formState;
 
-  const onSubmit = (data: SignInSignUpFormValues) => console.log(data);
-
-  console.log(formState);
-  // console.log(errors);
+  const onSubmit = (data: SignInSignUpFormValues) => {
+    handleThanksModalOpen();
+    console.log(data);
+    console.log(formState);
+  };
 
   return (
     <Stack
@@ -184,6 +192,20 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
           </Stack>
         )}
 
+        {isRegisterMode && (
+          <Controller
+            name="checkbox"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <FormControlLabel
+                control={<Checkbox {...field} />}
+                label={UserAgreement()}
+              />
+            )}
+          />
+        )}
+
         <Button
           disabled={!formState.isValid}
           type="submit"
@@ -194,7 +216,6 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
           {isRegisterMode && "Зареєструватися"}
           {isRecoveryMode && "Відправити інструкцію"}
         </Button>
-        
       </Box>
     </Stack>
   );
@@ -254,26 +275,4 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
 // Не менее одной заглавной и одной строчной буквы
 // Не менее одной цифровой и одного специального символа - ! # $ % & ' * + - / = ? ^ _ ` { | } ~
 
-
-
-
-
 // /////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// function ParentComponent() {
-// return <Button>"Open child modal"</Button>
-// }
-
-
-// function ChildModal () {
-//   const [open, setOpen] = useState(false);
-
-//   const handleThanksModalOpen = () => setOpen(true);
-//   const handleThanksModalClose = () => setOpen(false);
-
-//   return (
-//     <Dialog
-//       open={open}
-//        onClose={handleThanksModalClose}
-//     >
-// )
-

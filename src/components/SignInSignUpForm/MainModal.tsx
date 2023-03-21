@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -16,16 +16,19 @@ import logoSignIn from "../../assets/images/logo_sign_in.png";
 import logoSignUp from "../../assets/images/logo_sign_up.png";
 import SignInSignUpForm from "./SignInSignUpForm";
 import { authorizationMode } from "../../common/types_and_interfaces";
+import { ModalContext } from "./ModalContext";
 
-type Props = {
-  open: boolean;
-  handleMainModalClose: () => void;
-};
-
-const primaryColor = "#3ABD98";
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal({ open, handleMainModalClose }: Props) {
+export default function FormModal() {
+  const {
+    palette: {
+      primary: { main: primaryColor },
+    },
+  } = useTheme();
+
+  const { openMainModal, handleMainModalClose } = useContext(ModalContext);
+
   const [mode, setMode] = useState<authorizationMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
@@ -43,7 +46,7 @@ export default function FormModal({ open, handleMainModalClose }: Props) {
       fullWidth
       maxWidth="md"
       fullScreen={mobileDevice}
-      open={open}
+      open={openMainModal}
       onClose={handleMainModalClose}
     >
       <DialogContent sx={{ backgroundColor: primaryColor }}>
@@ -73,9 +76,8 @@ export default function FormModal({ open, handleMainModalClose }: Props) {
             <DialogContentText
               sx={{ pl: 0, typography: "body1", color: secondaryColor }}
             >
-              {"Слідкуй за здоровʼям за допомогою кабінету"}
-              <br />
-              {"beHealth.ua"}
+              {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
+              {", щоб отримати доступ до особистого кабінету beHealth."}
             </DialogContentText>
 
             <img
