@@ -112,11 +112,11 @@ const Header: FC = (props) => {
           </Box>
 
           <Button variant="contained" className="_headerAppointmentButton">
-            {"Записатися"}
+            <Typography variant="button">Записатися</Typography>
           </Button>
 
          <AuthorizationButton/>
-          
+ 
         </Box>
       </Container>
     </AppBar>
