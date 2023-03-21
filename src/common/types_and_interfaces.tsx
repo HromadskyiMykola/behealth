@@ -7,3 +7,5 @@ export type SignInSignUpFormValues = {
   confirmPassword: string;
   checkbox: boolean;
 };
+
+export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";

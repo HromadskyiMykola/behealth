@@ -11,6 +11,7 @@ function PasswordInput(props: any, ref: any) {
 
   return (
     <TextField
+      sx={{ "input::-ms-reveal": { display: "none" } }}
       ref={ref}
       type={showPassword ? "text" : "password"}
       InputProps={{
