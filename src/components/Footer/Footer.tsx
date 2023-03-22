@@ -15,6 +15,8 @@ import {
 } from "./footer.constant";
 import FooterHelpLine from "../FooterHelpLine/FooterHelpLine";
 import FooterColumNavigateLinks from "../FooterColumNavigateLinks/FooterColumNavigateLinks";
+import {RouteNames} from "../../routes";
+import {NavLink} from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -45,13 +47,16 @@ const Footer = () => {
         >
           <Box>
             <Box>
-              <Logo
-                width="116"
-                height="21"
-                viewBox="0 0 116 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              />
+              <NavLink to={RouteNames.HOME}>
+                <Logo
+                    width="116"
+                    height="21"
+                    viewBox="0 0 116 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fontSize='huge'
+                />
+              </NavLink>
               <Box sx={{ mt: "32px", display: "flex", gap: "12px" }}>
                 <Instagram
                   width="23"
