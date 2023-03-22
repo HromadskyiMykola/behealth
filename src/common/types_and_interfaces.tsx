@@ -17,6 +17,7 @@ export type SvgIconsProps = {
   viewBox: string;
   fill: string;
   xmlns: string;
+  fontSize?: "small" | "inherit" | "medium" | "large" | "huge" | undefined;
 };
 
 export interface FooterInfoBlogProps {

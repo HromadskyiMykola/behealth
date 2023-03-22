@@ -20,7 +20,7 @@ const FooterInfoBlock = ({ title, text }: FooterInfoBlogProps) => {
       </Typography>
       {text.map((item, index) => {
         return (
-          <Typography variant="caption" sx={{ color: "#4C635A" }} key={index}>
+          <Typography variant="captionS" sx={{ color: "#4C635A" }} key={index}>
             {item}
           </Typography>
         );

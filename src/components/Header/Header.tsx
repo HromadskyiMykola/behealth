@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
 
 import AuthorizationButton from "../SignInSignUpForm/AuthorizationButton";
+import Logo from "../../assets/CustomIcon/Logo";
 
 const links = [
   {
@@ -46,12 +47,11 @@ const Header: FC = (props) => {
       <Container className="_containerHeader">
         <Box sx={styledBox}>
           <NavLink to={RouteNames.HOME}>
-            <Typography className="_logo" width="180px" height="32px">
-              beHealth
-            </Typography>
+            <Logo
+                width="180" height="33" viewBox="0 0 180 33" fill="none" xmlns="http://www.w3.org/2000/svg"
+            />
           </NavLink>
           <Select
-            // disableUnderline
             labelId="select-city"
             id="select-city"
             value={city}
