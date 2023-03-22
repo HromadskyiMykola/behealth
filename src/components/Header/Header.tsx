@@ -6,12 +6,12 @@ import Link from "@mui/material/Link";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import PersonIcon from "@mui/icons-material/Person";
 import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
-import FormModal from "../SignInSignUpForm/FormModal";
+
+import AuthorizationButton from "../SignInSignUpForm/AuthorizationButton";
 
 const links = [
   {
@@ -36,10 +36,7 @@ const styledBox = {
 
 const Header: FC = (props) => {
   const [city, setCity] = useState("Cherkasy");
-  const [open, setOpen] = useState(false);
 
-  const handleModalOpen = () => setOpen(true);
-  const handleModalClose = () => setOpen(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
@@ -118,21 +115,8 @@ const Header: FC = (props) => {
             <Typography variant="button">Записатися</Typography>
           </Button>
 
-          <Button
-            variant="outlined"
-            className="_headerSingInButton"
-            onClick={handleModalOpen}
-            startIcon={<PersonIcon fontSize="small" />}
-          >
-            <Typography variant="button">
-              {
-                // userIsLoggedIn ?  "Особистий кабінет" :
-                "Увійти"
-              }
-            </Typography>
-          </Button>
-
-          <FormModal open={open} handleModalClose={handleModalClose} />
+         <AuthorizationButton/>
+ 
         </Box>
       </Container>
     </AppBar>

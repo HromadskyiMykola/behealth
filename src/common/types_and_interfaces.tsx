@@ -34,3 +34,4 @@ export interface FooterColumNavigateLinksProps {
 }
 
 export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";
+
