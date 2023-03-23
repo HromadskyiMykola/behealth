@@ -98,7 +98,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {isRegisterMode && ( // NAME
+        {/* {isRegisterMode && ( // NAME
           <Controller
             name="firstName"
             control={control}
@@ -115,7 +115,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
               />
             )}
           />
-        )}
+        )} */}
 
         <Controller // EMAIL
           name="email"

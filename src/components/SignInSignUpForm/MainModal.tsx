@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import {
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
@@ -43,34 +42,38 @@ export default function FormModal() {
       sx={{
         "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" },
       }}
-      fullWidth
+      // fullWidth
       maxWidth="md"
       fullScreen={mobileDevice}
       open={openMainModal}
       onClose={handleMainModalClose}
     >
-      <DialogContent sx={{ backgroundColor: primaryColor }}>
-        <DialogActions sx={{ p: 0 }}>
-          <IconButton
-            sx={{ p: 0, color: secondaryColor }}
-            aria-label="close"
-            onClick={handleMainModalClose}
-          >
-            <CloseIcon fontSize="large" />
-          </IconButton>
-        </DialogActions>
+      <DialogContent sx={{ p: "80px", backgroundColor: primaryColor }}>
+        <IconButton
+          sx={{
+            position: "absolute",
+            p: 0,
+            top: "28px",
+            right: "28px",
+            color: secondaryColor,
+          }}
+          aria-label="close"
+          onClick={handleMainModalClose}
+        >
+          <CloseIcon fontSize="large" />
+        </IconButton>
 
-        {/* <Container maxWidth="sm"> */}
+       
         <Grid
           container
-          spacing={3}
-          // sx={{ m }}
+          spacing="32px"
+          alignItems="center"
         >
           <Grid item xs>
             <DialogTitle
               sx={{ pl: 0, typography: "h3", color: secondaryColor }}
             >
-              {"Авторизація"}
+              {isLoginMode ? "Авторизація": "Реєстрація"}
             </DialogTitle>
 
             <DialogContentText
