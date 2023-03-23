@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
-  TextField,
   Button,
   Typography,
   Stack,
@@ -17,9 +16,10 @@ import {
 
 import { ModalContext } from "./ModalContext";
 
-import PasswordInput from "./PasswordField";
+import PasswordInput from "../Atomic/PasswordInput";
 import { validationRules } from "./validationRules";
 import UserAgreement from "./UserAgreement";
+import CustomizedInput from "../Atomic/CustomizedInput";
 
 type Props = {
   mode: authorizationMode;
@@ -54,10 +54,15 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
     <Stack
       direction="column"
       // alignItems="center"
-      spacing={1}
-      sx={{ p: 2, backgroundColor: "#FFF", borderRadius: "12px" }}
+      // spacing={1}
+      sx={{
+        p: "32px",
+        // gap: "24px",
+        backgroundColor: "#FFF",
+        borderRadius: "12px",
+      }}
     >
-      <Typography sx={{ alignSelf: "center", m: "4px" }} variant="h5">
+      <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
         {showMode[mode]}
       </Typography>
 
@@ -65,11 +70,13 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
         direction={{ xs: "column", sm: "row" }}
         alignItems="center"
         justifyContent="center"
+        mb="24px"
       >
-        <Typography sx={{ m: "4px" }}>
+        <Typography variant="body2" sx={{ color: "#8E918F" }}>
           {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
         </Typography>
         <Button
+          sx={{ ml: "4px", p: 0 }}
           variant="text"
           onClick={() => {
             reset();
@@ -83,10 +90,11 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
       <Box
         component="form"
         noValidate
-        style={{
+        sx={{
+          mb: "24px",
           display: "flex",
           flexDirection: "column",
-          gap: 16,
+          // gap: 16,
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -97,9 +105,10 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             defaultValue=""
             rules={validationRules.firstName}
             render={({ field }) => (
-              <TextField
+              <CustomizedInput
                 autoFocus={isRegisterMode}
-                label="Ім’я"
+                description="Ім’я"
+                placeholder="Олександр"
                 {...field}
                 error={!!errors.firstName}
                 helperText={errors.firstName?.message || " "}
@@ -114,9 +123,10 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
           defaultValue=""
           rules={validationRules.email}
           render={({ field }) => (
-            <TextField
+            <CustomizedInput
+              description="Електронна пошта"
+              placeholder="mail@example.com"
               autoFocus={isLoginMode || isRecoveryMode}
-              label="E-mail"
               {...field}
               error={!!errors.email}
               helperText={errors.email?.message || " "}
@@ -136,7 +146,8 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             }
             render={({ field }) => (
               <PasswordInput
-                label="Пароль"
+                description="Пароль"
+                placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.password}
                 helperText={errors.password?.message || " "}
@@ -153,7 +164,8 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             rules={validationRules.confirmPassword(watch("password"))}
             render={({ field }) => (
               <PasswordInput
-                label="Підтвердження паролю"
+                description="Підтвердження паролю"
+                placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message || " "}
@@ -174,6 +186,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
               defaultValue={false}
               render={({ field }) => (
                 <FormControlLabel
+                  componentsProps={{ typography: { variant: "body2" } }}
                   control={<Checkbox {...field} />}
                   label="Запамʼятати мене"
                 />
@@ -193,20 +206,23 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
         )}
 
         {isRegisterMode && (
-          <Controller
-            name="checkbox"
-            control={control}
-            defaultValue={false}
-            render={({ field }) => (
-              <FormControlLabel
-                control={<Checkbox {...field} />}
-                label={UserAgreement()}
-              />
-            )}
-          />
+          <Stack direction="row" alignItems="flex-start">
+            <Controller
+              name="checkbox"
+              control={control}
+              defaultValue={false}
+              rules={{ required: true }}
+              render={({ field }) => (
+                // <FormControlLabel control={<Checkbox {...field} />} label="" />
+                <Checkbox {...field} />
+              )}
+            />
+            <UserAgreement />
+          </Stack>
         )}
 
         <Button
+          sx={{ mt: "24px" }}
           disabled={!formState.isValid}
           type="submit"
           variant="contained"

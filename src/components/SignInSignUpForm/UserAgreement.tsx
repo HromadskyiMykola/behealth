@@ -6,14 +6,16 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
   Typography,
   useTheme,
 } from "@mui/material";
 
 const userAgreement = (
   <DialogContent>
+    
     <DialogContentText>Загальні положення</DialogContentText>
-    <br />
+    <Divider />
     <DialogContentText>
       1.1. Ця угода є договором між вами, користувачем, і порталом "BeHealth"
       щодо використання його послуг.
@@ -27,9 +29,8 @@ const userAgreement = (
       їх опублікування на порталі.
     </DialogContentText>
     <br />
-    <br />
     <DialogContentText>Права та обов'язки сторін</DialogContentText>
-    <br />
+    <Divider />
     <DialogContentText>2.1. Користувач має право:</DialogContentText>
     <DialogContentText>
       2.1.1. Використовувати послуги порталу згідно з умовами цієї угоди.
@@ -84,9 +85,8 @@ const userAgreement = (
       відповідно до законодавства України та політики конфіденційності порталу.
     </DialogContentText>
     <br />
-    <br />
     <DialogContentText>Відповідальність сторін</DialogContentText>
-    <br />
+    <Divider />
     <DialogContentText>
       3.1. Користувач несе повну відповідальність за використання послуг порталу
       та будь-які дії, вчинені через його обліковий запис.
@@ -106,9 +106,8 @@ const userAgreement = (
       або законодавства України.
     </DialogContentText>
     <br />
-    <br />
     <DialogContentText>Заключні положення</DialogContentText>
-    <br />
+    <Divider />
     <DialogContentText>
       4.1. Ця угода є договором між користувачем та порталом і регулює
       використання послуг порталу.
@@ -122,7 +121,7 @@ const userAgreement = (
       вирішено відповідно до законодавства України.
     </DialogContentText>
     <DialogContentText>
-      4.4. Ця угода поширюється на всіх користувачів порталу "BeHealth-PHI" та є
+      4.4. Ця угода поширюється на всіх користувачів порталу "BeHealth" та є
       невід'ємною частиною використання його послуг.
     </DialogContentText>
     <DialogContentText>
@@ -214,6 +213,8 @@ export default function UserAgreement() {
             : 'Згода на обробку персональних даних порталом "BeHealth"'}
         </DialogTitle>
 
+        <Divider />
+        
         {agreementMode === "user-agreement"
           ? userAgreement
           : dataProcessingAgreement}
