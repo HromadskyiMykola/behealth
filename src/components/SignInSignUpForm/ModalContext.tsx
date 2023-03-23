@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-interface IModalContext {
+interface IModalState {
   openMainModal: boolean;
   handleMainModalOpen: () => void;
   handleMainModalClose: () => void;
@@ -10,7 +10,7 @@ interface IModalContext {
   handleThanksModalClose: () => void;
 }
 
-export const useModalState = (): IModalContext => {
+export const useModalState = (): IModalState => {
   const [openMainModal, setOpenMainModal] = useState(false);
   const handleMainModalOpen = () => setOpenMainModal(true);
   const handleMainModalClose = () => setOpenMainModal(false);
@@ -30,7 +30,7 @@ export const useModalState = (): IModalContext => {
   };
 };
 
-export const ModalContext = createContext<IModalContext>({
+export const ModalContext = createContext<IModalState>({
   openMainModal: false,
   handleMainModalOpen: () => {},
   handleMainModalClose: () => {},
