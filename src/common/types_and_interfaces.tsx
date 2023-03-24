@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import FooterColumNavigateLinks from "../components/FooterColumNavigateLinks/FooterColumNavigateLinks";
 
 export type SignInSignUpFormValues = {
   firstName: string;
@@ -17,7 +16,7 @@ export type SvgIconsProps = {
   viewBox: string;
   fill: string;
   xmlns: string;
-  fontSize?: "small" | "inherit" | "medium" | "large" | "huge" | undefined;
+  fontSize?: "small" | "inherit" | "medium" | "large" | undefined;
 };
 
 export interface FooterInfoBlogProps {

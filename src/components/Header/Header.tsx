@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
@@ -72,8 +71,6 @@ const Header: FC = (props) => {
                   border: 0,
                 },
             }}
-            // class doesnt work wtf !!!
-            className="_selectChooseCity"
           >
             <MenuItem value={"Cherkasy"}>
               <Typography variant="caption">Черкаси</Typography>
@@ -102,7 +99,8 @@ const Header: FC = (props) => {
                 >
                   <Typography
                     variant="body2"
-                    sx={{ textDecoration: "none", color: "#000000" }}
+                    sx={{ textDecoration: "none", }}
+
                   >
                     {name}
                   </Typography>
@@ -111,7 +109,7 @@ const Header: FC = (props) => {
             })}
           </Box>
 
-          <Button variant="contained" className="_headerAppointmentButton">
+          <Button variant="contained" >
             <Typography variant="button">Записатися</Typography>
           </Button>
 
