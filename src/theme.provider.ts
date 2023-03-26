@@ -1,8 +1,4 @@
 import {createTheme} from '@mui/material';
-import {
-    PaletteColorOptions,
-    PaletteColor,
-} from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
     interface TypographyVariants {
@@ -70,7 +66,7 @@ export function createOverrideTheme() {
                 secondary: '#FFFFFF',
                 disabled: '#A9ACA9',
             },
-        }, 
+        },
         breakpoints: {
             values: {
                 xs: 0,
@@ -226,16 +222,15 @@ export function createOverrideTheme() {
                     },
                 },
             },
-                  MuiGrid: {
-        styleOverrides: {
-          root: {
-            marginLeft: "0",
-            marginRight: "0",
-            width: "100%",
-          },
-        },
-      },
-    },
+            MuiGrid: {
+                styleOverrides: {
+                    root: {
+                        marginLeft: "0",
+                        marginRight: "0",
+                        width: "100%",
+                    },
+                },
+            },
             MuiButton: {
                 styleOverrides: {
                     root: ({ownerState, theme}) => ({
@@ -248,22 +243,22 @@ export function createOverrideTheme() {
                             boxShadow: 'none',
                             '&:hover': {
                                 backgroundColor: '#5EDCB5',
-                                color:theme.palette.primary.contrastText,
+                                color: theme.palette.primary.contrastText,
                                 boxShadow: '0px 1px 4px rgba(66, 199, 161, 0.2), 0px 1px 3px 1px rgba(66, 199, 161, 0.15)',
                             },
                             '&:focused': {
                                 backgroundColor: '#5EDCB5',
-                                color:theme.palette.primary.contrastText,
+                                color: theme.palette.primary.contrastText,
                                 boxShadow: 'none',
                             },
                             '&:active': {
                                 backgroundColor: '#09A480',
-                                color:theme.palette.primary.contrastText,
+                                color: theme.palette.primary.contrastText,
                                 boxShadow: 'none',
                             },
                             '&:disable': {
                                 backgroundColor: '#E1E3E0',
-                                color:'#8E918F',
+                                color: '#8E918F',
                                 boxShadow: 'none',
                             },
                         },
@@ -285,14 +280,14 @@ export function createOverrideTheme() {
                                 boxShadow: 'none',
                             },
                             '&:disable': {
-                                color:'#8E918F',
+                                color: '#8E918F',
                                 boxShadow: 'none',
                             },
                         },
                         ...ownerState.variant === 'text' && {
                             color: '#3ABD98',
                             borderRadius: '8px',
-                            padding:'10px 12px',
+                            padding: '10px 12px',
                             height: 'auto',
                             width: 'auto',
                             '&:hover': {
@@ -304,12 +299,12 @@ export function createOverrideTheme() {
                                 boxShadow: 'none',
                             },
                             '&:active': {
-                                color:'#008769',
+                                color: '#008769',
                                 backgroundColor: '#CEE9DC',
                                 boxShadow: 'none',
                             },
                             '&:disable': {
-                                color:'#A9ACA9',
+                                color: '#A9ACA9',
                                 boxShadow: 'none',
                             },
                         },
