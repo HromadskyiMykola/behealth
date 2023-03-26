@@ -13,7 +13,6 @@ function AuthorizationButton() {
     <ModalContext.Provider value={modalState}>
       <Button
         variant="outlined"
-        className="_headerSingInButton"
         onClick={modalState.handleMainModalOpen}
         startIcon={<PersonIcon fontSize="small" />}
       >
