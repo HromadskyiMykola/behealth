@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { CardItem } from "./CardItem";
-import howItWorks1 from "../../assets/images/how-it-work-1.png";
-import howItWorks2 from "../../assets/images/how-it-work-2.png";
-import howItWorks3 from "../../assets/images/how-it-work-3.png";
+import howItWorks1 from "../../../assets/images/how-it-work-1.png";
+import howItWorks2 from "../../../assets/images/how-it-work-2.png";
+import howItWorks3 from "../../../assets/images/how-it-work-3.png";
 
 export const CardsList = () => {
   const list = [
