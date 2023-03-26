@@ -56,6 +56,8 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
       // alignItems="center"
       // spacing={1}
       sx={{
+        // width: '100%',
+        // minWidth: "448px",
         p: "32px",
         // gap: "24px",
         backgroundColor: "#FFF",
@@ -107,7 +109,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             render={({ field }) => (
               <CustomizedInput
                 autoFocus={isRegisterMode}
-                description="Ім’я"
+                label="Ім’я"
                 placeholder="Олександр"
                 {...field}
                 error={!!errors.firstName}
@@ -124,7 +126,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
           rules={validationRules.email}
           render={({ field }) => (
             <CustomizedInput
-              description="Електронна пошта"
+              label="Електронна пошта"
               placeholder="mail@example.com"
               autoFocus={isLoginMode || isRecoveryMode}
               {...field}
@@ -146,7 +148,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             }
             render={({ field }) => (
               <PasswordInput
-                description="Пароль"
+                label="Пароль"
                 placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.password}
@@ -164,7 +166,7 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
             rules={validationRules.confirmPassword(watch("password"))}
             render={({ field }) => (
               <PasswordInput
-                description="Підтвердження паролю"
+                label="Підтвердження паролю"
                 placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.confirmPassword}

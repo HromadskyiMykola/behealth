@@ -4,6 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { ModalContext, useModalState } from "./ModalContext";
 import FormModal from "./MainModal";
 import ThanksModal from "./ThanksModal";
+import PersonalIdentification from "./PersonalIdentification";
 
 function AuthorizationButton() {
   const modalState = useModalState();
@@ -25,6 +26,9 @@ function AuthorizationButton() {
       <FormModal />
 
       <ThanksModal />
+
+      <PersonalIdentification />
+      
     </ModalContext.Provider>
   );
 }

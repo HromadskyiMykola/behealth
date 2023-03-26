@@ -7,7 +7,7 @@ const passwordValidation = {
     message: "Мінімальна довжина поля 8 символів",
   },
   maxLength: {
-    value: 128,
+    value: 15,
     message: maxLength(128),
   },
 };

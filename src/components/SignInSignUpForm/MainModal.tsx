@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
 import {
+  useTheme,
+  useMediaQuery,
   Dialog,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton,
   Grid,
+  IconButton,
+  Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 
 import logoSignIn from "../../assets/images/logo_sign_in.png";
 import logoSignUp from "../../assets/images/logo_sign_up.png";
@@ -63,25 +64,22 @@ export default function FormModal() {
           <CloseIcon fontSize="large" />
         </IconButton>
 
-       
-        <Grid
-          container
-          spacing="32px"
-          alignItems="center"
-        >
+        <Grid container spacing="32px" alignItems="center">
           <Grid item xs>
-            <DialogTitle
-              sx={{ pl: 0, typography: "h3", color: secondaryColor }}
-            >
-              {isLoginMode ? "Авторизація": "Реєстрація"}
-            </DialogTitle>
+            {!isRecoveryMode && (
+              <DialogTitle
+                sx={{ pl: 0, typography: "h3", color: secondaryColor }}
+              >
+                {isLoginMode ? "Авторизація" : "Реєстрація"}
+              </DialogTitle>
+            )}
 
-            <DialogContentText
-              sx={{ pl: 0, typography: "body1", color: secondaryColor }}
-            >
-              {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
-              {", щоб отримати доступ до особистого кабінету beHealth."}
-            </DialogContentText>
+            {!isRecoveryMode && (
+              <Typography variant="body1" sx={{ color: secondaryColor }}>
+                {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
+                {", щоб отримати доступ до особистого кабінету beHealth."}
+              </Typography>
+            )}
 
             <img
               src={isLoginMode ? logoSignIn : logoSignUp}
@@ -95,10 +93,6 @@ export default function FormModal() {
 
           <Grid item xs>
             <SignInSignUpForm mode={mode} setMode={setMode} />
-
-            {/* <DialogActions>
-              <Button onClick={handleModalClose}>Subscribe</Button>
-            </DialogActions> */}
           </Grid>
         </Grid>
       </DialogContent>
