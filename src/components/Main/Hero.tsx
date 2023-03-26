@@ -9,7 +9,7 @@ import { Search as SearchIcon } from "lucide-react";
 
 const styledContainer = {
   display: "flex",
-  gap: "75px",
+  justifyContent: "space-between",
   // alignItems: "center",
 };
 
@@ -44,7 +44,7 @@ export const Hero = () => {
   };
   return (
     <Box sx={styledBox}>
-      <Container maxWidth="xl" sx={styledContainer}>
+      <Container sx={styledContainer}>
         <Box sx={{ maxWidth: "807px", mt: "188px" }}>
           <Typography variant={"h1"} sx={{ color: "#00382A", mb: "24px" }}>
             Шукайте{" "}
@@ -95,19 +95,48 @@ export const Hero = () => {
                   {
                     border: 0,
                   },
+                "&.MuiInputBase-root": {
+                  display: "flex!important",
+                  flexDirection: "row-reverse!important",
+                  gap: "16px",
+                },
               }}
             >
               <MenuItem value={"Уся Україна"}>
-                <Typography variant="caption">Уся Україна</Typography>
+                <Typography
+                  fontSize={"16px"}
+                  sx={{ color: "#999" }}
+                  variant="caption"
+                >
+                  Уся Україна
+                </Typography>
               </MenuItem>
               <MenuItem value={"Cherkasy"}>
-                <Typography variant="caption">Черкаси</Typography>
+                <Typography
+                  fontSize={"16px"}
+                  sx={{ color: "#999" }}
+                  variant="caption"
+                >
+                  Черкаси
+                </Typography>
               </MenuItem>
               <MenuItem value={"Kyiv"}>
-                <Typography variant="caption">Київ</Typography>
+                <Typography
+                  fontSize={"16px"}
+                  sx={{ color: "#999" }}
+                  variant="caption"
+                >
+                  Київ
+                </Typography>
               </MenuItem>
               <MenuItem value={"Termopil"}>
-                <Typography variant="caption">Тернопіль</Typography>
+                <Typography
+                  fontSize={"16px"}
+                  sx={{ color: "#999" }}
+                  variant="caption"
+                >
+                  Тернопіль
+                </Typography>
               </MenuItem>
             </Select>
           </Search>

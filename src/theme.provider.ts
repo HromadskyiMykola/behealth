@@ -36,12 +36,10 @@ declare module "@mui/material/styles" {
         laptop: true;
         desktop: true;
     }
-
 }
 
 export function createOverrideTheme() {
     return createTheme({
-
         palette: {
             mode: 'light',
             primary: {
@@ -72,7 +70,7 @@ export function createOverrideTheme() {
                 secondary: '#FFFFFF',
                 disabled: '#A9ACA9',
             },
-        },
+        }, 
         breakpoints: {
             values: {
                 xs: 0,
@@ -86,7 +84,6 @@ export function createOverrideTheme() {
                 desktop: 1600,
             },
         },
-
         typography: {
             fontFamily: 'Inter, sans-serif',
             fontSize: 16,
@@ -173,7 +170,6 @@ export function createOverrideTheme() {
                 letterSpacing: '2.5px',
             },
         },
-
         components: {
             MuiContainer: {
                 styleOverrides: {
@@ -201,7 +197,6 @@ export function createOverrideTheme() {
                     },
                 },
             },
-
             MuiAppBar: {
                 styleOverrides: {
                     root: {
@@ -210,7 +205,6 @@ export function createOverrideTheme() {
                     },
                 },
             },
-
             MuiSelect: {
                 styleOverrides: {
                     select: {
@@ -222,7 +216,6 @@ export function createOverrideTheme() {
                     },
                 },
             },
-
             MuiLink: {
                 styleOverrides: {
                     root: {
@@ -233,7 +226,16 @@ export function createOverrideTheme() {
                     },
                 },
             },
-
+                  MuiGrid: {
+        styleOverrides: {
+          root: {
+            marginLeft: "0",
+            marginRight: "0",
+            width: "100%",
+          },
+        },
+      },
+    },
             MuiButton: {
                 styleOverrides: {
                     root: ({ownerState, theme}) => ({

@@ -1,9 +1,7 @@
 import React from "react";
-import { ArrowForwardIosRounded } from "@mui/icons-material";
-import { Box, Container, IconButton, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Container, Typography } from "@mui/material";
 import videoImage from "../../assets/images/video-frame.png";
-import { Play } from "lucide-react";
+import { MUILink } from "./MUILink";
 
 export const VideoFrame = () => {
   return (
@@ -34,24 +32,7 @@ export const VideoFrame = () => {
             коли лікар отримуватиме оплату за надані послуги в залежності від
             кількості підписаних декларацій і закріплених за ним пацієнтів.
           </Typography>
-          <Link
-            to={"/"}
-            style={{
-              textDecoration: "none",
-              display: "flex",
-              gap: "8px",
-              alignItems: "center",
-              color: "#09A480",
-            }}
-          >
-            <Typography variant={"body2"}>Дізнатися більше</Typography>
-            <IconButton>
-              <ArrowForwardIosRounded
-                sx={{ color: "#09A480" }}
-                fontSize={"small"}
-              />
-            </IconButton>
-          </Link>
+          <MUILink text="Дізнатися більше" path="/" />
         </Box>
       </Container>
     </Box>
