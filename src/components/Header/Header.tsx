@@ -1,17 +1,17 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import PersonIcon from "@mui/icons-material/Person";
 import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
-import FormModal from "../SignInSignUpForm/FormModal";
+
+import AuthorizationButton from "../SignInSignUpForm/AuthorizationButton";
+import Logo from "../../assets/CustomIcon/Logo";
 
 const links = [
   {
@@ -36,10 +36,7 @@ const styledBox = {
 
 const Header: FC = (props) => {
   const [city, setCity] = useState("Cherkasy");
-  const [open, setOpen] = useState(false);
 
-  const handleModalOpen = () => setOpen(true);
-  const handleModalClose = () => setOpen(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
@@ -49,12 +46,11 @@ const Header: FC = (props) => {
       <Container className="_containerHeader">
         <Box sx={styledBox}>
           <NavLink to={RouteNames.HOME}>
-            <Typography className="_logo" width="180px" height="32px">
-              beHealth
-            </Typography>
+            <Logo
+                width="180" height="33" viewBox="0 0 180 33" fill="none" xmlns="http://www.w3.org/2000/svg"
+            />
           </NavLink>
           <Select
-            // disableUnderline
             labelId="select-city"
             id="select-city"
             value={city}
@@ -75,8 +71,6 @@ const Header: FC = (props) => {
                   border: 0,
                 },
             }}
-            // class doesnt work wtf !!!
-            className="_selectChooseCity"
           >
             <MenuItem value={"Cherkasy"}>
               <Typography variant="caption">Черкаси</Typography>
@@ -105,7 +99,8 @@ const Header: FC = (props) => {
                 >
                   <Typography
                     variant="body2"
-                    sx={{ textDecoration: "none", color: "#000000" }}
+                    sx={{ textDecoration: "none", }}
+
                   >
                     {name}
                   </Typography>
@@ -114,25 +109,12 @@ const Header: FC = (props) => {
             })}
           </Box>
 
-          <Button variant="contained" className="_headerAppointmentButton">
+          <Button variant="contained" >
             <Typography variant="button">Записатися</Typography>
           </Button>
 
-          <Button
-            variant="outlined"
-            className="_headerSingInButton"
-            onClick={handleModalOpen}
-            startIcon={<PersonIcon fontSize="small" />}
-          >
-            <Typography variant="button">
-              {
-                // userIsLoggedIn ?  "Особистий кабінет" :
-                "Увійти"
-              }
-            </Typography>
-          </Button>
-
-          <FormModal open={open} handleModalClose={handleModalClose} />
+         <AuthorizationButton/>
+ 
         </Box>
       </Container>
     </AppBar>

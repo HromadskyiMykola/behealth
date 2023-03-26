@@ -7,7 +7,7 @@ const passwordValidation = {
     message: "Мінімальна довжина поля 8 символів",
   },
   maxLength: {
-    value: 128,
+    value: 15,
     message: maxLength(128),
   },
 };
@@ -32,7 +32,8 @@ export const validationRules = {
       message: maxLength(128),
     },
     pattern: {
-      value: /^([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*)@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/i,
+      value:
+        /^([a-z0-9&'*+._%-]+(\.[a-z0-9&'*+._%-]+)*)@[a-z0-9]+\.[a-z]{2,}$/i,
       message: "Будь ласка, введіть коректну e-mail адресу",
     },
   },
@@ -43,7 +44,7 @@ export const validationRules = {
     ...passwordValidation,
     pattern: {
       value:
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()\-_=+[\]{}\\|;:'",./<>?]).+$/i,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()\-_=+[\]{}\\|;:'",./<>?]).+$/,
       message:
         "Пароль повинен містити велику і маленьку літери, 1 цифру та 1 спец.символ",
     },

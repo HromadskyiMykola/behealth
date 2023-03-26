@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
-  TextField,
   Button,
   Typography,
   Stack,
@@ -10,24 +9,32 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { SignInSignUpFormValues } from "../../common/types_and_interfaces";
-import PasswordInput from "./PasswordField";
+import {
+  authorizationMode,
+  SignInSignUpFormValues,
+} from "../../common/types_and_interfaces";
+
+import { ModalContext } from "./ModalContext";
+
+import PasswordInput from "../Atomic/PasswordInput";
 import { validationRules } from "./validationRules";
+import UserAgreement from "./UserAgreement";
+import CustomizedInput from "../Atomic/CustomizedInput";
 
-type Mode = "LOGIN" | "REGISTER" | "RECOVERY";
+type Props = {
+  mode: authorizationMode;
+  setMode: (mode: authorizationMode) => void;
+};
 
-const primaryColor = "#3ABD98";
-const secondaryColor = "#FFFFFF";
-const textColor = "#212121";
-
-const showMode: Record<Mode, string> = {
+const showMode = {
   LOGIN: "Вхід",
   REGISTER: "Реєстрація",
   RECOVERY: "Відновлення паролю",
 };
 
-export default function SignInSignUpForm() {
-  const [mode, setMode] = useState<Mode>("LOGIN");
+export default function SignInSignUpForm({ mode, setMode }: Props) {
+  const { handleThanksModalOpen } = useContext(ModalContext);
+
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";
@@ -37,22 +44,27 @@ export default function SignInSignUpForm() {
 
   const { errors } = formState;
 
-  const onSubmit = (data: SignInSignUpFormValues) => console.log(data);
-
-  console.log(formState);
-  // console.log(errors);
+  const onSubmit = (data: SignInSignUpFormValues) => {
+    handleThanksModalOpen();
+    console.log(data);
+    console.log(formState);
+  };
 
   return (
     <Stack
       direction="column"
       // alignItems="center"
-      spacing={1}
-      sx={{ p: 2, backgroundColor: secondaryColor, borderRadius: "12px" }}
+      // spacing={1}
+      sx={{
+        // width: '100%',
+        // minWidth: "448px",
+        p: "32px",
+        // gap: "24px",
+        backgroundColor: "#FFF",
+        borderRadius: "12px",
+      }}
     >
-      <Typography
-        sx={{ alignSelf: "center", m: "4px", color: textColor }}
-        variant="h5"
-      >
+      <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
         {showMode[mode]}
       </Typography>
 
@@ -60,13 +72,14 @@ export default function SignInSignUpForm() {
         direction={{ xs: "column", sm: "row" }}
         alignItems="center"
         justifyContent="center"
+        mb="24px"
       >
-        <Typography sx={{ m: "4px", color: textColor }}>
+        <Typography variant="body2" sx={{ color: "#8E918F" }}>
           {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
         </Typography>
         <Button
+          sx={{ ml: "4px", p: 0 }}
           variant="text"
-          sx={{ color: primaryColor }}
           onClick={() => {
             reset();
             setMode(isLoginMode ? "REGISTER" : "LOGIN");
@@ -79,30 +92,32 @@ export default function SignInSignUpForm() {
       <Box
         component="form"
         noValidate
-        style={{
+        sx={{
+          mb: "24px",
           display: "flex",
           flexDirection: "column",
-          gap: 16,
+          // gap: 16,
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {isRegisterMode && ( // NAME
+        {/* {isRegisterMode && ( // NAME
           <Controller
             name="firstName"
             control={control}
             defaultValue=""
             rules={validationRules.firstName}
             render={({ field }) => (
-              <TextField
+              <CustomizedInput
                 autoFocus={isRegisterMode}
                 label="Ім’я"
+                placeholder="Олександр"
                 {...field}
                 error={!!errors.firstName}
                 helperText={errors.firstName?.message || " "}
               />
             )}
           />
-        )}
+        )} */}
 
         <Controller // EMAIL
           name="email"
@@ -110,9 +125,10 @@ export default function SignInSignUpForm() {
           defaultValue=""
           rules={validationRules.email}
           render={({ field }) => (
-            <TextField
+            <CustomizedInput
+              label="Електронна пошта"
+              placeholder="mail@example.com"
               autoFocus={isLoginMode || isRecoveryMode}
-              label="E-mail"
               {...field}
               error={!!errors.email}
               helperText={errors.email?.message || " "}
@@ -133,6 +149,7 @@ export default function SignInSignUpForm() {
             render={({ field }) => (
               <PasswordInput
                 label="Пароль"
+                placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.password}
                 helperText={errors.password?.message || " "}
@@ -150,6 +167,7 @@ export default function SignInSignUpForm() {
             render={({ field }) => (
               <PasswordInput
                 label="Підтвердження паролю"
+                placeholder="123qwe!@#QWE"
                 {...field}
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message || " "}
@@ -170,7 +188,8 @@ export default function SignInSignUpForm() {
               defaultValue={false}
               render={({ field }) => (
                 <FormControlLabel
-                  control={<Checkbox sx={{ color: primaryColor }} {...field} />}
+                  componentsProps={{ typography: { variant: "body2" } }}
+                  control={<Checkbox {...field} />}
                   label="Запамʼятати мене"
                 />
               )}
@@ -178,7 +197,6 @@ export default function SignInSignUpForm() {
 
             <Button
               variant="text"
-              sx={{ color: primaryColor }}
               onClick={() => {
                 reset();
                 setMode("RECOVERY");
@@ -189,7 +207,24 @@ export default function SignInSignUpForm() {
           </Stack>
         )}
 
+        {isRegisterMode && (
+          <Stack direction="row" alignItems="flex-start">
+            <Controller
+              name="checkbox"
+              control={control}
+              defaultValue={false}
+              rules={{ required: true }}
+              render={({ field }) => (
+                // <FormControlLabel control={<Checkbox {...field} />} label="" />
+                <Checkbox {...field} />
+              )}
+            />
+            <UserAgreement />
+          </Stack>
+        )}
+
         <Button
+          sx={{ mt: "24px" }}
           disabled={!formState.isValid}
           type="submit"
           variant="contained"
@@ -258,5 +293,4 @@ export default function SignInSignUpForm() {
 // Не менее одной заглавной и одной строчной буквы
 // Не менее одной цифровой и одного специального символа - ! # $ % & ' * + - / = ? ^ _ ` { | } ~
 
-
-
+// /////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -1,8 +1,10 @@
-import { useState, forwardRef } from "react";
-import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { useState, forwardRef, Ref } from "react";
+import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material/";
 
-function PasswordInput(props: any, ref: any) {
+import CustomizedInput, { CustomizedInputProps } from "./CustomizedInput";
+
+function PasswordInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
@@ -10,8 +12,8 @@ function PasswordInput(props: any, ref: any) {
   };
 
   return (
-    <TextField
-      ref={ref}
+    <CustomizedInput
+      sx={{ "input::-ms-reveal": { display: "none" } }}
       type={showPassword ? "text" : "password"}
       InputProps={{
         endAdornment: (
@@ -23,6 +25,7 @@ function PasswordInput(props: any, ref: any) {
         ),
       }}
       {...props}
+      ref={ref}
     />
   );
 }
