@@ -10,7 +10,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
 import { RouteNames } from "../../routes";
 
-import AuthorizationButton from "../SignInSignUpForm/AuthorizationButton";
+import AuthorizationButton from "../user-auth/AuthorizationButton";
 import Logo from "../../assets/CustomIcon/Logo";
 
 const links = [
