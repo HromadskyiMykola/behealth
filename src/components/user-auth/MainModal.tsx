@@ -44,12 +44,19 @@ export default function FormModal() {
         "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" },
       }}
       // fullWidth
-      maxWidth="md"
+      maxWidth="lg"
       fullScreen={mobileDevice}
+      scroll={"body"}
       open={openMainModal}
       onClose={handleMainModalClose}
     >
-      <DialogContent sx={{ p: "80px", backgroundColor: primaryColor }}>
+      <DialogContent
+        
+        sx={{
+          height: {xs: "100vh", sm: "auto"},
+          maxWidth: "1000px", p: "80px", backgroundColor: primaryColor
+        }}
+      >
         <IconButton
           sx={{
             position: "absolute",
@@ -65,7 +72,7 @@ export default function FormModal() {
         </IconButton>
 
         <Grid container spacing="32px" alignItems="center">
-          <Grid item xs>
+          <Grid item md={5} sx={{ display: { xs: "none", md: "block" } }}>
             {!isRecoveryMode && (
               <DialogTitle
                 sx={{ pl: 0, typography: "h3", color: secondaryColor }}
@@ -75,7 +82,7 @@ export default function FormModal() {
             )}
 
             {!isRecoveryMode && (
-              <Typography variant="body1" sx={{ color: secondaryColor }}>
+              <Typography variant="body2" sx={{ color: secondaryColor }}>
                 {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
                 {", щоб отримати доступ до особистого кабінету beHealth."}
               </Typography>
@@ -91,7 +98,7 @@ export default function FormModal() {
             />
           </Grid>
 
-          <Grid item xs>
+          <Grid item xs  md={7}>
             <SignInSignUpForm mode={mode} setMode={setMode} />
           </Grid>
         </Grid>
