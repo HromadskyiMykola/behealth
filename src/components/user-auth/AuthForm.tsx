@@ -17,7 +17,7 @@ import {
 import { ModalContext } from "./ModalContext";
 
 import PasswordInput from "../Atomic/PasswordInput";
-import { validationRules } from "./validationRules";
+import { validationRules } from "../../common/inputValidationRules";
 import UserAgreement from "./UserAgreement";
 import CustomizedInput from "../Atomic/CustomizedInput";
 

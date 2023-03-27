@@ -14,7 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import logoSignIn from "../../assets/images/logo_sign_in.png";
 import logoSignUp from "../../assets/images/logo_sign_up.png";
-import SignInSignUpForm from "./SignInSignUpForm";
+import SignInSignUpForm from "./AuthForm";
 import { authorizationMode } from "../../common/types_and_interfaces";
 import { ModalContext } from "./ModalContext";
 
