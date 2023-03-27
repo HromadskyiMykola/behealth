@@ -6,6 +6,7 @@ import {
   HomePage,
   ProfilePage,
 } from "../pages";
+import PatientAccountPage from "../pages/PatientAccountPage";
 
 export interface IRoutes {
   path: string;
@@ -19,6 +20,7 @@ export enum RouteNames {
   DOCTORS = "/doctors",
   CLINICS = "/clinics",
   PROFILE = "/profile",
+  PATIENT_ACCOUNT = "/patientaccount"
 }
 
 const commonRoutes: IRoutes[] = [
@@ -26,6 +28,7 @@ const commonRoutes: IRoutes[] = [
   { path: RouteNames.ABOUT, component: AboutPage },
   { path: RouteNames.DOCTORS, component: DoctorsPage },
   { path: RouteNames.CLINICS, component: ClinicsPage },
+  { path: RouteNames.PATIENT_ACCOUNT, component: PatientAccountPage },
 ];
 
 export const publicRoutes: IRoutes[] = [...commonRoutes];
