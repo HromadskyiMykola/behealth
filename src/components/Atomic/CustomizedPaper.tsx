@@ -1,14 +1,15 @@
-import { Paper } from "@mui/material";
+import { Paper, PaperProps } from "@mui/material";
 import { ReactNode } from "react";
 
-export type CustomPaperProps = {
+export interface CustomPaperProps extends PaperProps {
   gap?: number | string;
   children: ReactNode;
 };
 
-export default function CustomizedPaper({ children, gap = "24px" }: CustomPaperProps) {
+export default function CustomizedPaper({ children, gap = "24px", ...otherProps }: CustomPaperProps) {
   return (
     <Paper
+      {...otherProps}
       sx={{
         maxWidth: "1048px",
         borderRadius: "12px",

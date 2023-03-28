@@ -1,22 +1,17 @@
-import React from "react";
-import { Routes, Route, Navigate, NavLink } from "react-router-dom";
-import { privateRoutes, publicRoutes, RouteNames } from "../../routes";
+import { createBrowserRouter } from "react-router-dom";
+import { Root } from "../../pages";
+import { IRoutes, privateRoutes, publicRoutes } from "../../routes";
 
-export const AppRouter = () => {
+const appRouter = () => {
   const isAuth = false;
-  return isAuth ? (
-    <Routes>
-      {privateRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  );
+
+  const mainRoute: IRoutes = {
+    path: "/",
+    element: <Root />,
+    children: isAuth ? privateRoutes : publicRoutes,
+  };
+
+  return createBrowserRouter([mainRoute]);
 };
+
+export default appRouter();
