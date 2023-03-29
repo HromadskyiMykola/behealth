@@ -10,13 +10,14 @@ import AboutPage from "../pages/AboutPage";
 import DoctorsPage from "../pages/DoctorsPage";
 import ClinicsPage from "../pages/ClinicsPage";
 import ProfilePage from "../pages/ProfilePage";
+import NotFound from "../pages/404";
 // ReactRouter requires a full page import to work correctly !!
 
 export type IRoutes = RouteObject & {
-    label?: string;
-    children?: IRoutes[];
-}
-     
+  label: string;
+  children?: IRoutes[];
+};
+
 export enum RouteNames {
   HOME = "/",
   ABOUT = "about",
@@ -31,10 +32,10 @@ export enum RouteNames {
 
 export const commonRoutes: IRoutes[] = [
   {
-    path: RouteNames.HOME,
+    index: true,
     element: <HomePage />,
     label: "Головна",
-    index: true,
+    errorElement: <NotFound />,
   },
   { path: RouteNames.ABOUT, element: <AboutPage />, label: "Про нас" },
   { path: RouteNames.DOCTORS, element: <DoctorsPage />, label: "Лікарі" },
@@ -63,9 +64,17 @@ export const commonRoutes: IRoutes[] = [
   } as IRoutes,
 ];
 
-export const publicRoutes: IRoutes[] = [...commonRoutes];
+export const publicRoutes: IRoutes[] = [
+  ...commonRoutes,
+  { path: "*", element: <NotFound />, label: "Помилка" },
+];
 
 export const privateRoutes: IRoutes[] = [
   ...commonRoutes,
-  { path: RouteNames.PROFILE, element: <ProfilePage/>, label: "ВКАЗАТИ НАЗВУ" },
+  {
+    path: RouteNames.PROFILE,
+    element: <ProfilePage />,
+    label: "ВКАЗАТИ НАЗВУ",
+  },
+  { path: "*", element: <NotFound />, label: "Помилка" },
 ];

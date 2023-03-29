@@ -8,6 +8,7 @@ import AboutPage from "./AboutPage";
 import DoctorsPage from "./DoctorsPage";
 import ClinicsPage from "./ClinicsPage";
 import ProfilePage from "./ProfilePage";
+import NotFound from "./404";
 
 export {
   Root,
@@ -20,4 +21,5 @@ export {
   DoctorsPage,
   ClinicsPage,
   ProfilePage,
+  NotFound
 };
