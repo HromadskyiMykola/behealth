@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 import Footer from "../components/Footer/Footer";
@@ -9,7 +9,7 @@ export default function Root() {
     <>
       <Header />
 
-      <Container>
+      <Container sx={{ mt: "30px", mb: "30px" }}>
         <Outlet />
       </Container>
 

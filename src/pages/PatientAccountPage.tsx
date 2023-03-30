@@ -65,36 +65,43 @@ const NavTabs = () => {
       onChange={handleChange}
       // indicatorColor="primary"
       // textColor="primary"
+      indicatorColor="secondary"
+      textColor="primary"
       orientation="vertical"
     >
-      {/* <Tab label="Главная" value="/" component={Link} to="/" />
-      <Tab label="О нас" value="/about" component={Link} to="/about" />
-      <Tab label="Контакты" value="/contact" component={Link} to="/contact" />
-      <Tab label="Услуги" value="/services" component={Link} to="/services" /> */}
+      <Tab label="Главная" component={Link} to="/" />
+      <Tab label="О нас" component={Link} to="/about" />
+      <Tab label="Контакты" component={Link} to="/contact" />
+      <Tab
+        sx={{ color: "#fff", textDecoration: "none" }}
+        label="Услуги"
+        component={Link}
+        to="/services"
+      />
     </Tabs>
   );
 };
 
 function PatientAccount() {
   return (
-    <Container>
-      <Grid container direction="row" gap="32px">
-        <Grid item xs={12}>
-          <Breadcrumb />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Breadcrumb />
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Paper sx={{ width: "328px" }}>
+        <Paper
+        // sx={{ width: "328px" }}
+        >
           <NavTabs />
         </Paper>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={9}>
         <Outlet />
       </Grid>
-    </Container>
+    </Grid>
   );
 }
 
