@@ -63,7 +63,7 @@ export function createOverrideTheme() {
             },
             text: {
                 primary: '#212121',
-                secondary: '#FFFFFF',
+                // secondary: '#FFFFFF',
                 disabled: '#A9ACA9',
             },
         },

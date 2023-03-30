@@ -2,12 +2,12 @@ import  { useContext, useState } from "react";
 import {
   Button,
   Dialog,
+  Stack,
   Typography,
 } from "@mui/material";
 
-import bell from "../../assets/images/bell.svg";
-import { Stack } from "@mui/system";
 import { ModalContext } from "./ModalContext";
+import { bell } from "../../assets/icons";
 
 export default function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);

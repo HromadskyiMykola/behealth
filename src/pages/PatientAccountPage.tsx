@@ -1,23 +1,18 @@
 // Underway !!!
 
 import {
-  Box,
-  Container,
   Grid,
   Paper,
-  Tab,
   Tabs,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import {
-  Link,
   Outlet,
   Route,
   Routes,
-  useLocation,
-  useRoutes,
 } from "react-router-dom";
+import { TabLink } from "../components/Atomic";
 
 import Breadcrumb from "../components/Atomic/Breadcrumb";
 import CustomizedPaper from "../components/Atomic/CustomizedPaper";
@@ -25,6 +20,14 @@ import CustomizedPaper from "../components/Atomic/CustomizedPaper";
 import PatientAccountAppointments from "../pages/PatientAccountAppointments";
 import PatientAccountHelp from "../pages/PatientAccountHelp";
 import PatientAccountPersonalInfo from "../pages/PatientAccountPersonalInfo";
+import {
+  ClockIcon,
+  ExitIcon,
+  FolderIcon,
+  HelpIcon,
+  LockIcon,
+  PersonInfoIcon,
+} from "../assets/CustomIcon";
 
 //////////////////////////////////// TabPanel
 // interface TabPanelProps {
@@ -50,35 +53,52 @@ import PatientAccountPersonalInfo from "../pages/PatientAccountPersonalInfo";
 //////////////////////////////////// TabPanel
 
 const NavTabs = () => {
-  // const routes = useRoutes(commonRoutes);
-  const location = useLocation();
-  const [value, setValue] = useState(location.pathname);
-  // console.log(routes);
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event: any, newValue: any) => {
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      // indicatorColor="primary"
-      // textColor="primary"
-      indicatorColor="secondary"
-      textColor="primary"
-      orientation="vertical"
-    >
-      <Tab label="Главная" component={Link} to="/" />
-      <Tab label="О нас" component={Link} to="/about" />
-      <Tab label="Контакты" component={Link} to="/contact" />
-      <Tab
-        sx={{ color: "#fff", textDecoration: "none" }}
-        label="Услуги"
-        component={Link}
-        to="/services"
-      />
-    </Tabs>
+    <Paper sx={{ borderRadius: "12px" }}>
+      <Tabs
+        sx={{
+          p: "24px 24px 8px 24px",
+          "& .MuiTab-root": { marginBottom: "16px" },
+          "& .MuiTabs-indicator": { display: "none" },
+        }}
+        value={value}
+        onChange={handleChange}
+        orientation="vertical"
+      >
+        <TabLink
+          icon={<ClockIcon />}
+          value={0}
+          label="Записи"
+          to="appointment"
+        />
+        <TabLink icon={<HelpIcon />} value={1} label="Допомога" to="help" />
+        <TabLink
+          icon={<PersonInfoIcon />}
+          value={2}
+          label="Особиста інформація"
+          to="personal-info"
+        />
+        <TabLink
+          icon={<FolderIcon />}
+          value={3}
+          label="Додаткові дані"
+          to="additional-information"
+        />
+        <TabLink
+          icon={<LockIcon />}
+          value={4}
+          label="Пароль та безпека"
+          to="password-n-security"
+        />
+        <TabLink icon={<ExitIcon />} value={5} label="Вихід" to="logout" />
+      </Tabs>
+    </Paper>
   );
 };
 
@@ -92,11 +112,7 @@ function PatientAccount() {
         <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Paper
-        // sx={{ width: "328px" }}
-        >
-          <NavTabs />
-        </Paper>
+        <NavTabs />
       </Grid>
       <Grid item xs={9}>
         <Outlet />
