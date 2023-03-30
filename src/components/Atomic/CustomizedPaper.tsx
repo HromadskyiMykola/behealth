@@ -15,6 +15,7 @@ export default function CustomizedPaper({ children, gap = "24px", ...otherProps 
         borderRadius: "12px",
         padding: "32px",
         width: "100%",
+        mb:"16px",
         gap: gap,
       }}
     >
