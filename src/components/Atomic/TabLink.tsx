@@ -1,5 +1,4 @@
-// TabLink.tsx
-import  { MouseEvent } from "react";
+import { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tab, TabProps, styled } from "@mui/material";
 
@@ -7,6 +6,7 @@ type TabLinkProps = TabProps & { to: string };
 
 const StyledTab = styled(Tab)({
   justifyContent: "flex-start",
+  whiteSpace: "nowrap",
   // padding: "18px 12px",
   // maxWidth: "280px",
   // height: "60px",
