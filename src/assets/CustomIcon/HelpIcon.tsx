@@ -12,8 +12,8 @@ export function HelpIcon(props: SvgIconProps) {
         fill="#00382A"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M11 22C4.935 22 0 17.065 0 11C0 4.935 4.935 0 11 0C17.065 0 22 4.935 22 11C22 17.065 17.065 22 11 22ZM11 2C6.038 2 2 6.038 2 11C2 15.963 6.038 20 11 20C15.963 20 20 15.963 20 11C20 6.038 15.963 2 11 2Z"
         fill="#00382A"
       />

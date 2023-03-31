@@ -1,13 +1,8 @@
-import  { useContext, useState } from "react";
-import {
-  Button,
-  Dialog,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { useContext, useState } from "react";
+import { Button, Dialog, Stack, Typography } from "@mui/material";
 
 import { ModalContext } from "./ModalContext";
-import { bell } from "../../assets/icons";
+import { BellIcon } from "../../assets/CustomIcon";
 
 export default function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
@@ -34,11 +29,7 @@ export default function ThanksModal() {
         <Typography
           sx={{ display: "flex", alignItems: "center", color: "#7D968B" }}
         >
-          <img
-            src={bell}
-            alt="bell"
-            style={{ width: 24, height: 24, marginRight: 18 }}
-          />
+          <BellIcon sx={{ mr: "16px" }} />
           {"Перевірте свою електронну пошту та папку “Спам”"}
         </Typography>
 

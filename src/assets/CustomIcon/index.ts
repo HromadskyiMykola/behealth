@@ -1,3 +1,4 @@
+import { BellIcon } from "./BellIcon";
 import { ClockIcon } from "./ClockIcon";
 import { ExitIcon } from "./ExitIcon";
 import { FolderIcon } from "./FolderIcon";
@@ -12,4 +13,12 @@ export * from "./Instagram";
 export * from "./Facebook";
 export * from "./Logo.footer";
 
-export { ClockIcon, ExitIcon, FolderIcon, HelpIcon, LockIcon, PersonInfoIcon };
+export {
+  BellIcon,
+  ClockIcon,
+  ExitIcon,
+  FolderIcon,
+  HelpIcon,
+  LockIcon,
+  PersonInfoIcon,
+};
