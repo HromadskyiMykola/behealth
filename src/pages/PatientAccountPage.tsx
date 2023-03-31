@@ -1,25 +1,9 @@
-// Underway !!!
-
-import {
-  Grid,
-  Paper,
-  Tabs,
-  Typography,
-} from "@mui/material";
 import { SyntheticEvent, useState } from "react";
-import {
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
-import { TabLink } from "../components/Atomic";
+import { Outlet } from "react-router-dom";
+import { Grid, Paper, Tabs, Typography } from "@mui/material";
 
-import Breadcrumb from "../components/Atomic/Breadcrumb";
-import CustomizedPaper from "../components/Atomic/CustomizedPaper";
+import { Breadcrumb, TabLink } from "../components/Atomic";
 
-import PatientAccountAppointments from "../pages/PatientAccountAppointments";
-import PatientAccountHelp from "../pages/PatientAccountHelp";
-import PatientAccountPersonalInfo from "../pages/PatientAccountPersonalInfo";
 import {
   ClockIcon,
   ExitIcon,
@@ -28,29 +12,6 @@ import {
   LockIcon,
   PersonInfoIcon,
 } from "../assets/CustomIcon";
-
-//////////////////////////////////// TabPanel
-// interface TabPanelProps {
-//   children?: React.ReactNode;
-//   index: number;
-//   value: number;
-// }
-
-// function TabPanel(props: TabPanelProps) {
-//   const { children, value, index } = props;
-
-//   return (
-//     <CustomizedPaper
-//       role="tabpanel"
-//       hidden={value !== index}
-//       id={`vertical-tabpanel-${index}`}
-//       aria-labelledby={`vertical-tab-${index}`}
-//     >
-//       {value === index && children}
-//     </CustomizedPaper>
-//   );
-// }
-//////////////////////////////////// TabPanel
 
 const NavTabs = () => {
   const [value, setValue] = useState(0);
@@ -88,7 +49,7 @@ const NavTabs = () => {
           icon={<FolderIcon />}
           value={3}
           label="Додаткові дані"
-          to="additional-information"
+          to="additional-data"
         />
         <TabLink
           icon={<LockIcon />}
@@ -102,7 +63,7 @@ const NavTabs = () => {
   );
 };
 
-function PatientAccount() {
+function PatientAccountPage() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -118,31 +79,6 @@ function PatientAccount() {
         <Outlet />
       </Grid>
     </Grid>
-  );
-}
-
-function PatientAccountPage() {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={<PatientAccount />}
-        errorElement={<h1>Something wrong...</h1>}
-      >
-        <Route index element={<PatientAccountAppointments />} />
-        <Route
-          path="help"
-          element={<PatientAccountPersonalInfo />}
-          // loader={userPageLoader}
-        />
-        <Route
-          path="personal-info"
-          element={<PatientAccountPersonalInfo />}
-          // loader={todoPageLoader}
-        />
-        <Route path="*" element={<PatientAccountAppointments />} />
-      </Route>
-    </Routes>
   );
 }
 
