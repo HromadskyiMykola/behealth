@@ -1,22 +1,24 @@
-import React from "react";
-import { Routes, Route, Navigate, NavLink } from "react-router-dom";
-import { privateRoutes, publicRoutes, RouteNames } from "../../routes";
+import { createBrowserRouter } from "react-router-dom";
 
-export const AppRouter = () => {
+import { IRoutes, privateRoutes, publicRoutes } from "../../routes";
+
+// ReactRouter requires a full page import to work correctly !!
+import Root from "../../pages/Root";
+import NotFound from "../../pages/404";
+// ReactRouter requires a full page import to work correctly !!
+
+const appRouter = () => {
   const isAuth = false;
-  return isAuth ? (
-    <Routes>
-      {privateRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  );
+
+  const mainRoute: IRoutes = {
+    path: "/",
+    element: <Root />,
+    children: isAuth ? privateRoutes : publicRoutes,
+    label: "Корінь",
+    errorElement: <NotFound />,
+  };
+
+  return createBrowserRouter([mainRoute]);
 };
+
+export default appRouter();

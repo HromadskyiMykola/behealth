@@ -1,5 +1,3 @@
-export * from './HomePage';
-export * from './AboutPage';
-export * from './DoctorsPage';
-export * from './ClinicsPage';
-export * from './ProfilePage';
+// ReactRouter requires a full page import to work correctly !!
+
+export {};
