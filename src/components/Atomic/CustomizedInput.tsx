@@ -1,11 +1,10 @@
 import { forwardRef, Ref } from "react";
 import {
   Typography,
-  FormControl,
   TextField,
   OutlinedTextFieldProps,
   styled,
-  InputAdornmentProps,
+  Stack,
 } from "@mui/material";
 
 export type CustomizedInputProps = Pick<
@@ -44,7 +43,7 @@ function CustomizedInput(
   const { label, ...otherProps } = props;
 
   return (
-    <>
+    <Stack>
       {label && (
         <Typography
           sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
@@ -54,7 +53,7 @@ function CustomizedInput(
         </Typography>
       )}
       <CustomTextField {...otherProps} variant="outlined" ref={ref} />
-    </>
+    </Stack>
   );
 }
 

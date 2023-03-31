@@ -8,7 +8,7 @@ const passwordValidation = {
   },
   maxLength: {
     value: 15,
-    message: maxLength(128),
+    message: maxLength(15),
   },
 };
 

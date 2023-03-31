@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Grid, Paper, Tabs, Typography } from "@mui/material";
+import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
 
 import { Breadcrumb, TabLink } from "../components/Atomic";
 
@@ -12,6 +12,8 @@ import {
   LockIcon,
   PersonInfoIcon,
 } from "../assets/CustomIcon";
+
+const WrapperDivider = () => <Divider />;
 
 const NavTabs = () => {
   const [value, setValue] = useState(0);
@@ -38,26 +40,42 @@ const NavTabs = () => {
           label="Записи"
           to="appointment"
         />
-        <TabLink icon={<HelpIcon />} value={1} label="Допомога" to="help" />
+        <TabLink
+          icon={<HelpIcon />}
+          value={1}
+          label="Допомога"
+          to="help"
+        />
+        
+        <WrapperDivider />
+        
         <TabLink
           icon={<PersonInfoIcon />}
           value={2}
           label="Особиста інформація"
           to="personal-info"
-        />
+          />
         <TabLink
           icon={<FolderIcon />}
           value={3}
           label="Додаткові дані"
           to="additional-data"
-        />
+          />
         <TabLink
           icon={<LockIcon />}
           value={4}
           label="Пароль та безпека"
           to="password-n-security"
-        />
-        <TabLink icon={<ExitIcon />} value={5} label="Вихід" to="logout" />
+          />
+        
+        <WrapperDivider />
+        
+        <TabLink
+          icon={<ExitIcon />}
+          value={5}
+          label="Вихід"
+          to="logout"
+          />
       </Tabs>
     </Paper>
   );
