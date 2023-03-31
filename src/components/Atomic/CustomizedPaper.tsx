@@ -5,7 +5,6 @@ const CustomizedPaper = styled(Paper)({
   borderRadius: "12px",
   padding: "32px",
   width: "100%",
-  mb: "16px",
+  marginBottom: "16px",
 });
-
 export default CustomizedPaper;
