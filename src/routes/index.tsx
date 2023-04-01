@@ -26,11 +26,12 @@ export enum RouteNames {
   DOCTORS = "doctors",
   CLINICS = "clinics",
   PROFILE = "profile",
-  // PATIENT_ACCOUNT = "patient-account",
-  // PATIENT_ACCOUNT_APPOINTMENT = "appointment",
-  // PATIENT_ACCOUNT_HELP = "help",
-  // PATIENT_ACCOUNT_PERSONAL_INFO = "personal-info",
-  // PATIENT_ACCOUNT_ADDITIONAL_DATA = "additional-data",
+  PATIENT_ACCOUNT = "patient-account",
+  PATIENT_ACCOUNT_APPOINTMENT = "appointment",
+  PATIENT_ACCOUNT_HELP = "help",
+  PATIENT_ACCOUNT_PERSONAL_INFO = "personal-info",
+  PATIENT_ACCOUNT_ADDITIONAL_DATA = "additional-data",
+  PATIENT_ACCOUNT_PASSWORD_N_SECURITY = "patient-account",
 }
 
 export const commonRoutes: IRoutes[] = [
@@ -44,37 +45,32 @@ export const commonRoutes: IRoutes[] = [
   { path: RouteNames.DOCTORS, element: <DoctorsPage />, label: "Лікарі" },
   { path: RouteNames.CLINICS, element: <ClinicsPage />, label: "Заклади" },
   {
-    // path: RouteNames.PATIENT_ACCOUNT,
-    path: "patient-account",
+    path: RouteNames.PATIENT_ACCOUNT,
     element: <PatientAccountPage />,
     label: "Кабінет пацієнта",
     children: [
       {
-        // path: RouteNames.PATIENT_ACCOUNT_APPOINTMENT,
-        path: "appointment",
+        path: RouteNames.PATIENT_ACCOUNT_APPOINTMENT,
         element: <PatientAccountAppointments />,
         label: "Записи",
       },
       {
-        // path: RouteNames.PATIENT_ACCOUNT_HELP,
-        path: "help",
+        path: RouteNames.PATIENT_ACCOUNT_HELP,
         element: <PatientAccountHelp />,
         label: "Допомога",
       },
       {
-        // path: RouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
-        path: "personal-info",
+        path: RouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
         element: <PatientAccountPersonalInfo />,
         label: "Особиста інформація",
       },
       {
-        // path: RouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
-        path: "additional-data",
+        path: RouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
         element: <PatientAccountAdditionalData />,
         label: "Особиста інформація",
       },
       {
-        path: "password-n-security",
+        path: RouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
         element: <PatientAccountPasswordNSecurity />,
         label: "Додаткові дані",
       },

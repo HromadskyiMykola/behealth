@@ -12,8 +12,9 @@ import {
   LockIcon,
   PersonInfoIcon,
 } from "../assets/CustomIcon";
+import { RouteNames } from "../routes";
 
-const WrapperDivider = () => <Divider />;
+const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
 const NavTabs = () => {
   const [value, setValue] = useState(0);
@@ -38,44 +39,39 @@ const NavTabs = () => {
           icon={<ClockIcon />}
           value={0}
           label="Записи"
-          to="appointment"
+          to={RouteNames.PATIENT_ACCOUNT_APPOINTMENT}
         />
         <TabLink
           icon={<HelpIcon />}
           value={1}
           label="Допомога"
-          to="help"
+          to={RouteNames.PATIENT_ACCOUNT_HELP}
         />
-        
+
         <WrapperDivider />
-        
+
         <TabLink
           icon={<PersonInfoIcon />}
           value={2}
           label="Особиста інформація"
-          to="personal-info"
-          />
+          to={RouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
+        />
         <TabLink
           icon={<FolderIcon />}
           value={3}
           label="Додаткові дані"
-          to="additional-data"
-          />
+          to={RouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
+        />
         <TabLink
           icon={<LockIcon />}
           value={4}
           label="Пароль та безпека"
-          to="password-n-security"
-          />
-        
+          to={RouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
+        />
+
         <WrapperDivider />
-        
-        <TabLink
-          icon={<ExitIcon />}
-          value={5}
-          label="Вихід"
-          to="logout"
-          />
+
+        <TabLink icon={<ExitIcon />} value={5} label="Вихід" to="logout" />
       </Tabs>
     </Paper>
   );
@@ -93,7 +89,7 @@ function PatientAccountPage() {
       <Grid item xs={3}>
         <NavTabs />
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs>
         <Outlet />
       </Grid>
     </Grid>

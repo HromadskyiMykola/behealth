@@ -40,7 +40,7 @@ export const validationRules = {
 
   loginPassword: passwordValidation,
 
-  registerPassword: {
+  newPassword: {
     ...passwordValidation,
     pattern: {
       value:
