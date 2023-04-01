@@ -31,7 +31,9 @@ export enum RouteNames {
   PATIENT_ACCOUNT_HELP = "help",
   PATIENT_ACCOUNT_PERSONAL_INFO = "personal-info",
   PATIENT_ACCOUNT_ADDITIONAL_DATA = "additional-data",
-  PATIENT_ACCOUNT_PASSWORD_N_SECURITY = "patient-account",
+  PATIENT_ACCOUNT_PASSWORD_N_SECURITY = "password-n-security",
+  DOCTOR_ACCOUNT = "doctor-account",
+  // other
 }
 
 export const commonRoutes: IRoutes[] = [
@@ -44,11 +46,17 @@ export const commonRoutes: IRoutes[] = [
   { path: RouteNames.ABOUT, element: <AboutPage />, label: "Про нас" },
   { path: RouteNames.DOCTORS, element: <DoctorsPage />, label: "Лікарі" },
   { path: RouteNames.CLINICS, element: <ClinicsPage />, label: "Заклади" },
+
   {
     path: RouteNames.PATIENT_ACCOUNT,
     element: <PatientAccountPage />,
     label: "Кабінет пацієнта",
     children: [
+      {
+        index: true,
+        element: <PatientAccountAppointments />,
+        label: "",
+      },
       {
         path: RouteNames.PATIENT_ACCOUNT_APPOINTMENT,
         element: <PatientAccountAppointments />,
@@ -83,12 +91,11 @@ export const commonRoutes: IRoutes[] = [
       //// thumb
     ],
   } as IRoutes,
-];
 
-export const publicRoutes: IRoutes[] = [
-  ...commonRoutes,
   { path: "*", element: <NotFound />, label: "Помилка" },
 ];
+
+export const publicRoutes: IRoutes[] = [...commonRoutes];
 
 export const privateRoutes: IRoutes[] = [
   ...commonRoutes,
@@ -97,5 +104,4 @@ export const privateRoutes: IRoutes[] = [
     element: <ProfilePage />,
     label: "ВКАЗАТИ НАЗВУ",
   },
-  { path: "*", element: <NotFound />, label: "Помилка" },
 ];

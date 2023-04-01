@@ -2,7 +2,9 @@ import { SyntheticEvent, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
 
-import { Breadcrumb, TabLink } from "../components/Atomic";
+import { BreadcrumbsUkr, TabLink } from "../components/Atomic";
+
+import { RouteNames } from "../routes";
 
 import {
   ClockIcon,
@@ -12,7 +14,6 @@ import {
   LockIcon,
   PersonInfoIcon,
 } from "../assets/CustomIcon";
-import { RouteNames } from "../routes";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
@@ -81,7 +82,7 @@ function PatientAccountPage() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Breadcrumb />
+        <BreadcrumbsUkr />
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
