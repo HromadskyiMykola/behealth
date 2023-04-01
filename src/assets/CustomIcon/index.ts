@@ -1,5 +1,6 @@
 import { BellIcon } from "./BellIcon";
 import { ClockIcon } from "./ClockIcon";
+import { EditIcon } from "./EditIcon";
 import { ExitIcon } from "./ExitIcon";
 import { FolderIcon } from "./FolderIcon";
 import { HelpIcon } from "./HelpIcon";
@@ -21,4 +22,5 @@ export {
   HelpIcon,
   LockIcon,
   PersonInfoIcon,
+  EditIcon
 };
