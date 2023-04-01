@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { IRoutes, privateRoutes, publicRoutes } from "../../routes";
+import {
+  IRoutes,
+  commonRoutes,
+  patientRoutes,
+  doctorRoutes,
+} from "../../routes";
 
 // ReactRouter requires a full page import to work correctly !!
 import Root from "../../pages/Root";
@@ -8,11 +13,16 @@ import Root from "../../pages/Root";
 // ReactRouter requires a full page import to work correctly !!
 
 const appRouter = () => {
-  const isAuth = false;
+  const isAuth = true;
+  const userType = "patient";
 
   const rootRoute: IRoutes = {
     element: <Root />,
-    children: isAuth ? privateRoutes : publicRoutes,
+    children: !isAuth
+      ? commonRoutes
+      : userType === "patient"
+      ? patientRoutes
+      : doctorRoutes,
     label: "Корінь",
     // errorElement: <NotFound />,
   };

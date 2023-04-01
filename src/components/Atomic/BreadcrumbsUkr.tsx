@@ -11,11 +11,11 @@ const sx = {
   },
 };
 
-function findRouteLabel(path: string, routes: IRoutes[]): string {
+function findRouteLabel(name: string, routes: IRoutes[]): string {
   for (const route of routes) {
-    if (route.path === path) return route.label;
+    if (route.path === name) return route.label;
 
-    const label = route.children ? findRouteLabel(path, route.children) : "";
+    const label = route.children ? findRouteLabel(name, route.children) : "";
 
     if (label) return label;
   }
@@ -24,7 +24,7 @@ function findRouteLabel(path: string, routes: IRoutes[]): string {
 
 export default function BreadcrumbsUkr() {
   const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((p) => p);
+  const pathNames = location.pathname.split("/").filter((p) => p);
 
   return (
     <Breadcrumbs
@@ -41,9 +41,9 @@ export default function BreadcrumbsUkr() {
         {"Головна"}
       </Typography>
 
-      {pathnames.map((name, index) => {
-        const routeTo = `${pathnames.slice(0, index).join("/")}`;
-        const isLast = index === pathnames.length - 1;
+      {pathNames.map((name, index) => {
+        const routeTo = `${pathNames.slice(0, index).join("/")}`;
+        const isLast = index === pathNames.length - 1;
         const label = findRouteLabel(name, commonRoutes);
 
         return isLast ? (
@@ -66,5 +66,3 @@ export default function BreadcrumbsUkr() {
     </Breadcrumbs>
   );
 }
-
-/* State=Hover */

@@ -46,7 +46,13 @@ export const commonRoutes: IRoutes[] = [
   { path: RouteNames.ABOUT, element: <AboutPage />, label: "Про нас" },
   { path: RouteNames.DOCTORS, element: <DoctorsPage />, label: "Лікарі" },
   { path: RouteNames.CLINICS, element: <ClinicsPage />, label: "Заклади" },
+  { path: "*", element: <NotFound />, label: "Помилка" },
+];
 
+// export const publicRoutes: IRoutes[] = [...commonRoutes];
+
+export const patientRoutes: IRoutes[] = [
+  ...commonRoutes,
   {
     path: RouteNames.PATIENT_ACCOUNT,
     element: <PatientAccountPage />,
@@ -91,13 +97,9 @@ export const commonRoutes: IRoutes[] = [
       //// thumb
     ],
   } as IRoutes,
-
-  { path: "*", element: <NotFound />, label: "Помилка" },
 ];
 
-export const publicRoutes: IRoutes[] = [...commonRoutes];
-
-export const privateRoutes: IRoutes[] = [
+export const doctorRoutes: IRoutes[] = [
   ...commonRoutes,
   {
     path: RouteNames.PROFILE,
