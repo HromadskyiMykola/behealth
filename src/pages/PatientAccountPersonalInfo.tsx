@@ -28,3 +28,56 @@ function PatientAccountPersonalInfo() {
 }
 
 export default PatientAccountPersonalInfo;
+
+//  {
+//    {isRegisterMode && ( // NAME
+//       <Controller
+//         name="firstName"
+//         control={control}
+//         defaultValue=""
+//         rules={validationRules.firstName}
+//         render={({ field }) => (
+//           <CustomizedInput
+//             autoFocus={isRegisterMode}
+//             label="Ім’я"
+//             placeholder="Олександр"
+//             {...field}
+//             error={!!errors.firstName}
+//             helperText={errors.firstName?.message || " "}
+//           />
+//         )}
+//       />
+//     )}
+//  }
+
+//       <Controller
+// name="lastName"
+// control={control}
+// defaultValue=""
+// rules={{ required: true, maxLength: 100 }}
+// render={({ field }) => (
+//   <TextField
+//   label="Last name"
+//   {...field}
+//   error={!!errors.lastName}
+//   helperText={errors.lastName ? "This field is required" : ""}
+//   />
+//   )}
+// />
+
+//       <Controller
+// name="mobileNumber"
+// control={control}
+// defaultValue=""
+// rules={{ required: true, minLength: 6, maxLength: 12 }}
+// render={({ field }) => (
+//   <TextField
+//   label="Mobile number"
+//   {...field}
+//   error={!!errors.mobileNumber}
+//   helperText={
+//     errors.mobileNumber ? "Please enter a valid mobile number" : ""
+//   }
+//   />
+//   )}
+// />

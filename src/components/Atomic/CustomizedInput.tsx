@@ -4,7 +4,7 @@ import {
   TextField,
   OutlinedTextFieldProps,
   styled,
-  Stack,
+  FormControl,
 } from "@mui/material";
 
 export type CustomizedInputProps = Pick<
@@ -43,7 +43,7 @@ function CustomizedInput(
   const { label, ...otherProps } = props;
 
   return (
-    <Stack>
+    <FormControl fullWidth>
       {label && (
         <Typography
           sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
@@ -52,8 +52,15 @@ function CustomizedInput(
           {label}
         </Typography>
       )}
-      <CustomTextField {...otherProps} variant="outlined" ref={ref} />
-    </Stack>
+      <CustomTextField
+        {...otherProps}
+        variant="outlined"
+        ref={ref}
+        FormHelperTextProps={{
+          sx: { width: "95%", fontSize: "12px", lineHeight: "1.25" },
+        }}
+      />
+    </FormControl>
   );
 }
 

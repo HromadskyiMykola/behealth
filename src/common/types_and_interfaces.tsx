@@ -1,12 +1,13 @@
 import { ReactElement, ReactNode } from "react";
 
-export type SignInSignUpFormValues = {
+export type AuthFormValues = {
   firstName: string;
   lastName: string;
   email: string;
   mobileNumber: string;
-  password: string;
+  newPassword: string;
   confirmPassword: string;
+  loginPassword: string
   checkbox: boolean;
 };
 
