@@ -7,10 +7,10 @@ export type AuthFormValues = {
   mobileNumber: string;
   newPassword: string;
   confirmPassword: string;
-  loginPassword: string
+  loginPassword: string;
   checkbox: boolean;
+  userType: string;
 };
-
 
 export interface IAdvantagesBlockProps {
   title: string;
@@ -70,5 +70,3 @@ export interface FooterColumNavigateLinksProps {
 }
 
 export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";
-
-
