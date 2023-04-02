@@ -12,7 +12,7 @@ const passwordValidation = {
   },
 };
 
-export const validationRules = {
+const validationRules = {
   firstName: {
     required: "Будь ласка, вкажіть ім’я",
     minLength: {
@@ -55,3 +55,5 @@ export const validationRules = {
     validate: (value: string) => value === password || "Паролі не збігаються",
   }),
 };
+
+export default validationRules;
