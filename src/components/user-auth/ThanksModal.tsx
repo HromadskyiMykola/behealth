@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Button, Dialog, Stack, Typography } from "@mui/material";
 
-import { ModalContext } from "./ModalContext";
+import { ModalContext } from "../../store/ModalContext";
 import { BellIcon } from "../../assets/CustomIcon";
 
 export default function ThanksModal() {

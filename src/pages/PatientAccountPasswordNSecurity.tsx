@@ -1,13 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
-import { AuthFormValues } from "../common/types_and_interfaces";
+import { AuthFormValues } from "../common/types-and-interfaces";
 
 import { CustomizedInput, CustomizedPaper } from "../components/Atomic";
 
 import { validationRules } from "../common";
 
-function PatientAccountPasswordNSecurity() {
+export function PatientAccountPasswordNSecurity() {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<AuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -106,4 +106,3 @@ function PatientAccountPasswordNSecurity() {
   );
 }
 
-export default PatientAccountPasswordNSecurity;
