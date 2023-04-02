@@ -13,12 +13,12 @@ import { CustomizedInput, PasswordInput } from "../Atomic";
 import UserTypeSelector from "./UserTypeSelector";
 import UserAgreement from "./UserAgreement";
 
-import { validationRules, TypesAndInterfaces } from "../../common";
-import { ModalContext } from "./ModalContext";
+import { validationRules, TypesInterfaces } from "../../common";
+import { ModalContext } from "../../store/ModalContext";
 
 type Props = {
-  mode: TypesAndInterfaces.authorizationMode;
-  setMode: (mode: TypesAndInterfaces.authorizationMode) => void;
+  mode: TypesInterfaces.AuthMode;
+  setMode: (mode: TypesInterfaces.AuthMode) => void;
 };
 
 const showMode = {
@@ -36,14 +36,14 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
   const isRecoveryMode: boolean = mode === "RECOVERY";
 
   const { control, handleSubmit, formState, watch, reset } =
-    useForm<TypesAndInterfaces.AuthFormValues>({
+    useForm<TypesInterfaces.AuthFormValues>({
       mode: "onChange",
       delayError: 1000,
     });
 
   const { errors } = formState;
 
-  const onSubmit = (data: TypesAndInterfaces.AuthFormValues) => {
+  const onSubmit = (data: TypesInterfaces.AuthFormValues) => {
     handleThanksModalOpen();
     const submittedData = { ...data, userType };
 

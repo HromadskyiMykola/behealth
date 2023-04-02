@@ -2,7 +2,7 @@ import { Box, Skeleton, Typography } from "@mui/material";
 
 import CustomizedPaper from "../components/Atomic/CustomizedPaper";
 
-function PatientAccountPersonalInfo() {
+export function PatientAccountPersonalInfo() {
   return (
     <>
       <CustomizedPaper>
@@ -27,7 +27,6 @@ function PatientAccountPersonalInfo() {
   );
 }
 
-export default PatientAccountPersonalInfo;
 
 //  {
 //    {isRegisterMode && ( // NAME

@@ -1,7 +1,5 @@
 import CustomizedPaper from '../components/Atomic/CustomizedPaper'
 
-function PatientAccountHelp() {
+export function PatientAccountHelp() {
   return <CustomizedPaper>PatientAccountHelp</CustomizedPaper>;
 }
-
-export default PatientAccountHelp

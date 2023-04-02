@@ -78,7 +78,7 @@ const NavTabs = () => {
   );
 };
 
-function PatientAccountPage() {
+export function PatientAccountPage() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -96,5 +96,3 @@ function PatientAccountPage() {
     </Grid>
   );
 }
-
-export default PatientAccountPage;

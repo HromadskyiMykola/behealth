@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
+import { TypesInterfaces } from "../../common";
 import { Breadcrumbs, Typography } from "@mui/material";
-import { commonRoutes, IRoutes } from "../../routes";
+import { patientRoutes, doctorRoutes } from "../../routes";
 import { NavigateNext } from "@mui/icons-material";
 
 const sx = {
@@ -11,8 +12,17 @@ const sx = {
   },
 };
 
-function findRouteLabel(name: string, routes: IRoutes[]): string {
+function findRouteLabel(name: string, routes: TypesInterfaces.Route[]): string {
   for (const route of routes) {
+    console.log(
+      "path:",
+      route.path,
+      "=== name:",
+      name,
+      ">>>",
+      route.path === name
+    );
+
     if (route.path === name) return route.label;
 
     const label = route.children ? findRouteLabel(name, route.children) : "";
@@ -25,6 +35,7 @@ function findRouteLabel(name: string, routes: IRoutes[]): string {
 export default function BreadcrumbsUkr() {
   const location = useLocation();
   const pathNames = location.pathname.split("/").filter((p) => p);
+  console.log(pathNames);
 
   return (
     <Breadcrumbs
@@ -42,9 +53,10 @@ export default function BreadcrumbsUkr() {
       </Typography>
 
       {pathNames.map((name, index) => {
-        const routeTo = `${pathNames.slice(0, index).join("/")}`;
+        const allRoutes = [...patientRoutes, ...doctorRoutes];
+        const label = findRouteLabel(name, allRoutes);
         const isLast = index === pathNames.length - 1;
-        const label = findRouteLabel(name, commonRoutes);
+        const routeTo = `${pathNames.slice(0, index + 1).join("/")}`;
 
         return isLast ? (
           <Typography variant="caption" key={routeTo}>

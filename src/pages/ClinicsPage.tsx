@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ClinicsPage()  {
+export  function ClinicsPage()  {
     return (
         <div>
             Clinics

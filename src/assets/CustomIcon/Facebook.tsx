@@ -1,5 +1,5 @@
 import React from "react";
-import { SvgIconsProps } from "../../common/types_and_interfaces";
+import { SvgIconsProps } from "../../common/types-and-interfaces";
 import SvgIcon from "@mui/material/SvgIcon";
 
 const Facebook = (props: SvgIconsProps) => {

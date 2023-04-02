@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box, ListItem, Typography } from "@mui/material";
 import { Check } from "../../assets/random/Check";
-import { IAdvantagesBlockProps } from "../../common/types_and_interfaces";
+import { IAdvantagesBlockProps } from "../../common/types-and-interfaces";
 
 export const AdvantagesItem: FC<IAdvantagesBlockProps> = ({
   title,

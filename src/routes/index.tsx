@@ -1,24 +1,33 @@
 import { RouteObject } from "react-router-dom";
+import { TypesInterfaces } from "../common";
+
+// import {   HomePage,
+//   PatientAccountAdditionalData,
+//   PatientAccountAppointments,
+//   PatientAccountHelp,
+//   PatientAccountPage,
+//   PatientAccountPasswordNSecurity,
+//   PatientAccountPersonalInfo,
+//   AboutPage,
+//   DoctorsPage,
+//   ClinicsPage,
+//   ProfilePage,
+//   NotFound, } from "../pages";
 
 // ReactRouter requires a full page import to work correctly !!
-import HomePage from "../pages/HomePage";
-import PatientAccountPage from "../pages/PatientAccountPage";
-import PatientAccountAppointments from "../pages/PatientAccountAppointments";
-import PatientAccountHelp from "../pages/PatientAccountHelp";
-import PatientAccountPersonalInfo from "../pages/PatientAccountPersonalInfo";
-import PatientAccountAdditionalData from "../pages/PatientAccountAdditionalData";
-import PatientAccountPasswordNSecurity from "../pages/PatientAccountPasswordNSecurity";
-import AboutPage from "../pages/AboutPage";
-import DoctorsPage from "../pages/DoctorsPage";
-import ClinicsPage from "../pages/ClinicsPage";
-import ProfilePage from "../pages/ProfilePage";
-import NotFound from "../pages/404";
+import { HomePage } from "../pages/HomePage";
+import { PatientAccountPage } from "../pages/PatientAccountPage";
+import { PatientAccountAppointments } from "../pages/PatientAccountAppointments";
+import { PatientAccountHelp } from "../pages/PatientAccountHelp";
+import { PatientAccountPersonalInfo } from "../pages/PatientAccountPersonalInfo";
+import { PatientAccountAdditionalData } from "../pages/PatientAccountAdditionalData";
+import { PatientAccountPasswordNSecurity } from "../pages/PatientAccountPasswordNSecurity";
+import { AboutPage } from "../pages/AboutPage";
+import { DoctorsPage } from "../pages/DoctorsPage";
+import { ClinicsPage } from "../pages/ClinicsPage";
+import { ProfilePage } from "../pages/ProfilePage";
+import { NotFound } from "../pages/404";
 // ReactRouter requires a full page import to work correctly !!
-
-export type IRoutes = RouteObject & {
-  label: string;
-  children?: IRoutes[];
-};
 
 export enum RouteNames {
   HOME = "/",
@@ -36,7 +45,7 @@ export enum RouteNames {
   // other
 }
 
-export const commonRoutes: IRoutes[] = [
+export const commonRoutes: TypesInterfaces.Route[] = [
   {
     index: true,
     element: <HomePage />,
@@ -49,9 +58,9 @@ export const commonRoutes: IRoutes[] = [
   { path: "*", element: <NotFound />, label: "Помилка" },
 ];
 
-// export const publicRoutes: IRoutes[] = [...commonRoutes];
+// export const publicRoutes: TRoute[] = [...commonRoutes];
 
-export const patientRoutes: IRoutes[] = [
+export const patientRoutes: TypesInterfaces.Route[] = [
   ...commonRoutes,
   {
     path: RouteNames.PATIENT_ACCOUNT,
@@ -96,10 +105,10 @@ export const patientRoutes: IRoutes[] = [
       },
       //// thumb
     ],
-  } as IRoutes,
+  } as TypesInterfaces.Route,
 ];
 
-export const doctorRoutes: IRoutes[] = [
+export const doctorRoutes: TypesInterfaces.Route[] = [
   ...commonRoutes,
   {
     path: RouteNames.PROFILE,
