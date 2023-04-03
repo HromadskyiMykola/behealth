@@ -70,4 +70,7 @@ export interface FooterColumNavigateLinksProps {
 
 export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";
 
+export interface TabHeaderCardProps {
+  title: string;
+}
 

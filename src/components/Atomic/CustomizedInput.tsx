@@ -44,7 +44,7 @@ function CustomizedInput(
   const { label, ...otherProps } = props;
 
   return (
-    <>
+    <FormControl fullWidth>
       {label && (
         <Typography
           sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
@@ -54,7 +54,7 @@ function CustomizedInput(
         </Typography>
       )}
       <CustomTextField {...otherProps} variant="outlined" ref={ref} />
-    </>
+    </FormControl>
   );
 }
 
