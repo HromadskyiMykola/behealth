@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { TypesInterfaces } from "../../common";
+import { TRoute } from "@common/types-and-interfaces";
 import { Breadcrumbs, Typography } from "@mui/material";
 import { patientRoutes, doctorRoutes } from "../../routes";
 import { NavigateNext } from "@mui/icons-material";
@@ -12,7 +12,7 @@ const sx = {
   },
 };
 
-function findRouteLabel(name: string, routes: TypesInterfaces.Route[]): string {
+function findRouteLabel(name: string, routes: TRoute[]): string {
   for (const route of routes) {
     console.log(
       "path:",

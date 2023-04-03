@@ -9,16 +9,17 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "../Atomic";
+import { CustomizedInput, PasswordInput } from "@components/Atomic";
 import UserTypeSelector from "./UserTypeSelector";
 import UserAgreement from "./UserAgreement";
 
-import { validationRules, TypesInterfaces } from "../../common";
 import { ModalContext } from "../../store/ModalContext";
+import validationRules from "@common/input-validation-rules";
+import { TAuthMode, TAuthFormValues } from "@common/types-and-interfaces";
 
 type Props = {
-  mode: TypesInterfaces.AuthMode;
-  setMode: (mode: TypesInterfaces.AuthMode) => void;
+  mode: TAuthMode;
+  setMode: (mode: TAuthMode) => void;
 };
 
 const showMode = {
@@ -36,14 +37,14 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
   const isRecoveryMode: boolean = mode === "RECOVERY";
 
   const { control, handleSubmit, formState, watch, reset } =
-    useForm<TypesInterfaces.AuthFormValues>({
+    useForm<TAuthFormValues>({
       mode: "onChange",
       delayError: 1000,
     });
 
   const { errors } = formState;
 
-  const onSubmit = (data: TypesInterfaces.AuthFormValues) => {
+  const onSubmit = (data: TAuthFormValues) => {
     handleThanksModalOpen();
     const submittedData = { ...data, userType };
 

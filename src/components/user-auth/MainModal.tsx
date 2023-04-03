@@ -11,11 +11,12 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { TAuthMode } from "@common/types-and-interfaces";
+import { ModalContext } from "../../store/ModalContext";
+
 import logoSignIn from "../../assets/images/logo_sign_in.png";
 import logoSignUp from "../../assets/images/logo_sign_up.png";
 import SignInSignUpForm from "./AuthForm";
-import { ModalContext } from "../../store/ModalContext";
-import { TypesInterfaces } from "../../common";
 
 const secondaryColor = "#FFFFFF";
 
@@ -28,7 +29,7 @@ export default function FormModal() {
 
   const { openMainModal, handleMainModalClose } = useContext(ModalContext);
 
-  const [mode, setMode] = useState<TypesInterfaces.AuthMode>("LOGIN");
+  const [mode, setMode] = useState<TAuthMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";

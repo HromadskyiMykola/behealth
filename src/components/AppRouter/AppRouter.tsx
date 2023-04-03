@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { TypesInterfaces } from "../../common";
-import { commonRoutes, patientRoutes, doctorRoutes } from "../../routes";
+import { TRoute } from "@common/types-and-interfaces";
 
-import { NotFound, Root } from "../../pages";
+import { commonRoutes, patientRoutes, doctorRoutes } from "../../routes";
+import { Root, NotFound } from "@pages/index";
 
 const appRouter = () => {
   const isAuth = true;
   const userType = "patient";
 
-  const rootRoute: TypesInterfaces.Route = {
+  const rootRoute: TRoute = {
     element: <Root />,
     children: !isAuth
       ? commonRoutes

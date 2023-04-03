@@ -2,7 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
 
-import { BreadcrumbsUkr, TabLink } from "../components/Atomic";
+import { BreadcrumbsUkr, TabLink } from "@components/Atomic";
 
 import { RouteNames } from "../routes";
 

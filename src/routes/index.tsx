@@ -1,7 +1,7 @@
-import { RouteObject } from "react-router-dom";
-import { TypesInterfaces } from "../common";
+import { TRoute } from "@common/types-and-interfaces";
 
-// import {   HomePage,
+// import {
+//   HomePage,
 //   PatientAccountAdditionalData,
 //   PatientAccountAppointments,
 //   PatientAccountHelp,
@@ -12,7 +12,8 @@ import { TypesInterfaces } from "../common";
 //   DoctorsPage,
 //   ClinicsPage,
 //   ProfilePage,
-//   NotFound, } from "../pages";
+//   NotFound,
+// } from "@pages/index";
 
 // ReactRouter requires a full page import to work correctly !!
 import { HomePage } from "../pages/HomePage";
@@ -45,7 +46,7 @@ export enum RouteNames {
   // other
 }
 
-export const commonRoutes: TypesInterfaces.Route[] = [
+export const commonRoutes: TRoute[] = [
   {
     index: true,
     element: <HomePage />,
@@ -60,7 +61,7 @@ export const commonRoutes: TypesInterfaces.Route[] = [
 
 // export const publicRoutes: TRoute[] = [...commonRoutes];
 
-export const patientRoutes: TypesInterfaces.Route[] = [
+export const patientRoutes: TRoute[] = [
   ...commonRoutes,
   {
     path: RouteNames.PATIENT_ACCOUNT,
@@ -105,10 +106,10 @@ export const patientRoutes: TypesInterfaces.Route[] = [
       },
       //// thumb
     ],
-  } as TypesInterfaces.Route,
+  } as TRoute,
 ];
 
-export const doctorRoutes: TypesInterfaces.Route[] = [
+export const doctorRoutes: TRoute[] = [
   ...commonRoutes,
   {
     path: RouteNames.PROFILE,

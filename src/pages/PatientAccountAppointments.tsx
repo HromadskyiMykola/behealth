@@ -1,8 +1,8 @@
 import { Box, Skeleton } from "@mui/material";
-import CustomizedPaper from "../components/Atomic/CustomizedPaper";
+import { CustomizedPaper } from "@components/Atomic";
 
 export function PatientAccountAppointments() {
-  ////////// for demo
+  // for demo
   return (
     <>
       <CustomizedPaper>

@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 import { RouteObject } from "react-router-dom";
 
-export type AuthFormValues = {
+export type TAuthFormValues = {
   firstName: string;
   lastName: string;
   email: string;
@@ -70,28 +70,28 @@ export interface FooterColumNavigateLinksProps {
   itIsLink?: boolean;
 }
 
-export type AuthMode = "LOGIN" | "REGISTER" | "RECOVERY";
+export type TAuthMode = "LOGIN" | "REGISTER" | "RECOVERY";
 
-export type Route = RouteObject & {
+export type TRoute = RouteObject & {
   label: string;
-  children?: Route[];
+  children?: TRoute[];
 };
 
 
 // apiService types
 
-export type RegisterData = {
+export type TRegisterData = {
   email: string;
   password: string;
 };
 
-export type LoginData = {
+export type TLoginData = {
   email: string;
   password: string;
   userType: "doctor" | "patient";
 };
 
-export type LoginResponse = {
+export type TLoginResponse = {
   message: string;
   token: string;
   userType: string;
