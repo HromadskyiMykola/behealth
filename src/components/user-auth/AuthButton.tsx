@@ -4,7 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { ModalContext, useModalState } from "~/store";
 import { FormModal, ThanksModal, PersonalIdentification } from ".";
 
-function AuthorizationButton() {
+export function AuthorizationButton() {
   const modalState = useModalState();
 
   return (
@@ -28,5 +28,3 @@ function AuthorizationButton() {
     </ModalContext.Provider>
   );
 }
-
-export default AuthorizationButton;
