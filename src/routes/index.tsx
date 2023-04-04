@@ -98,13 +98,13 @@ export const patientRoutes: TRoute[] = [
         element: <PatientAccountPasswordNSecurity />,
         label: "Додаткові дані",
       },
-      //// thumb
+      // plug
       {
         path: "logout",
         element: <h2>We will miss you...</h2>,
         label: "Вихід",
       },
-      //// thumb
+      // plug
     ],
   } as TRoute,
 ];
