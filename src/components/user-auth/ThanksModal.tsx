@@ -3,9 +3,9 @@ import { Button, Dialog, Stack, Typography } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
 
-import { ModalContext } from "../../store/ModalContext";
+import { ModalContext } from "~/store";
 
-export default function ThanksModal() {
+export function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
 
   return (

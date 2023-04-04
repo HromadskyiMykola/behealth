@@ -36,10 +36,7 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-function CustomizedInput(
-  props: CustomizedInputProps,
-  ref: Ref<HTMLDivElement>
-) {
+function CustomInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
   const { label, ...otherProps } = props;
 
   return (
@@ -57,11 +54,15 @@ function CustomizedInput(
         variant="outlined"
         ref={ref}
         FormHelperTextProps={{
-          sx: { width: "calc(100% - 30px)", fontSize: "12px", lineHeight: "1.25" },
+          sx: {
+            width: "calc(100% - 30px)",
+            fontSize: "12px",
+            lineHeight: "1.25",
+          },
         }}
       />
     </FormControl>
   );
 }
 
-export default forwardRef(CustomizedInput);
+export const CustomizedInput = forwardRef(CustomInput);

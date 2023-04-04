@@ -1,15 +1,6 @@
-import BreadcrumbsUkr from "./BreadcrumbsUkr";
-import CustomizedInput from "./CustomizedInput";
-import CustomizedPaper from "./CustomizedPaper";
-import TabLink from "./TabLink";
-import DatePickerInput from "./DatePickerInput";
-import PasswordInput from "./PasswordInput";
-
-export {
-  BreadcrumbsUkr,
-  CustomizedInput,
-  CustomizedPaper,
-  DatePickerInput,
-  PasswordInput,
-  TabLink,
-};
+export * from "./BreadcrumbsUkr";
+export * from "./CustomizedInput";
+export * from "./CustomizedPaper";
+export * from "./TabLink";
+export * from "./DatePickerInput";
+export * from "./PasswordInput";

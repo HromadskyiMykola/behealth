@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
-import { RouteNames } from "../../routes";
+import { ERouteNames } from "~/routes/routeNames";
 
 import AuthorizationButton from "../user-auth/AuthButton";
 import Logo from "../../assets/CustomIcon/Logo";
@@ -16,15 +16,15 @@ import Logo from "../../assets/CustomIcon/Logo";
 const links = [
   {
     name: "Лікарі",
-    path: RouteNames.DOCTORS,
+    path: ERouteNames.DOCTORS,
   },
   {
     name: "Клініки",
-    path: RouteNames.CLINICS,
+    path: ERouteNames.CLINICS,
   },
   {
     name: "Про beHealth",
-    path: RouteNames.ABOUT,
+    path: ERouteNames.ABOUT,
   },
 ];
 
@@ -45,7 +45,7 @@ const Header: FC = (props) => {
     <AppBar className="appBar" position="static">
       <Container className="_containerHeader">
         <Box sx={styledBox}>
-          <NavLink to={RouteNames.HOME}>
+          <NavLink to={ERouteNames.HOME}>
             <Logo
                 width="180" height="33" viewBox="0 0 180 33" fill="none" xmlns="http://www.w3.org/2000/svg"
             />
