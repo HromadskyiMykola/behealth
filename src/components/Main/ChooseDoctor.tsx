@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
 import { MUILink } from "./MUILink";
 import { CHOOSE_DOCTORS_LIST } from "./choose.doctors.constants";
-import { IChooseDoctor } from "../../common/types_and_interfaces";
+import { IChooseDoctor } from "../../common/types-and-interfaces";
 import { ChooseDoctorsList } from "./ChooseDoctorsItem";
 
 export const ChooseDoctor = () => {

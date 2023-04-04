@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DoctorsPage() {
+export  function DoctorsPage() {
     return (
         <div>
             Doctors

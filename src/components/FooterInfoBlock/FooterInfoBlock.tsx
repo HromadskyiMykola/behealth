@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { FooterInfoBlogProps } from "../../common/types_and_interfaces";
+import { FooterInfoBlogProps } from "../../common/types-and-interfaces";
 
 const FooterInfoBlock = ({ title, text }: FooterInfoBlogProps) => {
   return (

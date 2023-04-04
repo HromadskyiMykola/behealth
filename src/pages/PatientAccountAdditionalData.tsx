@@ -1,7 +1,5 @@
-import CustomizedPaper from "../components/Atomic/CustomizedPaper";
+import { CustomizedPaper } from "~atomic/index";
 
-function PatientAccountAdditionalData() {
+export function PatientAccountAdditionalData() {
   return <CustomizedPaper>PatientAccountAdditionalData</CustomizedPaper>;
 }
-
-export default PatientAccountAdditionalData;

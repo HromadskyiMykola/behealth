@@ -1,13 +1,17 @@
-import { DatePicker, DateTimePicker, DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import {
+  DatePicker,
+  DateTimePicker,
+  DesktopDatePicker,
+  LocalizationProvider,
+} from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-import CustomizedInput from "./CustomizedInput";
+import { CustomizedInput } from ".";
 
-function DatePickerInput(props: any) {
-  const [value, setValue] = useState<Dayjs | null>(
-    // dayjs('2014-08-18'),
-  );
+export function DatePickerInput(props: any) {
+  const [value, setValue] = useState<Dayjs | null>();
+  // dayjs('2014-08-18'),
 
   const handleChange = (newValue: Dayjs | null) => {
     setValue(newValue);
@@ -24,5 +28,3 @@ function DatePickerInput(props: any) {
     </LocalizationProvider>
   );
 }
-
-export default DatePickerInput

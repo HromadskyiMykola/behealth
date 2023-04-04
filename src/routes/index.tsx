@@ -1,109 +1,110 @@
-import { RouteObject } from "react-router-dom";
+import { TRoute } from "~/common";
+
+import { ERouteNames } from "./routeNames";
+
+import * as Pages from "~/pages/index";
+
+
+// import {
+//   HomePage,
+//   PatientAccountAdditionalData,
+//   PatientAccountAppointments,
+//   PatientAccountHelp,
+//   PatientAccountPage,
+//   PatientAccountPasswordNSecurity,
+//   PatientAccountPersonalInfo,
+//   AboutPage,
+//   DoctorsPage,
+//   ClinicsPage,
+//   ProfilePage,
+//   NotFound,
+// } from "@pages/index";
 
 // ReactRouter requires a full page import to work correctly !!
-import HomePage from "../pages/HomePage";
-import PatientAccountPage from "../pages/PatientAccountPage";
-import PatientAccountAppointments from "../pages/PatientAccountAppointments";
-import PatientAccountHelp from "../pages/PatientAccountHelp";
-import PatientAccountPersonalInfo from "../pages/PatientAccountPersonalInfo";
-import PatientAccountAdditionalData from "../pages/PatientAccountAdditionalData";
-import PatientAccountPasswordNSecurity from "../pages/PatientAccountPasswordNSecurity";
-import AboutPage from "../pages/AboutPage";
-import DoctorsPage from "../pages/DoctorsPage";
-import ClinicsPage from "../pages/ClinicsPage";
-import ProfilePage from "../pages/ProfilePage";
-import NotFound from "../pages/404";
+// import { HomePage } from "../pages/HomePage";
+// import { PatientAccountPage } from "../pages/PatientAccountPage";
+// import { PatientAccountAppointments } from "../pages/PatientAccountAppointments";
+// import { PatientAccountHelp } from "../pages/PatientAccountHelp";
+// import { PatientAccountPersonalInfo } from "../pages/PatientAccountPersonalInfo";
+// import { PatientAccountAdditionalData } from "../pages/PatientAccountAdditionalData";
+// import { PatientAccountPasswordNSecurity } from "../pages/PatientAccountPasswordNSecurity";
+// import { AboutPage } from "../pages/AboutPage";
+// import { DoctorsPage } from "../pages/DoctorsPage";
+// import { ClinicsPage } from "../pages/ClinicsPage";
+// import { ProfilePage } from "../pages/ProfilePage";
+// import { NotFound } from "../pages/404";
 // ReactRouter requires a full page import to work correctly !!
 
-export type IRoutes = RouteObject & {
-  label: string;
-  children?: IRoutes[];
-};
 
-export enum RouteNames {
-  HOME = "/",
-  ABOUT = "about",
-  DOCTORS = "doctors",
-  CLINICS = "clinics",
-  PROFILE = "profile",
-  PATIENT_ACCOUNT = "patient-account",
-  PATIENT_ACCOUNT_APPOINTMENT = "appointment",
-  PATIENT_ACCOUNT_HELP = "help",
-  PATIENT_ACCOUNT_PERSONAL_INFO = "personal-info",
-  PATIENT_ACCOUNT_ADDITIONAL_DATA = "additional-data",
-  PATIENT_ACCOUNT_PASSWORD_N_SECURITY = "password-n-security",
-  DOCTOR_ACCOUNT = "doctor-account",
-  // other
-}
 
-export const commonRoutes: IRoutes[] = [
+export const commonRoutes: TRoute[] = [
   {
     index: true,
-    element: <HomePage />,
+    element: <Pages.HomePage />,
     label: "Головна",
-    errorElement: <NotFound />,
+    errorElement: <Pages.NotFound />,
   },
-  { path: RouteNames.ABOUT, element: <AboutPage />, label: "Про нас" },
-  { path: RouteNames.DOCTORS, element: <DoctorsPage />, label: "Лікарі" },
-  { path: RouteNames.CLINICS, element: <ClinicsPage />, label: "Заклади" },
-  { path: "*", element: <NotFound />, label: "Помилка" },
+  { path: ERouteNames.ABOUT, element: <Pages.AboutPage />, label: "Про нас" },
+  { path: ERouteNames.DOCTORS, element: <Pages.DoctorsPage />, label: "Лікарі" },
+  { path: ERouteNames.CLINICS, element: <Pages.ClinicsPage />, label: "Заклади" },
+  { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];
 
-// export const publicRoutes: IRoutes[] = [...commonRoutes];
+// export const publicRoutes: TRoute[] = [...commonRoutes];
 
-export const patientRoutes: IRoutes[] = [
+export const patientRoutes: TRoute[] = [
   ...commonRoutes,
   {
-    path: RouteNames.PATIENT_ACCOUNT,
-    element: <PatientAccountPage />,
+    path: ERouteNames.PATIENT_ACCOUNT,
+    element: <Pages.PatientAccountPage />,
     label: "Кабінет пацієнта",
     children: [
       {
         index: true,
-        element: <PatientAccountAppointments />,
+        element: <Pages.PatientAccountAppointments />,
         label: "",
       },
       {
-        path: RouteNames.PATIENT_ACCOUNT_APPOINTMENT,
-        element: <PatientAccountAppointments />,
+        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
+        element: <Pages.PatientAccountAppointments />,
         label: "Записи",
       },
       {
-        path: RouteNames.PATIENT_ACCOUNT_HELP,
-        element: <PatientAccountHelp />,
+        path: ERouteNames.PATIENT_ACCOUNT_HELP,
+        element: <Pages.PatientAccountHelp />,
         label: "Допомога",
       },
       {
-        path: RouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
-        element: <PatientAccountPersonalInfo />,
+        path: ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
+        element: <Pages.PatientAccountPersonalInfo />,
         label: "Особиста інформація",
       },
       {
-        path: RouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
-        element: <PatientAccountAdditionalData />,
+        path: ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
+        element: <Pages.PatientAccountAdditionalData />,
         label: "Особиста інформація",
       },
       {
-        path: RouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
-        element: <PatientAccountPasswordNSecurity />,
+        path: ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
+        element: <Pages.PatientAccountPasswordNSecurity />,
         label: "Додаткові дані",
       },
-      //// thumb
+      // plug
       {
         path: "logout",
         element: <h2>We will miss you...</h2>,
         label: "Вихід",
       },
-      //// thumb
+      // plug
     ],
-  } as IRoutes,
+  } as TRoute,
 ];
 
-export const doctorRoutes: IRoutes[] = [
+export const doctorRoutes: TRoute[] = [
   ...commonRoutes,
   {
-    path: RouteNames.PROFILE,
-    element: <ProfilePage />,
+    path: ERouteNames.PROFILE,
+    element: <Pages.ProfilePage />,
     label: "ВКАЗАТИ НАЗВУ",
   },
 ];

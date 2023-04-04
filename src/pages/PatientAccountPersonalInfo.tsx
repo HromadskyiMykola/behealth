@@ -1,11 +1,11 @@
 import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
 
-import CustomizedPaper from "../components/Atomic/CustomizedPaper";
+import { CustomizedPaper } from "~atomic/index";
 import { EditIcon } from "../assets/CustomIcon";
 
 const EditButton = () => <Button startIcon={<EditIcon />}>{"Змінити"}</Button>;
 
-function PatientAccountPersonalInfo() {
+export function PatientAccountPersonalInfo() {
   return (
     <>
       <CustomizedPaper>
@@ -44,7 +44,6 @@ function PatientAccountPersonalInfo() {
   );
 }
 
-export default PatientAccountPersonalInfo;
 
 //  {
 //    {isRegisterMode && ( // NAME

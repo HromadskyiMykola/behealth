@@ -1,3 +1,13 @@
-// ReactRouter requires a full page import to work correctly !!
-
-export {};
+export * from "./HomePage";
+export * from "./PatientAccountPage";
+export * from "./PatientAccountAppointments";
+export * from "./PatientAccountHelp";
+export * from "./PatientAccountPersonalInfo";
+export * from "./PatientAccountAdditionalData";
+export * from "./PatientAccountPasswordNSecurity";
+export * from "./AboutPage";
+export * from "./DoctorsPage";
+export * from "./ClinicsPage";
+export * from "./ProfilePage";
+export * from "./404";
+export * from "./Root";

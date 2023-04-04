@@ -161,7 +161,7 @@ const dataProcessingAgreement = (
 
 type agreementType = "user-agreement" | "data-agreement";
 
-export default function UserAgreement() {
+export function UserAgreement() {
   const {
     palette: {
       primary: { main: primaryColor },

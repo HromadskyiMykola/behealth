@@ -1,9 +1,9 @@
 import { Box, Skeleton } from "@mui/material";
-import CustomizedPaper from "../components/Atomic/CustomizedPaper";
 
-function PatientAccountAppointments() {
-  
-  ////////// for demo
+import { CustomizedPaper } from "~atomic/index";
+
+export function PatientAccountAppointments() {
+  // for demo
   return (
     <>
       <CustomizedPaper>
@@ -33,5 +33,3 @@ function PatientAccountAppointments() {
     </>
   );
 }
-
-export default PatientAccountAppointments;

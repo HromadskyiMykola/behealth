@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
+
 import { Button, Dialog, Grid, Typography } from "@mui/material";
 
-import CustomizedInput from "../Atomic/CustomizedInput";
-import DatePickerInput from "../Atomic/DatePickerInput";
+import { CustomizedInput, DatePickerInput } from "~atomic/index";
 
-export default function PersonalIdentification() {
+export function PersonalIdentification() {
   //   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
   const [openIdentificationModal, setOpenIdentificationModal] = useState(false);
 

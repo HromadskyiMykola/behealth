@@ -22,7 +22,7 @@ const StyledTab = styled(Tab)({
   },
 });
 
-const TabLink = ({ to, ...tabProps }: TabLinkProps) => {
+export const TabLink = ({ to, ...tabProps }: TabLinkProps) => {
   const navigate = useNavigate();
 
   const handleClick = (event: MouseEvent) => {
@@ -32,5 +32,3 @@ const TabLink = ({ to, ...tabProps }: TabLinkProps) => {
 
   return <StyledTab onClick={handleClick} {...tabProps} iconPosition="start" />;
 };
-
-export default TabLink;

@@ -1,22 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import {
-  IRoutes,
-  commonRoutes,
-  patientRoutes,
-  doctorRoutes,
-} from "../../routes";
+import { TRoute } from "~/common";
 
-// ReactRouter requires a full page import to work correctly !!
-import Root from "../../pages/Root";
-// import NotFound from "../../pages/404";
-// ReactRouter requires a full page import to work correctly !!
+import { commonRoutes, patientRoutes, doctorRoutes } from "~/routes";
+import { Root, NotFound } from "~/pages";
 
-const appRouter = () => {
+const router = () => {
   const isAuth = true;
   const userType = "patient";
 
-  const rootRoute: IRoutes = {
+  const rootRoute: TRoute = {
     element: <Root />,
     children: !isAuth
       ? commonRoutes
@@ -30,4 +23,4 @@ const appRouter = () => {
   return createBrowserRouter([rootRoute]);
 };
 
-export default appRouter();
+export const appRouter = router();

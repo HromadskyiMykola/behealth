@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Gynecologist } from "../../assets/random/Gynecologist";
 import { Gastroenterologist } from "../../assets/random/Gastroenterologist";
-import { IChooseDoctor } from "../../common/types_and_interfaces";
+import { IChooseDoctor } from "../../common/types-and-interfaces";
 
 export const CHOOSE_DOCTORS_LIST: IChooseDoctor[] = [
   {
