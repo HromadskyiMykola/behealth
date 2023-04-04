@@ -12,7 +12,7 @@ import {
 import { CustomizedInput, PasswordInput } from "~atomic/index";
 import { UserTypeSelector, UserAgreement } from ".";
 
-import { ModalContext } from "~/store";
+import { ModalContext } from "~/context";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 
 type Props = {

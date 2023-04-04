@@ -3,7 +3,7 @@ import { Button, Dialog, Stack, Typography } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
 
-import { ModalContext } from "~/store";
+import { ModalContext } from "~/context";
 
 export function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
