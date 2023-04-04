@@ -10,6 +10,7 @@ const FooterContactPhone = ({ icon, phone }: FooterContactPhoneProps) => {
       sx={{
         display: "flex",
         gap: "10px",
+        alignItems: "center",
       }}
     >
       {icon}

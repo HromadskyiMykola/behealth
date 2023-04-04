@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 export type SignInSignUpFormValues = {
   firstName: string;
@@ -10,7 +10,6 @@ export type SignInSignUpFormValues = {
   checkbox: boolean;
 };
 
-
 export interface IAdvantagesBlockProps {
   title: string;
   description: string;
@@ -21,13 +20,13 @@ export interface MUILinkProps {
   text: string;
 }
 
-interface WhyUsContentArrayItems {
+export interface WhyUsContentArrayItems {
   icon: JSX.Element;
   title: string;
   description: string;
 }
 
-interface WhyUsContentItems {
+export interface WhyUsContentItems {
   title: string;
   description: string;
   link: JSX.Element;
@@ -70,4 +69,113 @@ export interface FooterColumNavigateLinksProps {
 
 export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";
 
+export interface IProfileHelpArrayItems {
+  id: number;
+  title: string;
+  description: string;
+}
 
+export interface IProfileHelp {
+  headerTitle: string;
+  headerSubtitle: string;
+  title: string;
+  arrayItems: IProfileHelpArrayItems[];
+}
+
+export interface AccordionListProps {
+  arrayItems: IProfileHelpArrayItems[];
+}
+
+export interface AccordionItemProps {
+  id?: string;
+  title: string;
+  description: string;
+}
+
+export interface ProfileAppointmentDetailsProps {
+  card: IProfileAppointmentCard;
+  info?: IProfileAppointmentDetailsInfo;
+}
+
+export interface ProfileAppointmentStatusProps {
+  status: string;
+}
+
+export interface IProfileAppointment {
+  title: IIProfileAppointmentTitles;
+  cards: IProfileAppointmentCard[];
+}
+
+export interface IIProfileAppointmentTitles {
+  scheduleTitle: string;
+  historyTitle: string;
+}
+
+interface IProfileAppointmentCardInfo {
+  title: string;
+  text: string;
+}
+
+export interface IProfileAppointmentCard {
+  id: number;
+  avatar: string;
+  name: string;
+  speciality: string;
+  typeAppointment: string;
+  date: string;
+  status: string;
+  info: IProfileAppointmentCardInfo[];
+}
+
+export interface IProfileAppointmentDetailsInfoTexts {
+  title?: string;
+  text?: string;
+}
+
+export interface IProfileAppointmentDetailsInfo {
+  title: string;
+  subtitle?: string;
+  code?: string;
+  details?: IProfileAppointmentDetailsInfoTexts[];
+}
+
+export interface IProfileAppointmentDetails {
+  visitInfo: IProfileAppointmentDetailsInfo[];
+  medicalRecords: IProfileAppointmentDetailsInfo[];
+}
+export interface IProfileAppointmentDetailsInfoNavigation {
+  title: string;
+  path: string;
+}
+
+export interface ProfileAppointmentListItemProps {
+  card: IProfileAppointmentCard;
+  bgcolor?: string;
+  border?: string;
+}
+
+export interface ProfileAppointmentListProps {
+  cards: IProfileAppointmentCard[];
+}
+
+export interface ProfileAppointmentDetailsNavigationProps {
+  navigation: IProfileAppointmentDetailsInfoNavigation[];
+}
+
+export interface ProfileAppointmentDetailsInfoDefaultCardProps {
+  title: string;
+  subtitle?: string;
+  code?: string;
+  details: IProfileAppointmentDetailsInfoTexts[];
+}
+
+export interface ProfileAppointmentModalProps {
+  targetButtonText: string | undefined;
+  isOpen: boolean;
+  closeModal: () => void;
+}
+
+export interface ButtonsFilteringProps {
+  CardsFiltering: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  activeButton: string;
+}
