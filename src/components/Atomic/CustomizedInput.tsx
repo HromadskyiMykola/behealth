@@ -57,7 +57,7 @@ function CustomizedInput(
         variant="outlined"
         ref={ref}
         FormHelperTextProps={{
-          sx: { width: "95%", fontSize: "12px", lineHeight: "1.25" },
+          sx: { width: "calc(100% - 30px)", fontSize: "12px", lineHeight: "1.25" },
         }}
       />
     </FormControl>

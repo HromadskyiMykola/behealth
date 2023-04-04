@@ -1,9 +1,9 @@
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
-import { TAuthFormValues } from "../common/types-and-interfaces";
+import { TAuthFormValues } from "@common/types-and-interfaces";
 
-import { CustomizedInput, CustomizedPaper, PasswordInput } from "../components/Atomic";
+import { CustomizedInput, CustomizedPaper, PasswordInput } from "@components/Atomic";
 
 import { validationRules } from "../common";
 
