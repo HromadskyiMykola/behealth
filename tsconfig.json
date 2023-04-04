@@ -25,6 +25,6 @@
   },
   "include": [
     "src"
-, "temp/BellIcon.tsx"  ],
+  ],
   "extends": "./tsconfig.paths.json",
 }
