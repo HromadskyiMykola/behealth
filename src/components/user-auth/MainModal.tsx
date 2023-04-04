@@ -4,23 +4,25 @@ import {
   useMediaQuery,
   Dialog,
   DialogContent,
-    DialogTitle,
+  DialogTitle,
   Grid,
   IconButton,
   Typography,
 } from "@mui/material";
+
 import CloseIcon from "@mui/icons-material/Close";
 
-import { TAuthMode } from "@common/types-and-interfaces";
-import { ModalContext } from "../../store/ModalContext";
+import { TAuthMode } from "~/common";
+import { ModalContext } from "~/store";
 
-import logoSignIn from "../../assets/images/logo_sign_in.png";
-import logoSignUp from "../../assets/images/logo_sign_up.png";
-import SignInSignUpForm from "./AuthForm";
+import { AuthForm } from ".";
+
+import logoSignIn from "@/assets/images/logo_sign_in.png";
+import logoSignUp from "@/assets/images/logo_sign_up.png";
 
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal() {
+export function FormModal() {
   const {
     palette: {
       primary: { main: primaryColor },
@@ -51,10 +53,11 @@ export default function FormModal() {
       onClose={handleMainModalClose}
     >
       <DialogContent
-        
         sx={{
-          height: {xs: "100vh", sm: "auto"},
-          maxWidth: "1000px", p: "80px", backgroundColor: primaryColor
+          height: { xs: "100vh", sm: "auto" },
+          maxWidth: "1000px",
+          p: "80px",
+          backgroundColor: primaryColor,
         }}
       >
         <IconButton
@@ -98,8 +101,8 @@ export default function FormModal() {
             />
           </Grid>
 
-          <Grid item xs  md={7}>
-            <SignInSignUpForm mode={mode} setMode={setMode} />
+          <Grid item xs md={7}>
+            <AuthForm mode={mode} setMode={setMode} />
           </Grid>
         </Grid>
       </DialogContent>

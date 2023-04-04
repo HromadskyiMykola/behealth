@@ -16,10 +16,7 @@ const IconInWraparound = ({
   </Box>
 );
 
-export default function UserTypeSelector({
-  value,
-  onChange,
-}: UserTypeSelectorProps) {
+export function UserTypeSelector({ value, onChange }: UserTypeSelectorProps) {
   return (
     <Stack mb={2} spacing={2} direction="row" aria-label="Тип користувача">
       <Button

@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Breadcrumbs, Typography } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 
-import { TRoute } from "@common/types-and-interfaces";
-import { patientRoutes, doctorRoutes } from "../../routes";
+import { TRoute } from "~/common";
+import { patientRoutes, doctorRoutes } from "~/routes";
 
 const sx = {
   textDecoration: "none",
@@ -25,7 +25,7 @@ function findRouteLabel(name: string, routes: TRoute[]): string {
   return "";
 }
 
-export default function BreadcrumbsUkr() {
+export function BreadcrumbsUkr() {
   const location = useLocation();
   const pathNames = useMemo(
     () => location.pathname.split("/").filter((p) => p),

@@ -9,13 +9,11 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "@components/Atomic";
-import UserTypeSelector from "./UserTypeSelector";
-import UserAgreement from "./UserAgreement";
+import { CustomizedInput, PasswordInput } from "~atomic/index";
+import { UserTypeSelector, UserAgreement } from ".";
 
-import { ModalContext } from "../../store/ModalContext";
-import validationRules from "@common/input-validation-rules";
-import { TAuthMode, TAuthFormValues } from "@common/types-and-interfaces";
+import { ModalContext } from "~/store";
+import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 
 type Props = {
   mode: TAuthMode;
@@ -28,7 +26,7 @@ const showMode = {
   RECOVERY: "Відновлення паролю",
 };
 
-export default function SignInSignUpForm({ mode, setMode }: Props) {
+export function AuthForm({ mode, setMode }: Props) {
   const { handleThanksModalOpen } = useContext(ModalContext);
   const [userType, setUserType] = useState("patient");
 

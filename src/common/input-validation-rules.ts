@@ -56,4 +56,4 @@ const validationRules = {
   }),
 };
 
-export default validationRules;
+export { validationRules };

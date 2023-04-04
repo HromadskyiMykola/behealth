@@ -3,9 +3,9 @@ import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material/";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
-import CustomizedInput, { CustomizedInputProps } from "./CustomizedInput";
+import { CustomizedInput, CustomizedInputProps } from ".";
 
-function PasswordInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
+function Input(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
@@ -31,4 +31,4 @@ function PasswordInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
   );
 }
 
-export default forwardRef(PasswordInput);
+export const PasswordInput = forwardRef(Input);

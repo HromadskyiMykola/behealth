@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { TRoute } from "@common/types-and-interfaces";
+import { TRoute } from "~/common";
 
-import { commonRoutes, patientRoutes, doctorRoutes } from "../../routes";
-import { Root, NotFound } from "@pages/index";
+import { commonRoutes, patientRoutes, doctorRoutes } from "~/routes";
+import { Root, NotFound } from "~/pages";
 
-const appRouter = () => {
+const router = () => {
   const isAuth = true;
   const userType = "patient";
 
@@ -23,4 +23,4 @@ const appRouter = () => {
   return createBrowserRouter([rootRoute]);
 };
 
-export default appRouter();
+export const appRouter = router();

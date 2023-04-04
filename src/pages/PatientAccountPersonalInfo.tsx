@@ -1,6 +1,6 @@
 import { Box, Skeleton, Typography } from "@mui/material";
 
-import { CustomizedPaper } from "@components/Atomic";
+import { CustomizedPaper } from "~atomic/index";
 
 export function PatientAccountPersonalInfo() {
   return (
