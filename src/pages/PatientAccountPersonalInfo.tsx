@@ -1,9 +1,13 @@
 import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
 
 import { CustomizedPaper } from "~atomic/index";
-import { EditIcon } from "../assets/CustomIcon";
+import { EditIcon } from "lucide-react";
 
-const EditButton = () => <Button startIcon={<EditIcon />}>{"Змінити"}</Button>;
+const EditButton = () => (
+  <Button startIcon={<EditIcon style={{ flexShrink: 0 }} size={22} />}>
+    {"Змінити"}
+  </Button>
+);
 
 export function PatientAccountPersonalInfo() {
   return (
@@ -30,7 +34,7 @@ export function PatientAccountPersonalInfo() {
         </Stack>
 
         <Skeleton variant="text" sx={{ height: 150 }} />
-        
+
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">
             {"Документи, що засвідчують особу"}
@@ -43,7 +47,6 @@ export function PatientAccountPersonalInfo() {
     </>
   );
 }
-
 
 //  {
 //    {isRegisterMode && ( // NAME
