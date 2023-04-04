@@ -1,24 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { IRoutes, privateRoutes, publicRoutes } from "../../routes";
+import { TRoute } from "@common/types-and-interfaces";
 
-// ReactRouter requires a full page import to work correctly !!
-import Root from "../../pages/Root";
-import NotFound from "../../pages/404";
-// ReactRouter requires a full page import to work correctly !!
+import { commonRoutes, patientRoutes, doctorRoutes } from "../../routes";
+import { Root, NotFound } from "@pages/index";
 
 const appRouter = () => {
-  const isAuth = false;
+  const isAuth = true;
+  const userType = "patient";
 
-  const mainRoute: IRoutes = {
-    path: "/",
+  const rootRoute: TRoute = {
     element: <Root />,
-    children: isAuth ? privateRoutes : publicRoutes,
+    children: !isAuth
+      ? commonRoutes
+      : userType === "patient"
+      ? patientRoutes
+      : doctorRoutes,
     label: "Корінь",
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
   };
 
-  return createBrowserRouter([mainRoute]);
+  return createBrowserRouter([rootRoute]);
 };
 
 export default appRouter();

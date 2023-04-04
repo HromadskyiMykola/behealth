@@ -1,19 +1,19 @@
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
-import { SignInSignUpFormValues } from "../common/types_and_interfaces";
+import { TAuthFormValues } from "@common/types-and-interfaces";
 
-import { CustomizedInput, CustomizedPaper } from "../components/Atomic";
+import { CustomizedInput, CustomizedPaper, PasswordInput } from "@components/Atomic";
 
 import { validationRules } from "../common";
 
-function PatientAccountPasswordNSecurity() {
+export function PatientAccountPasswordNSecurity() {
   const { control, handleSubmit, formState, watch, reset } =
-    useForm<SignInSignUpFormValues>({ mode: "onChange", delayError: 1000 });
+    useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
   const { errors } = formState;
 
-  const onSubmit = (data: SignInSignUpFormValues) => {
+  const onSubmit = (data: TAuthFormValues) => {
     console.log(data);
     console.log(formState);
   };
@@ -27,37 +27,39 @@ function PatientAccountPasswordNSecurity() {
           component="form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
-          spacing={{ md: 0, laptop: 3 }}
+          spacing={{ md: 0, laptop: 1 }}
           direction={{ md: "column", laptop: "row" }}
+          justifyContent="space-between"
+          alignItems="stretch"
         >
           <Controller
-            name="password"
+            name="loginPassword"
             control={control}
             defaultValue=""
             rules={validationRules.loginPassword}
             render={({ field }) => (
-              <CustomizedInput
+              <PasswordInput
                 label="Поточний пароль*"
-                placeholder="Введіть поточний пароль"
+                placeholder="Введіть пароль"
                 {...field}
-                error={!!errors.password}
-                helperText={errors.password?.message || " "}
+                error={!!errors.loginPassword}
+                helperText={errors.loginPassword?.message || " "}
               />
             )}
           />
 
           <Controller
-            name="password"
+            name="newPassword"
             control={control}
             defaultValue=""
-            rules={validationRules.registerPassword}
+            rules={validationRules.newPassword}
             render={({ field }) => (
-              <CustomizedInput
+              <PasswordInput
                 label="Новий пароль*"
-                placeholder="Вигадайте новий пароль"
+                placeholder="Вигадайте пароль"
                 {...field}
-                error={!!errors.password}
-                helperText={errors.password?.message || " "}
+                error={!!errors.newPassword}
+                helperText={errors.newPassword?.message || " "}
               />
             )}
           />
@@ -66,11 +68,11 @@ function PatientAccountPasswordNSecurity() {
             name="confirmPassword"
             control={control}
             defaultValue=""
-            rules={validationRules.confirmPassword(watch("password"))}
+            rules={validationRules.confirmPassword(watch("newPassword"))}
             render={({ field }) => (
-              <CustomizedInput
+              <PasswordInput
                 label="Повторіть новий пароль*"
-                placeholder="Продублюйте новий пароль"
+                placeholder="Продублюйте пароль"
                 {...field}
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message || " "}
@@ -104,4 +106,3 @@ function PatientAccountPasswordNSecurity() {
   );
 }
 
-export default PatientAccountPasswordNSecurity;
