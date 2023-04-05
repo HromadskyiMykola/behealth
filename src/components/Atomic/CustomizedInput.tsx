@@ -1,11 +1,10 @@
 import { forwardRef, Ref } from "react";
 import {
   Typography,
-  FormControl,
   TextField,
   OutlinedTextFieldProps,
   styled,
-  InputAdornmentProps,
+  FormControl,
 } from "@mui/material";
 
 export type CustomizedInputProps = Pick<
@@ -37,14 +36,11 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-function CustomizedInput(
-  props: CustomizedInputProps,
-  ref: Ref<HTMLDivElement>
-) {
+function CustomInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
   const { label, ...otherProps } = props;
 
   return (
-    <>
+    <FormControl fullWidth>
       {label && (
         <Typography
           sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
@@ -53,9 +49,20 @@ function CustomizedInput(
           {label}
         </Typography>
       )}
-      <CustomTextField {...otherProps} variant="outlined" ref={ref} />
-    </>
+      <CustomTextField
+        {...otherProps}
+        variant="outlined"
+        ref={ref}
+        FormHelperTextProps={{
+          sx: {
+            width: "calc(100% - 30px)",
+            fontSize: "12px",
+            lineHeight: "1.25",
+          },
+        }}
+      />
+    </FormControl>
   );
 }
 
-export default forwardRef(CustomizedInput);
+export const CustomizedInput = forwardRef(CustomInput);

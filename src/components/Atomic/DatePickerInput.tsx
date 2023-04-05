@@ -7,10 +7,11 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-import CustomizedInput from "./CustomizedInput";
 import { CalendarDays } from "lucide-react";
 
-function DatePickerInput(props: any) {
+import { CustomizedInput } from ".";
+
+export function DatePickerInput(props: any) {
   const [value, setValue] = useState<Dayjs | null>();
   // dayjs('2014-08-18'),
 
@@ -32,5 +33,3 @@ function DatePickerInput(props: any) {
     </LocalizationProvider>
   );
 }
-
-export default DatePickerInput;

@@ -1,13 +1,16 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
+import { RouteObject } from "react-router-dom";
 
-export type SignInSignUpFormValues = {
+export type TAuthFormValues = {
   firstName: string;
   lastName: string;
   email: string;
   mobileNumber: string;
-  password: string;
+  newPassword: string;
   confirmPassword: string;
+  loginPassword: string;
   checkbox: boolean;
+  userType: string;
 };
 
 export interface IAdvantagesBlockProps {
@@ -67,7 +70,12 @@ export interface FooterColumNavigateLinksProps {
   itIsLink?: boolean;
 }
 
-export type authorizationMode = "LOGIN" | "REGISTER" | "RECOVERY";
+export type TAuthMode = "LOGIN" | "REGISTER" | "RECOVERY";
+
+export type TRoute = RouteObject & {
+  label: string;
+  children?: TRoute[];
+};
 
 export interface IProfileHelpArrayItems {
   id: number;
@@ -179,3 +187,23 @@ export interface ButtonsFilteringProps {
   CardsFiltering: (e: React.MouseEvent<HTMLButtonElement>) => void;
   activeButton: string;
 }
+// apiService types
+
+export type TRegisterData = {
+  email: string;
+  password: string;
+};
+
+export type TLoginData = {
+  email: string;
+  password: string;
+  userType: "doctor" | "patient";
+};
+
+export type TLoginResponse = {
+  message: string;
+  token: string;
+  userType: string;
+};
+
+// apiService types

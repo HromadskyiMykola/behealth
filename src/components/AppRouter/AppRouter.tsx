@@ -1,22 +1,26 @@
-import React from "react";
-import { Routes, Route, Navigate, NavLink } from "react-router-dom";
-import { privateRoutes, publicRoutes, RouteNames } from "../../routes";
+import { createBrowserRouter } from "react-router-dom";
 
-export const AppRouter = () => {
-  const isAuth = false;
-  return isAuth ? (
-    <Routes>
-      {privateRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map(({ path, component: Component }) => (
-        <Route path={path} element={<Component />} key={path} />
-      ))}
-      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
-    </Routes>
-  );
+import { TRoute } from "~/common";
+
+import { commonRoutes, patientRoutes, doctorRoutes } from "~/routes";
+import { Root, NotFound } from "~/pages";
+
+const router = () => {
+  const isAuth = true;
+  const userType = "patient";
+
+  const rootRoute: TRoute = {
+    element: <Root />,
+    children: !isAuth
+      ? commonRoutes
+      : userType === "patient"
+      ? patientRoutes
+      : doctorRoutes,
+    label: "Корінь",
+    // errorElement: <NotFound />,
+  };
+
+  return createBrowserRouter([rootRoute]);
 };
+
+export const appRouter = router();

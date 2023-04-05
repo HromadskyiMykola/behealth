@@ -1,16 +1,14 @@
-import React from "react";
-import { AppRouter } from "./components/AppRouter";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { RouterProvider } from "react-router-dom";
 
-function App() {
+import { createOverrideTheme } from "./theme.provider";
+import { appRouter } from "~/components/AppRouter/AppRouter";
+
+export default function App() {
   return (
-    <>
-      <Header />
-      <AppRouter />
-      <Footer />
-    </>
+    <ThemeProvider theme={createOverrideTheme()}>
+      <CssBaseline />
+      <RouterProvider router={appRouter} />
+    </ThemeProvider>
   );
 }
-
-export default App;

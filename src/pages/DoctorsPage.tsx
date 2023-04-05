@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const DoctorsPage = () => {
+export  function DoctorsPage() {
     return (
         <div>
             Doctors

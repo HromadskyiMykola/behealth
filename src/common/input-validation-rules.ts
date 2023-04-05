@@ -8,11 +8,11 @@ const passwordValidation = {
   },
   maxLength: {
     value: 15,
-    message: maxLength(128),
+    message: maxLength(15),
   },
 };
 
-export const validationRules = {
+const validationRules = {
   firstName: {
     required: "Будь ласка, вкажіть ім’я",
     minLength: {
@@ -40,7 +40,7 @@ export const validationRules = {
 
   loginPassword: passwordValidation,
 
-  registerPassword: {
+  newPassword: {
     ...passwordValidation,
     pattern: {
       value:
@@ -55,3 +55,5 @@ export const validationRules = {
     validate: (value: string) => value === password || "Паролі не збігаються",
   }),
 };
+
+export { validationRules };

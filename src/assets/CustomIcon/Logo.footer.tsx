@@ -1,5 +1,5 @@
 import React from 'react';
-import {SvgIconsProps} from "../../common/types_and_interfaces";
+import {SvgIconsProps} from "../../common/types-and-interfaces";
 
 const LogoFooter = (props:SvgIconsProps) => {
     return <svg {...props}>

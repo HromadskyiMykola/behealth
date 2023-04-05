@@ -15,7 +15,7 @@ import {
 } from "./footer.constant";
 import FooterHelpLine from "../FooterHelpLine/FooterHelpLine";
 import FooterColumNavigateLinks from "../FooterColumNavigateLinks/FooterColumNavigateLinks";
-import {RouteNames} from "../../routes";
+import { ERouteNames } from "~/routes/routeNames";
 import {NavLink} from "react-router-dom";
 import LogoFooter from "../../assets/CustomIcon/Logo.footer";
 
@@ -48,7 +48,7 @@ const Footer = () => {
                 >
                     <Box>
                         <Box>
-                            <NavLink to={RouteNames.HOME}>
+                            <NavLink to={ERouteNames.HOME}>
                                 {/*<Logo*/}
                                 {/*    width="116"*/}
                                 {/*    height="21"*/}

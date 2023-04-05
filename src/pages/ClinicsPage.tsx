@@ -6,7 +6,7 @@ import {
   ProfileAppointmentVisitInfo,
 } from "../components/ProfileAppointment";
 import { PROFILE_APPOINTMENT } from "../components/ProfileAppointment/profile-appointment.constants";
-import DatePickerInput from "../components/Atomic/DatePickerInput";
+import { DatePickerInput } from "~/components/atomic";
 
 export const ClinicsPage = () => {
   return (
