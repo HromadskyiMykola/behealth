@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box, Typography } from "@mui/material";
 import { CircleDot, CheckCircle, CircleSlashed } from "lucide-react";
-import {ProfileAppointmentStatusProps} from "../../common/types_and_interfaces";
+import {ProfileAppointmentStatusProps} from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentStatus: FC<ProfileAppointmentStatusProps> = ({
   status,

@@ -1,4 +1,4 @@
-import { IProfileHelp } from "../../common/types_and_interfaces";
+import { IProfileHelp } from "~/common/types-and-interfaces";
 
 export const PROFILE_HELP: IProfileHelp = {
   headerTitle: "ПН-НД",

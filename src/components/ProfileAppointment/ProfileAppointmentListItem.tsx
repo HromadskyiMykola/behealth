@@ -9,7 +9,7 @@ import {
 import { Users } from "lucide-react";
 import { ProfileAppointmentStatus } from "./ProfileAppointmentStatus";
 import Button from "@mui/material/Button";
-import { ProfileAppointmentListItemProps } from "../../common/types_and_interfaces";
+import { ProfileAppointmentListItemProps } from "~/common/types-and-interfaces";
 import { ProfileAppointmentModal } from "./ProfileAppointmentModal";
 
 export const ProfileAppointmentListItem: FC<

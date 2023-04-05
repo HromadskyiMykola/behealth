@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { PROFILE_APPOINTMENT_FILTER_BUTTONS } from "./profile-appointment.constants";
 import Button from "@mui/material/Button";
 import { Box, Typography } from "@mui/material";
-import { ButtonsFilteringProps } from "../../common/types_and_interfaces";
+import { ButtonsFilteringProps } from "~/common/types-and-interfaces";
 
 export const ButtonsFiltering: FC<ButtonsFilteringProps> = ({
   CardsFiltering,

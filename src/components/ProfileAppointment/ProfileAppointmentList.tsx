@@ -4,7 +4,7 @@ import { ProfileAppointmentListItem } from "./ProfileAppointmentListItem";
 import {
   IProfileAppointmentCard,
   ProfileAppointmentListProps,
-} from "../../common/types_and_interfaces";
+} from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentList: FC<ProfileAppointmentListProps> = ({
   cards,

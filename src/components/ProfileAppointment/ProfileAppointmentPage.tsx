@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { PROFILE_APPOINTMENT } from "./profile-appointment.constants";
 import { ProfileAppointmentList } from "./ProfileAppointmentList";
-import { IProfileAppointmentCard } from "../../common/types_and_interfaces";
+import { IProfileAppointmentCard } from "~/common/types-and-interfaces";
 import { PaginationList } from "./PaginationList";
-import DatePickerInput from "../Atomic/DatePickerInput";
+import { DatePickerInput } from "../atomic";
 import { ButtonsFiltering } from "./ButtonsFiltering";
 
 export const ProfileAppointmentPage = () => {
@@ -124,7 +124,10 @@ export const ProfileAppointmentPage = () => {
               />
             </Box>
           </Box>
-          <ButtonsFiltering CardsFiltering={CardsFiltering} activeButton={activeButton} />
+          <ButtonsFiltering
+            CardsFiltering={CardsFiltering}
+            activeButton={activeButton}
+          />
           {historyAppointment && (
             <ProfileAppointmentList cards={historyAppointment} />
           )}

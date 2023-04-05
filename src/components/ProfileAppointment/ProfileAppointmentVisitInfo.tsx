@@ -6,7 +6,7 @@ import {
   PROFILE_APPOINTMENT_DETAILS_INFO,
   PROFILE_APPOINTMENT_DETAILS_INFO_NAVIGATION,
 } from "./profile-appointment.constants";
-import { ProfileAppointmentDetailsProps } from "../../common/types_and_interfaces";
+import { ProfileAppointmentDetailsProps } from "~/common/types-and-interfaces";
 import { ProfileAppointmentDetailsInfoCard } from "./ProfileAppointmentDetailsInfoCard";
 
 export const ProfileAppointmentVisitInfo: FC<

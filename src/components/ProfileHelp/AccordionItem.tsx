@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import { AccordionItemProps } from "../../common/types_and_interfaces";
+import { AccordionItemProps } from "~/common/types-and-interfaces";
 
 export const AccordionItem: FC<AccordionItemProps> = ({
   title,

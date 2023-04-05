@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { AccordionItem } from "./AccordionItem";
 import { Box } from "@mui/material";
-import { AccordionListProps } from "../../common/types_and_interfaces";
+import { AccordionListProps } from "~/common/types-and-interfaces";
 
 export const AccordionList: FC<AccordionListProps> = ({ arrayItems }) => {
   return (

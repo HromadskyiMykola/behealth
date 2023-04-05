@@ -3,7 +3,7 @@ import {
   IProfileAppointment,
   IProfileAppointmentDetails,
   IProfileAppointmentDetailsInfoNavigation,
-} from "../../common/types_and_interfaces";
+} from "~/common/types-and-interfaces";
 
 export const PROFILE_APPOINTMENT_FILTER_BUTTONS: string[] = [
   "Всі візити",

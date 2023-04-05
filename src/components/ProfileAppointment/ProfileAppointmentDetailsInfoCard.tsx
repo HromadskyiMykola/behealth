@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { FC } from "react";
-import { ProfileAppointmentDetailsInfoDefaultCardProps } from "../../common/types_and_interfaces";
+import { ProfileAppointmentDetailsInfoDefaultCardProps } from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentDetailsInfoCard: FC<
   ProfileAppointmentDetailsInfoDefaultCardProps

@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import { ProfileAppointmentListItem } from "./ProfileAppointmentListItem";
 import { ProfileAppointmentDetailsNavigation } from "./ProfileAppointmentDetailsNavigation";
 import { ProfileAppointmentDetailsInfoCard } from "./ProfileAppointmentDetailsInfoCard";
-import { ProfileAppointmentDetailsProps } from "../../common/types_and_interfaces";
+import { ProfileAppointmentDetailsProps } from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentMedicalRecords: FC<
   ProfileAppointmentDetailsProps

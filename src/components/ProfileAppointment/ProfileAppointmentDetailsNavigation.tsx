@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import {ProfileAppointmentDetailsNavigationProps} from "../../common/types_and_interfaces";
+import {ProfileAppointmentDetailsNavigationProps} from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentDetailsNavigation: FC<
   ProfileAppointmentDetailsNavigationProps

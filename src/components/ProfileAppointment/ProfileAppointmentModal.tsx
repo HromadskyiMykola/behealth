@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { ProfileAppointmentModalProps } from "../../common/types_and_interfaces";
+import { ProfileAppointmentModalProps } from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentModal: FC<ProfileAppointmentModalProps> = ({
   targetButtonText,
