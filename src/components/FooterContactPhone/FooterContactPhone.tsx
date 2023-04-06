@@ -2,7 +2,7 @@ import React from "react";
 import Kyivstar from "../../assets/CustomIcon/Kyivstar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { FooterContactPhoneProps } from "../../common/types_and_interfaces";
+import { FooterContactPhoneProps } from "../../common/types-and-interfaces";
 
 const FooterContactPhone = ({ icon, phone }: FooterContactPhoneProps) => {
   return (
@@ -10,6 +10,7 @@ const FooterContactPhone = ({ icon, phone }: FooterContactPhoneProps) => {
       sx={{
         display: "flex",
         gap: "10px",
+        alignItems: "center",
       }}
     >
       {icon}

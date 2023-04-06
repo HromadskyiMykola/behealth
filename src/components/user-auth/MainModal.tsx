@@ -4,23 +4,25 @@ import {
   useMediaQuery,
   Dialog,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Grid,
   IconButton,
   Typography,
 } from "@mui/material";
+
 import CloseIcon from "@mui/icons-material/Close";
 
-import logoSignIn from "../../assets/images/logo_sign_in.png";
-import logoSignUp from "../../assets/images/logo_sign_up.png";
-import SignInSignUpForm from "./SignInSignUpForm";
-import { authorizationMode } from "../../common/types_and_interfaces";
-import { ModalContext } from "./ModalContext";
+import { TAuthMode } from "~/common";
+import { ModalContext } from "~/store";
+
+import { AuthForm } from ".";
+
+import logoSignIn from "~/assets/images/logo_sign_in.png";
+import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal() {
+export function FormModal() {
   const {
     palette: {
       primary: { main: primaryColor },
@@ -29,7 +31,7 @@ export default function FormModal() {
 
   const { openMainModal, handleMainModalClose } = useContext(ModalContext);
 
-  const [mode, setMode] = useState<authorizationMode>("LOGIN");
+  const [mode, setMode] = useState<TAuthMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";
@@ -44,12 +46,20 @@ export default function FormModal() {
         "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" },
       }}
       // fullWidth
-      maxWidth="md"
+      maxWidth="lg"
       fullScreen={mobileDevice}
+      scroll={"body"}
       open={openMainModal}
       onClose={handleMainModalClose}
     >
-      <DialogContent sx={{ p: "80px", backgroundColor: primaryColor }}>
+      <DialogContent
+        sx={{
+          height: { xs: "100vh", sm: "auto" },
+          maxWidth: "1000px",
+          p: "80px",
+          backgroundColor: primaryColor,
+        }}
+      >
         <IconButton
           sx={{
             position: "absolute",
@@ -65,7 +75,7 @@ export default function FormModal() {
         </IconButton>
 
         <Grid container spacing="32px" alignItems="center">
-          <Grid item xs>
+          <Grid item md={5} sx={{ display: { xs: "none", md: "block" } }}>
             {!isRecoveryMode && (
               <DialogTitle
                 sx={{ pl: 0, typography: "h3", color: secondaryColor }}
@@ -75,7 +85,7 @@ export default function FormModal() {
             )}
 
             {!isRecoveryMode && (
-              <Typography variant="body1" sx={{ color: secondaryColor }}>
+              <Typography variant="body2" sx={{ color: secondaryColor }}>
                 {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
                 {", щоб отримати доступ до особистого кабінету beHealth."}
               </Typography>
@@ -91,8 +101,8 @@ export default function FormModal() {
             />
           </Grid>
 
-          <Grid item xs>
-            <SignInSignUpForm mode={mode} setMode={setMode} />
+          <Grid item xs md={7}>
+            <AuthForm mode={mode} setMode={setMode} />
           </Grid>
         </Grid>
       </DialogContent>

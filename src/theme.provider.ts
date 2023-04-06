@@ -63,7 +63,7 @@ export function createOverrideTheme() {
       },
       text: {
         primary: "#212121",
-        secondary: "#FFFFFF",
+        // secondary: "#FFFFFF",
         disabled: "#A9ACA9",
       },
     },
@@ -137,6 +137,13 @@ export function createOverrideTheme() {
         fontSize: "18px",
         fontWeight: "700",
         lineHeight: "26px",
+        letterSpacing: "0.012em",
+      },
+      subtitle2: {
+        color: "#212121",
+        fontSize: "16px",
+        fontWeight: "700",
+        lineHeight: "24px",
         letterSpacing: "0.012em",
       },
       caption: {
@@ -225,12 +232,43 @@ export function createOverrideTheme() {
       MuiGrid: {
         styleOverrides: {
           root: {
-            // marginLeft: "0",
-            // marginRight: "0",
-            // width: "100%",
+            marginLeft: "0",
+            marginRight: "0",
+            width: "100%",
           },
         },
       },
+
+      MuiAccordion: {
+        styleOverrides: {
+          root: {
+            "&._containerAccordion": {
+              boxShadow: "none",
+            },
+          },
+        },
+      },
+
+      MuiAccordionSummary: {
+        styleOverrides: {
+          root: {
+            "&._containerAccordionSummary": {
+              padding: "0",
+            },
+          },
+        },
+      },
+
+      MuiAccordionDetails: {
+        styleOverrides: {
+          root: {
+            "&._containerAccordionDetails": {
+              padding: "0",
+            },
+          },
+        },
+      },
+
       MuiButton: {
         styleOverrides: {
           root: ({ ownerState, theme }) => ({
