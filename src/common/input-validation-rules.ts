@@ -54,6 +54,14 @@ const validationRules = {
     required: "Будь ласка, введіть пароль ще раз.",
     validate: (value: string) => value === password || "Паролі не збігаються",
   }),
+
+  mobileNumber: {
+    required: "Будь ласка, введіть номер телефону.",
+    pattern: {
+      value: /^380(?:[679]3|6[78]|9[678]|50|66|39)\d{7}$/,
+      message: "Будь ласка, введіть коректний номер",
+    },
+  },
 };
 
 export { validationRules };

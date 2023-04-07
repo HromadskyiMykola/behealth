@@ -7,6 +7,8 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
+import { CalendarDays } from "lucide-react";
+
 import { CustomizedInput } from ".";
 
 export function DatePickerInput(props: any) {
@@ -19,6 +21,9 @@ export function DatePickerInput(props: any) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDatePicker
+        components={{
+          OpenPickerIcon: CalendarDays,
+        }}
         value={value}
         onChange={handleChange}
         renderInput={(params: any) => (

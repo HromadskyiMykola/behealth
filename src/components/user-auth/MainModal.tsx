@@ -17,8 +17,8 @@ import { ModalContext } from "~/context";
 
 import { AuthForm } from ".";
 
-import logoSignIn from "@/assets/images/logo_sign_in.png";
-import logoSignUp from "@/assets/images/logo_sign_up.png";
+import logoSignIn from "~/assets/images/logo_sign_in.png";
+import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 const secondaryColor = "#FFFFFF";
 
