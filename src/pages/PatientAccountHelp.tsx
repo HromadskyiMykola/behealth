@@ -1,4 +1,4 @@
-import CustomizedPaper from '../components/Atomic/CustomizedPaper'
+import { CustomizedPaper } from "~atomic/index";
 
 export function PatientAccountHelp() {
   return <CustomizedPaper>PatientAccountHelp</CustomizedPaper>;

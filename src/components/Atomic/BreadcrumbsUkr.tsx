@@ -1,8 +1,10 @@
+import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { TypesInterfaces } from "../../common";
 import { Breadcrumbs, Typography } from "@mui/material";
-import { patientRoutes, doctorRoutes } from "../../routes";
 import { NavigateNext } from "@mui/icons-material";
+
+import { TRoute } from "~/common";
+import { patientRoutes, doctorRoutes } from "~/routes";
 
 const sx = {
   textDecoration: "none",
@@ -12,17 +14,8 @@ const sx = {
   },
 };
 
-function findRouteLabel(name: string, routes: TypesInterfaces.Route[]): string {
+function findRouteLabel(name: string, routes: TRoute[]): string {
   for (const route of routes) {
-    console.log(
-      "path:",
-      route.path,
-      "=== name:",
-      name,
-      ">>>",
-      route.path === name
-    );
-
     if (route.path === name) return route.label;
 
     const label = route.children ? findRouteLabel(name, route.children) : "";
@@ -32,10 +25,13 @@ function findRouteLabel(name: string, routes: TypesInterfaces.Route[]): string {
   return "";
 }
 
-export default function BreadcrumbsUkr() {
+export function BreadcrumbsUkr() {
   const location = useLocation();
-  const pathNames = location.pathname.split("/").filter((p) => p);
-  console.log(pathNames);
+  const pathNames = useMemo(
+    () => location.pathname.split("/").filter((p) => p),
+    [location]
+  );
+  const allRoutes = useMemo(() => [...patientRoutes, ...doctorRoutes], []);
 
   return (
     <Breadcrumbs
@@ -53,10 +49,9 @@ export default function BreadcrumbsUkr() {
       </Typography>
 
       {pathNames.map((name, index) => {
-        const allRoutes = [...patientRoutes, ...doctorRoutes];
         const label = findRouteLabel(name, allRoutes);
         const isLast = index === pathNames.length - 1;
-        const routeTo = `${pathNames.slice(0, index + 1).join("/")}`;
+        const routeTo = `${pathNames.slice(0, index).join("/")}`;
 
         return isLast ? (
           <Typography variant="caption" key={routeTo}>

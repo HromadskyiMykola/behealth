@@ -9,16 +9,15 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "../Atomic";
-import UserTypeSelector from "./UserTypeSelector";
-import UserAgreement from "./UserAgreement";
+import { CustomizedInput, PasswordInput } from "~atomic/index";
+import { UserTypeSelector, UserAgreement } from ".";
 
-import { validationRules, TypesInterfaces } from "../../common";
-import { ModalContext } from "../../store/ModalContext";
+import { ModalContext } from "~/store";
+import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 
 type Props = {
-  mode: TypesInterfaces.AuthMode;
-  setMode: (mode: TypesInterfaces.AuthMode) => void;
+  mode: TAuthMode;
+  setMode: (mode: TAuthMode) => void;
 };
 
 const showMode = {
@@ -27,7 +26,7 @@ const showMode = {
   RECOVERY: "Відновлення паролю",
 };
 
-export default function SignInSignUpForm({ mode, setMode }: Props) {
+export function AuthForm({ mode, setMode }: Props) {
   const { handleThanksModalOpen } = useContext(ModalContext);
   const [userType, setUserType] = useState("patient");
 
@@ -36,14 +35,14 @@ export default function SignInSignUpForm({ mode, setMode }: Props) {
   const isRecoveryMode: boolean = mode === "RECOVERY";
 
   const { control, handleSubmit, formState, watch, reset } =
-    useForm<TypesInterfaces.AuthFormValues>({
+    useForm<TAuthFormValues>({
       mode: "onChange",
       delayError: 1000,
     });
 
   const { errors } = formState;
 
-  const onSubmit = (data: TypesInterfaces.AuthFormValues) => {
+  const onSubmit = (data: TAuthFormValues) => {
     handleThanksModalOpen();
     const submittedData = { ...data, userType };
 

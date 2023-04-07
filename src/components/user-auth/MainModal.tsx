@@ -4,22 +4,25 @@ import {
   useMediaQuery,
   Dialog,
   DialogContent,
-    DialogTitle,
+  DialogTitle,
   Grid,
   IconButton,
   Typography,
 } from "@mui/material";
+
 import CloseIcon from "@mui/icons-material/Close";
 
-import logoSignIn from "../../assets/images/logo_sign_in.png";
-import logoSignUp from "../../assets/images/logo_sign_up.png";
-import SignInSignUpForm from "./AuthForm";
-import { ModalContext } from "../../store/ModalContext";
-import { TypesInterfaces } from "../../common";
+import { TAuthMode } from "~/common";
+import { ModalContext } from "~/store";
+
+import { AuthForm } from ".";
+
+import logoSignIn from "~/assets/images/logo_sign_in.png";
+import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 const secondaryColor = "#FFFFFF";
 
-export default function FormModal() {
+export function FormModal() {
   const {
     palette: {
       primary: { main: primaryColor },
@@ -28,7 +31,7 @@ export default function FormModal() {
 
   const { openMainModal, handleMainModalClose } = useContext(ModalContext);
 
-  const [mode, setMode] = useState<TypesInterfaces.AuthMode>("LOGIN");
+  const [mode, setMode] = useState<TAuthMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
   const isRecoveryMode: boolean = mode === "RECOVERY";
@@ -50,10 +53,11 @@ export default function FormModal() {
       onClose={handleMainModalClose}
     >
       <DialogContent
-        
         sx={{
-          height: {xs: "100vh", sm: "auto"},
-          maxWidth: "1000px", p: "80px", backgroundColor: primaryColor
+          height: { xs: "100vh", sm: "auto" },
+          maxWidth: "1000px",
+          p: "80px",
+          backgroundColor: primaryColor,
         }}
       >
         <IconButton
@@ -97,8 +101,8 @@ export default function FormModal() {
             />
           </Grid>
 
-          <Grid item xs  md={7}>
-            <SignInSignUpForm mode={mode} setMode={setMode} />
+          <Grid item xs md={7}>
+            <AuthForm mode={mode} setMode={setMode} />
           </Grid>
         </Grid>
       </DialogContent>

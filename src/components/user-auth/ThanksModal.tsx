@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { Button, Dialog, Stack, Typography } from "@mui/material";
 
-import { ModalContext } from "../../store/ModalContext";
-import { BellIcon } from "../../assets/CustomIcon";
+import { AlertTriangleIcon } from "lucide-react";
 
-export default function ThanksModal() {
+import { ModalContext } from "~/store";
+
+export function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
 
   return (
@@ -29,7 +30,10 @@ export default function ThanksModal() {
         <Typography
           sx={{ display: "flex", alignItems: "center", color: "#7D968B" }}
         >
-          <BellIcon sx={{ mr: "16px" }} />
+          <AlertTriangleIcon
+            style={{ marginRight: "16px", flexShrink: 0 }}
+            size={22}
+          />
           {"Перевірте свою електронну пошту та папку “Спам”"}
         </Typography>
 

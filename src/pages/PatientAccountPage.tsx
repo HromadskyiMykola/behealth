@@ -1,26 +1,49 @@
-import { SyntheticEvent, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { SyntheticEvent, useEffect, useMemo, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
-
-import { BreadcrumbsUkr, TabLink } from "../components/Atomic";
-
-import { RouteNames } from "../routes";
 
 import {
   ClockIcon,
-  ExitIcon,
-  FolderIcon,
-  HelpIcon,
+  HelpCircleIcon,
+  UserCogIcon,
+  FolderClosedIcon,
   LockIcon,
-  PersonInfoIcon,
-} from "../assets/CustomIcon";
+  LogOutIcon,
+} from "lucide-react";
+
+import { BreadcrumbsUkr, TabLink } from "~atomic/index";
+
+import { ERouteNames } from "~/routes/routeNames";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
 const NavTabs = () => {
-  const [value, setValue] = useState(0);
+  const location = useLocation();
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const matchPath = useMemo(() => {
+    const tabsValues = [
+      ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
+      ERouteNames.PATIENT_ACCOUNT_HELP,
+      ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
+      ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
+      ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
+    ];
+    const pathNames = location.pathname.split("/");
+
+    return tabsValues.find((p) => pathNames.includes(p));
+  }, [location]);
+
+  const [value, setValue] = useState(
+    matchPath || ERouteNames.PATIENT_ACCOUNT_APPOINTMENT
+  );
+
+  useEffect(() => {
+    if (matchPath !== value) {
+      setValue(matchPath || ERouteNames.PATIENT_ACCOUNT_APPOINTMENT);
+    }
+  }, [matchPath, value]);
+
+  const handleChange = (event: SyntheticEvent, newValue: ERouteNames) => {
     setValue(newValue);
   };
 
@@ -37,42 +60,47 @@ const NavTabs = () => {
         orientation="vertical"
       >
         <TabLink
-          icon={<ClockIcon />}
-          value={0}
+          icon={<ClockIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.PATIENT_ACCOUNT_APPOINTMENT}
           label="Записи"
-          to={RouteNames.PATIENT_ACCOUNT_APPOINTMENT}
+          to={ERouteNames.PATIENT_ACCOUNT_APPOINTMENT}
         />
         <TabLink
-          icon={<HelpIcon />}
-          value={1}
+          icon={<HelpCircleIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.PATIENT_ACCOUNT_HELP}
           label="Допомога"
-          to={RouteNames.PATIENT_ACCOUNT_HELP}
+          to={ERouteNames.PATIENT_ACCOUNT_HELP}
         />
 
         <WrapperDivider />
 
         <TabLink
-          icon={<PersonInfoIcon />}
-          value={2}
+          icon={<UserCogIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
           label="Особиста інформація"
-          to={RouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
+          to={ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
         />
         <TabLink
-          icon={<FolderIcon />}
-          value={3}
+          icon={<FolderClosedIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
           label="Додаткові дані"
-          to={RouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
+          to={ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
         />
         <TabLink
-          icon={<LockIcon />}
-          value={4}
+          icon={<LockIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
           label="Пароль та безпека"
-          to={RouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
+          to={ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
         />
 
         <WrapperDivider />
 
-        <TabLink icon={<ExitIcon />} value={5} label="Вихід" to="logout" />
+        <TabLink
+          icon={<LogOutIcon style={{ flexShrink: 0 }} size={22} />}
+          value={"logout"}
+          label="Вихід"
+          to="logout"
+        />
       </Tabs>
     </Paper>
   );
