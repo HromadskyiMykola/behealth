@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Button, CircularProgress, ButtonProps } from "@mui/material";
 
-type Props = ButtonProps & { onClick: () => void };
+type Props = ButtonProps & {
+  onClick: () => void;
+  timer?: number;
+};
 
-export const ButtonTimer60s = (props: Props) => {
-  const [remainingTime, setRemainingTime] = useState(60);
+export const ButtonTimer60s = ({ onClick, timer = 60, ...otherProps }: Props) => {
+  const [remainingTime, setRemainingTime] = useState(timer);
 
   const handleClick = () => {
-    setRemainingTime(60);
-    props.onClick();
+    setRemainingTime(timer);
+    onClick();
   };
 
   useEffect(() => {
@@ -22,14 +25,14 @@ export const ButtonTimer60s = (props: Props) => {
 
   return (
     <Button
-      {...props}
+      {...otherProps}
       onClick={handleClick}
       disabled={remainingTime > 0}
       startIcon={
         <CircularProgress
           color="inherit"
           variant="determinate"
-          value={(0 + remainingTime) * (100 / 60)}
+          value={(0 + remainingTime) * (100 / timer)}
           size={22}
         />
       }
