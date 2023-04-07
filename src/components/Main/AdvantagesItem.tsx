@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box, ListItem, Typography } from "@mui/material";
-import { Check } from "../../assets/random/Check";
-import { IAdvantagesBlockProps } from "../../common/types-and-interfaces";
+import { Check } from "~/assets/CustomIcon/Check";
+import { IAdvantagesBlockProps } from "~/common";
 
 export const AdvantagesItem: FC<IAdvantagesBlockProps> = ({
   title,
@@ -24,6 +24,8 @@ export const AdvantagesItem: FC<IAdvantagesBlockProps> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 32 32"
+          width="32"
+          height="32"
         />
       </Box>
       <Box

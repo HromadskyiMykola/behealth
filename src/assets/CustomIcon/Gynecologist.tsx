@@ -1,7 +1,8 @@
 import React from "react";
 import { SvgIcon } from "@mui/material";
+import { SvgIconsProps } from "~/common";
 
-export const Gynecologist = (props: any) => {
+export const Gynecologist = (props: SvgIconsProps) => {
   return (
     <SvgIcon {...props} sx={{ width: "36px", height: "36px" }}>
       <path

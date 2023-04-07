@@ -1,3 +1,2 @@
 export * from './ProfileAppointmentPage'
-export * from './ProfileAppointmentVisitInfo'
-export * from './ProfileAppointmentMedicalRecords'
+export * from './ProfileAppointmentDetails'
