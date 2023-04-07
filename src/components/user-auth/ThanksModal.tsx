@@ -4,7 +4,7 @@ import { Dialog, Stack, Typography } from "@mui/material";
 import { AlertTriangleIcon } from "lucide-react";
 
 import { ModalContext } from "~/store";
-import { ButtonTimer60s } from "../atomic";
+import { ButtonTimer } from "../atomic";
 
 export function ThanksModal() {
   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
@@ -41,9 +41,9 @@ export function ThanksModal() {
           електронну пошту tarshevchenko@gmail.com
         </Typography>
                 
-        <ButtonTimer60s onClick={()=>{}} fullWidth variant="contained" sx={{ mt: "16px" }}>
+        <ButtonTimer onClick={()=>{}} fullWidth variant="contained" sx={{ mt: "16px" }}>
           Відправити повторний лист
-        </ButtonTimer60s>
+        </ButtonTimer>
       </Stack>
     </Dialog>
   );
