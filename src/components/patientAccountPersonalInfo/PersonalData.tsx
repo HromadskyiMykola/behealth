@@ -1,6 +1,7 @@
 import {
-    Button,
-    Stack,
+  Button,
+  Grid,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -9,8 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { CustomizedInput } from "../atomic";
+import { CustomizedInput, DatePickerInput } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
+
+type PersonalDataEditProps = {
+  handleEditPersonalData: () => void;
+};
 
 export const PersonalData = () => (
   <TableContainer
@@ -66,4 +71,146 @@ export const PersonalData = () => (
   </TableContainer>
 );
 
-export const PersonalDataEdit = () => (<></>)
+export const PersonalDataEdit = ({
+  handleEditPersonalData,
+}: PersonalDataEditProps) => {
+  const { control, handleSubmit, formState, watch, reset } =
+    useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
+
+  const { errors } = formState;
+
+  const onSubmit = (data: TAuthFormValues) => {
+    console.log(data);
+    console.log(formState);
+  };
+
+  return (
+    <>
+      <Grid
+        container
+        component="form"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+        spacing={{ md: 0, laptop: 1 }}
+        // direction={{ md: "column", laptop: "row" }}
+        // justifyContent="space-between"
+        // alignItems="stretch"
+      >
+        <Grid item laptop={4}>
+          <Controller
+            name="lastName"
+            control={control}
+            defaultValue=""
+            rules={validationRules.lastName}
+            render={({ field }) => (
+              <CustomizedInput
+                label="Прізвище*"
+                {...field}
+                error={!!errors.lastName}
+                helperText={errors.lastName?.message || " "}
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item laptop={4}>
+          <Controller
+            name="firstName"
+            control={control}
+            defaultValue=""
+            rules={validationRules.firstName}
+            render={({ field }) => (
+              <CustomizedInput
+                autoFocus
+                label="Ім’я*"
+                placeholder="Олександр"
+                {...field}
+                error={!!errors.firstName}
+                helperText={errors.firstName?.message || " "}
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item laptop={4}>
+          <Controller
+            name="middleName"
+            control={control}
+            defaultValue=""
+            rules={validationRules.middleName}
+            render={({ field }) => (
+              <CustomizedInput
+                label="По батькові"
+                {...field}
+                error={!!errors.middleName}
+                helperText={errors.middleName?.message || " "}
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item laptop={4}>
+          <Controller
+            name="birthDate"
+            control={control}
+            defaultValue=""
+            // TODO    rules={validationRules.firstName}
+            render={({ field }) => (
+              <DatePickerInput
+                label="Дата народження*"
+                placeholder="Олександр"
+                {...field}
+                // TODO     error={!!errors.firstName}
+                // helperText={errors.firstName?.message || " "}
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item laptop={4}>
+          <Controller
+            name="tin"
+            control={control}
+            defaultValue=""
+            // TODO     rules={validationRules.middleName}
+            render={({ field }) => (
+              <CustomizedInput
+                label="ІПН"
+                {...field}
+                // TODO       error={!!errors.middleName}
+                helperText={errors.middleName?.message || " "}
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item laptop={4}>
+          {" "}
+          TODO{" "}
+        </Grid>
+      </Grid>
+
+      <Stack direction="row" spacing={2}>
+        <Button
+          variant="text"
+          onClick={() => {
+            reset();
+            handleEditPersonalData();
+            // setMode("RECOVERY");
+          }}
+        >
+          Відмінити
+        </Button>
+
+        <Button
+          disabled={!formState.isValid}
+          type="submit"
+          variant="contained"
+          // sx={{ backgroundColor: primaryColor }}
+        >
+          Зберегти
+        </Button>
+      </Stack>
+    </>
+  );
+};
