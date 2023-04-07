@@ -18,7 +18,7 @@ export function PatientAccountPasswordNSecurity() {
   return (
     <CustomizedPaper>
       <Stack sx={{ gap: "24px" }}>
-        <Typography variant="h5">{"Зміна паролю"}</Typography>
+        <Typography variant="h5">Зміна паролю</Typography>
 
         <Stack
           component="form"
@@ -87,7 +87,7 @@ export function PatientAccountPasswordNSecurity() {
             // setMode("RECOVERY");
           }}
         >
-          {"Забули пароль?"}
+          Забули пароль?
         </Button>
 
         <Button
@@ -96,7 +96,7 @@ export function PatientAccountPasswordNSecurity() {
           variant="contained"
           // sx={{ backgroundColor: primaryColor }}
         >
-          {"Зберегти"}
+          Зберегти
         </Button>
       </Stack>
     </CustomizedPaper>

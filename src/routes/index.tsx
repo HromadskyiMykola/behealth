@@ -4,39 +4,6 @@ import { ERouteNames } from "./routeNames";
 
 import * as Pages from "~/pages/index";
 
-
-// import {
-//   HomePage,
-//   PatientAccountAdditionalData,
-//   PatientAccountAppointments,
-//   PatientAccountHelp,
-//   PatientAccountPage,
-//   PatientAccountPasswordNSecurity,
-//   PatientAccountPersonalInfo,
-//   AboutPage,
-//   DoctorsPage,
-//   ClinicsPage,
-//   ProfilePage,
-//   NotFound,
-// } from "@pages/index";
-
-// ReactRouter requires a full page import to work correctly !!
-// import { HomePage } from "../pages/HomePage";
-// import { PatientAccountPage } from "../pages/PatientAccountPage";
-// import { PatientAccountAppointments } from "../pages/PatientAccountAppointments";
-// import { PatientAccountHelp } from "../pages/PatientAccountHelp";
-// import { PatientAccountPersonalInfo } from "../pages/PatientAccountPersonalInfo";
-// import { PatientAccountAdditionalData } from "../pages/PatientAccountAdditionalData";
-// import { PatientAccountPasswordNSecurity } from "../pages/PatientAccountPasswordNSecurity";
-// import { AboutPage } from "../pages/AboutPage";
-// import { DoctorsPage } from "../pages/DoctorsPage";
-// import { ClinicsPage } from "../pages/ClinicsPage";
-// import { ProfilePage } from "../pages/ProfilePage";
-// import { NotFound } from "../pages/404";
-// ReactRouter requires a full page import to work correctly !!
-
-
-
 export const commonRoutes: TRoute[] = [
   {
     index: true,
