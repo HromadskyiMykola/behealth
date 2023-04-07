@@ -1,58 +1,38 @@
-import { Button, CircularProgress, ButtonProps } from "@mui/material";
 import { useState, useEffect } from "react";
+import { Button, CircularProgress, ButtonProps } from "@mui/material";
 
-type Props = ButtonProps & { onClick?: () => void };
+type Props = ButtonProps & { onClick: () => void };
 
-export const TimerButton = (props: Props) => {
-  const [timer, setTimer] = useState(60);
-  const [isTimerActive, setIsTimerActive] = useState(false);
-
-  useEffect(() => {
-    let t: NodeJS.Timeout | undefined;
-
-    if (isTimerActive && timer > 0) {
-      t = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-    } else {
-      clearInterval(t);
-      setIsTimerActive(false);
-      setTimer(60);
-    }
-
-    return () => clearInterval(t);
-  }, [isTimerActive, timer]);
+export const ButtonTimer60s = (props: Props) => {
+  const [remainingTime, setRemainingTime] = useState(60);
 
   const handleClick = () => {
-    if (!isTimerActive) {
-      setIsTimerActive(true);
-      props.onClick && props.onClick();
-    }
+    setRemainingTime(60);
+    props.onClick();
   };
+
+  useEffect(() => {
+    if (remainingTime > 0) {
+      const t = setInterval(() => {
+        setRemainingTime((prevT) => prevT - 1);
+      }, 1000);
+      return () => clearInterval(t);
+    }
+  }, [remainingTime]);
 
   return (
     <Button
-      variant="contained"
-      color="primary"
+      {...props}
       onClick={handleClick}
-      disabled={isTimerActive || timer > 0}
-      sx={{ position: "relative" }}
-    >
-      {timer > 0 ? (
+      disabled={remainingTime > 0}
+      startIcon={
         <CircularProgress
+          color="inherit"
           variant="determinate"
-          value={(60 - timer) * (100 / 60)}
-          size={24}
-          sx={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            marginTop: -12,
-            marginLeft: -12,
-          }}
+          value={(0 + remainingTime) * (100 / 60)}
+          size={22}
         />
-      ) : null}
-      {timer > 0 ? `Wait ${timer}s` : "Start timer"}
-    </Button>
+      }
+    />
   );
 };
