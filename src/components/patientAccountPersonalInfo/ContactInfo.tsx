@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { CustomizedInput } from "../atomic";
+import { CustomizedInput, InputMobileNumber } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
 
 import { AlertTriangleIcon } from "lucide-react";
@@ -106,12 +106,12 @@ export const ContactInfoEdit = () => {
           defaultValue=""
           rules={validationRules.mobileNumber}
           render={({ field }) => (
-            <CustomizedInput
+            <InputMobileNumber
               label="Номер телефону*"
-              placeholder="+38 (XXX) XX XXX XX"
+              placeholder="+38 (XXX) XXX XX XX"
               {...field}
-              error={!!errors.newPassword}
-              helperText={errors.newPassword?.message || " "}
+              error={!!errors.mobileNumber}
+              helperText={errors.mobileNumber?.message || " "}
             />
           )}
         />

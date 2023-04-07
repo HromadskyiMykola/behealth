@@ -1,22 +1,5 @@
 const maxLength = (num: number) => `Максимальна довжина поля ${num} символів`;
 
-const mobileNumberValidate = (phoneNumber: string) => {
-  const temp = ["[679]3", "6[78]", "9[678]", "50", "66", "39"].some(
-    (template) => {
-      const reg = new RegExp("^(38)?0" + template + "\\d\\d\\d\\d\\d\\d\\d$");
-      return reg.test(phoneNumber);
-    }
-  );
-
-  return temp;
-
-  // if (temp) {
-  //   return /^38/.test(phoneNumber) ? phoneNumber : "38" + phoneNumber;
-  // } else {
-  //   return "Enter valid phone number";
-  // }
-};
-
 const passwordValidation = {
   required: "Будь ласка, введіть пароль",
   minLength: {
@@ -74,8 +57,10 @@ const validationRules = {
 
   mobileNumber: {
     required: "Будь ласка, введіть номер телефону.",
-    validate: (number: string) =>
-      mobileNumberValidate(number) || "Введіть коректний номер",
+    pattern: {
+      value: /^380(?:[679]3|6[78]|9[678]|50|66|39)\d{7}$/,
+      message: "Будь ласка, введіть коректний номер",
+    },
   },
 };
 
