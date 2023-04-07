@@ -3,7 +3,7 @@ import { Button, CircularProgress, ButtonProps } from "@mui/material";
 
 type Props = ButtonProps & {
   onClick: () => void;
-  timer: number;
+  timer?: number;
 };
 
 export const ButtonTimer60s = ({ onClick, timer = 60, ...otherProps }: Props) => {
