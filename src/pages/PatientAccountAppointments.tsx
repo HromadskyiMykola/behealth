@@ -1,9 +1,11 @@
 import { Box, Skeleton } from "@mui/material";
+
 import {
   ProfileAppointmentPage,
   ProfileAppointmentDetails,
 } from "~/components/ProfileAppointment";
 import { useLocation, useParams } from "react-router-dom";
+
 
 export function PatientAccountAppointments() {
   const { id } = useParams();

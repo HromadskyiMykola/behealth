@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import {MouseEventHandler, ReactElement, ReactNode } from "react";
 import { RouteObject } from "react-router-dom";
 
 export type TAuthFormValues = {
@@ -202,4 +202,10 @@ export type TLoginResponse = {
   userType: string;
 };
 
+// export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
+//
+// export interface  HeaderAdditionData  {
+//    title: string
+//    toggleOnEdit: any
+// }
 // apiService types
