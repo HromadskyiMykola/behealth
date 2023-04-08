@@ -25,6 +25,29 @@ const validationRules = {
     },
   },
 
+  middleName: {
+    minLength: {
+      value: 2,
+      message: "Мінімальна довжина поля 2 символи",
+    },
+    maxLength: {
+      value: 80,
+      message: maxLength(80),
+    },
+  },
+
+  lastName: {
+    required: "Будь ласка, вкажіть прізвище",
+    minLength: {
+      value: 2,
+      message: "Мінімальна довжина поля 2 символи",
+    },
+    maxLength: {
+      value: 80,
+      message: maxLength(80),
+    },
+  },
+
   email: {
     required: "Будь ласка, введіть e-mail адресу",
     maxLength: {

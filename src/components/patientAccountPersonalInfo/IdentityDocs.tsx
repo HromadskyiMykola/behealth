@@ -1,6 +1,7 @@
 import {
   Button,
   Grid,
+  MenuItem,
   Stack,
   Table,
   TableBody,
@@ -10,14 +11,19 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { CustomizedInput, DatePickerInput } from "../atomic";
+import {
+  CustomizedInput,
+  DatePickerInput,
+  SelectWithoutPlaceholder,
+} from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
+import { ArrowBigRight } from "lucide-react";
 
-type PersonalDataEditProps = {
-  handleEditPersonalData: () => void;
+type IdentityDocsEditProps = {
+  handleEditIdentityDocs: () => void;
 };
 
-export const PersonalData = () => (
+export const IdentityDocs = () => (
   <TableContainer
     sx={{
       display: "inline-block",
@@ -71,9 +77,9 @@ export const PersonalData = () => (
   </TableContainer>
 );
 
-export const PersonalDataEdit = ({
-  handleEditPersonalData,
-}: PersonalDataEditProps) => {
+export const IdentityDocsEdit = ({
+  handleEditIdentityDocs,
+}: IdentityDocsEditProps) => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -103,12 +109,17 @@ export const PersonalDataEdit = ({
             defaultValue=""
             rules={validationRules.lastName}
             render={({ field }) => (
-              <CustomizedInput
+              <SelectWithoutPlaceholder
+                placeholder="тест"
                 label="Прізвище*"
                 {...field}
                 error={!!errors.lastName}
                 helperText={errors.lastName?.message || " "}
-              />
+              >
+                <MenuItem value="var 1">var 1</MenuItem>
+                <MenuItem value="var 2">var 2</MenuItem>
+                <MenuItem value="var 3">var 3</MenuItem>
+              </SelectWithoutPlaceholder>
             )}
           />
         </Grid>
@@ -150,7 +161,7 @@ export const PersonalDataEdit = ({
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
+          {/* <Controller
             name="birthDate"
             control={control}
             defaultValue=""
@@ -164,7 +175,7 @@ export const PersonalDataEdit = ({
                 // helperText={errors.firstName?.message || " "}
               />
             )}
-          />
+          /> */}
         </Grid>
 
         <Grid item laptop={4}>
@@ -194,7 +205,7 @@ export const PersonalDataEdit = ({
           variant="text"
           onClick={() => {
             reset();
-            handleEditPersonalData();
+            handleEditIdentityDocs();
             // setMode("RECOVERY");
           }}
         >

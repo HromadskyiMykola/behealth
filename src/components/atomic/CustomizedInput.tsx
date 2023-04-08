@@ -2,19 +2,10 @@ import { forwardRef, Ref } from "react";
 import {
   Typography,
   TextField,
-  OutlinedTextFieldProps,
   styled,
   FormControl,
+  TextFieldProps,
 } from "@mui/material";
-
-export type CustomizedInputProps = Pick<
-  OutlinedTextFieldProps,
-  Exclude<keyof OutlinedTextFieldProps, "variant">
-> & {
-  label?: string;
-  // InputAdornment?: boolean;
-  // InputAdornmentProps?: InputAdornmentProps;
-};
 
 const CustomTextField = styled(TextField)({
   "& .MuiInputBase-input": {
@@ -36,22 +27,18 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-function CustomInput(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
+function CustomInput(props: TextFieldProps, ref: Ref<HTMLDivElement>) {
   const { label, ...otherProps } = props;
 
   return (
     <FormControl fullWidth>
       {label && (
-        <Typography
-          sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
-          variant="body2"
-        >
+        <Typography pl="16px" mb="8px" color="#5C5F5D" variant="body2">
           {label}
         </Typography>
       )}
       <CustomTextField
         {...otherProps}
-        variant="outlined"
         ref={ref}
         FormHelperTextProps={{
           sx: {

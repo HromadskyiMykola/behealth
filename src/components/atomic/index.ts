@@ -8,4 +8,4 @@ export * from "./ButtonEditIcon";
 export * from "./ButtonTimer";
 export * from "./InputMobileNumber";
 export * from "./ReactHookFormSelect";
-
+export * from "./SelectWithPlaceholder";
