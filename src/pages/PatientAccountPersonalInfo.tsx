@@ -1,172 +1,82 @@
-import {
-  Button,
-  Skeleton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { useState } from "react";
+import { Skeleton, Stack, Typography } from "@mui/material";
 
-import { CustomizedPaper } from "~atomic/index";
+import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic/index";
 
 import avatar from "~/assets/images/avatar.png";
-
-const EditButton = () => (
-  <Button startIcon={<EditIcon style={{ flexShrink: 0 }} size={22} />}>
-    {"Змінити"}
-  </Button>
-);
+import {
+  ContactInfo,
+  ContactInfoEdit,
+  PersonalData,
+  PersonalDataEdit,
+} from "~/components/patientAccountPersonalInfo";
 
 export function PatientAccountPersonalInfo() {
-  return (
-    <>
-      <CustomizedPaper>
-        <Stack direction="row" justifyContent="space-between" mb="24px">
-          <Typography variant="h5">
-            {"Контактна інформація та авторизація"}
-          </Typography>
-          <EditButton />
-        </Stack>
+  const [isEditContactInfo, setIsEditContactInfo] = useState(true);
+  const [isEditPersonalData, setIsEditPersonalData] = useState(true);
+  const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(true);
 
-        {/* <Stack direction="row" gap={2}>
+  const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
+
+  const handleEditPersonalData = () =>
+      setIsEditPersonalData(!isEditPersonalData);
+
+  const handleEditIdentityDocs = () =>
+      setIsEditIdentityDocs(!isEditIdentityDocs);
+
+  return (
+      <>
+        <CustomizedPaper>
+          <Stack direction="row" justifyContent="space-between" mb="24px">
+            <Typography variant="h5">
+              Контактна інформація та авторизація
+            </Typography>
+
+            <ButtonEditIcon onClick={handleEditContactInfo} />
+          </Stack>
+
+          {/* <Stack direction="row" gap={2}>
           <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
           <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
         </Stack> */}
 
-        <Stack direction="row">
-          <img src={avatar} alt="avatar" />
+          <Stack direction="row" gap={2}>
+            <img src={avatar} alt="avatar" />
 
-          <TableContainer
-            sx={{
-              width: "auto",
-              "& td": { borderBottom: "none" },
-            }}
+            {isEditContactInfo ? <ContactInfoEdit /> : <ContactInfo />}
+          </Stack>
+        </CustomizedPaper>
+
+        {/* ///       Персональні дані          /// */}
+        <CustomizedPaper>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography variant="h5">Персональні дані</Typography>
+
+            <ButtonEditIcon onClick={handleEditPersonalData} />
+          </Stack>
+
+          {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
+
+          {isEditPersonalData ? <PersonalDataEdit /> : <PersonalData />}
+
+          <Stack
+              direction="row"
+              justifyContent="space-between"
+              mt="24px"
+              mb="24px"
           >
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <Stack direction="row" gap={2}>
-                      <AlertTriangleIcon color="red" />
-                      <Typography variant="caption" color="red">
-                        Медкарта не підключена до eHealth
-                      </Typography>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <Typography variant="body2">Номер телефону</Typography>
-                  </TableCell>
+            <ButtonEditIcon onClick={handleEditIdentityDocs} />
+          </Stack>
 
-                  <TableCell>
-                    <Typography variant="body2">+38 (093) 23 324 23</Typography>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <Typography variant="body2">Електронна пошта</Typography>
-                  </TableCell>
-
-                  <TableCell>
-                    <Typography variant="body2">taras_shv@gmail.com</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Stack>
-      </CustomizedPaper>
-
-      {/* ///       Персональні дані          /// */}
-      <CustomizedPaper>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography variant="h5">{"Персональні дані"}</Typography>
-
-          <EditButton />
-        </Stack>
-
-        {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
-
-        <TableContainer
-          sx={{
-            display: "inline-block",
-            width: "auto",
-            "& td": { borderBottom: "none" },
-          }}
-        >
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  <Typography variant="body2">ПІБ</Typography>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="body2">Шевченко Тарас</Typography>
-                </TableCell>
-              </TableRow>
-
-              <TableRow>
-                <TableCell>
-                  <Typography variant="body2">Дата народження</Typography>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="body2">09.03.1814</Typography>
-                </TableCell>
-              </TableRow>
-
-              <TableRow>
-                <TableCell>
-                  <Typography variant="body2">ІПН</Typography>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="body2">не вказано</Typography>
-                </TableCell>
-              </TableRow>
-
-              <TableRow>
-                <TableCell>
-                  <Typography variant="body2">Стать</Typography>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="body2">не вказано</Typography>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          mt="24px"
-          mb="24px"
-        >
-          <Typography variant="h5">
-            {"Документи, що засвідчують особу"}
+          <Typography variant="body2" pl="16px">
+            Документи, що засвідчують особу не додані.
           </Typography>
-          <EditButton />
-        </Stack>
 
-        <Typography variant="body2">
-          Документи, що засвідчують особу не додані.
-        </Typography>
-        {/* <Skeleton variant="text" /> */}
-      </CustomizedPaper>
-    </>
+          {/* <Skeleton variant="text" /> */}
+        </CustomizedPaper>
+      </>
   );
 }
 

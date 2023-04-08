@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { ProfileAppointmentListItemProps } from "~/common/types-and-interfaces";
 import { ProfileAppointmentModal } from "./ProfileAppointmentModal";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { ERouteNames } from "~/routes/routeNames";
 
 export const ProfileAppointmentListItem: FC<
   ProfileAppointmentListItemProps
@@ -15,7 +16,7 @@ export const ProfileAppointmentListItem: FC<
     ""
   );
 
-  const location = useLocation();
+  const { pathname } = useLocation();
   const { id } = useParams();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -163,7 +164,11 @@ export const ProfileAppointmentListItem: FC<
               )}
               <Link
                 style={{ color: "inherit", textDecoration: "none" }}
-                to={location.pathname.concat("/" + cardId)}
+                to={
+                  pathname === "/patient-account"
+                    ? ERouteNames.PATIENT_ACCOUNT_APPOINTMENT + "/" + cardId
+                    : pathname.concat("/" + cardId)
+                }
               >
                 <Button variant="contained">
                   <Typography variant="button">Детальніше</Typography>

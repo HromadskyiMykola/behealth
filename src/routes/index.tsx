@@ -43,11 +43,13 @@ export const patientRoutes: TRoute[] = [
         path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
         element: <Pages.PatientAccountAppointments />,
         label: "Записи",
-      },
-      {
-        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT + "/:id",
-        element: <Pages.PatientAccountAppointments />,
-        label: "Записи",
+        children: [
+          {
+            path: ":id",
+            element: <Pages.PatientAccountAppointments />,
+            label: "Записи",
+          },
+        ],
       },
       {
         path: ERouteNames.PATIENT_ACCOUNT_HELP,
