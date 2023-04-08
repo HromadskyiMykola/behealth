@@ -1,20 +1,5 @@
 import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
-import {
-  Button,
-  Skeleton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import { CustomizedPaper } from "~/components/atomic/index";
-import { AlertTriangleIcon, EditIcon } from "lucide-react";
-
-
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic/index";
 
 import avatar from "~/assets/images/avatar.png";
@@ -33,64 +18,64 @@ export function PatientAccountPersonalInfo() {
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
 
   const handleEditPersonalData = () =>
-      setIsEditPersonalData(!isEditPersonalData);
+    setIsEditPersonalData(!isEditPersonalData);
 
   const handleEditIdentityDocs = () =>
-      setIsEditIdentityDocs(!isEditIdentityDocs);
+    setIsEditIdentityDocs(!isEditIdentityDocs);
 
   return (
-      <>
-        <CustomizedPaper>
-          <Stack direction="row" justifyContent="space-between" mb="24px">
-            <Typography variant="h5">
-              Контактна інформація та авторизація
-            </Typography>
+    <>
+      <CustomizedPaper>
+        <Stack direction="row" justifyContent="space-between" mb="24px">
+          <Typography variant="h5">
+            Контактна інформація та авторизація
+          </Typography>
 
-            <ButtonEditIcon onClick={handleEditContactInfo} />
-          </Stack>
+          <ButtonEditIcon onClick={handleEditContactInfo} />
+        </Stack>
 
-          {/* <Stack direction="row" gap={2}>
+        {/* <Stack direction="row" gap={2}>
           <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
           <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
         </Stack> */}
 
-          <Stack direction="row" gap={2}>
-            <img src={avatar} alt="avatar" />
+        <Stack direction="row" gap={2}>
+          <img src={avatar} alt="avatar" />
 
-            {isEditContactInfo ? <ContactInfoEdit /> : <ContactInfo />}
-          </Stack>
-        </CustomizedPaper>
+          {isEditContactInfo ? <ContactInfoEdit /> : <ContactInfo />}
+        </Stack>
+      </CustomizedPaper>
 
-        {/* ///       Персональні дані          /// */}
-        <CustomizedPaper>
-          <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h5">Персональні дані</Typography>
+      {/* ///       Персональні дані          /// */}
+      <CustomizedPaper>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography variant="h5">Персональні дані</Typography>
 
-            <ButtonEditIcon onClick={handleEditPersonalData} />
-          </Stack>
+          <ButtonEditIcon onClick={handleEditPersonalData} />
+        </Stack>
 
-          {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
+        {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
 
-          {isEditPersonalData ? <PersonalDataEdit /> : <PersonalData />}
+        {isEditPersonalData ? <PersonalDataEdit /> : <PersonalData />}
 
-          <Stack
-              direction="row"
-              justifyContent="space-between"
-              mt="24px"
-              mb="24px"
-          >
-            <Typography variant="h5">Документи, що засвідчують особу</Typography>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          mt="24px"
+          mb="24px"
+        >
+          <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
-            <ButtonEditIcon onClick={handleEditIdentityDocs} />
-          </Stack>
+          <ButtonEditIcon onClick={handleEditIdentityDocs} />
+        </Stack>
 
-          <Typography variant="body2" pl="16px">
-            Документи, що засвідчують особу не додані.
-          </Typography>
+        <Typography variant="body2" pl="16px">
+          Документи, що засвідчують особу не додані.
+        </Typography>
 
-          {/* <Skeleton variant="text" /> */}
-        </CustomizedPaper>
-      </>
+        {/* <Skeleton variant="text" /> */}
+      </CustomizedPaper>
+    </>
   );
 }
 
