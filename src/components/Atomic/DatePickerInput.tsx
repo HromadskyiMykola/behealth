@@ -22,7 +22,7 @@ export function DatePickerInput(props: any) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDatePicker
         components={{
-          OpenPickerIcon: CalendarDays,
+          OpenPickerIcon: () => <CalendarDays size={22} />,
         }}
         value={value}
         onChange={handleChange}

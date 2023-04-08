@@ -13,11 +13,11 @@ import { Controller, useForm } from "react-hook-form";
 import { CustomizedInput, DatePickerInput } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
 
-type PersonalDataEditProps = {
-  handleEditPersonalData: () => void;
+type IdentityDocsEditProps = {
+  handleEditIdentityDocs: () => void;
 };
 
-export const PersonalData = () => (
+export const IdentityDocs = () => (
   <TableContainer
     sx={{
       display: "inline-block",
@@ -71,9 +71,9 @@ export const PersonalData = () => (
   </TableContainer>
 );
 
-export const PersonalDataEdit = ({
-  handleEditPersonalData,
-}: PersonalDataEditProps) => {
+export const IdentityDocsEdit = ({
+  handleEditIdentityDocs,
+}: IdentityDocsEditProps) => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -194,7 +194,7 @@ export const PersonalDataEdit = ({
           variant="text"
           onClick={() => {
             reset();
-            handleEditPersonalData();
+            handleEditIdentityDocs();
             // setMode("RECOVERY");
           }}
         >

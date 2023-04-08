@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 
-import { ButtonEditIcon, CustomizedPaper } from "~atomic/index";
+import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
 import avatar from "~/assets/images/avatar.png";
 import {
   ContactInfo,
   ContactInfoEdit,
+  IdentityDocs,
+  IdentityDocsEdit,
   PersonalData,
   PersonalDataEdit,
 } from "~/components/patientAccountPersonalInfo";
@@ -92,6 +94,17 @@ export function PatientAccountPersonalInfo() {
         </Typography>
 
         {/* <Skeleton variant="text" /> */}
+
+        {isEditIdentityDocs ? (
+          <IdentityDocsEdit handleEditIdentityDocs={handleEditIdentityDocs} />
+        ) : (
+          <IdentityDocs />
+        )}
+
+
+
+
+
       </CustomizedPaper>
     </>
   );

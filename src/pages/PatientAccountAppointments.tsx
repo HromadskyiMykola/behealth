@@ -1,6 +1,6 @@
 import { Box, Skeleton } from "@mui/material";
 
-import { CustomizedPaper } from "~atomic/index";
+import { CustomizedPaper } from "~/components/atomic";
 
 export function PatientAccountAppointments() {
   // for demo
