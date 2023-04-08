@@ -33,10 +33,7 @@ function CustomInput(props: TextFieldProps, ref: Ref<HTMLDivElement>) {
   return (
     <FormControl fullWidth>
       {label && (
-        <Typography
-          sx={{ pl: "16px", mb: "8px", color: "#5C5F5D" }}
-          variant="body2"
-        >
+        <Typography pl="16px" mb="8px" color="#5C5F5D" variant="body2">
           {label}
         </Typography>
       )}

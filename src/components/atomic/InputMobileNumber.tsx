@@ -1,13 +1,12 @@
 import { forwardRef, Ref } from "react";
-import InputMask, { Props } from "react-input-mask";
+import ReactInputMask, { Props } from "react-input-mask";
 
 import { CustomizedInput } from "./CustomizedInput";
-import { TextFieldProps } from "@mui/material";
 
-function InputWithMask(props: Props & TextFieldProps, ref: Ref<HTMLDivElement & InputMask>) {
+function InputWithMask(props: any, ref: Ref<HTMLDivElement>) { // TODO choose props type
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const cleanedValue = event.target.value.replace(/\D+/g, "");
-    
+
     if (props.onChange) {
       props.onChange({
         ...event,
@@ -17,16 +16,15 @@ function InputWithMask(props: Props & TextFieldProps, ref: Ref<HTMLDivElement & 
   };
 
   return (
-    <InputMask
+    <ReactInputMask
       {...props}
       mask="+38 (999) 999 99 99"
       maskPlaceholder="X"
       value={props.value}
       onChange={handleChange}
-      ref={ref}
     >
-      <CustomizedInput />
-    </InputMask>
+      <CustomizedInput ref={ref} />
+    </ReactInputMask>
   );
 }
 
