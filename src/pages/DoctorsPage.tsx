@@ -1,10 +1,10 @@
 import React from 'react';
-import TabsAdditionalDataCardAddress from "../components/tads.additionalData/tabs.additionalData.card.address";
+import AdditionDataContainer from "../components/tads.additionalData/Addition-data-container";
 
 export  function DoctorsPage() {
     return (
         <div>
-           <TabsAdditionalDataCardAddress/>
+           <AdditionDataContainer/>
         </div>
     );
 };

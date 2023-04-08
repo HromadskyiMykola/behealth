@@ -1,1 +1,1 @@
-export * from './tabs.additionalData.card.address';
+export * from './Addition-data-container';

@@ -20,7 +20,7 @@ interface IReactHookFormSelect {
   sx: any;
 }
 
-const ReactHookFormSelect = ({
+export const ReactHookFormSelect = ({
   name,
   label,
   control,
@@ -60,4 +60,3 @@ const ReactHookFormSelect = ({
   );
 };
 
-export default ReactHookFormSelect;

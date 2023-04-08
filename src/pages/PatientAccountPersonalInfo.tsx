@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { CustomizedPaper } from "~atomic/index";
+import { CustomizedPaper } from "~/components/atomic/index";
 import { AlertTriangleIcon, EditIcon } from "lucide-react";
 
 import avatar from "~/assets/images/avatar.png";

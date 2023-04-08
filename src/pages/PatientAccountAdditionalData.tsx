@@ -1,5 +1,6 @@
-import { CustomizedPaper } from "~atomic/index";
+import { CustomizedPaper } from "~/components/atomic/index";
+import AdditionDataContainer from "~/components/tads.additionalData/Addition-data-container";
 
 export function PatientAccountAdditionalData() {
-  return <CustomizedPaper>PatientAccountAdditionalData</CustomizedPaper>;
+  return <CustomizedPaper><AdditionDataContainer/></CustomizedPaper>;
 }

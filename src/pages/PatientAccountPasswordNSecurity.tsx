@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
-import { CustomizedInput, CustomizedPaper, PasswordInput } from "~atomic/index";
+import { CustomizedInput, CustomizedPaper, PasswordInput } from "~/components/atomic/index";
 import { validationRules, TAuthFormValues } from "~/common";
 
 export function PatientAccountPasswordNSecurity() {

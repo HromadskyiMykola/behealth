@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button, Grid, InputLabel, MenuItem, Typography } from "@mui/material";
-import CustomizedInput from "../../Atomic/CustomizedInput";
-import ReactHookFormSelect from "../../Atomic/ReactHookFormSelect";
+import {CustomizedInput} from "~atomic/CustomizedInput";
+import {ReactHookFormSelect} from "~atomic/ReactHookFormSelect";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Box from "@mui/material/Box/Box";
 
@@ -26,7 +26,7 @@ const selectStyle = {
       }
     : {},
 };
-const InputForm = () => {
+const ChangeDataAddresessForm = () => {
   const { control, handleSubmit, resetField, register } = useForm({
     defaultValues: {
       type: "",
@@ -44,7 +44,7 @@ const InputForm = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={2} mt="24px" pb="24px">
+      <Grid container spacing={2} mt="24px" pb="24px" >
         <Grid item xs={4}>
           <ReactHookFormSelect
             name="type"
@@ -113,4 +113,4 @@ const InputForm = () => {
   );
 };
 
-export default InputForm;
+export default ChangeDataAddresessForm;
