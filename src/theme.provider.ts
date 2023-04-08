@@ -1,18 +1,22 @@
 import { createTheme } from "@mui/material";
 
 declare module "@mui/material/styles" {
+
   interface TypographyVariants {
     captionS: React.CSSProperties;
     overline: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     captionS?: React.CSSProperties;
     overline?: React.CSSProperties;
   }
-}
 
+
+}
+declare module '@mui/material/styles/createPalette' {
+
+}
 // Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
@@ -62,8 +66,9 @@ export function createOverrideTheme() {
         default: "#FBFDF9",
       },
       text: {
+        // secondary70: '#97B1A5',
         primary: "#212121",
-        // secondary: "#FFFFFF",
+        secondary: "#7D968B",
         disabled: "#A9ACA9",
       },
     },
@@ -232,9 +237,6 @@ export function createOverrideTheme() {
       MuiGrid: {
         styleOverrides: {
           root: {
-            marginLeft: "0",
-            marginRight: "0",
-            width: "100%",
           },
         },
       },
