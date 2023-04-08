@@ -19,7 +19,7 @@ function DatePickerComponent(props: any, inputRef: Ref<HTMLDivElement>) {
     setValue(newValue);
   };
   return (
-    // <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDatePicker
         components={{
           OpenPickerIcon: () => <CalendarDays size={22} />,
@@ -31,7 +31,7 @@ function DatePickerComponent(props: any, inputRef: Ref<HTMLDivElement>) {
           <CustomizedInput {...params} {...props} />
         )}
       />
-    // </LocalizationProvider>
+    </LocalizationProvider>
   );
 }
 
