@@ -1,3 +1,3 @@
-export * from "./ContactInfo"
-export * from "./PersonalData"
-export * from "./IdentityDocs"
+export * from "./ContactInfo";
+export * from "./PersonalData";
+export * from "./IdentityDocs";

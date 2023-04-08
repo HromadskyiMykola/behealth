@@ -6,12 +6,12 @@ import {
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
+import { Ref, forwardRef, useState } from "react";
 import { CalendarDays } from "lucide-react";
 
 import { CustomizedInput } from ".";
 
-export function DatePickerInput(props: any) {
+function DatePickerComponent(props: any, inputRef: Ref<HTMLDivElement>) {
   const [value, setValue] = useState<Dayjs | null>();
   // dayjs('2014-08-18'),
 
@@ -19,17 +19,20 @@ export function DatePickerInput(props: any) {
     setValue(newValue);
   };
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    // <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDatePicker
         components={{
           OpenPickerIcon: () => <CalendarDays size={22} />,
         }}
         value={value}
         onChange={handleChange}
+        ref={inputRef}
         renderInput={(params: any) => (
           <CustomizedInput {...params} {...props} />
         )}
       />
-    </LocalizationProvider>
+    // </LocalizationProvider>
   );
 }
+
+export const DatePickerInput = forwardRef(DatePickerComponent);

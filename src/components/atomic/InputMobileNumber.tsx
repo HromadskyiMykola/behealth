@@ -1,11 +1,13 @@
 import { forwardRef, Ref } from "react";
 import InputMask, { Props } from "react-input-mask";
 
-import { CustomizedInput, CustomizedInputProps } from "./CustomizedInput";
+import { CustomizedInput } from "./CustomizedInput";
+import { TextFieldProps } from "@mui/material";
 
-function InputWithMask(props: any, ref: Ref<HTMLDivElement>) {
+function InputWithMask(props: Props & TextFieldProps, ref: Ref<HTMLDivElement & InputMask>) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const cleanedValue = event.target.value.replace(/\D+/g, "");
+    
     if (props.onChange) {
       props.onChange({
         ...event,

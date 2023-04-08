@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button, Grid, InputLabel, MenuItem, Typography } from "@mui/material";
-import {CustomizedInput} from "~atomic/CustomizedInput";
-import {ReactHookFormSelect} from "~atomic/ReactHookFormSelect";
+import { CustomizedInput, ReactHookFormSelect } from "~/components/atomic";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Box from "@mui/material/Box/Box";
 

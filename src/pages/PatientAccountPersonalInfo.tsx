@@ -13,8 +13,8 @@ import {
 } from "~/components/patientAccountPersonalInfo";
 
 export function PatientAccountPersonalInfo() {
-  const [isEditContactInfo, setIsEditContactInfo] = useState(true);
-  const [isEditPersonalData, setIsEditPersonalData] = useState(true);
+  const [isEditContactInfo, setIsEditContactInfo] = useState(false);
+  const [isEditPersonalData, setIsEditPersonalData] = useState(false);
   const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(true);
 
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
@@ -88,7 +88,9 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
-        <Typography variant="body2" pl="16px">
+        <Typography variant="body2" pl="16px"
+        mb={2}  // temp
+        >
           Документи, що засвідчують особу не додані.
         </Typography>
 
