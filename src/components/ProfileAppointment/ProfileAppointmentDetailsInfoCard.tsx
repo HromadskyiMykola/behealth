@@ -5,6 +5,8 @@ import { ProfileAppointmentDetailsInfoDefaultCardProps } from "~/common/types-an
 export const ProfileAppointmentDetailsInfoCard: FC<
   ProfileAppointmentDetailsInfoDefaultCardProps
 > = ({ title, subtitle, code, details }) => {
+  const isException = title === "Послуги" || !details.length;
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <Typography variant="h5" sx={{ color: "#00382A" }}>
@@ -12,10 +14,10 @@ export const ProfileAppointmentDetailsInfoCard: FC<
       </Typography>
       <Box
         sx={{
-          bgcolor: title === "Послуги" ? "none" : "#FBFDF9",
-          border: title === "Послуги" ? "none" : "1px solid #DBE5DF",
+          bgcolor: isException ? "none" : "#FBFDF9",
+          border: isException ? "none" : "1px solid #DBE5DF",
           borderRadius: "10px",
-          p: title === "Послуги" ? "0" : "16px 32px",
+          p: isException ? "0" : "16px 32px",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -44,7 +46,7 @@ export const ProfileAppointmentDetailsInfoCard: FC<
               gap: title === "Послуги" ? "16px" : "8px",
             }}
           >
-            {details ? (
+            {details.length ? (
               details.map(({ title: cardTitle, text }) => (
                 <Box sx={{ display: "flex" }} key={cardTitle || text}>
                   {title === "Послуги" ? (

@@ -1,5 +1,5 @@
-import { CustomizedPaper } from "~/components/atomic/index";
-import AdditionDataContainer from "~/components/tads.additionalData/Addition-data-container";
+
+import { CustomizedPaper } from "~/components/atomic";
 
 export function PatientAccountAdditionalData() {
   return <CustomizedPaper><AdditionDataContainer/></CustomizedPaper>;

@@ -100,11 +100,6 @@ export interface AccordionItemProps {
   description: string;
 }
 
-export interface ProfileAppointmentDetailsProps {
-  card: IProfileAppointmentCard;
-  info?: IProfileAppointmentDetailsInfo;
-}
-
 export interface ProfileAppointmentStatusProps {
   status: string;
 }
@@ -153,7 +148,6 @@ export interface IProfileAppointmentDetails {
 }
 export interface IProfileAppointmentDetailsInfoNavigation {
   title: string;
-  path: string;
 }
 
 export interface ProfileAppointmentListItemProps {
@@ -168,6 +162,8 @@ export interface ProfileAppointmentListProps {
 
 export interface ProfileAppointmentDetailsNavigationProps {
   navigation: IProfileAppointmentDetailsInfoNavigation[];
+  setTargetButton: (s: number) => void;
+  targetButton: number;
 }
 
 export interface ProfileAppointmentDetailsInfoDefaultCardProps {

@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import {ProfileAppointmentDetailsNavigationProps} from "~/common/types-and-interfaces";
+import { ProfileAppointmentDetailsNavigationProps } from "~/common/types-and-interfaces";
 
 export const ProfileAppointmentDetailsNavigation: FC<
   ProfileAppointmentDetailsNavigationProps
-> = ({ navigation }) => {
-  const currentPath = window.location.pathname;
+> = ({ navigation, setTargetButton, targetButton }) => {
   return (
     <Box
       sx={{
@@ -15,23 +14,25 @@ export const ProfileAppointmentDetailsNavigation: FC<
         borderBottom: "1px solid #B2CCC0",
       }}
     >
-      {navigation.map(({ title, path }) => (
-        <NavLink
-          key={path}
-          style={{
+      {navigation.map(({ title }, index) => (
+        <Typography
+          key={title}
+          onClick={() => setTargetButton(index)}
+          variant="caption"
+          sx={{
+            color: targetButton === index ? "#3ABD98" : "#1E352D",
+            borderBottom: targetButton === index ? "1px solid #3ABD98" : "none",
             textDecoration: "none",
             padding: "8px 0",
-            borderBottom: currentPath === path ? "1px solid #3ABD98" : "none",
+            cursor: "pointer",
+            "&:hover": {
+              color: "#3ABD98",
+              borderBottom: "1px solid #3ABD98",
+            },
           }}
-          to={path}
         >
-          <Typography
-            variant="caption"
-            sx={{ color: currentPath === path ? "#3ABD98" : "#1E352D" }}
-          >
-            {title}
-          </Typography>
-        </NavLink>
+          {title}
+        </Typography>
       ))}
     </Box>
   );
