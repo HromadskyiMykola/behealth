@@ -12,8 +12,16 @@ export const commonRoutes: TRoute[] = [
     errorElement: <Pages.NotFound />,
   },
   { path: ERouteNames.ABOUT, element: <Pages.AboutPage />, label: "Про нас" },
-  { path: ERouteNames.DOCTORS, element: <Pages.DoctorsPage />, label: "Лікарі" },
-  { path: ERouteNames.CLINICS, element: <Pages.ClinicsPage />, label: "Заклади" },
+  {
+    path: ERouteNames.DOCTORS,
+    element: <Pages.DoctorsPage />,
+    label: "Лікарі",
+  },
+  {
+    path: ERouteNames.CLINICS,
+    element: <Pages.ClinicsPage />,
+    label: "Заклади",
+  },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];
 
@@ -35,6 +43,13 @@ export const patientRoutes: TRoute[] = [
         path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
         element: <Pages.PatientAccountAppointments />,
         label: "Записи",
+        children: [
+          {
+            path: ":id",
+            element: <Pages.PatientAccountAppointments />,
+            label: "Записи",
+          },
+        ],
       },
       {
         path: ERouteNames.PATIENT_ACCOUNT_HELP,

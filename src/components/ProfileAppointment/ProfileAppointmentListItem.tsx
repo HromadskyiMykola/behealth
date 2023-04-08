@@ -1,22 +1,23 @@
 import React, { FC, useState } from "react";
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Users } from "lucide-react";
 import { ProfileAppointmentStatus } from "./ProfileAppointmentStatus";
 import Button from "@mui/material/Button";
 import { ProfileAppointmentListItemProps } from "~/common/types-and-interfaces";
 import { ProfileAppointmentModal } from "./ProfileAppointmentModal";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { ERouteNames } from "~/routes/routeNames";
 
 export const ProfileAppointmentListItem: FC<
   ProfileAppointmentListItemProps
 > = ({ card, bgcolor, border }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [targetButtonText, setTargetButtonText] = useState<string | undefined>("");
+  const [targetButtonText, setTargetButtonText] = useState<string | undefined>(
+    ""
+  );
+
+  const { pathname } = useLocation();
+  const { id } = useParams();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setTargetButtonText(e.currentTarget.dataset.buttonName);
@@ -27,8 +28,16 @@ export const ProfileAppointmentListItem: FC<
     setIsOpen(false);
   };
 
-  const { status, avatar, typeAppointment, date, name, speciality, info } =
-    card;
+  const {
+    status,
+    avatar,
+    typeAppointment,
+    date,
+    name,
+    speciality,
+    info,
+    id: cardId,
+  } = card;
   return (
     <Box
       sx={{
@@ -103,15 +112,81 @@ export const ProfileAppointmentListItem: FC<
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          borderTop: "1px solid #B2CCC0",
-          pt: "24px",
-        }}
-      >
-        <Box sx={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+      {!id ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: "1px solid #B2CCC0",
+            pt: "24px",
+          }}
+        >
+          <Box sx={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+            {info.map(({ title, text }: any) => (
+              <Box key={title}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#97B1A5",
+                    width: "140px",
+                    display: "inline-block",
+                  }}
+                >
+                  {title}
+                </Typography>
+                <Typography variant="caption" sx={{ color: "#647C72" }}>
+                  {text}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "end" }}>
+            <Box sx={{ display: "flex", gap: "16px" }}>
+              {status !== "Заплановано" ? (
+                <Button
+                  data-button-name="Повторити запис"
+                  variant="text"
+                  onClick={handleClick}
+                >
+                  <Typography variant="button">Повторити запис</Typography>
+                </Button>
+              ) : (
+                <Button
+                  data-button-name="Скасувати"
+                  variant="text"
+                  onClick={handleClick}
+                >
+                  <Typography variant="button" sx={{ color: "#DE3730" }}>
+                    Скасувати
+                  </Typography>
+                </Button>
+              )}
+              <Link
+                style={{ color: "inherit", textDecoration: "none" }}
+                to={
+                  pathname === "/patient-account"
+                    ? ERouteNames.PATIENT_ACCOUNT_APPOINTMENT + "/" + cardId
+                    : pathname.concat("/" + cardId)
+                }
+              >
+                <Button variant="contained">
+                  <Typography variant="button">Детальніше</Typography>
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            rowGap: "8px",
+            borderTop: "1px solid #B2CCC0",
+            pt: "24px",
+          }}
+        >
           {info.map(({ title, text }: any) => (
             <Box key={title}>
               <Typography
@@ -130,55 +205,7 @@ export const ProfileAppointmentListItem: FC<
             </Box>
           ))}
         </Box>
-
-        <Box sx={{ display: "flex", alignItems: "end" }}>
-          <Box sx={{ display: "flex", gap: "16px" }}>
-            {status !== "Заплановано" ? (
-              <Button
-                data-button-name="Повторити запис"
-                variant="text"
-                onClick={handleClick}
-              >
-                <Typography variant="button">Повторити запис</Typography>
-              </Button>
-            ) : (
-              <Button
-                data-button-name="Скасувати"
-                variant="text"
-                onClick={handleClick}
-              >
-                <Typography variant="button" sx={{ color: "#DE3730" }}>
-                  Скасувати
-                </Typography>
-              </Button>
-            )}
-            <Button variant="contained">
-              <Typography variant="button">Детальніше</Typography>
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-      {/*<Box*/}
-      {/*  sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: '8px', borderTop: '1px solid #B2CCC0', pt: '24px' }}*/}
-      {/*>*/}
-      {/*  {info.map(({ title, text }: any) => (*/}
-      {/*    <Box key={title}>*/}
-      {/*      <Typography*/}
-      {/*        variant="caption"*/}
-      {/*        sx={{*/}
-      {/*          color: "#97B1A5",*/}
-      {/*          width: "140px",*/}
-      {/*          display: "inline-block",*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*        {title}*/}
-      {/*      </Typography>*/}
-      {/*      <Typography variant="caption" sx={{ color: "#647C72" }}>*/}
-      {/*        {text}*/}
-      {/*      </Typography>*/}
-      {/*    </Box>*/}
-      {/*  ))}*/}
-      {/*</Box>*/}
+      )}
 
       <ProfileAppointmentModal
         targetButtonText={targetButtonText}

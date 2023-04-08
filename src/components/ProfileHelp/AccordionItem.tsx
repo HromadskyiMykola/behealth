@@ -38,7 +38,9 @@ export const AccordionItem: FC<AccordionItemProps> = ({
           sx={{ pb: "24px!important" }}
           className="_containerAccordionDetails"
         >
-          <Typography sx={{color: '#647C72'}} variant="body2">{description}</Typography>
+          <Typography sx={{ color: "#647C72" }} variant="body2">
+            {description}
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </Box>

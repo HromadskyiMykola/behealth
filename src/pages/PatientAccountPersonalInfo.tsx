@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
-
-import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
+import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic/index";
 
 import avatar from "~/assets/images/avatar.png";
 import {
