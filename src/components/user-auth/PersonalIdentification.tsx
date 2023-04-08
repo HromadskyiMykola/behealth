@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 
 import { Button, Dialog, Grid, Typography } from "@mui/material";
 
-import { CustomizedInput, DatePickerInput } from "~atomic/index";
+import { CustomizedInput, DatePickerInput } from "~/components/atomic/index";
 
 export function PersonalIdentification() {
   //   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);

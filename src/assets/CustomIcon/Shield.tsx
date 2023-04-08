@@ -1,7 +1,8 @@
 import React from "react";
 import { SvgIcon } from "@mui/material";
+import { SvgIconsProps } from "~/common";
 
-export const Shield = (props: any) => {
+export const Shield = (props: SvgIconsProps) => {
   return (
     <SvgIcon {...props}>
       <path

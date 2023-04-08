@@ -35,7 +35,6 @@ export const ProfileAppointmentPage = () => {
 
     setScheduleAppointment(scheduleAppointmentArr);
     setHistoryAppointment(historyAppointmentArr);
-    console.log(scheduleAppointmentArr);
   }, [cards]);
 
   const CardsFiltering = (e: React.MouseEvent<HTMLButtonElement>) => {
