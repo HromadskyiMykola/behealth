@@ -14,7 +14,7 @@ export type TAuthFormValues = {
   userType: "patient" | "doctor";
   birthDate: string;
   tin: string;
-  sex: "male" | "female";
+  gender: "male" | "female" | "";
 };
 
 export interface IAdvantagesBlockProps {
