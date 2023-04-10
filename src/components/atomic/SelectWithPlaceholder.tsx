@@ -6,7 +6,7 @@ import {
   SelectProps,
   Typography,
 } from "@mui/material";
-import { KeyboardArrowUp } from "@mui/icons-material";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 type SelectWithoutPlaceholderProps = SelectProps & { helperText?: string };
 
@@ -42,7 +42,11 @@ function CustomSelect(
         </Typography>
       )}
 
-      <Select {...otherProps} sx={styleSelect} IconComponent={KeyboardArrowUp}>
+      <Select
+        {...otherProps}
+        sx={styleSelect}
+        IconComponent={KeyboardArrowDown}
+      >
         {children}
       </Select>
 
