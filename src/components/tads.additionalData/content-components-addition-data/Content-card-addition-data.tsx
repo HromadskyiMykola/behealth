@@ -13,7 +13,6 @@ const textOverflowStyles = {
   textOverflow: "ellipsis",
 };
 const ContentCardAdditionData = ({ index, isEditView, data }: any) => {
-  console.log(data);
   let addresses = "";
   let other = "";
   let TITLE: any = "";
