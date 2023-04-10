@@ -1,8 +1,8 @@
 import React from "react";
-import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
+import { Grid, Box, Typography, Container } from "@mui/material";
 import { MUILink } from "./MUILink";
-import { CHOOSE_DOCTORS_LIST } from "./choose.doctors.constants";
-import { IChooseDoctor } from "../../common/types-and-interfaces";
+import { CHOOSE_DOCTORS_LIST } from "./main.constants";
+import { IChooseDoctor } from "~/common";
 import { ChooseDoctorsList } from "./ChooseDoctorsItem";
 
 export const ChooseDoctor = () => {
@@ -18,22 +18,11 @@ export const ChooseDoctor = () => {
           <MUILink path={"/doctors"} text={"Переглянути усіх лікарів"} />
         </Box>
         <Box>
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              marginTop: "0",
-              "& > :first-of-type": {
-                paddingLeft: 0,
-              },
-
-              "& > :nth-of-type(3n + 1)": {
-                paddingLeft: 0,
-              },
-            }}
-          >
+          <Grid container spacing={4}>
             {CHOOSE_DOCTORS_LIST.map((doctor: IChooseDoctor) => (
-              <ChooseDoctorsList key={doctor.id} doctor={doctor} />
+              <Grid item xs={12} sm={6} md={4} key={doctor.id}>
+                <ChooseDoctorsList doctor={doctor} />
+              </Grid>
             ))}
           </Grid>
         </Box>
