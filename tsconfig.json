@@ -25,6 +25,6 @@
   },
   "include": [
     "src"
-  ],
+, "testApi.ts"  ],
   "extends": "./tsconfig.paths.json",
 }
