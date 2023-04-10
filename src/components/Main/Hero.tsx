@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import background from "../../assets/images/hero-background.png";
 import image from "../../assets/images/hero-image.png";
-import { Container, Box, Typography, styled, InputBase } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  styled,
+  Autocomplete,
+  TextField,
+  InputAdornment,
+  Paper,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { RoomOutlined } from "@mui/icons-material";
 import { Search as SearchIcon } from "lucide-react";
+import { searchOptions } from "~/components/Main/main.constants";
 
 const styledContainer = {
   display: "flex",
   justifyContent: "space-between",
-  // alignItems: "center",
 };
 
 const styledBox = {
@@ -21,7 +30,6 @@ const styledBox = {
   height: "708px",
   borderBottom: "1px solid #CEE9DC;",
   display: "flex",
-  // alignItems: "center",
 };
 
 const Search = styled("div")(({ theme }) => ({
@@ -33,8 +41,15 @@ const Search = styled("div")(({ theme }) => ({
   alignItems: "center",
   boxShadow: "0px 1px 20px 1px rgba(255, 255, 255, 0.2)",
   borderRadius: "12px",
-  padding: "23px 0",
+  padding: "8px 0",
 }));
+
+const searchOptionsSpreading = {
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+  maxWidth: "392px",
+};
 
 export const Hero = () => {
   const [city, setCity] = useState("Уся Україна");
@@ -42,6 +57,7 @@ export const Hero = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
   };
+
   return (
     <Box sx={styledBox}>
       <Container sx={styledContainer}>
@@ -62,12 +78,79 @@ export const Hero = () => {
             можливість зручно планувати свої походи до лікарні онлайн
           </Typography>
           <Search>
-            <InputBase
-              placeholder={"Пошук лікарів та клінік"}
-              sx={{ pl: "24px", width: "55%" }}
-              startAdornment={
-                <SearchIcon color={"#999"} style={{ marginRight: "16px" }} />
+            <Autocomplete
+              sx={{ pl: "24px", width: "100%" }}
+              options={searchOptions}
+              getOptionLabel={(option) => option.name + " " + option.speciality}
+              filterOptions={(options, state) =>
+                options.filter(
+                  (option) =>
+                    option.name
+                      .toLowerCase()
+                      .indexOf(state.inputValue.toLowerCase()) !== -1 ||
+                    option.speciality
+                      .toLowerCase()
+                      .indexOf(state.inputValue.toLowerCase()) !== -1
+                )
               }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  placeholder="Пошук лікарів та клінік"
+                  sx={{
+                    "& fieldset": {
+                      display: "none",
+                    },
+                  }}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: null,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon style={{ marginRight: "16px" }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              )}
+              PaperComponent={({ children }) => (
+                <Paper sx={{ maxHeight: "480px", overflow: "auto" }}>
+                  {children}
+                </Paper>
+              )}
+              renderOption={(props, option) => (
+                <MenuItem
+                  key={option.name}
+                  sx={{
+                    borderBottom: "1px solid #BFC9C3",
+                    p: "12px 0",
+                  }}
+                  {...props}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "4px",
+                    }}
+                  >
+                    <Typography
+                      sx={searchOptionsSpreading}
+                      color="#212121"
+                      variant="body2"
+                    >
+                      {option.name}
+                    </Typography>
+                    <Typography
+                      sx={searchOptionsSpreading}
+                      color="#8E918F"
+                      variant="caption"
+                    >
+                      {option.speciality}
+                    </Typography>
+                  </Box>
+                </MenuItem>
+              )}
             />
             <Select
               labelId="select-city"

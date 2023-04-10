@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { emptyText } from "../const-additional-data";
 import ContentCardAdditionData from "./Content-card-addition-data";
-import { ChangeDataAddressesForm } from "./Change-data-addresses-form";
+import { AddressesForm } from "./Addresses-form";
 import { WorkPlaceForm } from "~/components/tads.additionalData/content-components-addition-data/Work-place-form";
 
 export const AdditionalDataContentCard = ({
@@ -15,7 +15,7 @@ export const AdditionalDataContentCard = ({
   const renderCard = (index: number) => {
     switch (index) {
       case 0:
-        return <ChangeDataAddressesForm closeEditForm={closeEditForm} />;
+        return <AddressesForm closeEditForm={closeEditForm} />;
       case 1:
         return <WorkPlaceForm closeEditForm={closeEditForm} data={data} />;
       case 2:

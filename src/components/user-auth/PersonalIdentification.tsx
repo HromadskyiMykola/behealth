@@ -2,7 +2,11 @@ import { useContext, useState } from "react";
 
 import { Button, Dialog, Grid, Typography } from "@mui/material";
 
-import { CustomizedInput, DatePickerInput } from "~/components/atomic/index";
+import {
+  CustomizedInput,
+  DatePickerInput,
+  InputMobileNumber,
+} from "~/components/atomic/index";
 
 export function PersonalIdentification() {
   //   const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
@@ -37,12 +41,12 @@ export function PersonalIdentification() {
       >
         <Grid item textAlign="center">
           <Typography variant="h5">
-            {"Ідентифікація особи та реєстрація"}
+            Ідентифікація особи та реєстрація
           </Typography>
           <Typography variant="body2" sx={{ mt: "16px", color: "#8E918F" }}>
-            {
-              "Заповніть необхідні поля, аби завершити реєстрацію. Нам потрібна ця інформація, аби забезпечити зручність для пацієнтів та медичних працівників."
-            }
+            Заповніть необхідні поля, аби завершити реєстрацію. Нам потрібна ця
+            інформація, аби забезпечити зручність для пацієнтів та медичних
+            працівників."
           </Typography>
         </Grid>
 
@@ -60,7 +64,7 @@ export function PersonalIdentification() {
             <DatePickerInput fullWidth label="Дата народження*" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <CustomizedInput fullWidth label="Номер телефону*" />
+            <InputMobileNumber fullWidth label="Номер телефону*" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <CustomizedInput fullWidth label="Електронна пошта*" />
@@ -72,7 +76,7 @@ export function PersonalIdentification() {
           sx={{ pl: "16px", alignSelf: "flex-start" }}
           onClick={() => {}}
         >
-          {"Чому це важливо?"}
+          Чому це важливо?
         </Button>
 
         <Button
@@ -81,7 +85,7 @@ export function PersonalIdentification() {
           variant="contained"
           // sx={{ backgroundColor: primaryColor }}
         >
-          {"Завершити реєстрацію"}
+          Завершити реєстрацію
         </Button>
       </Grid>
     </Dialog>

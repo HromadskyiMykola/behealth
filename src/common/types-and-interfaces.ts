@@ -3,6 +3,7 @@ import { RouteObject } from "react-router-dom";
 
 export type TAuthFormValues = {
   firstName: string;
+  middleName: string;
   lastName: string;
   email: string;
   mobileNumber: string;
@@ -10,7 +11,10 @@ export type TAuthFormValues = {
   confirmPassword: string;
   loginPassword: string;
   checkbox: boolean;
-  userType: string;
+  userType: "patient" | "doctor";
+  birthDate: string;
+  tin: string;
+  sex: "male" | "female";
 };
 
 export interface IAdvantagesBlockProps {

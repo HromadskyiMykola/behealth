@@ -1,11 +1,11 @@
 import { useState, forwardRef, Ref } from "react";
-import { InputAdornment, IconButton } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material/";
+import { InputAdornment, IconButton, TextFieldProps } from "@mui/material";
+
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
-import { CustomizedInput, CustomizedInputProps } from ".";
+import { CustomizedInput } from ".";
 
-function Input(props: CustomizedInputProps, ref: Ref<HTMLDivElement>) {
+function Input(props: TextFieldProps, ref: Ref<HTMLDivElement>) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {

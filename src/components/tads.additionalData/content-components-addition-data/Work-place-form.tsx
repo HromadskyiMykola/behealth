@@ -4,13 +4,12 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import { CustomizedInput } from "~atomic/CustomizedInput";
-import { ReactHookFormSelect } from "~atomic/ReactHookFormSelect";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { CustomizedInput } from "~/components/atomic/CustomizedInput";
 import Box from "@mui/material/Box/Box";
 import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { SelectWithoutPlaceholder } from "~/components/atomic";
 
 interface IFormInput {
   type: string;
@@ -36,21 +35,9 @@ const schema = yup
       .matches(/^[А-Яа-я\s]+$/, "Дозволенна тільки кирилиця"),
   })
   .required();
-type FormData = yup.InferType<typeof schema>;
 
 const placeholder = "Обрати";
 
-const selectStyle = {
-  padding: "12px 16px",
-  borderRadius: "8px",
-  "& .MuiOutlinedInput-input": { p: 0 },
-  "& .MuiSelect-select .notranslate::after": placeholder
-    ? {
-        content: `"${placeholder}"`,
-        opacity: 0.42,
-      }
-    : {},
-};
 const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.workPlace;
 const TEXT_BUTTONS = TEXT_ADDRESSES_EDIT_FORM.button;
 
@@ -89,25 +76,46 @@ export const WorkPlaceForm = ({ closeEditForm }: any) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2} mt="24px" pb="24px">
         <Grid item xs={4}>
-          <ReactHookFormSelect
+          {/*<ReactHookFormSelect*/}
+          {/*  name="type"*/}
+          {/*  label={TEXT_CHOICES.title.select}*/}
+          {/*  control={control}*/}
+          {/*  variant="outlined"*/}
+          {/*  displayEmpty*/}
+          {/*  IconComponent={KeyboardArrowDownIcon}*/}
+          {/*  sx={selectStyle}*/}
+          {/*>*/}
+          {/*  {TEXT_CHOICES.selectOptions.map((item: string) => {*/}
+          {/*    return (*/}
+          {/*      <MenuItem value={item} key={`${item}-label`}>*/}
+          {/*        <Typography component="p" variant="subtitle2">*/}
+          {/*          {item}*/}
+          {/*        </Typography>*/}
+          {/*      </MenuItem>*/}
+          {/*    );*/}
+          {/*  })}*/}
+          {/*</ReactHookFormSelect>*/}
+          <Controller
             name="type"
-            label={TEXT_CHOICES.title.select}
             control={control}
-            variant="outlined"
-            displayEmpty
-            IconComponent={KeyboardArrowDownIcon}
-            sx={selectStyle}
-          >
-            {TEXT_CHOICES.selectOptions.map((item: string) => {
-              return (
-                <MenuItem value={item} key={`${item}-label`}>
-                  <Typography component="p" variant="subtitle2">
-                    {item}
-                  </Typography>
-                </MenuItem>
-              );
-            })}
-          </ReactHookFormSelect>
+            render={({ field }) => (
+              <SelectWithoutPlaceholder
+                placeholder={TEXT_CHOICES.placeholder.select}
+                label={TEXT_CHOICES.title.select}
+                {...field}
+              >
+                {TEXT_CHOICES.selectOptions.map((item: string) => {
+                  return (
+                    <MenuItem value={item} key={`${item}-label`}>
+                      <Typography component="p" variant="subtitle2">
+                        {item}
+                      </Typography>
+                    </MenuItem>
+                  );
+                })}
+              </SelectWithoutPlaceholder>
+            )}
+          />
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
             {errors.type?.message}
           </Typography>

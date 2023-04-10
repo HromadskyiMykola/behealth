@@ -6,13 +6,15 @@ import avatar from "~/assets/images/avatar.png";
 import {
   ContactInfo,
   ContactInfoEdit,
+  IdentityDocs,
+  IdentityDocsEdit,
   PersonalData,
   PersonalDataEdit,
 } from "~/components/patientAccountPersonalInfo";
 
 export function PatientAccountPersonalInfo() {
-  const [isEditContactInfo, setIsEditContactInfo] = useState(true);
-  const [isEditPersonalData, setIsEditPersonalData] = useState(true);
+  const [isEditContactInfo, setIsEditContactInfo] = useState(false);
+  const [isEditPersonalData, setIsEditPersonalData] = useState(false);
   const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(true);
 
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
@@ -31,7 +33,10 @@ export function PatientAccountPersonalInfo() {
             Контактна інформація та авторизація
           </Typography>
 
-          <ButtonEditIcon onClick={handleEditContactInfo} />
+          <ButtonEditIcon
+            onClick={handleEditContactInfo}
+            disabled={isEditContactInfo}
+          />
         </Stack>
 
         {/* <Stack direction="row" gap={2}>
@@ -42,7 +47,11 @@ export function PatientAccountPersonalInfo() {
         <Stack direction="row" gap={2}>
           <img src={avatar} alt="avatar" />
 
-          {isEditContactInfo ? <ContactInfoEdit /> : <ContactInfo />}
+          {isEditContactInfo ? (
+            <ContactInfoEdit handleEditContactInfo={handleEditContactInfo} />
+          ) : (
+            <ContactInfo />
+          )}
         </Stack>
       </CustomizedPaper>
 
@@ -51,12 +60,19 @@ export function PatientAccountPersonalInfo() {
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">Персональні дані</Typography>
 
-          <ButtonEditIcon onClick={handleEditPersonalData} />
+          <ButtonEditIcon
+            onClick={handleEditPersonalData}
+            disabled={isEditPersonalData}
+          />
         </Stack>
 
         {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
 
-        {isEditPersonalData ? <PersonalDataEdit /> : <PersonalData />}
+        {isEditPersonalData ? (
+          <PersonalDataEdit handleEditPersonalData={handleEditPersonalData} />
+        ) : (
+          <PersonalData />
+        )}
 
         <Stack
           direction="row"
@@ -66,68 +82,31 @@ export function PatientAccountPersonalInfo() {
         >
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
-          <ButtonEditIcon onClick={handleEditIdentityDocs} />
+          <ButtonEditIcon
+            onClick={handleEditIdentityDocs}
+            disabled={isEditIdentityDocs}
+          />
         </Stack>
 
-        <Typography variant="body2" pl="16px">
+        <Typography variant="body2" pl="16px"
+        mb={2}  // temp
+        >
           Документи, що засвідчують особу не додані.
         </Typography>
 
         {/* <Skeleton variant="text" /> */}
+
+        {isEditIdentityDocs ? (
+          <IdentityDocsEdit handleEditIdentityDocs={handleEditIdentityDocs} />
+        ) : (
+          <IdentityDocs />
+        )}
+
+
+
+
+
       </CustomizedPaper>
     </>
   );
 }
-
-//  {
-//    {isRegisterMode && ( // NAME
-//       <Controller
-//         name="firstName"
-//         control={control}
-//         defaultValue=""
-//         rules={validationRules.firstName}
-//         render={({ field }) => (
-//           <CustomizedInput
-//             autoFocus={isRegisterMode}
-//             label="Ім’я"
-//             placeholder="Олександр"
-//             {...field}
-//             error={!!errors.firstName}
-//             helperText={errors.firstName?.message || " "}
-//           />
-//         )}
-//       />
-//     )}
-//  }
-
-//       <Controller
-// name="lastName"
-// control={control}
-// defaultValue=""
-// rules={{ required: true, maxLength: 100 }}
-// render={({ field }) => (
-//   <TextField
-//   label="Last name"
-//   {...field}
-//   error={!!errors.lastName}
-//   helperText={errors.lastName ? "This field is required" : ""}
-//   />
-//   )}
-// />
-
-//       <Controller
-// name="mobileNumber"
-// control={control}
-// defaultValue=""
-// rules={{ required: true, minLength: 6, maxLength: 12 }}
-// render={({ field }) => (
-//   <TextField
-//   label="Mobile number"
-//   {...field}
-//   error={!!errors.mobileNumber}
-//   helperText={
-//     errors.mobileNumber ? "Please enter a valid mobile number" : ""
-//   }
-//   />
-//   )}
-// />
