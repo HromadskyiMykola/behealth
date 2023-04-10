@@ -81,7 +81,7 @@ const ContentCardAdditionData = ({ index, isEditView, data }: any) => {
             textOverflow="ellipsis"
             maxWidth="108px"
           >
-            1
+            {other}
           </Typography>
         </Box>
       </Box>
