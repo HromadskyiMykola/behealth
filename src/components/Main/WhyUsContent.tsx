@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { MUILink } from "./MUILink";
-import { WhyUsContentProps } from "../../common/types-and-interfaces";
+import { WhyUsContentProps } from "~/common";
 
 export const WhyUsContent = ({
   items: { title, description, link, arrayItems },
