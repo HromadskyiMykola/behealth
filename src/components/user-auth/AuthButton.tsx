@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
-import { ModalContext, useModalState } from "~/store";
+import { ModalContext, useModalState } from "~/context";
 import { FormModal, ThanksModal, PersonalIdentification } from ".";
 
 export function AuthorizationButton() {

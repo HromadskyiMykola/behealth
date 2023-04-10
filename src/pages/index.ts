@@ -11,3 +11,4 @@ export * from "./ClinicsPage";
 export * from "./ProfilePage";
 export * from "./404";
 export * from "./Root";
+export * from "./EmailConfirmation";

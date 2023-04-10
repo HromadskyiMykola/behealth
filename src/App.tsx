@@ -1,14 +1,15 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { RouterProvider } from "react-router-dom";
 
 import { createOverrideTheme } from "./theme.provider";
-import { appRouter } from "~/components/AppRouter/AppRouter";
+import { AppRouter, AuthProvider } from "./components/providers";
 
 export default function App() {
   return (
-    <ThemeProvider theme={createOverrideTheme()}>
-      <CssBaseline />
-      <RouterProvider router={appRouter} />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={createOverrideTheme()}>
+        <CssBaseline />
+        <AppRouter />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
