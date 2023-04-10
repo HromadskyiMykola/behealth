@@ -9,13 +9,17 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "~/components/atomic/index";
+import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement } from ".";
 
-import { ModalContext } from "~/store";
+import { ModalContext } from "~/context";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
+import { apiService } from "~/common/apiService";
+import { useAuth } from "../providers/AuthProvider";
+import { redirect } from "react-router-dom";
+import { ERouteNames } from "~/routes/routeNames";
 
-type Props = {
+type TAuthFormProps = {
   mode: TAuthMode;
   setMode: (mode: TAuthMode) => void;
 };
@@ -26,9 +30,11 @@ const showMode = {
   RECOVERY: "Відновлення паролю",
 };
 
-export function AuthForm({ mode, setMode }: Props) {
-  const { handleThanksModalOpen } = useContext(ModalContext);
-  const [userType, setUserType] = useState("patient");
+export function AuthForm({ mode, setMode }: TAuthFormProps) {
+  const auth = useAuth();
+  const { handleThanksModalOpen, handleMainModalClose } =
+    useContext(ModalContext);
+  const [userType, setUserType] = useState<"patient" | "doctor">("patient");
 
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
@@ -43,11 +49,28 @@ export function AuthForm({ mode, setMode }: Props) {
   const { errors } = formState;
 
   const onSubmit = (data: TAuthFormValues) => {
-    handleThanksModalOpen();
-    const submittedData = { ...data, userType };
+    if (isRegisterMode) {
+      const { email, newPassword: password } = data;
+      apiService
+        .signUp({ email, password })
+        .then(handleThanksModalOpen);
+    }
 
-    console.log(submittedData);
-    console.log(formState);
+    if (isLoginMode) {
+      const { rememberMe, email, newPassword: password } = data;
+      auth
+        .login({ email, password, user_type: userType, rememberMe })
+        .then(() => {
+          handleMainModalClose();
+          redirect(
+            auth.authenticatedUser?.type === "patient"
+              ? ERouteNames.PATIENT_ACCOUNT
+              : ERouteNames.DOCTOR_ACCOUNT
+          );
+        });
+    }
+
+    // console.log(formState);
   };
 
   return (
@@ -152,7 +175,7 @@ export function AuthForm({ mode, setMode }: Props) {
               justifyContent="space-between"
             >
               <Controller
-                name="checkbox"
+                name="rememberMe"
                 control={control}
                 defaultValue={false}
                 render={({ field }) => (
@@ -179,7 +202,7 @@ export function AuthForm({ mode, setMode }: Props) {
           {isRegisterMode && (
             <Stack direction="row" alignItems="flex-start">
               <Controller
-                name="checkbox"
+                name="rememberMe"
                 control={control}
                 defaultValue={false}
                 rules={{ required: true }}

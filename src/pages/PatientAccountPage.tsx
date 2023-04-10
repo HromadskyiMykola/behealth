@@ -1,6 +1,19 @@
-import { SyntheticEvent, useEffect, useMemo, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
+import {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  Divider,
+  Grid,
+  Paper,
+  Tabs,
+  Typography,
+  Container,
+} from "@mui/material";
 
 import {
   ClockIcon,
@@ -14,11 +27,19 @@ import {
 import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
 
 import { ERouteNames } from "~/routes/routeNames";
+import { useAuth } from "~/components/providers";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
 const NavTabs = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = useCallback(() => {
+    navigate(ERouteNames.HOME);
+    logout();
+  }, []);
 
   const matchPath = useMemo(() => {
     const tabsValues = [
@@ -99,7 +120,8 @@ const NavTabs = () => {
           icon={<LogOutIcon style={{ flexShrink: 0 }} size={22} />}
           value={"logout"}
           label="Вихід"
-          to="logout"
+          to=""
+          onClick={handleLogout}
         />
       </Tabs>
     </Paper>
@@ -108,19 +130,21 @@ const NavTabs = () => {
 
 export function PatientAccountPage() {
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <BreadcrumbsUkr />
+    <Container sx={{ mb: "30px", mt: "30px" }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <BreadcrumbsUkr />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <NavTabs />
+        </Grid>
+        <Grid item xs>
+          <Outlet />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
-      </Grid>
-      <Grid item xs={3}>
-        <NavTabs />
-      </Grid>
-      <Grid item xs>
-        <Outlet />
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

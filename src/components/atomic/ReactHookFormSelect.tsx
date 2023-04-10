@@ -8,7 +8,7 @@ interface IReactHookFormSelect {
   name: string;
   label: string;
   control: any;
-  defaultValue: string;
+  // defaultValue: string;
   children: ReactNode;
   // placeholder,
   props?: any;
@@ -24,7 +24,6 @@ export const ReactHookFormSelect = ({
   name,
   label,
   control,
-  defaultValue,
   children,
   // placeholder,
   ...props
@@ -54,9 +53,7 @@ export const ReactHookFormSelect = ({
         )}
         name={name}
         control={control}
-        defaultValue={defaultValue}
       />
     </FormControl>
   );
 };
-
