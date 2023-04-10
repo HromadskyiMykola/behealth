@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
 
-type SelectWithoutPlaceholderProps = SelectProps & { helperText?: string };
+type SelectWithPlaceholderProps = SelectProps & { helperText?: string };
 
 const styleHelperText = {
   width: "calc(100% - 30px)",
@@ -17,7 +17,7 @@ const styleHelperText = {
 };
 
 function CustomSelect(
-  props: SelectWithoutPlaceholderProps,
+  props: SelectWithPlaceholderProps,
   ref: Ref<HTMLDivElement>
 ) {
   const { helperText, placeholder, label, children, ...otherProps } = props;
@@ -55,4 +55,4 @@ function CustomSelect(
   );
 }
 
-export const SelectWithoutPlaceholder = forwardRef(CustomSelect);
+export const SelectWithPlaceholder = forwardRef(CustomSelect);

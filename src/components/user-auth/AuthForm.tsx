@@ -16,7 +16,7 @@ import { ModalContext } from "~/context";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 import { apiService } from "~/common/apiService";
 import { useAuth } from "../providers/AuthProvider";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
 
 type TAuthFormProps = {
@@ -35,6 +35,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const { handleThanksModalOpen, handleMainModalClose } =
     useContext(ModalContext);
   const [userType, setUserType] = useState<"patient" | "doctor">("patient");
+  const navigate = useNavigate();
 
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
@@ -51,19 +52,17 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const onSubmit = (data: TAuthFormValues) => {
     if (isRegisterMode) {
       const { email, newPassword: password } = data;
-      apiService
-        .signUp({ email, password })
-        .then(handleThanksModalOpen);
+      apiService.signUp({ email, password }).then(handleThanksModalOpen);
     }
 
     if (isLoginMode) {
       const { rememberMe, email, newPassword: password } = data;
       auth
         .login({ email, password, user_type: userType, rememberMe })
-        .then(() => {
+        .then((user) => {
           handleMainModalClose();
-          redirect(
-            auth.authenticatedUser?.type === "patient"
+          navigate(
+            user.type === "patient"
               ? ERouteNames.PATIENT_ACCOUNT
               : ERouteNames.DOCTOR_ACCOUNT
           );

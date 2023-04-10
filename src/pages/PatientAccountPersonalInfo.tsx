@@ -14,7 +14,7 @@ import {
 
 export function PatientAccountPersonalInfo() {
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
-  const [isEditPersonalData, setIsEditPersonalData] = useState(false);
+  const [isEditPersonalData, setIsEditPersonalData] = useState(true);
   const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(true);
 
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
