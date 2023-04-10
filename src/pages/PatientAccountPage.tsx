@@ -24,7 +24,7 @@ import {
   LogOutIcon,
 } from "lucide-react";
 
-import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
+import { BreadcrumbsUkr, TabLink } from "~/components/atomic";
 
 import { ERouteNames } from "~/routes/routeNames";
 import { useAuth } from "~/components/providers";
