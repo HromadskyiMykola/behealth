@@ -14,6 +14,7 @@ import { UserTypeSelector, UserAgreement } from ".";
 
 import { ModalContext } from "~/context";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
+import { apiService } from "~/common/apiService";
 
 type Props = {
   mode: TAuthMode;
@@ -28,7 +29,7 @@ const showMode = {
 
 export function AuthForm({ mode, setMode }: Props) {
   const { handleThanksModalOpen } = useContext(ModalContext);
-  const [userType, setUserType] = useState("patient");
+  const [userType, setUserType] = useState<"patient" | "doctor">("patient");
 
   const isLoginMode: boolean = mode === "LOGIN";
   const isRegisterMode: boolean = mode === "REGISTER";
@@ -43,11 +44,28 @@ export function AuthForm({ mode, setMode }: Props) {
   const { errors } = formState;
 
   const onSubmit = (data: TAuthFormValues) => {
-    handleThanksModalOpen();
+    // handleThanksModalOpen();
     const submittedData = { ...data, userType };
 
-    console.log(submittedData);
-    console.log(formState);
+    if (isRegisterMode) {
+      const { email, newPassword: password } = data;
+      apiService
+        .signUp({ email, password })
+        .then(console.log)
+        .then(handleThanksModalOpen);
+    }
+
+    if (isLoginMode) {
+      console.log(data);
+
+      const { rememberMe, email, newPassword: password } = data;
+      apiService
+        .login({ email, password, user_type: userType, rememberMe })
+        .then(console.log)
+        // .then();
+    }
+
+    // console.log(formState);
   };
 
   return (
@@ -152,7 +170,7 @@ export function AuthForm({ mode, setMode }: Props) {
               justifyContent="space-between"
             >
               <Controller
-                name="checkbox"
+                name="rememberMe"
                 control={control}
                 defaultValue={false}
                 render={({ field }) => (
@@ -179,7 +197,7 @@ export function AuthForm({ mode, setMode }: Props) {
           {isRegisterMode && (
             <Stack direction="row" alignItems="flex-start">
               <Controller
-                name="checkbox"
+                name="rememberMe"
                 control={control}
                 defaultValue={false}
                 rules={{ required: true }}

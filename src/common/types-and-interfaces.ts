@@ -1,4 +1,4 @@
-import {MouseEventHandler, ReactElement, ReactNode } from "react";
+import { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { RouteObject } from "react-router-dom";
 
 export type TAuthFormValues = {
@@ -10,7 +10,7 @@ export type TAuthFormValues = {
   newPassword: string;
   confirmPassword: string;
   loginPassword: string;
-  checkbox: boolean;
+  rememberMe: boolean;
   userType: "patient" | "doctor";
   birthDate: string;
   tin: string;
@@ -189,7 +189,7 @@ export interface ButtonsFilteringProps {
 }
 // apiService types
 
-export type TRegisterData = {
+export type TSignUpData = {
   email: string;
   password: string;
 };
@@ -197,13 +197,19 @@ export type TRegisterData = {
 export type TLoginData = {
   email: string;
   password: string;
-  userType: "doctor" | "patient";
+  user_type: "doctor" | "patient";
+  rememberMe: boolean;
+};
+
+export type TForgotPassData = {
+  email: string;
+  user_type: "doctor" | "patient";
 };
 
 export type TLoginResponse = {
-  message: string;
+  // message: string;
   token: string;
-  userType: string;
+  // user_type: string;
 };
 
 // export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;

@@ -1,20 +1,25 @@
-import { ReactNode, useState } from "react";
+import { FC, ReactNode, useState } from "react";
+import { TLoginData } from "~/common";
+import { apiService } from "~/common/apiService";
 
 import { AuthContext } from "~/context";
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userType, setUserType] = useState<"doctor" | "patient" | null>(null);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState(apiService.getCurrentUser());
 
-  const login = ()=> {}
-  const logout = ()=> {}
-    
-    
-    
-    
+  const login = async (data: TLoginData) => {
+    const response = await apiService.login(data);
+    setUser(response); // TODO
+  };
+
+  const logout = () => {
+    apiService.logout();
+    setUser(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userType, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};

@@ -3,15 +3,12 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { TLoginData } from "~/common";
 
 interface AuthContextData {
-  isLoggedIn: boolean;
-  userType: "doctor" | "patient" | null;
+  // isLoggedIn: boolean;
+  user: any;
+  // userType: "doctor" | "patient" | null;
   login: (data: TLoginData) => Promise<void>;
   logout: () => void;
 }
 
-export const AuthContext = createContext({});
-// export const AuthContext = createContext({} as AuthContextData);
-
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+// export const AuthContext = createContext({});
+export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
