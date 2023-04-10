@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode } from "react";
+import {MouseEventHandler, ReactElement, ReactNode } from "react";
 import { RouteObject } from "react-router-dom";
 
 export type TAuthFormValues = {
   firstName: string;
+  middleName: string;
   lastName: string;
   email: string;
   mobileNumber: string;
@@ -10,7 +11,10 @@ export type TAuthFormValues = {
   confirmPassword: string;
   loginPassword: string;
   checkbox: boolean;
-  userType: string;
+  userType: "patient" | "doctor";
+  birthDate: string;
+  tin: string;
+  sex: "male" | "female";
 };
 
 export interface IAdvantagesBlockProps {
@@ -100,11 +104,6 @@ export interface AccordionItemProps {
   description: string;
 }
 
-export interface ProfileAppointmentDetailsProps {
-  card: IProfileAppointmentCard;
-  info?: IProfileAppointmentDetailsInfo;
-}
-
 export interface ProfileAppointmentStatusProps {
   status: string;
 }
@@ -153,7 +152,6 @@ export interface IProfileAppointmentDetails {
 }
 export interface IProfileAppointmentDetailsInfoNavigation {
   title: string;
-  path: string;
 }
 
 export interface ProfileAppointmentListItemProps {
@@ -168,6 +166,8 @@ export interface ProfileAppointmentListProps {
 
 export interface ProfileAppointmentDetailsNavigationProps {
   navigation: IProfileAppointmentDetailsInfoNavigation[];
+  setTargetButton: (s: number) => void;
+  targetButton: number;
 }
 
 export interface ProfileAppointmentDetailsInfoDefaultCardProps {
@@ -206,4 +206,10 @@ export type TLoginResponse = {
   userType: string;
 };
 
+// export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
+//
+// export interface  HeaderAdditionData  {
+//    title: string
+//    toggleOnEdit: any
+// }
 // apiService types

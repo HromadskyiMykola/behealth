@@ -14,6 +14,10 @@ import { TAuthFormValues, validationRules } from "~/common";
 
 import { AlertTriangleIcon } from "lucide-react";
 
+type ContactInfoEditProps = {
+  handleEditContactInfo: () => void;
+};
+
 export const ContactInfo = () => (
   <TableContainer
     sx={{
@@ -62,7 +66,7 @@ export const ContactInfo = () => (
   </TableContainer>
 );
 
-export const ContactInfoEdit = () => {
+export const ContactInfoEdit = ({ handleEditContactInfo }: ContactInfoEditProps) => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -122,6 +126,7 @@ export const ContactInfoEdit = () => {
           variant="text"
           onClick={() => {
             reset();
+            handleEditContactInfo();
             // setMode("RECOVERY");
           }}
         >

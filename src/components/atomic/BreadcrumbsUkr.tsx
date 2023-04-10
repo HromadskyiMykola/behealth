@@ -51,8 +51,7 @@ export function BreadcrumbsUkr() {
       {pathNames.map((name, index) => {
         const label = findRouteLabel(name, allRoutes);
         const isLast = index === pathNames.length - 1;
-        const routeTo = `${pathNames.slice(0, index).join("/")}`;
-
+        const routeTo = `/${pathNames.slice(0, index + 1).join("/")}`;
         return isLast ? (
           <Typography variant="caption" key={routeTo}>
             {label || name}

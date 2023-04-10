@@ -18,12 +18,12 @@ export const MobileIconsList = () => {
       }}
     >
       <FooterContactPhone
-        icon={CONTACT_PHONES_KYIVSTAR.icon}
-        phone={CONTACT_PHONES_KYIVSTAR.phone}
-      />
-      <FooterContactPhone
         icon={CONTACT_PHONES_LIFE.icon}
         phone={CONTACT_PHONES_LIFE.phone}
+      />
+      <FooterContactPhone
+        icon={CONTACT_PHONES_KYIVSTAR.icon}
+        phone={CONTACT_PHONES_KYIVSTAR.phone}
       />
       <FooterContactPhone
         icon={CONTACT_PHONES_VODAFON.icon}

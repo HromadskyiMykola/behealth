@@ -1,7 +1,8 @@
 import React from "react";
 import { SvgIcon } from "@mui/material";
+import { SvgIconsProps } from "~/common";
 
-export const Gastroenterologist = (props: any) => {
+export const Gastroenterologist = (props: SvgIconsProps) => {
   return (
     <SvgIcon {...props} sx={{ width: "36px", height: "36px" }}>
       <path

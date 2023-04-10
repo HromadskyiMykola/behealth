@@ -1,8 +1,8 @@
-import { Laptop } from "../../assets/random/Laptop";
+import { Laptop } from "~/assets/CustomIcon/Laptop";
 import { MUILink } from "./MUILink";
-import { Heart } from "../../assets/random/Heart";
-import { Shield } from "../../assets/random/Shield";
-import { HeadPhones } from "../../assets/random/HeadPhones";
+import { Heart } from "~/assets/CustomIcon/Heart";
+import { Shield } from "~/assets/CustomIcon/Shield";
+import { HeadPhones } from "~/assets/CustomIcon/HeadPhones";
 
 export const ADVANTAGES_LIST = [
   {

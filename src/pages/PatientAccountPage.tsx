@@ -1,6 +1,13 @@
 import { SyntheticEvent, useEffect, useMemo, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Divider, Grid, Paper, Tabs, Typography } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  Paper,
+  Tabs,
+  Typography,
+  Container,
+} from "@mui/material";
 
 import {
   ClockIcon,
@@ -11,7 +18,7 @@ import {
   LogOutIcon,
 } from "lucide-react";
 
-import { BreadcrumbsUkr, TabLink } from "~atomic/index";
+import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
 
 import { ERouteNames } from "~/routes/routeNames";
 
@@ -108,19 +115,21 @@ const NavTabs = () => {
 
 export function PatientAccountPage() {
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <BreadcrumbsUkr />
+    <Container sx={{ mb: "30px", mt: "30px" }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <BreadcrumbsUkr />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <NavTabs />
+        </Grid>
+        <Grid item xs>
+          <Outlet />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
-      </Grid>
-      <Grid item xs={3}>
-        <NavTabs />
-      </Grid>
-      <Grid item xs>
-        <Outlet />
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

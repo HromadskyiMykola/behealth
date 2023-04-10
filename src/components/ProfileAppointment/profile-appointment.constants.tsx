@@ -156,12 +156,12 @@ export const PROFILE_APPOINTMENT_DETAILS_INFO: IProfileAppointmentDetails = {
     },
     {
       title: "Встановлені діагнози",
-      details: [
-        {
-          title: "Осноний діагноз",
-          text: "Гостра респіраторна вірусна інфекція",
-        },
-      ],
+      // details: [
+      //   {
+      //     title: "Осноний діагноз",
+      //     text: "Гостра респіраторна вірусна інфекція",
+      //   },
+      // ],
     },
     {
       title: "Послуги",
@@ -176,11 +176,11 @@ export const PROFILE_APPOINTMENT_DETAILS_INFO: IProfileAppointmentDetails = {
     },
     {
       title: "Призначення",
-      // details: [
-      //   {
-      //     text: "Постільний режим",
-      //   },
-      // ],
+      details: [
+        {
+          text: "Постільний режим",
+        },
+      ],
     },
   ],
   medicalRecords: [
@@ -200,10 +200,8 @@ export const PROFILE_APPOINTMENT_DETAILS_INFO_NAVIGATION: IProfileAppointmentDet
   [
     {
       title: "Дані прийому",
-      path: "/visit-info",
     },
     {
       title: "Додані медзаписи",
-      path: "/medical-records",
     },
   ];

@@ -9,7 +9,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "~atomic/index";
+import { CustomizedInput, PasswordInput } from "~/components/atomic/index";
 import { UserTypeSelector, UserAgreement } from ".";
 
 import { ModalContext } from "~/context";
