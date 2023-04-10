@@ -3,7 +3,7 @@ import { apiService, TLoginData, TLoginResponse } from "~/common";
 
 interface AuthContextData {
   authenticatedUser: { token: string; type: string } | null;
-  login: (data: TLoginData) => Promise<void>;
+  login: (data: TLoginData) => Promise<TLoginResponse>;
   logout: () => void;
 }
 
@@ -32,8 +32,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (response.token) {
       const user = { ...response, type: user_type };
       const storage = rememberMe ? localStorage : sessionStorage;
+
       storage.setItem("user", JSON.stringify(user));
       setUser(user);
+
+      return user;
     }
   };
 

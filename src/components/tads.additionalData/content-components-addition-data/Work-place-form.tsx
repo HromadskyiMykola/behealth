@@ -9,7 +9,7 @@ import Box from "@mui/material/Box/Box";
 import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { SelectWithoutPlaceholder } from "~/components/atomic";
+import { SelectWithPlaceholder } from "~/components/atomic";
 
 interface IFormInput {
   type: string;
@@ -99,7 +99,7 @@ export const WorkPlaceForm = ({ closeEditForm }: any) => {
             name="type"
             control={control}
             render={({ field }) => (
-              <SelectWithoutPlaceholder
+              <SelectWithPlaceholder
                 placeholder={TEXT_CHOICES.placeholder.select}
                 label={TEXT_CHOICES.title.select}
                 {...field}
@@ -113,7 +113,7 @@ export const WorkPlaceForm = ({ closeEditForm }: any) => {
                     </MenuItem>
                   );
                 })}
-              </SelectWithoutPlaceholder>
+              </SelectWithPlaceholder>
             )}
           />
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>

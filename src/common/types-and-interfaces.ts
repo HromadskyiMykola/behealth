@@ -209,7 +209,7 @@ export type TForgotPassData = {
 export type TLoginResponse = {
   // message: string;
   token: string;
-  // user_type: string;
+  type: string;
 };
 
 // export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
