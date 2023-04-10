@@ -4,7 +4,7 @@ import { Glasses, Smile } from "lucide-react";
 
 interface UserTypeSelectorProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: "patient" | "doctor") => void;
 }
 
 const IconInWraparound = ({

@@ -3,7 +3,7 @@ import { Dialog, Stack, Typography } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
 
-import { ModalContext } from "~/store";
+import { ModalContext } from "~/context";
 import { ButtonTimer } from "../atomic";
 
 export function ThanksModal() {
