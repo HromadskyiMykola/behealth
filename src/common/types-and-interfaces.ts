@@ -198,7 +198,7 @@ export type TLoginData = {
   email: string;
   password: string;
   user_type: "doctor" | "patient";
-  rememberMe: boolean;
+  rememberMe?: boolean;
 };
 
 export type TForgotPassData = {

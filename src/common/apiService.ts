@@ -14,7 +14,7 @@ class ApiService {
 
   constructor() {
     this.apiClient = axios.create({
-      baseURL: "http://167.99.136.207/api/v1/",
+      baseURL: "https://www.behealth.pp.ua/api/v1/",
     });
   }
 
@@ -23,34 +23,19 @@ class ApiService {
     return response.data;
   }
 
-  async confirmation(data: string) {
+  async confirmation(data: string | undefined) {
     const response = await this.apiClient.post("confirmation", data);
+    console.log("confirmation func >>>", response);
+    
     return response.data;
   }
 
-  async login({ rememberMe, ...data }: TLoginData): Promise<TLoginResponse> {
-    const response = await this.apiClient.post<TLoginResponse>("login", data);
-
-    if (response.data.token) {
-      const storage = rememberMe ? localStorage : sessionStorage;
-      storage.setItem(
-        "user",
-        JSON.stringify({ ...response.data, userType: data.user_type })
-      );
-    }
-
+  async login(data: TLoginData) {
+    const response = await this.apiClient.post("login", data);
     return response.data;
   }
 
-  logout() {
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("user");
-  }
-
-  getCurrentUser() {
-    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
-    return user ? JSON.parse(user) : null;
-  }
+  logout() {}
 
   async forgotPassword(data: TForgotPassData) {
     const response = await axios.post("forgot", data);

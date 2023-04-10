@@ -1,5 +1,11 @@
-import { SyntheticEvent, useEffect, useMemo, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   Divider,
   Grid,
@@ -21,11 +27,19 @@ import {
 import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
 
 import { ERouteNames } from "~/routes/routeNames";
+import { useAuth } from "~/components/providers";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
 const NavTabs = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = useCallback(() => {
+    navigate(ERouteNames.HOME);
+    logout();
+  }, []);
 
   const matchPath = useMemo(() => {
     const tabsValues = [
@@ -106,7 +120,8 @@ const NavTabs = () => {
           icon={<LogOutIcon style={{ flexShrink: 0 }} size={22} />}
           value={"logout"}
           label="Вихід"
-          to="logout"
+          to=""
+          onClick={handleLogout}
         />
       </Tabs>
     </Paper>

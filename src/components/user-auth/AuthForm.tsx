@@ -9,14 +9,17 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { CustomizedInput, PasswordInput } from "~/components/atomic/index";
+import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement } from ".";
 
 import { ModalContext } from "~/context";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 import { apiService } from "~/common/apiService";
+import { useAuth } from "../providers/AuthProvider";
+import { redirect } from "react-router-dom";
+import { ERouteNames } from "~/routes/routeNames";
 
-type Props = {
+type TAuthFormProps = {
   mode: TAuthMode;
   setMode: (mode: TAuthMode) => void;
 };
@@ -27,8 +30,10 @@ const showMode = {
   RECOVERY: "Відновлення паролю",
 };
 
-export function AuthForm({ mode, setMode }: Props) {
-  const { handleThanksModalOpen } = useContext(ModalContext);
+export function AuthForm({ mode, setMode }: TAuthFormProps) {
+  const auth = useAuth();
+  const { handleThanksModalOpen, handleMainModalClose } =
+    useContext(ModalContext);
   const [userType, setUserType] = useState<"patient" | "doctor">("patient");
 
   const isLoginMode: boolean = mode === "LOGIN";
@@ -44,25 +49,25 @@ export function AuthForm({ mode, setMode }: Props) {
   const { errors } = formState;
 
   const onSubmit = (data: TAuthFormValues) => {
-    // handleThanksModalOpen();
-    const submittedData = { ...data, userType };
-
     if (isRegisterMode) {
       const { email, newPassword: password } = data;
       apiService
         .signUp({ email, password })
-        .then(console.log)
         .then(handleThanksModalOpen);
     }
 
     if (isLoginMode) {
-      console.log(data);
-
       const { rememberMe, email, newPassword: password } = data;
-      apiService
+      auth
         .login({ email, password, user_type: userType, rememberMe })
-        .then(console.log)
-        // .then();
+        .then(() => {
+          handleMainModalClose();
+          redirect(
+            auth.authenticatedUser?.type === "patient"
+              ? ERouteNames.PATIENT_ACCOUNT
+              : ERouteNames.DOCTOR_ACCOUNT
+          );
+        });
     }
 
     // console.log(formState);

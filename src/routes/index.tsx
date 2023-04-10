@@ -22,6 +22,11 @@ export const commonRoutes: TRoute[] = [
     element: <Pages.ClinicsPage />,
     label: "Заклади",
   },
+  {
+    path: "confirmation:token",
+    element: <Pages.PatientAccountAdditionalData />,
+    label: "підтвердження пошти",
+  },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];
 
@@ -71,13 +76,6 @@ export const patientRoutes: TRoute[] = [
         element: <Pages.PatientAccountPasswordNSecurity />,
         label: "Додаткові дані",
       },
-      // plug
-      {
-        path: "logout",
-        element: <h2>We will miss you...</h2>,
-        label: "Вихід",
-      },
-      // plug
     ],
   } as TRoute,
 ];
