@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
 import { Dialog, Stack, Typography } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
 
-import { ModalContext } from "~/context";
+import { useModalState } from "../providers";
 import { ButtonTimer } from "../atomic";
 
 export function ThanksModal() {
-  const { openThanksModal, handleThanksModalClose } = useContext(ModalContext);
+  const { openThanksModal, handleThanksModalClose } = useModalState();
 
   return (
     <Dialog

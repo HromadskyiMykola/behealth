@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
@@ -12,7 +12,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement } from ".";
 
-import { ModalContext } from "~/context";
+import { useModalState } from "../providers";
 import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
 import { apiService } from "~/common/apiService";
 import { useAuth } from "../providers/AuthProvider";
@@ -32,8 +32,7 @@ const showMode = {
 
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const auth = useAuth();
-  const { handleThanksModalOpen, handleMainModalClose } =
-    useContext(ModalContext);
+  const { handleThanksModalOpen, handleMainModalClose } = useModalState();
   const [userType, setUserType] = useState<"patient" | "doctor">("patient");
   const navigate = useNavigate();
 
