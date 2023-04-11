@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   useTheme,
   useMediaQuery,
@@ -13,7 +13,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 
 import { TAuthMode } from "~/common";
-import { ModalContext } from "~/context";
+import { useModalState } from "../providers";
 
 import { AuthForm } from ".";
 
@@ -29,7 +29,7 @@ export function FormModal() {
     },
   } = useTheme();
 
-  const { openMainModal, handleMainModalClose } = useContext(ModalContext);
+  const { openMainModal, handleMainModalClose } = useModalState();
 
   const [mode, setMode] = useState<TAuthMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
