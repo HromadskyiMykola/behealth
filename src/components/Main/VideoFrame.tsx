@@ -10,6 +10,7 @@ import {
 import { Play } from "lucide-react";
 import videoImage from "../../assets/images/video-frame.png";
 import { MUILink } from "./MUILink";
+import Video from "./Video";
 
 export const VideoFrame = () => {
   const [play, setPlay] = useState(false);
@@ -27,40 +28,7 @@ export const VideoFrame = () => {
     <Box sx={{ pb: "120px", background: "#f7fcf9" }}>
       <Container sx={{ display: "flex", gap: "32px", alignItems: " center" }}>
         <Box>
-          <Card
-            raised={true}
-            sx={{
-              borderRadius: "26px",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            <CardActionArea onClick={handleVideoClick}>
-              <CardMedia
-                ref={videoRef}
-                controls={showControl}
-                component="video"
-                //todo add source video
-                src="https://assets.codepen.io/6093409/river.mp4"
-              />
-              {!play && (
-                <Box
-                  position="absolute"
-                  top="40%"
-                  left="45%"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  height="80px"
-                  width="80px"
-                  borderRadius="200px"
-                  bgcolor="rgba(255, 255, 255, 0.15)"
-                >
-                  <Play color="#E7FFF3" />
-                </Box>
-              )}
-            </CardActionArea>
-          </Card>
+          <Video />
         </Box>
         <Box
           sx={{
