@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { IconButton, Typography } from "@mui/material";
 import { ArrowForwardIosRounded } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { MUILinkProps } from "../../common/types-and-interfaces";
+import { MUILinkProps } from "~/common";
 
 export const MUILink: FC<MUILinkProps> = ({ path, text }) => {
   return (

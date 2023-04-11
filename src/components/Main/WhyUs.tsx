@@ -2,16 +2,14 @@ import React from "react";
 import {
   Box,
   Container,
-  IconButton,
   Typography,
-  Grid,
   List,
 } from "@mui/material";
 import background from "../../assets/images/why-us-background.png";
 import {
   ADVANTAGES_LIST,
   WHY_PEOPLE_CHOOSE_BEHEALTH,
-} from "./advantages.constants";
+} from "./main.constants";
 import { AdvantagesItem } from "./AdvantagesItem";
 import { WhyUsContent } from "./WhyUsContent";
 

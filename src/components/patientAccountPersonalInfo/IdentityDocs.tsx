@@ -14,7 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import {
   CustomizedInput,
   DatePickerInput,
-  SelectWithoutPlaceholder,
+  SelectWithPlaceholder,
 } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
 import { ArrowBigRight } from "lucide-react";
@@ -109,7 +109,7 @@ export const IdentityDocsEdit = ({
             defaultValue=""
             rules={validationRules.lastName}
             render={({ field }) => (
-              <SelectWithoutPlaceholder
+              <SelectWithPlaceholder
                 placeholder="тест"
                 label="Прізвище*"
                 {...field}
@@ -119,7 +119,7 @@ export const IdentityDocsEdit = ({
                 <MenuItem value="var 1">var 1</MenuItem>
                 <MenuItem value="var 2">var 2</MenuItem>
                 <MenuItem value="var 3">var 3</MenuItem>
-              </SelectWithoutPlaceholder>
+              </SelectWithPlaceholder>
             )}
           />
         </Grid>

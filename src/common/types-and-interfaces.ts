@@ -14,7 +14,7 @@ export type TAuthFormValues = {
   userType: "patient" | "doctor";
   birthDate: string;
   tin: string;
-  sex: "male" | "female";
+  gender: "male" | "female" | "";
 };
 
 export interface IAdvantagesBlockProps {
@@ -209,7 +209,7 @@ export type TForgotPassData = {
 export type TLoginResponse = {
   // message: string;
   token: string;
-  // user_type: string;
+  type: string;
 };
 
 // export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
