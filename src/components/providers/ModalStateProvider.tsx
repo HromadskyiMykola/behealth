@@ -7,17 +7,14 @@ import {
   useState,
 } from "react";
 
+type TSimpleModalMessage = string | boolean | ReactNode;
+
 interface IModalContext {
   openMainModal: boolean;
-  handleMainModalOpen: () => void;
-  handleMainModalClose: () => void;
-  
-  openThanksModal: boolean;
-  handleThanksModalOpen: () => void;
-  handleThanksModalClose: () => void;
-  
-  openSimpleModal: boolean;
-  handleSimpleModalOpen: Dispatch<SetStateAction<boolean>>;
+  setOpenMainModal: Dispatch<SetStateAction<boolean>>;
+
+  simpleModalMessage: TSimpleModalMessage;
+  setSimpleModalMessage: Dispatch<SetStateAction<TSimpleModalMessage>>;
 }
 
 export const ModalContext = createContext<IModalContext>({} as IModalContext);
@@ -26,30 +23,18 @@ export const useModalState = () => useContext(ModalContext);
 
 export const ModalStateProvider = ({ children }: { children: ReactNode }) => {
   const [openMainModal, setOpenMainModal] = useState(false);
-  const handleMainModalOpen = () => setOpenMainModal(true);
-  const handleMainModalClose = () => setOpenMainModal(false);
 
-  const [openThanksModal, setOpenThanksModal] = useState(false);
-  const handleThanksModalOpen = () => setOpenThanksModal(true);
-  const handleThanksModalClose = () => setOpenThanksModal(false);
-
-  const [openSimpleModal, handleSimpleModalOpen] = useState(false);
+  const [simpleModalMessage, setSimpleModalMessage] = useState<TSimpleModalMessage>(false);
 
   const value = {
     openMainModal,
-    handleMainModalOpen,
-    handleMainModalClose,
+    setOpenMainModal,
 
-    openThanksModal,
-    handleThanksModalOpen,
-    handleThanksModalClose,
-
-    openSimpleModal,
-    handleSimpleModalOpen,
+    simpleModalMessage,
+    setSimpleModalMessage,
   };
 
   return (
     <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
   );
 };
-

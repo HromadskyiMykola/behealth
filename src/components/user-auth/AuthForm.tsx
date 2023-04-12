@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+
 import {
   Box,
   Button,
@@ -10,13 +12,17 @@ import {
 } from "@mui/material";
 
 import { CustomizedInput, PasswordInput } from "../atomic";
-import { UserTypeSelector, UserAgreement } from ".";
+import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState } from "../providers";
-import { TAuthMode, TAuthFormValues, validationRules } from "~/common";
-import { apiService } from "~/common/apiService";
-import { useAuth } from "../providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useModalState, useAuth } from "../providers";
+
+import {
+  apiService,
+  TAuthMode,
+  TAuthFormValues,
+  validationRules,
+} from "~/common";
+
 import { ERouteNames } from "~/routes/routeNames";
 
 type TAuthFormProps = {
@@ -32,7 +38,7 @@ const showMode = {
 
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const auth = useAuth();
-  const { handleThanksModalOpen, handleMainModalClose } = useModalState();
+  const { setOpenMainModal, setSimpleModalMessage } = useModalState();
   const [userType, setUserType] = useState<"patient" | "doctor">("patient");
   const navigate = useNavigate();
 
@@ -51,178 +57,189 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const onSubmit = (data: TAuthFormValues) => {
     if (isRegisterMode) {
       const { email, newPassword: password } = data;
-      apiService.signUp({ email, password }).then(handleThanksModalOpen);
+
+      apiService
+        .signUp({ email, password })
+        .then(() => {
+          setSimpleModalMessage(<ThanksSingUpMessage />);
+        })
+        .catch(setSimpleModalMessage);
     }
 
     if (isLoginMode) {
       const { rememberMe, email, newPassword: password } = data;
+
       auth
         .login({ email, password, user_type: userType, rememberMe })
         .then((user) => {
-          handleMainModalClose();
+          setOpenMainModal(false);
+
           navigate(
             user.type === "patient"
               ? ERouteNames.PATIENT_ACCOUNT
               : ERouteNames.DOCTOR_ACCOUNT
           );
-        });
+        })
+        .catch(setSimpleModalMessage);
     }
 
     // console.log(formState);
   };
 
   return (
-    <Box>
-      <UserTypeSelector value={userType} onChange={setUserType} />
-
-      <Stack
-        sx={{
-          p: "32px",
-          backgroundColor: "#FFF",
-          borderRadius: "12px",
-        }}
-      >
-        <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
-          {showMode[mode]}
-        </Typography>
+    <>
+      <Box>
+        <UserTypeSelector value={userType} onChange={setUserType} />
 
         <Stack
-          direction={{ xs: "column", sm: "row" }}
-          alignItems="center"
-          justifyContent="center"
-          mb="24px"
+          sx={{
+            p: "32px",
+            backgroundColor: "#FFF",
+            borderRadius: "12px",
+          }}
         >
-          <Typography variant="body2" sx={{ color: "#8E918F" }}>
-            {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
+          <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
+            {showMode[mode]}
           </Typography>
 
-          <Button
-            sx={{ ml: "4px", p: 0 }}
-            variant="text"
-            onClick={() => {
-              reset();
-              setMode(isLoginMode ? "REGISTER" : "LOGIN");
-            }}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            alignItems="center"
+            justifyContent="center"
+            mb="24px"
           >
-            {isLoginMode ? "Зареєструватися" : "Увійти"}
-          </Button>
-        </Stack>
+            <Typography variant="body2" sx={{ color: "#8E918F" }}>
+              {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
+            </Typography>
 
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
-          <Controller // EMAIL
-            name="email"
-            control={control}
-            defaultValue=""
-            rules={validationRules.email}
-            render={({ field }) => (
-              <CustomizedInput
-                label="Електронна пошта"
-                placeholder="mail@example.com"
-                autoFocus={isLoginMode || isRecoveryMode}
-                {...field}
-                error={!!errors.email}
-                helperText={errors.email?.message || " "}
-              />
-            )}
-          />
-
-          {(isLoginMode || isRegisterMode) && ( // PASSWORD
-            <Controller
-              name="newPassword"
-              control={control}
-              defaultValue=""
-              rules={
-                isRegisterMode
-                  ? validationRules.newPassword
-                  : validationRules.loginPassword
-              }
-              render={({ field }) => (
-                <PasswordInput
-                  label="Пароль"
-                  placeholder="123qwe!@#QWE"
-                  {...field}
-                  error={!!errors.newPassword}
-                  helperText={errors.newPassword?.message || " "}
-                />
-              )}
-            />
-          )}
-
-          {isRegisterMode && ( // CONFIRM PASS
-            <Controller
-              name="confirmPassword"
-              control={control}
-              defaultValue=""
-              rules={validationRules.confirmPassword(watch("newPassword"))}
-              render={({ field }) => (
-                <PasswordInput
-                  label="Підтвердження паролю"
-                  placeholder="123qwe!@#QWE"
-                  {...field}
-                  error={!!errors.confirmPassword}
-                  helperText={errors.confirmPassword?.message || " "}
-                />
-              )}
-            />
-          )}
-
-          {isLoginMode && (
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              alignItems="center"
-              justifyContent="space-between"
+            <Button
+              sx={{ ml: "4px", p: 0 }}
+              variant="text"
+              onClick={() => {
+                reset();
+                setMode(isLoginMode ? "REGISTER" : "LOGIN");
+              }}
             >
+              {isLoginMode ? "Зареєструватися" : "Увійти"}
+            </Button>
+          </Stack>
+
+          <form noValidate onSubmit={handleSubmit(onSubmit)}>
+            <Controller // EMAIL
+              name="email"
+              control={control}
+              defaultValue=""
+              rules={validationRules.email}
+              render={({ field }) => (
+                <CustomizedInput
+                  label="Електронна пошта"
+                  placeholder="mail@example.com"
+                  autoFocus={isLoginMode || isRecoveryMode}
+                  {...field}
+                  error={!!errors.email}
+                  helperText={errors.email?.message || " "}
+                />
+              )}
+            />
+
+            {(isLoginMode || isRegisterMode) && ( // PASSWORD
               <Controller
-                name="rememberMe"
+                name="newPassword"
                 control={control}
-                defaultValue={false}
+                defaultValue=""
+                rules={
+                  isRegisterMode
+                    ? validationRules.newPassword
+                    : validationRules.loginPassword
+                }
                 render={({ field }) => (
-                  <FormControlLabel
-                    componentsProps={{ typography: { variant: "body2" } }}
-                    control={<Checkbox {...field} />}
-                    label="Запамʼятати мене"
+                  <PasswordInput
+                    label="Пароль"
+                    placeholder="123qwe!@#QWE"
+                    {...field}
+                    error={!!errors.newPassword}
+                    helperText={errors.newPassword?.message || " "}
                   />
                 )}
               />
+            )}
 
-              <Button
-                variant="text"
-                onClick={() => {
-                  reset();
-                  setMode("RECOVERY");
-                }}
-              >
-                {"Забули пароль?"}
-              </Button>
-            </Stack>
-          )}
-
-          {isRegisterMode && (
-            <Stack direction="row" alignItems="flex-start">
+            {isRegisterMode && ( // CONFIRM PASS
               <Controller
-                name="rememberMe"
+                name="confirmPassword"
                 control={control}
-                defaultValue={false}
-                rules={{ required: true }}
-                render={({ field }) => <Checkbox {...field} />}
+                defaultValue=""
+                rules={validationRules.confirmPassword(watch("newPassword"))}
+                render={({ field }) => (
+                  <PasswordInput
+                    label="Підтвердження паролю"
+                    placeholder="123qwe!@#QWE"
+                    {...field}
+                    error={!!errors.confirmPassword}
+                    helperText={errors.confirmPassword?.message || " "}
+                  />
+                )}
               />
-              <UserAgreement />
-            </Stack>
-          )}
+            )}
 
-          <Button
-            sx={{ mt: "24px" }}
-            disabled={!formState.isValid}
-            type="submit"
-            variant="contained"
-            // sx={{ backgroundColor: primaryColor }}
-          >
-            {isLoginMode && "Увійти"}
-            {isRegisterMode && "Зареєструватися"}
-            {isRecoveryMode && "Відправити інструкцію"}
-          </Button>
-        </form>
-      </Stack>
-    </Box>
+            {isLoginMode && (
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Controller
+                  name="rememberMe"
+                  control={control}
+                  defaultValue={false}
+                  render={({ field }) => (
+                    <FormControlLabel
+                      componentsProps={{ typography: { variant: "body2" } }}
+                      control={<Checkbox {...field} />}
+                      label="Запамʼятати мене"
+                    />
+                  )}
+                />
+
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    reset();
+                    setMode("RECOVERY");
+                  }}
+                >
+                  {"Забули пароль?"}
+                </Button>
+              </Stack>
+            )}
+
+            {isRegisterMode && (
+              <Stack direction="row" alignItems="flex-start">
+                <Controller
+                  name="rememberMe"
+                  control={control}
+                  defaultValue={false}
+                  rules={{ required: true }}
+                  render={({ field }) => <Checkbox {...field} />}
+                />
+                <UserAgreement />
+              </Stack>
+            )}
+
+            <Button
+              sx={{ mt: "24px" }}
+              disabled={!formState.isValid}
+              type="submit"
+              variant="contained"
+              // sx={{ backgroundColor: primaryColor }}
+            >
+              {isLoginMode && "Увійти"}
+              {isRegisterMode && "Зареєструватися"}
+              {isRecoveryMode && "Відправити інструкцію"}
+            </Button>
+          </form>
+        </Stack>
+      </Box>
+    </>
   );
 }

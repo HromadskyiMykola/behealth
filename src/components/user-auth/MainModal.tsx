@@ -29,7 +29,7 @@ export function FormModal() {
     },
   } = useTheme();
 
-  const { openMainModal, handleMainModalClose } = useModalState();
+  const { openMainModal, setOpenMainModal } = useModalState();
 
   const [mode, setMode] = useState<TAuthMode>("LOGIN");
   const isLoginMode: boolean = mode === "LOGIN";
@@ -50,7 +50,7 @@ export function FormModal() {
       fullScreen={mobileDevice}
       scroll={"body"}
       open={openMainModal}
-      onClose={handleMainModalClose}
+      onClose={() => setOpenMainModal(false)}
     >
       <DialogContent
         sx={{
@@ -69,7 +69,7 @@ export function FormModal() {
             color: secondaryColor,
           }}
           aria-label="close"
-          onClick={handleMainModalClose}
+          onClick={() => setOpenMainModal(false)}
         >
           <CloseIcon fontSize="large" />
         </IconButton>
