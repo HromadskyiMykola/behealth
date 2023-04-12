@@ -12,20 +12,19 @@ const EmailConfirmation = () => {
   console.log("confirmation page >>>", token);
 
   useEffect(() => {
-    const confirmEmail = async () => {
-      try {
-        await apiService.confirmation(token);
+    apiService.confirmation(token).then((data)=>{
         setIsConfirmed(true);
         authenticatedUser?.type === "patient"
           ? redirect(ERouteNames.PATIENT_ACCOUNT)
           : redirect(ERouteNames.DOCTOR_ACCOUNT);
-      } catch (error) {
-        setIsConfirmed(false);
-      }
-    };
+            console.log("data >>>", data);
+        })
+        .catch((error) => {
+          console.warn("Debugging >>>>", error);
+        });
+   
 
-    confirmEmail();
-  }, [token]);
+  }, []);
 
   return isConfirmed ? (
     <div>
