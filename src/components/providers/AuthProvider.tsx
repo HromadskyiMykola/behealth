@@ -1,10 +1,11 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { apiService, TLoginData, TLoginResponse } from "~/common";
+
+import { TSignInProvider } from "~/common";
 
 interface AuthContextData {
   authenticatedUser: { token: string; type: string } | null;
-  login: (data: TLoginData) => Promise<TLoginResponse>;
-  logout: () => void;
+  singInProvider: (data: TSignInProvider) => void;
+  singOutProvider: () => void;
 }
 
 export const AuthContext = createContext<AuthContextData>(
@@ -21,34 +22,29 @@ const getCurrentUser = () => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authenticatedUser, setUser] = useState(getCurrentUser());
 
-  const login = async ({
-    email,
-    password,
-    user_type,
+  const singInProvider = async ({
+    token,
+    type,
     rememberMe,
-  }: TLoginData) => {
-    const response = await apiService.login({ email, password, user_type });
+  }: TSignInProvider) => {
+    const user = { token, type };
+    const storage = rememberMe ? localStorage : sessionStorage;
 
-    if (response.token) {
-      const user = { ...response, type: user_type };
-      const storage = rememberMe ? localStorage : sessionStorage;
-
-      storage.setItem("user", JSON.stringify(user));
-      setUser(user);
-
-      return user;
-    }
+    storage.setItem("user", JSON.stringify(user));
+    setUser(user);
   };
 
-  const logout = () => {
-    apiService.logout();
+  const singOutProvider = () => {
+    // apiService.logout();
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ authenticatedUser, login, logout }}>
+    <AuthContext.Provider
+      value={{ authenticatedUser, singInProvider, singOutProvider }}
+    >
       {children}
     </AuthContext.Provider>
   );

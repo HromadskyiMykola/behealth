@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 
@@ -9,6 +9,7 @@ import {
   Stack,
   FormControlLabel,
   Checkbox,
+  LinearProgress,
 } from "@mui/material";
 
 import { CustomizedInput, PasswordInput } from "../atomic";
@@ -17,34 +18,30 @@ import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 import { useModalState, useAuth } from "../providers";
 
 import {
-  apiService,
-  TAuthMode,
   TAuthFormValues,
   validationRules,
+  EUserType,
+  EAuthMode,
+  useApiService,
 } from "~/common";
 
 import { ERouteNames } from "~/routes/routeNames";
 
 type TAuthFormProps = {
-  mode: TAuthMode;
-  setMode: (mode: TAuthMode) => void;
-};
-
-const showMode = {
-  LOGIN: "Вхід",
-  REGISTER: "Реєстрація",
-  RECOVERY: "Відновлення паролю",
+  mode: EAuthMode;
+  setMode: (mode: EAuthMode) => void;
 };
 
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
-  const auth = useAuth();
+  const [userType, setUserType] = useState<EUserType>(EUserType.PATIENT);
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
-  const [userType, setUserType] = useState<"patient" | "doctor">("patient");
+  const { singInProvider } = useAuth();
   const navigate = useNavigate();
+  const { apiError, loading, signUp, signIn, forgotPassword } = useApiService();
 
-  const isLoginMode: boolean = mode === "LOGIN";
-  const isRegisterMode: boolean = mode === "REGISTER";
-  const isRecoveryMode: boolean = mode === "RECOVERY";
+  const isLoginMode: boolean = mode === EAuthMode.LOGIN;
+  const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
+  const isRecoveryMode: boolean = mode === EAuthMode.RECOVERY;
 
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({
@@ -58,39 +55,56 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     if (isRegisterMode) {
       const { email, newPassword: password } = data;
 
-      apiService
-        .signUp({ email, password })
-        .then(() => {
-          setSimpleModalMessage(<ThanksSingUpMessage />);
-        })
-        .catch(setSimpleModalMessage);
+      signUp({ email, password }).then(() => {
+        reset();
+        setSimpleModalMessage(<ThanksSingUpMessage />);
+      });
     }
 
     if (isLoginMode) {
       const { rememberMe, email, newPassword: password } = data;
 
-      auth
-        .login({ email, password, user_type: userType, rememberMe })
-        .then((user) => {
-          setOpenMainModal(false);
+      signIn({ email, password, user_type: userType }).then((data) => {
+        if (!data.token) return;
 
-          navigate(
-            user.type === "patient"
-              ? ERouteNames.PATIENT_ACCOUNT
-              : ERouteNames.DOCTOR_ACCOUNT
-          );
-        })
-        .catch(setSimpleModalMessage);
+        singInProvider({ ...data, type: userType, rememberMe });
+        setOpenMainModal(false);
+        setSimpleModalMessage(false);
+
+        navigate(
+          userType === EUserType.PATIENT
+            ? ERouteNames.PATIENT_ACCOUNT
+            : ERouteNames.DOCTOR_ACCOUNT
+        );
+      });
+    }
+
+    if (isRecoveryMode) {
+      const { email } = data;
+
+      forgotPassword({ email, user_type: userType }).then(
+        setSimpleModalMessage
+      );
     }
 
     // console.log(formState);
   };
 
+  useEffect(() => {
+    apiError && setSimpleModalMessage(apiError);
+
+    loading &&
+      setSimpleModalMessage(
+        <LinearProgress color="success" sx={{ width: "100%" }} />
+      );
+  }, [apiError, loading]);
+
   return (
     <>
       <Box>
-        <UserTypeSelector value={userType} onChange={setUserType} />
-
+        {!isRegisterMode && (
+          <UserTypeSelector value={userType} onChange={setUserType} />
+        )}
         <Stack
           sx={{
             p: "32px",
@@ -99,7 +113,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
           }}
         >
           <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
-            {showMode[mode]}
+            {mode}
           </Typography>
 
           <Stack
@@ -117,7 +131,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               variant="text"
               onClick={() => {
                 reset();
-                setMode(isLoginMode ? "REGISTER" : "LOGIN");
+                setMode(isLoginMode ? EAuthMode.REGISTER : EAuthMode.LOGIN);
               }}
             >
               {isLoginMode ? "Зареєструватися" : "Увійти"}
@@ -195,7 +209,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                   render={({ field }) => (
                     <FormControlLabel
                       componentsProps={{ typography: { variant: "body2" } }}
-                      control={<Checkbox {...field} />}
+                      control={<Checkbox {...field} checked={field.value} />}
                       label="Запамʼятати мене"
                     />
                   )}
@@ -205,7 +219,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                   variant="text"
                   onClick={() => {
                     reset();
-                    setMode("RECOVERY");
+                    setMode(EAuthMode.RECOVERY);
                   }}
                 >
                   {"Забули пароль?"}
@@ -220,7 +234,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                   control={control}
                   defaultValue={false}
                   rules={{ required: true }}
-                  render={({ field }) => <Checkbox {...field} />}
+                  render={({ field }) => (
+                    <Checkbox {...field} checked={field.value} />
+                  )}
                 />
                 <UserAgreement />
               </Stack>

@@ -1,6 +1,11 @@
 import { MouseEventHandler, ReactElement, ReactNode } from "react";
 import { RouteObject } from "react-router-dom";
 
+export const enum EUserType {
+  PATIENT = "patient",
+  DOCTOR = "doctor",
+}
+
 export type TAuthFormValues = {
   firstName: string;
   middleName: string;
@@ -11,10 +16,12 @@ export type TAuthFormValues = {
   confirmPassword: string;
   loginPassword: string;
   rememberMe: boolean;
-  userType: "patient" | "doctor";
+  userType: EUserType;
   birthDate: string;
   tin: string;
   gender: "male" | "female" | "";
+  docType: string;
+  docSerialNum: string;
 };
 
 export interface IAdvantagesBlockProps {
@@ -74,7 +81,11 @@ export interface FooterColumNavigateLinksProps {
   itIsLink?: boolean;
 }
 
-export type TAuthMode = "LOGIN" | "REGISTER" | "RECOVERY";
+export const enum EAuthMode {
+  LOGIN = "Вхід",
+  REGISTER = "Реєстрація",
+  RECOVERY = "Відновлення паролю",
+}
 
 export type TRoute = RouteObject & {
   label: string;
@@ -197,19 +208,19 @@ export type TSignUpData = {
 export type TLoginData = {
   email: string;
   password: string;
-  user_type: "doctor" | "patient";
+  user_type: EUserType;
   rememberMe?: boolean;
 };
 
 export type TForgotPassData = {
   email: string;
-  user_type: "doctor" | "patient";
+  user_type: EUserType;
 };
 
-export type TLoginResponse = {
-  // message: string;
+export type TSignInProvider = {
+  rememberMe: boolean;
   token: string;
-  type: string;
+  type: EUserType;
 };
 
 // export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
