@@ -19,7 +19,7 @@ export function SimpleModal({ children }: { children?: ReactNode }) {
       onClose={() => setSimpleModalMessage(false)}
     >
       <Stack padding="32px" gap="16px" direction="column" alignItems="center">
-        <span>{children}</span>
+        {children && <span>{children}</span>}
 
         {isValidElement(simpleModalMessage) ? (
           simpleModalMessage

@@ -6,6 +6,7 @@ import { ModalStateProvider, useAuth, useModalState } from "../providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
 import { SimpleModal } from "../atomic";
+import { EUserType } from "~/common";
 
 const NestedButton = () => {
   const { setOpenMainModal } = useModalState();
@@ -16,7 +17,7 @@ const NestedButton = () => {
     !authenticatedUser
       ? setOpenMainModal(true)
       : navigate(
-          authenticatedUser?.type === "patient"
+          authenticatedUser?.type === EUserType.PATIENT
             ? ERouteNames.PATIENT_ACCOUNT
             : ERouteNames.DOCTOR_ACCOUNT
         );

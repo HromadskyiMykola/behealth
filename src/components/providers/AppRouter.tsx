@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { TRoute } from "~/common";
+import { EUserType, TRoute } from "~/common";
 
 import { commonRoutes, patientRoutes, doctorRoutes } from "~/routes";
 import { Root, NotFound } from "~/pages";
@@ -14,7 +14,7 @@ export const AppRouter = () => {
     element: <Root />,
     children: !authenticatedUser
       ? commonRoutes
-      : authenticatedUser.type === "patient"
+      : authenticatedUser.type === EUserType.PATIENT
       ? patientRoutes
       : doctorRoutes,
     label: "Корінь",
