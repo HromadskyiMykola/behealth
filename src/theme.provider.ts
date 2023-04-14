@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material";
 
 declare module "@mui/material/styles" {
-
   interface TypographyVariants {
     captionS: React.CSSProperties;
     overline: React.CSSProperties;
@@ -11,12 +10,8 @@ declare module "@mui/material/styles" {
     captionS?: React.CSSProperties;
     overline?: React.CSSProperties;
   }
-
-
 }
-declare module '@mui/material/styles/createPalette' {
-
-}
+declare module "@mui/material/styles/createPalette" {}
 // Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
@@ -74,13 +69,13 @@ export function createOverrideTheme() {
     },
     breakpoints: {
       values: {
-        xs: 0,
-        sm: 600,
-        md: 900,
+        xs: 380,
+        sm: 768,
+        md: 1024,
         lg: 1408,
         xl: 1536,
-        mobile: 0,
-        tablet: 640,
+        mobile: 380,
+        tablet: 1024,
         laptop: 1200,
         desktop: 1600,
       },
@@ -236,8 +231,7 @@ export function createOverrideTheme() {
       },
       MuiGrid: {
         styleOverrides: {
-          root: {
-          },
+          root: {},
         },
       },
 

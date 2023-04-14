@@ -223,10 +223,12 @@ export type TSignInProvider = {
   type: EUserType;
 };
 
-// export type toggleOnEdit = () => MouseEventHandler<HTMLButtonElement> | undefined;
-//
-// export interface  HeaderAdditionData  {
-//    title: string
-//    toggleOnEdit: any
-// }
-// apiService types
+export interface IChips {
+  text: string;
+}
+
+export interface IContactPhoneWithIcon {
+  icon: ReactNode;
+  phone: string;
+  order?: number;
+}
