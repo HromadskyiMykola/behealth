@@ -1,13 +1,22 @@
 import * as React from "react";
+import { FC, useState } from "react";
 import usePagination from "@mui/material/usePagination";
-import { styled } from "@mui/material/styles";
 import { Box, Button, Typography } from "@mui/material";
 import { RefreshCw } from "lucide-react";
 import { PaginationItems } from "./PaginationItems";
 
-export const PaginationList = () => {
+export interface IPaginationProps {
+  count: number;
+  state?: number;
+  setState: (page: number) => void;
+}
+
+export const Pagination: FC<IPaginationProps> = ({ count, setState }) => {
   const { items } = usePagination({
-    count: 10,
+    count: count,
+    onChange: (event, page) => {
+      setState(page);
+    },
   });
 
   const firstHalf = items.slice(0, Math.ceil(items.length / 2));
@@ -16,10 +25,10 @@ export const PaginationList = () => {
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <PaginationItems items={firstHalf} />
-      <Button variant="text" sx={{ display: "flex", gap: "14px" }}>
-        <RefreshCw />
-        <Typography variant="button">Показати ще 10</Typography>
-      </Button>
+      {/*<Button variant="text" sx={{ display: "flex", gap: "14px" }}>*/}
+      {/*  <RefreshCw />*/}
+      {/*  <Typography variant="button">Показати ще 10</Typography>*/}
+      {/*</Button>*/}
       <PaginationItems items={secondHalf} />
     </Box>
   );
