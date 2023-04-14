@@ -1,10 +1,11 @@
 import { Box, Button, Stack } from "@mui/material";
 import { LucideProps } from "lucide-react";
 import { Glasses, Smile } from "lucide-react";
+import { EUserType } from "~/common";
 
 interface UserTypeSelectorProps {
   value: string;
-  onChange: (value: "patient" | "doctor") => void;
+  onChange: (value: EUserType) => void;
 }
 
 const IconInWraparound = ({
@@ -23,16 +24,16 @@ export function UserTypeSelector({ value, onChange }: UserTypeSelectorProps) {
         startIcon={<IconInWraparound value={value} children={<Smile />} />}
         fullWidth
         // sx={{height: "48px"}}
-        variant={value === "patient" ? "contained" : "outlined"}
-        onClick={() => onChange("patient")}
+        variant={value === EUserType.PATIENT ? "contained" : "outlined"}
+        onClick={() => onChange(EUserType.PATIENT)}
       >
         {"Пацієнт"}
       </Button>
       <Button
         startIcon={<IconInWraparound value={value} children={<Glasses />} />}
         fullWidth
-        variant={value === "doctor" ? "contained" : "outlined"}
-        onClick={() => onChange("doctor")}
+        variant={value === EUserType.DOCTOR ? "contained" : "outlined"}
+        onClick={() => onChange(EUserType.DOCTOR)}
       >
         {"Доктор"}
       </Button>

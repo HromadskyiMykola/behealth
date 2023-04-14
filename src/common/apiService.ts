@@ -1,58 +1,204 @@
-import axios, { AxiosInstance } from "axios";
+import { useCallback, useState } from "react";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 import {
   TSignUpData,
   TLoginData,
-  TLoginResponse,
   TForgotPassData,
 } from "./types-and-interfaces";
 
 import { ERouteNames } from "~/routes/routeNames";
 
-class ApiService {
-  private apiClient: AxiosInstance;
+// class ApiService {
+//   #apiClient: AxiosInstance;
 
-  constructor() {
-    this.apiClient = axios.create({
-      baseURL: "https://www.behealth.pp.ua/api/v1/",
-    });
-  }
+//   #errorHandler(data: any) {
+//     if (!axios.isAxiosError(data)) return data;
 
-  async signUp(data: TSignUpData) {
-    const response = await this.apiClient.post("signup", data);
-    return response.data;
-  }
+//     const error: AxiosError = data;
 
-  async confirmation(data: string | undefined) {
-    const response = await this.apiClient.post("confirmation", data);
-    console.log("confirmation func >>>", response);
-    
-    return response.data;
-  }
+//     const label = (name: string) => [
+//       `%c${name}`,
+//       "color: lightgreen; background-color: black; padding: 4px",
+//     ];
 
-  async login(data: TLoginData) {
-    const response = await this.apiClient.post("login", data);
-    return response.data;
-  }
+//     const log = (name: string, data: any) => console.warn(...label(name), data);
 
-  logout() {}
+//     log("Debugging " + error.name + " >>", error.code);
+//     log("request status >>", error.request.status);
+//     log("response status >>", error.response?.status);
+//     log("err message >>", error.message);
+//     log("request err data >>", error.request);
+//     log("response err data >>", error.response?.data);
+//     log("response err headers >>", error.response?.headers);
 
-  async forgotPassword(data: TForgotPassData) {
-    const response = await axios.post("forgot", data);
-    return response.data;
-  }
+//     console.log(...label("Full error instance >>"), error);
 
-  async getAppointments() {
-    const response = await this.apiClient.get(
-      ERouteNames.PATIENT_ACCOUNT_APPOINTMENT
+//     throw error.response?.statusText || error.message || error.code;
+//   }
+
+//   async #requestWithErrorHandling<T>(
+//     request: Promise<AxiosResponse<T>>
+//   ): Promise<any> {
+//     try {
+//       const response = await request;
+//       console.log("OK >>", response.data);
+
+//       return response.data;
+//     } catch (error) {
+//       this.#errorHandler(error);
+//     }
+//   }
+
+//   constructor() {
+//     this.#apiClient = axios.create({
+//       baseURL: "https://www.behealth.pp.ua/api/v1/",
+//     });
+//   }
+
+//   signUp(data: TSignUpData) {
+//     return this.#requestWithErrorHandling(this.#apiClient.post("signup", data));
+//   }
+
+//   login(data: TLoginData) {
+//     return this.#requestWithErrorHandling(this.#apiClient.post("login", data));
+//   }
+
+//   confirmation(data: string | undefined) {
+//     return this.#requestWithErrorHandling(
+//       this.#apiClient.post("confirmation", data)
+//     );
+//   }
+
+//   forgotPassword(data: TForgotPassData) {
+//     return this.#requestWithErrorHandling(this.#apiClient.post("forgot", data));
+//   }
+
+//   getAppointments(data: any) {
+//     return this.#requestWithErrorHandling(
+//       this.#apiClient.get(ERouteNames.PATIENT_ACCOUNT_APPOINTMENT, data)
+//     );
+//   }
+
+//   getDoctors(data: any) {
+//     return this.#requestWithErrorHandling(
+//       this.#apiClient.get(ERouteNames.DOCTORS, data)
+//     );
+//   }
+
+//   logout() {}
+// }
+
+// export const apiService = new ApiService();
+
+// hook instance
+
+const errorHandler = (error: any): string => {
+  const log = (name: string, data: any) =>
+    console.warn(
+      `%c${name}`,
+      "color: lightgrey; background-color: black; padding: 4px",
+      data
     );
-    return response.data;
-  }
 
-  async getDoctors() {
-    const response = await axios.get(ERouteNames.DOCTORS);
-    return response.data;
-  }
-}
+  log("Debugging " + error.name + " >>", error.code);
+  log("request status >>", error.request.status);
+  log("response status >>", error.response?.status);
+  log("err message >>", error.message);
+  log("request err data >>", error.request);
+  log("response err data >>", error.response?.data);
+  log("response err headers >>", error.response?.headers);
 
-export const apiService = new ApiService();
+  console.log("Full error instance >>", error);
+
+  return (
+    error.response?.statusText ||
+    error.message ||
+    error.code ||
+    error.name ||
+    "unknown error"
+  );
+};
+
+const useApiService = () => {
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
+
+  const clearApiError = useCallback(() => setApiError(null), []);
+
+  const _apiClient = axios.create({
+    baseURL: "https://www.behealth.pp.ua/api/v1/",
+  });
+
+  const _requestWithErrorHandling = useCallback(
+    async <T>(request: Promise<AxiosResponse<T>>) => {
+      setLoading(true);
+      setApiError(null);
+      try {
+        const response = await request;
+        console.log("OK >>", response.data);
+        return response.data;
+      } catch (error) {
+        setApiError(errorHandler(error));
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
+
+  const signUp = useCallback(
+    (data: TSignUpData) =>
+      _requestWithErrorHandling(_apiClient.post("signup", data)),
+    []
+  );
+
+  const signIn = useCallback(
+    (data: TLoginData) =>
+      _requestWithErrorHandling(_apiClient.post("login", data)),
+    []
+  );
+
+  const emailConfirmation = useCallback(
+    (data: string | undefined) =>
+      _requestWithErrorHandling(_apiClient.post("confirmation", data)),
+    []
+  );
+
+  const forgotPassword = useCallback(
+    (data: TForgotPassData) =>
+      _requestWithErrorHandling(_apiClient.post("forgot", data)),
+    []
+  );
+
+  const getAppointments = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.get(ERouteNames.PATIENT_ACCOUNT_APPOINTMENT, data)
+      ),
+    []
+  );
+
+  const getDoctors = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(_apiClient.get(ERouteNames.DOCTORS, data)),
+    []
+  );
+
+  // const logout = useCallback(() => {}, []);
+
+  return {
+    signUp,
+    signIn,
+    emailConfirmation,
+    forgotPassword,
+    getAppointments,
+    getDoctors,
+    // logout,
+    loading,
+    apiError,
+    clearApiError,
+  };
+};
+
+export { useApiService };

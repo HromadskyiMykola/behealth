@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { redirect, useParams } from "react-router-dom";
-import { apiService } from "~/common";
+import { EUserType, useApiService } from "~/common";
 import { NotFound } from "~/pages";
 import { useAuth } from "../components/providers/AuthProvider";
 import { ERouteNames } from "~/routes/routeNames";
@@ -9,23 +9,22 @@ const EmailConfirmation = () => {
   const { token } = useParams<{ token: string }>();
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
   const { authenticatedUser } = useAuth();
+  const { emailConfirmation } = useApiService();
   console.log("confirmation page >>>", token);
 
   useEffect(() => {
-    const confirmEmail = async () => {
-      try {
-        await apiService.confirmation(token);
+    emailConfirmation(token)
+      .then((data) => {
         setIsConfirmed(true);
-        authenticatedUser?.type === "patient"
+        authenticatedUser?.type === EUserType.PATIENT
           ? redirect(ERouteNames.PATIENT_ACCOUNT)
           : redirect(ERouteNames.DOCTOR_ACCOUNT);
-      } catch (error) {
-        setIsConfirmed(false);
-      }
-    };
-
-    confirmEmail();
-  }, [token]);
+        console.log("data >>>", data);
+      })
+      .catch((error) => {
+        console.warn("Debugging >>>>", error);
+      });
+  }, []);
 
   return isConfirmed ? (
     <div>

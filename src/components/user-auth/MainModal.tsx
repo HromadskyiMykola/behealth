@@ -12,7 +12,7 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { TAuthMode } from "~/common";
+import { EAuthMode } from "~/common";
 import { useModalState } from "../providers";
 
 import { AuthForm } from ".";
@@ -29,12 +29,12 @@ export function FormModal() {
     },
   } = useTheme();
 
-  const { openMainModal, handleMainModalClose } = useModalState();
+  const { openMainModal, setOpenMainModal } = useModalState();
 
-  const [mode, setMode] = useState<TAuthMode>("LOGIN");
-  const isLoginMode: boolean = mode === "LOGIN";
-  const isRegisterMode: boolean = mode === "REGISTER";
-  const isRecoveryMode: boolean = mode === "RECOVERY";
+  const [mode, setMode] = useState<EAuthMode>(EAuthMode.LOGIN);
+  const isLoginMode: boolean = mode === EAuthMode.LOGIN;
+  const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
+  const isRecoveryMode: boolean = mode === EAuthMode.RECOVERY;
 
   const theme = useTheme();
 
@@ -50,7 +50,7 @@ export function FormModal() {
       fullScreen={mobileDevice}
       scroll={"body"}
       open={openMainModal}
-      onClose={handleMainModalClose}
+      onClose={() => setOpenMainModal(false)}
     >
       <DialogContent
         sx={{
@@ -69,7 +69,7 @@ export function FormModal() {
             color: secondaryColor,
           }}
           aria-label="close"
-          onClick={handleMainModalClose}
+          onClick={() => setOpenMainModal(false)}
         >
           <CloseIcon fontSize="large" />
         </IconButton>

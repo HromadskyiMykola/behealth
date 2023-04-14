@@ -17,7 +17,6 @@ import {
   SelectWithPlaceholder,
 } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
-import { ArrowBigRight } from "lucide-react";
 
 type IdentityDocsEditProps = {
   handleEditIdentityDocs: () => void;
@@ -35,27 +34,37 @@ export const IdentityDocs = () => (
       <TableBody>
         <TableRow>
           <TableCell>
-            <Typography variant="body2">ПІБ</Typography>
+            <Typography variant="body2">Тип документа</Typography>
           </TableCell>
 
           <TableCell>
-            <Typography variant="body2">Шевченко Тарас</Typography>
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>
-            <Typography variant="body2">Дата народження</Typography>
-          </TableCell>
-
-          <TableCell>
-            <Typography variant="body2">09.03.1814</Typography>
+            <Typography variant="body2">Паспорт</Typography>
           </TableCell>
         </TableRow>
 
         <TableRow>
           <TableCell>
-            <Typography variant="body2">ІПН</Typography>
+            <Typography variant="body2">Серія</Typography>
+          </TableCell>
+
+          <TableCell>
+            <Typography variant="body2">KRJKD</Typography>
+          </TableCell>
+        </TableRow>
+
+        <TableRow>
+          <TableCell>
+            <Typography variant="body2">Ким видано</Typography>
+          </TableCell>
+
+          <TableCell>
+            <Typography variant="body2">4 цифри на задній стороні</Typography>
+          </TableCell>
+        </TableRow>
+
+        <TableRow>
+          <TableCell>
+            <Typography variant="body2">Дата видачі</Typography>
           </TableCell>
 
           <TableCell>
@@ -65,7 +74,7 @@ export const IdentityDocs = () => (
 
         <TableRow>
           <TableCell>
-            <Typography variant="body2">Стать</Typography>
+            <Typography variant="body2">Номер</Typography>
           </TableCell>
 
           <TableCell>
@@ -104,37 +113,37 @@ export const IdentityDocsEdit = ({
       >
         <Grid item laptop={4}>
           <Controller
-            name="lastName"
+            name="docType"
             control={control}
             defaultValue=""
-            rules={validationRules.lastName}
+            rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
-                placeholder="тест"
-                label="Прізвище*"
+                placeholder="Оберіть тип"
+                label="Тип документа*"
                 {...field}
                 error={!!errors.lastName}
                 helperText={errors.lastName?.message || " "}
               >
-                <MenuItem value="var 1">var 1</MenuItem>
-                <MenuItem value="var 2">var 2</MenuItem>
-                <MenuItem value="var 3">var 3</MenuItem>
+                <MenuItem value="var 1">Картка ID</MenuItem>
+                <MenuItem value="var 2">Паспорт громадянина України</MenuItem>
+                <MenuItem value="var 3">Водійське посвідчення</MenuItem>
               </SelectWithPlaceholder>
             )}
           />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item laptop={8}>
           <Controller
-            name="firstName"
+            name="docSerialNum"
             control={control}
             defaultValue=""
-            rules={validationRules.firstName}
+            rules={{ required: true }}
             render={({ field }) => (
               <CustomizedInput
                 autoFocus
-                label="Ім’я*"
-                placeholder="Олександр"
+                label="Серія*"
+                placeholder="Введіть серійний номер документу"
                 {...field}
                 error={!!errors.firstName}
                 helperText={errors.firstName?.message || " "}
@@ -145,13 +154,14 @@ export const IdentityDocsEdit = ({
 
         <Grid item laptop={4}>
           <Controller
-            name="middleName"
+            name="middleName" // TODO:
             control={control}
             defaultValue=""
             rules={validationRules.middleName}
             render={({ field }) => (
               <CustomizedInput
-                label="По батькові"
+                label="Ким видано*"
+                placeholder="4 цифри на задній стороні"
                 {...field}
                 error={!!errors.middleName}
                 helperText={errors.middleName?.message || " "}
@@ -161,42 +171,39 @@ export const IdentityDocsEdit = ({
         </Grid>
 
         <Grid item laptop={4}>
-          {/* <Controller
-            name="birthDate"
+          <Controller
+            name="birthDate" // TODO:
             control={control}
             defaultValue=""
-            // TODO    rules={validationRules.firstName}
+            // TODO:    rules={validationRules.firstName}
             render={({ field }) => (
               <DatePickerInput
-                label="Дата народження*"
-                placeholder="Олександр"
+                label="Дата видачі*"
+                // placeholder="Олександр"
                 {...field}
-                // TODO     error={!!errors.firstName}
+                // TODO:     error={!!errors.firstName}
                 // helperText={errors.firstName?.message || " "}
-              />
-            )}
-          /> */}
-        </Grid>
-
-        <Grid item laptop={4}>
-          <Controller
-            name="tin"
-            control={control}
-            defaultValue=""
-            // TODO     rules={validationRules.middleName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="ІПН"
-                {...field}
-                // TODO       error={!!errors.middleName}
-                helperText={errors.middleName?.message || " "}
               />
             )}
           />
         </Grid>
 
         <Grid item laptop={4}>
-          TODO
+          <Controller
+            name="tin" // TODO:
+            control={control}
+            defaultValue=""
+            // TODO:     rules={validationRules.middleName}
+            render={({ field }) => (
+              <CustomizedInput
+                label="Номер*"
+                placeholder="Номер запису документу"
+                {...field}
+                // TODO:       error={!!errors.middleName}
+                helperText={errors.middleName?.message || " "}
+              />
+            )}
+          />
         </Grid>
       </Grid>
 

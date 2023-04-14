@@ -1,21 +1,23 @@
 import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
-import { FormModal, ThanksModal, PersonalIdentification } from ".";
+import { FormModal, PersonalIdentification } from ".";
 import { ModalStateProvider, useAuth, useModalState } from "../providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
+import { SimpleModal } from "../atomic";
+import { EUserType } from "~/common";
 
 const NestedButton = () => {
-  const { handleMainModalOpen } = useModalState();
+  const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuth();
   const navigate = useNavigate();
 
   const handleButton = () => {
     !authenticatedUser
-      ? handleMainModalOpen()
+      ? setOpenMainModal(true)
       : navigate(
-          authenticatedUser?.type === "patient"
+          authenticatedUser?.type === EUserType.PATIENT
             ? ERouteNames.PATIENT_ACCOUNT
             : ERouteNames.DOCTOR_ACCOUNT
         );
@@ -39,7 +41,7 @@ export const AuthorizationButton = () => {
 
       <FormModal />
 
-      <ThanksModal />
+      <SimpleModal />
 
       <PersonalIdentification />
     </ModalStateProvider>

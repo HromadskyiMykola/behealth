@@ -13,7 +13,6 @@ import {
 
 const userAgreement = (
   <DialogContent>
-    
     <DialogContentText>Загальні положення</DialogContentText>
     <Divider />
     <DialogContentText>
@@ -184,21 +183,21 @@ export function UserAgreement() {
   return (
     <>
       <Typography variant="caption">
-        {"Реєструючись, я приймаю "}
+        Реєструючись, я приймаю
         <span
           onClick={handleClickOpen("user-agreement")}
           style={{ color: primaryColor, cursor: "pointer" }}
         >
-          {"умови угоди користувача"}
+          умови угоди користувача
         </span>
-        {" і "}
+        і
         <span
           onClick={handleClickOpen("data-agreement")}
           style={{ color: primaryColor, cursor: "pointer" }}
         >
-          {"обробки персональних даних"}
+          обробки персональних даних
         </span>
-        {"."}
+        .
       </Typography>
 
       <Dialog
@@ -214,13 +213,13 @@ export function UserAgreement() {
         </DialogTitle>
 
         <Divider />
-        
+
         {agreementMode === "user-agreement"
           ? userAgreement
           : dataProcessingAgreement}
 
         <DialogActions>
-          <Button onClick={handleClose}>{"Закрити"}</Button>
+          <Button onClick={handleClose}>Закрити</Button>
         </DialogActions>
       </Dialog>
     </>

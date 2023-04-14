@@ -1,27 +1,31 @@
-import { ReactNode } from "react";
+import { ReactNode, isValidElement } from "react";
 import { Dialog, Stack } from "@mui/material";
 
 import { useModalState } from "../providers";
 
-export function SimpleModal({ children }: { children: ReactNode }) {
-  const { openSimpleModal, handleSimpleModalOpen } = useModalState();
+export function SimpleModal({ children }: { children?: ReactNode }) {
+  const { simpleModalMessage, setSimpleModalMessage } = useModalState();
 
   return (
     <Dialog
-      open={openSimpleModal}
+      open={!!simpleModalMessage}
       fullWidth
       maxWidth="sm"
       sx={{
         "& .MuiPaper-root": {
-          borderRadius:
-            // mobileDevice ? 0 :
-            "12px",
+          borderRadius: "12px",
         },
       }}
-      onClose={() => handleSimpleModalOpen(false)}
+      onClose={() => setSimpleModalMessage(false)}
     >
       <Stack padding="32px" gap="16px" direction="column" alignItems="center">
-        {children}
+        {children && <span>{children}</span>}
+
+        {isValidElement(simpleModalMessage) ? (
+          simpleModalMessage
+        ) : (
+          <span>{simpleModalMessage}</span>
+        )}
       </Stack>
     </Dialog>
   );

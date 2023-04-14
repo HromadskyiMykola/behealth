@@ -105,6 +105,7 @@ export const PersonalDataEdit = ({
             rules={validationRules.lastName}
             render={({ field }) => (
               <CustomizedInput
+                autoFocus
                 label="Прізвище*"
                 {...field}
                 error={!!errors.lastName}
@@ -122,7 +123,6 @@ export const PersonalDataEdit = ({
             rules={validationRules.firstName}
             render={({ field }) => (
               <CustomizedInput
-                autoFocus
                 label="Ім’я*"
                 placeholder="Олександр"
                 {...field}
