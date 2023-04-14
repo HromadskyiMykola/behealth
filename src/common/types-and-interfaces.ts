@@ -15,6 +15,8 @@ export type TAuthFormValues = {
   birthDate: string;
   tin: string;
   gender: "male" | "female" | "";
+  chooseDoctor: string;
+  time: string;
 };
 
 export interface IAdvantagesBlockProps {

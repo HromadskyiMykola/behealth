@@ -9,6 +9,7 @@ const Video = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null); // Додано посилання на відео-елемент
 
   const handleVideoClick = () => {
+    console.log(play);
     play && videoRef.current?.play(); // Виклик методу play() для відтворення відео
     !play && videoRef.current?.pause(); // Виклик методу play() для відтворення відео
     setPlay(!play);
