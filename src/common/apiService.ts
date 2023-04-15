@@ -63,12 +63,16 @@ const useApiService = () => {
     async <T>(request: Promise<AxiosResponse<T>>) => {
       setLoading(true);
       setApiError(null);
+
       try {
         const response = await request;
         console.log("OK >>", response.data);
+
         return response.data;
       } catch (error) {
         setApiError(errorHandler(error));
+
+        return Promise.reject("⬆ Details in the console ⬆");
       } finally {
         setLoading(false);
       }
@@ -82,18 +86,15 @@ const useApiService = () => {
     []
   );
 
-  // const signIn = useCallback(
-  //   (data: TLoginData) =>
-  //     _requestWithErrorHandling(_apiClient.post("login", data)),
-  //   []
-  // );
   const signIn = useCallback(
     (data: TLoginData) =>
       _requestWithErrorHandling(
         _apiClient.post("login", data).then((res) => {
-          return res.data?.token
-            ? res
-            : Promise.reject(new Error("Token not found in response"));
+          console.log(res);
+
+          if (!res.data?.token) new Error("Token not found in response");
+
+          return res;
         })
       ),
     []
@@ -116,7 +117,7 @@ const useApiService = () => {
   const getAppointments = useCallback(
     (data: any) =>
       _requestWithErrorHandling(
-        _apiClient.get(ERouteNames.PATIENT_ACCOUNT_APPOINTMENT, data)
+        _apiClient.get("patient-account/appointments", data)
       ),
     []
   );
@@ -127,16 +128,88 @@ const useApiService = () => {
     []
   );
 
+  const getPatientAdditionalInfo = useCallback(
+    () =>
+      _requestWithErrorHandling(
+        _apiClient.get("patient-account/additional-data")
+      ),
+    []
+  );
+
+  const createPatientAdditionalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.post("patient-account/additional-data", data)
+      ),
+    []
+  );
+
+  const updatePatientAdditionalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.put("patient-account/additional-data", data)
+      ),
+    []
+  );
+
+  const deletePatientAdditionalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.delete("patient-account/additional-data", data)
+      ),
+    []
+  );
+
+  const getPatientPersonalInfo = useCallback(
+    () =>
+      _requestWithErrorHandling(
+        _apiClient.get("patient-account/personal-information")
+      ),
+    []
+  );
+
+  const createPatientPersonalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.post("patient-account/personal-information", data)
+      ),
+    []
+  );
+
+  const updatePatientPersonalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.put("patient-account/personal-information", data)
+      ),
+    []
+  );
+
+  const deletePatientPersonalInfo = useCallback(
+    (data: any) =>
+      _requestWithErrorHandling(
+        _apiClient.delete("patient-account/personal-information", data)
+      ),
+    []
+  );
+
   return {
+    loading,
+    apiError,
+    clearApiError,
     signUp,
     signIn,
     emailConfirmation,
     forgotPassword,
     getAppointments,
     getDoctors,
-    loading,
-    apiError,
-    clearApiError,
+    getPatientAdditionalInfo,
+    createPatientAdditionalInfo,
+    updatePatientAdditionalInfo,
+    deletePatientAdditionalInfo,
+    getPatientPersonalInfo,
+    createPatientPersonalInfo,
+    updatePatientPersonalInfo,
+    deletePatientPersonalInfo,
   };
 };
 
