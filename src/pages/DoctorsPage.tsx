@@ -1,14 +1,12 @@
 import React from "react";
-import AdditionDataContainer from "../components/tads.additionalData/Addition-data-container";
+import { MainSectionDoctor } from "~/components/Main-section-doctor";
 import HeaderCardDoctor from "~/components/Header-card-doctor/Header-card-doctor";
-import Container from "@mui/material/Container";
 
 export function DoctorsPage() {
   return (
     <div>
-      <Container>
-        <HeaderCardDoctor />
-      </Container>
+      <HeaderCardDoctor />
+      <MainSectionDoctor />
     </div>
   );
 }
