@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 import { FormModal } from ".";
-import { ModalStateProvider, useAuth, useModalState } from "../providers";
+import { ModalStateProvider, useAuth, useModalState } from "../../providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
 import { SimpleModal } from "../atomic";

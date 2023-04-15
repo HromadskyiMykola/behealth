@@ -15,7 +15,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuth } from "../providers";
+import { useModalState, useAuth } from "../../providers";
 
 import {
   TAuthFormValues,
@@ -244,7 +244,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
             <Button
               sx={{ mt: "24px" }}
-              disabled={!formState.isValid}
+              disabled={!formState.isValid || loading}
               type="submit"
               variant="contained"
               // sx={{ backgroundColor: primaryColor }}

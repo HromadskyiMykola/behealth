@@ -17,7 +17,7 @@ import {
   validationRules,
 } from "~/common";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "~/components/providers";
+import { useAuth } from "~/providers";
 import { ERouteNames } from "~/routes/routeNames";
 
 export function PatientPersonalIdentification() {
