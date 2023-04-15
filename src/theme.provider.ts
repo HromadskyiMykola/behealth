@@ -146,6 +146,18 @@ export const createOverrideTheme = createTheme({
         },
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          "&._LinearRatingDoctor": {
+            background: "#E0E0E0",
+            "& .MuiLinearProgress-barColorPrimary": {
+              backgroundColor: "#FFB82E",
+            },
+          },
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
