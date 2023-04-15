@@ -22,11 +22,7 @@ const getCurrentUser = () => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authenticatedUser, setUser] = useState(getCurrentUser());
 
-  const singInProvider = async ({
-    token,
-    type,
-    rememberMe,
-  }: TSignInProvider) => {
+  const singInProvider = ({ token, type, rememberMe }: TSignInProvider) => {
     const user = { token, type };
     const storage = rememberMe ? localStorage : sessionStorage;
 
@@ -35,7 +31,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const singOutProvider = () => {
-    // apiService.logout();
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
     setUser(null);

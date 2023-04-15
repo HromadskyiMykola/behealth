@@ -20,7 +20,7 @@ const StyledTab = styled(Tab)({
   "&.Mui-selected": {
     background: "#DCF7EA",
   },
-});
+}) as typeof Tab;
 
 export const TabLink = ({ to, ...tabProps }: TabLinkProps) => {
   const navigate = useNavigate();

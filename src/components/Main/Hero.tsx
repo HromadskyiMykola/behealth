@@ -114,7 +114,43 @@ export const Hero = () => {
                 />
               )}
               PaperComponent={({ children }) => (
-                <Paper sx={{ maxHeight: "480px", overflow: "auto" }}>
+                <Paper
+                  sx={{
+                    maxHeight: "480px",
+                    overflow: "auto",
+                    scrollbarColor: "#000",
+                    "&::-webkit-scrollbar": {
+                      width: "8px",
+                      height: "32px",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      backgroundColor: "#BFC9C3",
+                      padding: "16px 4px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      backgroundColor: "#3ABD98",
+                      borderRadius: "100px",
+                    },
+                    "&::-webkit-scrollbar-thumb:hover": {
+                      backgroundColor: "#5bbea3",
+                    },
+                    scrollbarWidth: "thin",
+                    "& *::-webkit-scrollbar": {
+                      width: "8px",
+                      height: "32px",
+                    },
+                    "& *::-webkit-scrollbar-track": {
+                      backgroundColor: "#BFC9C3",
+                    },
+                    "& *::-webkit-scrollbar-thumb": {
+                      backgroundColor: "#3ABD98",
+                      borderRadius: "100px",
+                    },
+                    "& *::-webkit-scrollbar-thumb:hover": {
+                      backgroundColor: "#5bbea3",
+                    },
+                  }}
+                >
                   {children}
                 </Paper>
               )}

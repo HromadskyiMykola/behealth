@@ -24,7 +24,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "testApi.ts"  ],
+    "src",
+    "testApi.ts"
+  ],
   "extends": "./tsconfig.paths.json",
 }

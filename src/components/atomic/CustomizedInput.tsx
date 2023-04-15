@@ -25,7 +25,7 @@ const CustomTextField = styled(TextField)({
     //   borderColor: "green",
     // },
   },
-});
+}) as typeof TextField;
 
 function CustomInput(props: TextFieldProps, ref: Ref<HTMLDivElement>) {
   const { label, ...otherProps } = props;

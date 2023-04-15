@@ -27,7 +27,7 @@ import {
 import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
 
 import { ERouteNames } from "~/routes/routeNames";
-import { useAuth } from "~/components/providers";
+import { useAuth } from "~/providers";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 

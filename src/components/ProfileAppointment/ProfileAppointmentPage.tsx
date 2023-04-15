@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { PROFILE_APPOINTMENT } from "./profile-appointment.constants";
 import { ProfileAppointmentList } from "./ProfileAppointmentList";
 import { IProfileAppointmentCard } from "~/common/types-and-interfaces";
-import { PaginationList } from "./PaginationList";
+import { Pagination } from "./Pagination";
 import { DatePickerInput } from "../atomic";
 import { ButtonsFiltering } from "./ButtonsFiltering";
 
@@ -12,7 +12,7 @@ export const ProfileAppointmentPage = () => {
     title: { scheduleTitle, historyTitle },
     cards,
   } = PROFILE_APPOINTMENT;
-
+  const [page, setPage] = useState<number>(1);
   const [scheduleAppointment, setScheduleAppointment] = useState<
     IProfileAppointmentCard[]
   >([]);
@@ -36,6 +36,10 @@ export const ProfileAppointmentPage = () => {
     setScheduleAppointment(scheduleAppointmentArr);
     setHistoryAppointment(historyAppointmentArr);
   }, [cards]);
+
+  useEffect(() => {
+    console.log(page);
+  }, [page]);
 
   const CardsFiltering = (e: React.MouseEvent<HTMLButtonElement>) => {
     setActiveButton(e.currentTarget.dataset.buttonId as string);
@@ -139,7 +143,7 @@ export const ProfileAppointmentPage = () => {
           p: "16px 32px",
         }}
       >
-        <PaginationList />
+        <Pagination count={10} setState={setPage} />
       </Box>
     </>
   );
