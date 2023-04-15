@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
+import { UserIcon } from "lucide-react";
 
 import { FormModal } from ".";
-import { ModalStateProvider, useAuth, useModalState } from "../../providers";
+import { ModalStateProvider, useAuth, useModalState } from "~/providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
 import { SimpleModal } from "../atomic";
@@ -12,7 +12,7 @@ const NestedButton = () => {
   const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuth();
   const navigate = useNavigate();
-
+  
   const handleButton = () => {
     !authenticatedUser
       ? setOpenMainModal(true)
@@ -27,7 +27,7 @@ const NestedButton = () => {
     <Button
       variant="outlined"
       onClick={handleButton}
-      startIcon={<PersonIcon fontSize="small" />}
+      startIcon={<UserIcon style={{ flexShrink: 0 }} size={20} />}
     >
       {!authenticatedUser ? "Увійти" : "Особистий кабінет"}
     </Button>

@@ -1,7 +1,7 @@
 import { ReactNode, isValidElement, useEffect, useState } from "react";
 import { Dialog, LinearProgress, Stack } from "@mui/material";
 
-import { useModalState } from "../../providers";
+import { useModalState } from "~/providers";
 
 type TProps = {
   children?: ReactNode;
