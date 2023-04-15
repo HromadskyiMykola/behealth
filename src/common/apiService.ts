@@ -9,7 +9,7 @@ import {
 } from "./types-and-interfaces";
 
 import { ERouteNames } from "~/routes/routeNames";
-import { useAuth } from "~/components/providers";
+import { useAuth } from "~/providers";
 
 const errorHandler = (error: any): string => {
   const log = (name: string, data: any) =>
