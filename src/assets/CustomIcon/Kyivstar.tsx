@@ -1,5 +1,4 @@
 import React from "react";
-import SvgIcon from "@mui/material/SvgIcon";
 import { SvgIconsProps } from "../../common/types-and-interfaces";
 
 const Kyivstar = (props: SvgIconsProps) => {

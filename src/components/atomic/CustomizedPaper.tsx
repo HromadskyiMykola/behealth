@@ -7,4 +7,3 @@ export const CustomizedPaper = styled(Paper)({
   width: "100%",
   marginBottom: "16px",
 });
-
