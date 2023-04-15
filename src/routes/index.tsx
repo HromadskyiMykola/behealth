@@ -23,9 +23,14 @@ export const commonRoutes: TRoute[] = [
     label: "Заклади",
   },
   {
-    path: "confirmation:token",
-    element: <Pages.PatientAccountAdditionalData />,
-    label: "підтвердження пошти",
+    path: ERouteNames.CONFIRMATION,
+    element: (
+      <>
+        <Pages.HomePage />
+        <Pages.PatientPersonalIdentification />
+      </>
+    ),
+    label: "підтвердження пошти та ідентифікація",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];
@@ -52,7 +57,7 @@ export const patientRoutes: TRoute[] = [
           {
             path: ":id",
             element: <Pages.PatientAccountAppointments />,
-            label: "Записи",
+            label: "Запис",
           },
         ],
       },

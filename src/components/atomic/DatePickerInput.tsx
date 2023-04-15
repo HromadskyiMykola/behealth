@@ -11,12 +11,22 @@ import { CalendarDays } from "lucide-react";
 
 import { CustomizedInput } from ".";
 
-function DatePickerComponent(props: any, inputRef: Ref<HTMLDivElement>) {
-  const [value, setValue] = useState<Dayjs | null>();
+function DatePickerComponent(
+  props: any,
+  inputRef: Ref<HTMLDivElement>
+  // onChange: (newValue: Dayjs | null) => void
+) {
+  const [value, setValue] = useState<Dayjs | null>(null);
   // dayjs('2014-08-18'),
+  const { onChange } = props;
 
   const handleChange = (newValue: Dayjs | null) => {
     setValue(newValue);
+    if (onChange && newValue) {
+      onChange(newValue.format("YYYY-MM-DD"));
+    } else {
+      onChange(null);
+    }
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
