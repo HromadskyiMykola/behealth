@@ -15,7 +15,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuth } from "../../providers";
+import { useModalState, useAuth } from "~/providers";
 
 import {
   TAuthFormValues,

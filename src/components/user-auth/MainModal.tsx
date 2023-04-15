@@ -13,7 +13,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 
 import { EAuthMode } from "~/common";
-import { useModalState } from "../../providers";
+import { useModalState } from "~/providers";
 
 import { AuthForm } from ".";
 

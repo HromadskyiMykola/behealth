@@ -1,71 +1,30 @@
 import { createTheme } from "@mui/material";
 
-declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    captionS: React.CSSProperties;
-    overline: React.CSSProperties;
-  }
-
-  interface TypographyVariantsOptions {
-    captionS?: React.CSSProperties;
-    overline?: React.CSSProperties;
-  }
-}
-declare module "@mui/material/styles/createPalette" {}
-// Update the Typography's variant prop options
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    captionS: true;
-    overline: true;
-  }
-}
-declare module "@mui/material/styles" {
-  interface BreakpointOverrides {
-    xs: true;
-    sm: true;
-    md: true;
-    lg: true;
-    xl: true;
-    mobile: true;
-    tablet: true;
-    laptop: true;
-    desktop: true;
-  }
-}
+import { customPalette } from "./theme.palette";
 
 export const createOverrideTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#006C53",
-      light: "#7DF8D0",
-      dark: "#002117",
-    },
-    secondary: {
-      main: "#002117",
-      light: "#CEE9DC",
-      dark: "#082018",
-    },
-    error: {
-      main: "#BA1A1A",
-      light: "#FFDAD6",
-      dark: "#410002",
-    },
-    info: {
-      main: "#406375",
-      light: "#C3E8FE",
-      dark: "#001E2B",
+      main: "#3ABD98",
+      light: "#A4FFE5",
+      dark: customPalette.primary60,
+      contrastText: customPalette.primary100,
     },
     background: {
-      default: "#FBFDF9",
+      default: "#F5F5F5",
     },
     text: {
-      // secondary70: '#97B1A5',
       primary: "#212121",
-      secondary: "#7D968B",
-      disabled: "#A9ACA9",
+      disabled: customPalette.neutral60,
+      secondary: customPalette.neutral70,
     },
+    error: {
+      main: customPalette.error50,
+    },
+    custom: customPalette,
   },
+
   breakpoints: {
     values: {
       xs: 380,
@@ -80,77 +39,65 @@ export const createOverrideTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Inter, SF Mono, sans-serif",
     fontSize: 16,
     h1: {
-      color: "#212121",
       fontSize: "56px",
       fontWeight: "700",
       lineHeight: "64px",
       letterSpacing: "0em",
     },
     h2: {
-      color: "#212121",
       fontSize: "48px",
       fontWeight: "700",
       lineHeight: "56px",
       letterSpacing: "0em",
     },
     h3: {
-      color: "#212121",
       fontSize: "40px",
       fontWeight: "700",
       lineHeight: "48px",
       letterSpacing: "0em",
     },
     h4: {
-      color: "#212121",
       fontSize: "32px",
       fontWeight: "700",
       lineHeight: "40px",
       letterSpacing: "0em",
     },
     h5: {
-      color: "#212121",
       fontSize: "24px",
       fontWeight: "700",
       lineHeight: "32px",
       letterSpacing: "0em",
     },
     body1: {
-      color: "#212121",
       fontSize: "18px",
       fontWeight: "500",
       lineHeight: "26px",
       letterSpacing: "0em",
     },
     body2: {
-      color: "#212121",
-      fontSize: "16px",
       fontWeight: "500",
       lineHeight: "24px",
       letterSpacing: "0em",
     },
     subtitle1: {
-      color: "#212121",
       fontSize: "18px",
       fontWeight: "700",
       lineHeight: "26px",
       letterSpacing: "0.012em",
     },
     subtitle2: {
-      color: "#212121",
-      fontSize: "16px",
       fontWeight: "700",
       lineHeight: "24px",
       letterSpacing: "0.012em",
     },
     caption: {
-      color: "#212121",
       fontSize: "14px",
       fontWeight: "600",
       lineHeight: "22px",
-      letterSpacing: "0.5px",
+      letterSpacing: "0.45px",
     },
     captionS: {
       fontSize: "12px",
@@ -159,7 +106,6 @@ export const createOverrideTheme = createTheme({
       letterSpacing: "0.45px",
     },
     button: {
-      fontSize: "16px",
       fontWeight: "500",
       lineHeight: "20px",
       letterSpacing: "0em",
@@ -170,6 +116,7 @@ export const createOverrideTheme = createTheme({
       fontWeight: "600",
       lineHeight: "20px",
       letterSpacing: "2.5px",
+      textTransform: "uppercase",
     },
   },
   components: {
