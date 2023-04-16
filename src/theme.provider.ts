@@ -118,6 +118,7 @@ export const createOverrideTheme = createTheme({
       textTransform: "uppercase",
     },
   },
+
   components: {
     MuiContainer: {
       styleOverrides: {
@@ -145,6 +146,7 @@ export const createOverrideTheme = createTheme({
         },
       },
     },
+
     MuiLinearProgress: {
       styleOverrides: {
         root: {
@@ -157,6 +159,7 @@ export const createOverrideTheme = createTheme({
         },
       },
     },
+
     MuiAppBar: {
       styleOverrides: {
         root: {
@@ -165,17 +168,7 @@ export const createOverrideTheme = createTheme({
         },
       },
     },
-    MuiSelect: {
-      styleOverrides: {
-        select: {
-          //Якщо ви не знаєете де ваш падінг між текстом і іконкою то я тут його обнулив тому що не зміг найти інгшого варінта
-          paddingRight: "0 !important",
-          "&._selectChooseCity": {
-            // paddingRight: '0 !important',
-          },
-        },
-      },
-    },
+
     MuiLink: {
       styleOverrides: {
         root: {
@@ -186,6 +179,7 @@ export const createOverrideTheme = createTheme({
         },
       },
     },
+
     MuiGrid: {
       styleOverrides: {
         root: {},
@@ -283,6 +277,30 @@ export const createOverrideTheme = createTheme({
               color: theme.palette.custom.neutral70,
             },
           }),
+        }),
+      },
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          borderRadius: "8px",
+          height: "48px",
+          "& .MuiOutlinedInput-input": {
+            padding: "12px 16px",
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderWidth: "1.1px",
+          },
+          "&:hover:not(.Mui-disabled, .Mui-error) fieldset": {
+            borderWidth: `1.1px`,
+            borderColor: theme.palette.custom.neutral60,
+          },
+          "&.Mui-disabled": {
+            backgroundColor: theme.palette.custom.neutral95,
+            borderColor: theme.palette.custom.neutral80,
+            color: theme.palette.custom.neutral40,
+          },
         }),
       },
     },

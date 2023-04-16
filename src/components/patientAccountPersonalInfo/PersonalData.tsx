@@ -194,6 +194,7 @@ export const PersonalDataEdit = ({
             render={({ field }) => (
               <SelectWithPlaceholder
                 label="Стать"
+                placeholder="Стать"
                 {...field}
                 // TODO       error={!!errors.middleName}
                 // helperText={errors.middleName?.message || " "}
