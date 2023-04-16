@@ -1,16 +1,14 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
 import { createOverrideTheme } from "./theme.provider";
-import { AppRouter, AuthProvider, ModalStateProvider } from "./providers";
+import { AppRouter, AuthProvider } from "./providers";
 
 export default function App() {
   return (
     <AuthProvider>
       <ThemeProvider theme={createOverrideTheme}>
         <CssBaseline />
-        <ModalStateProvider>
-          <AppRouter />
-        </ModalStateProvider>
+        <AppRouter />
       </ThemeProvider>
     </AuthProvider>
   );
