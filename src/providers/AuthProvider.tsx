@@ -14,9 +14,16 @@ export const AuthContext = createContext<AuthContextData>(
 
 export const useAuth = () => useContext(AuthContext);
 
-const getCurrentUser = () => {
-  const user = localStorage.getItem("user") || sessionStorage.getItem("user");
-  return user ? JSON.parse(user) : null;
+const getCurrentUser = (): { token: string; type: string } | null => {
+  const userString = localStorage.getItem("user") || sessionStorage.getItem("user");
+  
+  if (userString) {
+    const user = JSON.parse(userString);
+    // if (Object.hasOwn(user, "token")) {
+      return user;
+    // }
+  }
+  return null;
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
