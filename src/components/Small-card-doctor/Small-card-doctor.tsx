@@ -11,10 +11,14 @@ import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import { X } from "lucide-react";
 import {
+  AT_RECEPTION,
   POP_UP_DOC_APPOINTMENT_1,
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
+import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
+import { useAuth } from "~/providers";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +27,23 @@ const BoxInfo = styled("div")(({ theme }) => ({
   padding: "16px",
   borderRadius: "10px",
   border: `1px solid ${theme.palette.custom.neutral90}`,
+}));
+const CloseBox = styled("div")(({ theme }) => ({
+  display: "flex",
+  position: "absolute" as "absolute",
+  top: "21px",
+  right: "21px",
+  width: "25px",
+  height: "25px",
+  justifyContent: "center",
+  alignItems: "center",
+  color: theme.palette.custom.primary50,
+}));
+const BoxCalendar = styled("div")(({ theme }) => ({
+  background: "#F6F8F7",
+  width: "332px",
+  height: "306px",
+  borderRadius: "10px",
 }));
 const ModalPaper = styled(Paper)(({ theme }) => ({
   position: "absolute" as "absolute",
@@ -57,13 +78,32 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 
 export const SmallCardDoctor = () => {
   const { custom } = useTheme().palette;
+  const { authenticatedUser } = useAuth();
 
   const [open, setOpen] = React.useState(false);
+  const [confirm, setConfirm] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
+    setConfirm(false);
   };
 
+  const handleConfirm = () => {
+    // !!authenticatedUser &&
+    setConfirm(true);
+    setTimeout(() => {
+      setOpen(false);
+      setConfirm(false);
+    }, 30 * 1000);
+  };
+  const handleCloseConfirm = () => {
+    setOpen(false);
+    setConfirm(false);
+  };
   return (
     <CustomizedPaper>
       <Box display="flex" gap="32px">
@@ -76,9 +116,7 @@ export const SmallCardDoctor = () => {
               component="p"
               color={custom.neutral70}
             >
-              Прийом з лікарем може здійснитися як у форматі онлайн-консультації
-              за допомогою засобів зв’язку, так і при безпосередньому
-              відвідуванні медустанови.
+              {AT_RECEPTION}
             </Typography>
           </BoxInfo>
         </Box>
@@ -87,11 +125,11 @@ export const SmallCardDoctor = () => {
           flexDirection="column"
           justifyContent="space-between"
         >
-          <Box width="332px" height="306px" color="red"></Box>
+          <BoxCalendar></BoxCalendar>
           <Button
             variant="contained"
             sx={{ width: "100%" }}
-            onClick={() => setOpen(true)}
+            onClick={handleOpen}
           >
             Записатися
           </Button>
@@ -102,6 +140,9 @@ export const SmallCardDoctor = () => {
             aria-describedby="PopUp-Appointment-1"
           >
             <ModalPaper>
+              <CloseBox onClick={() => setOpen(false)}>
+                <X size="24px" />
+              </CloseBox>
               <Box display="flex" justifyContent="center">
                 <Typography variant="h5">Запис до лікаря</Typography>
               </Box>
@@ -110,16 +151,16 @@ export const SmallCardDoctor = () => {
                   {POP_UP_DOC_APPOINTMENT_1.map(
                     (item: string, index: number) => {
                       return (
-                        <CustomListItem>
+                        <CustomListItem key={`${item}-label`}>
                           <Typography variant="subtitle2" component="span">
                             {item}
                           </Typography>
                           <Typography variant="body2" component="span">
-                            {
+                            {` ${
                               Object.values(POP_UP_DOC_APPOINTMENT_1_VALUE)[
                                 index
                               ]
-                            }
+                            }`}
                           </Typography>
                         </CustomListItem>
                       );
@@ -127,15 +168,24 @@ export const SmallCardDoctor = () => {
                   )}
                 </CustomList>
                 <Box
+                  pt={4}
                   display="flex"
                   flexDirection="row"
-                  justifyContent="space-between"
+                  // justifyContent="space-between"
+                  gap="24px"
                 >
-                  <Button variant="outlined" sx={{ p: "10px 45px" }}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    onClick={() => setOpen(false)}
+                  >
                     Скасувати
                   </Button>
-                  <Button variant="contained">Продовжити</Button>
+                  <Button variant="contained" fullWidth onClick={handleConfirm}>
+                    Продовжити
+                  </Button>
                 </Box>
+                {confirm && <PopUpDocAppointment2 close={handleCloseConfirm} />}
               </Box>
             </ModalPaper>
           </Modal>
