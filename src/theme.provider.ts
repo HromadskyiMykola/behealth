@@ -108,7 +108,6 @@ export const createOverrideTheme = createTheme({
     button: {
       fontWeight: "500",
       lineHeight: "20px",
-      letterSpacing: "0em",
       textTransform: "none",
     },
     overline: {
@@ -225,80 +224,63 @@ export const createOverrideTheme = createTheme({
 
     MuiButton: {
       styleOverrides: {
+        // ButtonL styles
         root: ({ ownerState, theme }) => ({
           padding: "10px 24px",
-          textTransform: "none",
+          height: "48px",
+          borderRadius: "8px",
+          boxShadow: "none",
+
           ...(ownerState.variant === "contained" && {
-            backgroundColor: "#3ABD98",
-            color: theme.palette.primary.contrastText,
-            borderRadius: "8px",
-            boxShadow: "none",
             "&:hover": {
-              backgroundColor: "#5EDCB5",
-              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.custom.primary80,
               boxShadow:
                 "0px 1px 4px rgba(66, 199, 161, 0.2), 0px 1px 3px 1px rgba(66, 199, 161, 0.15)",
             },
             "&:focused": {
-              backgroundColor: "#5EDCB5",
-              color: theme.palette.primary.contrastText,
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.primary80,
             },
             "&:active": {
-              backgroundColor: "#09A480",
-              color: theme.palette.primary.contrastText,
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.primary60,
             },
             "&:disable": {
-              backgroundColor: "#E1E3E0",
-              color: "#8E918F",
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.neutral90,
+              color: theme.palette.custom.neutral60,
             },
           }),
+
           ...(ownerState.variant === "outlined" && {
-            border: "1px solid #3ABD98",
-            color: "#3ABD98",
-            borderRadius: "8px",
-            boxShadow: "none",
+            border: `1px solid ${theme.palette.primary.main}`,
             "&:hover": {
               backgroundColor: "#E7FFF3",
-              boxShadow: "none",
             },
             "&:focused": {
-              background: "#F4FFF8",
-              boxShadow: "none",
+              background: theme.palette.custom.primary99,
             },
             "&:active": {
+              border: `1px solid ${theme.palette.custom.primary60}`,
               backgroundColor: "#E7FFF3",
-              boxShadow: "none",
+              color: theme.palette.custom.primary60,
             },
             "&:disable": {
-              color: "#8E918F",
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.neutral70,
+              color: theme.palette.custom.neutral70,
             },
           }),
+
           ...(ownerState.variant === "text" && {
-            color: "#3ABD98",
-            borderRadius: "8px",
-            padding: "10px 12px",
-            height: "auto",
-            width: "auto",
             "&:hover": {
-              backgroundColor: "#DCF7EA",
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.primary95,
             },
             "&:focused": {
-              backgroundColor: "#DCF7EA",
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.primary95,
             },
             "&:active": {
-              color: "#008769",
-              backgroundColor: "#CEE9DC",
-              boxShadow: "none",
+              backgroundColor: theme.palette.custom.primary90,
+              color: theme.palette.custom.primary50,
             },
             "&:disable": {
-              color: "#A9ACA9",
-              boxShadow: "none",
+              color: theme.palette.custom.neutral70,
             },
           }),
         }),

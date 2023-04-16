@@ -10,3 +10,4 @@ export * from "./InputMobileNumber";
 export * from "./ReactHookFormSelect";
 export * from "./SelectWithPlaceholder";
 export * from "./SimpleModal";
+export * from "./ButtonM";
