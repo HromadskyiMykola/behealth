@@ -35,12 +35,12 @@ const NestedButton = () => {
 
 export const AuthorizationButton = () => {
   return (
-    <ModalStateProvider>
+    <>
       <NestedButton />
 
       <FormModal />
 
       <SimpleModal />
-    </ModalStateProvider>
+    </>
   );
 };
