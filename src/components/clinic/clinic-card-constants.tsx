@@ -1,5 +1,9 @@
 import clinicAvatar from "~/assets/images/clinic-avatar.png";
 import { TAuthFormValues, validationRules } from "~/common";
+import React, { ReactNode } from "react";
+import { Facebook2 } from "~/assets/CustomIcon/Facebook2";
+import { Youtube } from "~/assets/CustomIcon/Youtube";
+import { Instagram2 } from "~/assets/CustomIcon/Instagram2";
 
 export interface IClinicCard {
   name: string;
@@ -75,3 +79,49 @@ export const CLINIC_APPOINTMENT_MODAL: IClinicAppointmentModal = {
     },
   ],
 };
+
+export const ICONS_SOCIAL_LIST: {
+  icon: ReactNode;
+  name: string;
+  link: string;
+}[] = [
+  {
+    icon: (
+      <Instagram2
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    ),
+    name: "Instagram",
+    link: "#",
+  },
+  {
+    icon: (
+      <Youtube
+        width="20"
+        height="16"
+        viewBox="0 0 20 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    ),
+    name: "Youtube",
+    link: "#",
+  },
+  {
+    icon: (
+      <Facebook2
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    ),
+    name: "Facebook",
+    link: "#",
+  },
+];
