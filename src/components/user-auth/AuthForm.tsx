@@ -15,7 +15,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuth } from "../providers";
+import { useModalState, useAuth } from "~/providers";
 
 import {
   TAuthFormValues,
@@ -62,21 +62,21 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     }
 
     if (isLoginMode) {
-      const { rememberMe, email, newPassword: password } = data;
+      const { rememberMe, email, newPassword } = data;
 
-      signIn({ email, password, user_type: userType }).then((data) => {
-        if (!data.token) return;
+      signIn({ email, password: newPassword, user_type: userType }).then(
+        (res) => {
+          singInProvider({ ...res, type: userType, rememberMe });
+          setOpenMainModal(false);
+          setSimpleModalMessage(false);
 
-        singInProvider({ ...data, type: userType, rememberMe });
-        setOpenMainModal(false);
-        setSimpleModalMessage(false);
-
-        navigate(
-          userType === EUserType.PATIENT
-            ? ERouteNames.PATIENT_ACCOUNT
-            : ERouteNames.DOCTOR_ACCOUNT
-        );
-      });
+          navigate(
+            userType === EUserType.PATIENT
+              ? ERouteNames.PATIENT_ACCOUNT
+              : ERouteNames.DOCTOR_ACCOUNT
+          );
+        }
+      );
     }
 
     if (isRecoveryMode) {
@@ -244,7 +244,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
             <Button
               sx={{ mt: "24px" }}
-              disabled={!formState.isValid}
+              disabled={!formState.isValid || loading}
               type="submit"
               variant="contained"
               // sx={{ backgroundColor: primaryColor }}

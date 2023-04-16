@@ -175,12 +175,12 @@ export const IdentityDocsEdit = ({
             name="birthDate" // TODO:
             control={control}
             defaultValue=""
-            // TODO:    rules={validationRules.firstName}
+            rules={{ required: true }}
             render={({ field }) => (
               <DatePickerInput
                 label="Дата видачі*"
-                // placeholder="Олександр"
                 {...field}
+                onChange={field.onChange}
                 // TODO:     error={!!errors.firstName}
                 // helperText={errors.firstName?.message || " "}
               />
