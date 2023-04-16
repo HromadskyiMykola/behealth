@@ -14,12 +14,12 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
   const { simpleModalMessage, setSimpleModalMessage } = useModalState();
 
   useEffect(() => {
-    if (apiError || loading) {
+    if (children || apiError || loading) {
       setOpenModal(true);
     } else {
       setOpenModal(false);
     }
-  }, [apiError, loading]);
+  }, [children, apiError, loading]);
 
   return (
     <Dialog

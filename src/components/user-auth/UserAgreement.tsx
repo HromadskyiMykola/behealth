@@ -188,16 +188,17 @@ export function UserAgreement() {
           onClick={handleClickOpen("user-agreement")}
           style={{ color: primaryColor, cursor: "pointer" }}
         >
+          {" "}
           умови угоди користувача
         </span>
-        і
+        {" і "}
         <span
           onClick={handleClickOpen("data-agreement")}
           style={{ color: primaryColor, cursor: "pointer" }}
         >
           обробки персональних даних
         </span>
-        .
+        {"."}
       </Typography>
 
       <Dialog

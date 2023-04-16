@@ -3,7 +3,7 @@ import { Box, MenuItem, Typography, Grid, InputAdornment } from "@mui/material";
 import { CustomizedInput, SelectWithPlaceholder } from "~/components/atomic";
 import { SearchIcon } from "lucide-react";
 
-export const ClinicAboutInfoHeader = () => {
+export const SearchDocs = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <Typography variant="h5" color="#212121">

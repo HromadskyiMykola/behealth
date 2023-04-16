@@ -1,10 +1,10 @@
 import { UserIcon } from "lucide-react";
 
 import { FormModal } from ".";
-import { ModalStateProvider, useAuth, useModalState } from "~/providers";
+import { useAuth, useModalState } from "~/providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
-import { ButtonM, SimpleModal } from "../atomic";
+import { ButtonM } from "../atomic";
 import { EUserType } from "~/common";
 
 const NestedButton = () => {
@@ -35,12 +35,9 @@ const NestedButton = () => {
 
 export const AuthorizationButton = () => {
   return (
-    <ModalStateProvider>
+    <>
       <NestedButton />
-
       <FormModal />
-
-      <SimpleModal />
-    </ModalStateProvider>
+    </>
   );
 };

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 import {
   TSignUpData,
@@ -90,7 +90,8 @@ const useApiService = () => {
     (data: TLoginData) =>
       _requestWithErrorHandling(
         _apiClient.post("login", data).then((res) => {
-          // if (!res.data?.token) throw new Error("Token not found in response");
+          if (!res.data?.token)
+            throw new Error(`// ${res.data} // Token not found in response`);
 
           return res;
         })
