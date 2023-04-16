@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
+import { ButtonM } from "../atomic";
 import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink } from "react-router-dom";
@@ -109,9 +109,9 @@ const Header: FC = (props) => {
             })}
           </Box>
 
-          <Button variant="contained" >
+          <ButtonM variant="contained" >
             <Typography variant="button">Записатися</Typography>
-          </Button>
+          </ButtonM>
 
          <AuthorizationButton/>
  

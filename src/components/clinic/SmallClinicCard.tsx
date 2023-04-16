@@ -1,71 +1,53 @@
 import React, { FC, useState } from "react";
-import { GoogleMapLink } from "~/components/clinicCard/GoogleMapLink";
-import { Box, Grid, Typography } from "@mui/material";
+import { GoogleMapLink } from "~/components/clinic/GoogleMapLink";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   VerifiedIcon,
   PlusIcon,
   MinusIcon,
   MapPinIcon,
   ClockIcon,
-  ParkingSquareIcon,
-  PuzzleIcon,
-  CreditCardIcon,
-  WifiIcon,
-  CrossIcon,
 } from "lucide-react";
-import { IClinicCard } from "~/components/clinicCard/clinic-card-constants";
+import { IClinicCard } from "~/components/clinic/clinic-card-constants";
 import Button from "@mui/material/Button";
 import FooterContactPhone from "~/components/FooterContactPhone/FooterContactPhone";
 import Life from "~/assets/CustomIcon/Life";
-import { ClinicAppointmentModal } from "~/components/clinicCard/ClinicAppointmentModal";
+import { ClinicAppointmentModal } from "~/components/clinic/ClinicAppointmentModal";
+import { Chips } from "~/components/clinic/Chips";
+import { CustomizedPaper } from "~/components/atomic";
 
 export interface ClinicCardProps {
   card: IClinicCard;
 }
 
-export const ClinicCard: FC<ClinicCardProps> = ({ card }) => {
+export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
   const [showAll, setShowAll] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const maxGridsToShow = 4;
 
   const { working, address, medicine, name, img, type, chips, phone } = card;
 
+  const theme = useTheme();
+  const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
+
   const closeModal = () => setIsOpen(false);
-
-  const chooseCard = (text: string) => {
-    const iconProps = {
-      color: "#597C8F",
-      size: 16,
-    };
-
-    switch (text) {
-      case "Паркинг":
-        return <ParkingSquareIcon {...iconProps} />;
-      case "Дитяча кімната":
-        return <PuzzleIcon {...iconProps} />;
-      case "Оплата картою":
-        return <CreditCardIcon {...iconProps} />;
-      case "Wi-Fi зона":
-        return <WifiIcon {...iconProps} />;
-      case "Аптека":
-        return <CrossIcon {...iconProps} />;
-    }
-  };
 
   return (
     <>
-      <Box
+      <CustomizedPaper
         sx={{
-          p: "32px",
-          borderRadius: "12px",
-          bgcolor: "#fff",
-          boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.04)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
         }}
       >
-        <Box sx={{ display: "flex", gap: "24px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "24px",
+            flexDirection: tabletDevice ? "column" : "row",
+          }}
+        >
           <img
             style={{ borderRadius: "8px" }}
             src={img}
@@ -77,35 +59,14 @@ export const ClinicCard: FC<ClinicCardProps> = ({ card }) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between",
+              gap: "44px",
             }}
           >
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography variant="body2">{type}</Typography>
               <Typography variant="h5">{name}</Typography>
             </Box>
-            <Grid container spacing={2}>
-              {chips.map((item) => (
-                <Grid item key={item}>
-                  <Box
-                    sx={{
-                      bgcolor: "#FBFCFF",
-                      borderRadius: "6px",
-                      border: "1px solid #C3E8FE",
-                      p: "4px 10px 4px 8px",
-                      display: "flex",
-                      gap: "8px",
-                      alignItems: "center",
-                    }}
-                  >
-                    {chooseCard(item)}
-                    <Typography color="#406375" variant="caption">
-                      {item}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
+            <Chips chips={chips} />
           </Box>
         </Box>
         <Box
@@ -190,14 +151,17 @@ export const ClinicCard: FC<ClinicCardProps> = ({ card }) => {
             </Box>
           </Box>
         </Box>
-        <Box
+        <Grid
+          container
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            gap: "20px",
           }}
         >
-          <Box
+          <Grid
+            item
             sx={{
               p: "8px 16px",
               borderRadius: "10px",
@@ -216,17 +180,17 @@ export const ClinicCard: FC<ClinicCardProps> = ({ card }) => {
               }
               phone={phone}
             />
-          </Box>
-          <Box sx={{ display: "flex", gap: "16px" }}>
+          </Grid>
+          <Grid item sx={{ display: "flex", gap: "16px" }}>
             <Button variant="outlined" onClick={() => setIsOpen(true)}>
               <Typography variant="button">Швидкий запис</Typography>
             </Button>
             <Button variant="contained">
               <Typography variant="button">Детальніше</Typography>
             </Button>
-          </Box>
-        </Box>
-      </Box>
+          </Grid>
+        </Grid>
+      </CustomizedPaper>
       <ClinicAppointmentModal isOpen={isOpen} closeModal={closeModal} />
     </>
   );

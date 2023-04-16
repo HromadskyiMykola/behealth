@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { CustomizedInput, SelectWithPlaceholder } from "~/components/atomic";
-import { CLINIC_APPOINTMENT_MODAL } from "~/components/clinicCard/clinic-card-constants";
+import { CLINIC_APPOINTMENT_MODAL } from "~/components/clinic/clinic-card-constants";
 import { Controller, useForm } from "react-hook-form";
 import { TAuthFormValues } from "~/common";
-import { ClinicAppointmentConditionModal } from "~/components/clinicCard/ClinicAppointmentConditionModal";
+import { ClinicAppointmentConditionModal } from "~/components/clinic/ClinicAppointmentConditionModal";
 
 export interface ClinicAppointmentModalProps {
   isOpen: boolean;

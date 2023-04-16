@@ -90,9 +90,7 @@ const useApiService = () => {
     (data: TLoginData) =>
       _requestWithErrorHandling(
         _apiClient.post("login", data).then((res) => {
-          console.log(res);
-
-          if (!res.data?.token) new Error("Token not found in response");
+          if (!res.data?.token) throw new Error("Token not found in response");
 
           return res;
         })
