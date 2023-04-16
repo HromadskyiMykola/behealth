@@ -103,7 +103,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     <>
       <Box>
         {!isRegisterMode && (
-          <UserTypeSelector value={userType} onChange={setUserType} />
+          <UserTypeSelector userType={userType} onChange={setUserType} />
         )}
         <Stack
           sx={{
