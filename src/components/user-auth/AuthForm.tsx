@@ -10,6 +10,7 @@ import {
   FormControlLabel,
   Checkbox,
   LinearProgress,
+  useTheme,
 } from "@mui/material";
 
 import { CustomizedInput, PasswordInput } from "../atomic";
@@ -38,6 +39,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const { singInProvider } = useAuth();
   const navigate = useNavigate();
   const { apiError, loading, signUp, signIn, forgotPassword } = useApiService();
+  const { palette } = useTheme();
 
   const isLoginMode: boolean = mode === EAuthMode.LOGIN;
   const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
@@ -108,7 +110,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
         <Stack
           sx={{
             p: "32px",
-            backgroundColor: "#FFF",
+            backgroundColor: palette.custom.primary100,
             borderRadius: "12px",
           }}
         >
@@ -122,20 +124,24 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             justifyContent="center"
             mb="24px"
           >
-            <Typography variant="body2" sx={{ color: "#8E918F" }}>
+            <Typography
+              variant="body2"
+              sx={{ color: palette.custom.neutral60 }}
+            >
               {isLoginMode ? "Ще не зареєстровані?" : "Вже зареєстровані?"}
             </Typography>
 
-            <Button
-              sx={{ ml: "4px", p: 0 }}
-              variant="text"
+            <Typography
+              sx={{ ml: "4px", cursor: "pointer" }}
+              variant="body2"
+              color={palette.primary.main}
               onClick={() => {
                 reset();
                 setMode(isLoginMode ? EAuthMode.REGISTER : EAuthMode.LOGIN);
               }}
             >
               {isLoginMode ? "Зареєструватися" : "Увійти"}
-            </Button>
+            </Typography>
           </Stack>
 
           <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -215,15 +221,17 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                   )}
                 />
 
-                <Button
-                  variant="text"
+                <Typography
+                  sx={{ ml: "4px", cursor: "pointer" }}
+                  variant="body2"
+                  color={palette.primary.main}
                   onClick={() => {
                     reset();
                     setMode(EAuthMode.RECOVERY);
                   }}
                 >
-                  {"Забули пароль?"}
-                </Button>
+                  Забули пароль?
+                </Typography>
               </Stack>
             )}
 
@@ -247,7 +255,6 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               disabled={!formState.isValid || loading}
               type="submit"
               variant="contained"
-              // sx={{ backgroundColor: primaryColor }}
             >
               {isLoginMode && "Увійти"}
               {isRegisterMode && "Зареєструватися"}
