@@ -10,8 +10,6 @@ import { CustomizedPaper } from "~/components/atomic";
 import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import ListItem from "@mui/material/ListItem";
 import { X, ChevronDown } from "lucide-react";
 import {
@@ -21,8 +19,9 @@ import {
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
-import { useAuth } from "~/providers";
 import { Calendar } from "~/components/Small-card-doctor/Calendar";
+import { useModalState, useAuth } from "~/providers";
+import { FormModal } from "~/components/user-auth";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -49,6 +48,7 @@ const BoxCalendar = styled("div")(({ theme }) => ({
   height: "306px",
   borderRadius: "10px",
   padding: "26px 32px",
+  gap: "26px",
 }));
 const ModalPaper = styled(Paper)(({ theme }) => ({
   position: "absolute" as "absolute",
@@ -84,6 +84,7 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 export const SmallCardDoctor = () => {
   const { custom } = useTheme().palette;
   const { authenticatedUser } = useAuth();
+  const { setOpenMainModal, setSimpleModalMessage } = useModalState();
 
   const [open, setOpen] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
@@ -98,7 +99,11 @@ export const SmallCardDoctor = () => {
   };
 
   const handleConfirm = () => {
-    // !!authenticatedUser &&
+    if (!authenticatedUser) {
+      console.log("do");
+      setOpenMainModal(true);
+      return;
+    }
     setConfirm(true);
     setTimeout(() => {
       setOpen(false);
@@ -133,7 +138,7 @@ export const SmallCardDoctor = () => {
         >
           <BoxCalendar>
             <Calendar />
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" pt={2}>
               <Button variant="text" endIcon={<ChevronDown />}>
                 {BUTTON_SHOW_MORE}
               </Button>
@@ -200,6 +205,7 @@ export const SmallCardDoctor = () => {
                 </Box>
                 {confirm && <PopUpDocAppointment2 close={handleCloseConfirm} />}
               </Box>
+              <FormModal />
             </ModalPaper>
           </Modal>
         </Box>

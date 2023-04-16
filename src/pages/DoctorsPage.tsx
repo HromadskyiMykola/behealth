@@ -1,5 +1,10 @@
 import React from "react";
+import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 export function DoctorsPage() {
-  return <div>Doctor</div>;
+  return (
+    <div>
+      <SmallCardDoctor />
+    </div>
+  );
 }

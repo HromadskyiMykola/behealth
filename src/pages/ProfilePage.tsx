@@ -3,10 +3,5 @@ import HeaderCardDoctor from "~/components/Header-card-doctor/Header-card-doctor
 import { MainSectionDoctor } from "~/components/Main-section-doctor";
 
 export function ProfilePage() {
-  return (
-    <div>
-      <HeaderCardDoctor />
-      <MainSectionDoctor />
-    </div>
-  );
+  return <div>Doctor</div>;
 }
