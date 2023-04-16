@@ -10,15 +10,19 @@ import { CustomizedPaper } from "~/components/atomic";
 import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import ListItem from "@mui/material/ListItem";
-import { X } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
 import {
   AT_RECEPTION,
+  BUTTON_SHOW_MORE,
   POP_UP_DOC_APPOINTMENT_1,
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
 import { useAuth } from "~/providers";
+import { Calendar } from "~/components/Small-card-doctor/Calendar";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -44,6 +48,7 @@ const BoxCalendar = styled("div")(({ theme }) => ({
   width: "332px",
   height: "306px",
   borderRadius: "10px",
+  padding: "26px 32px",
 }));
 const ModalPaper = styled(Paper)(({ theme }) => ({
   position: "absolute" as "absolute",
@@ -104,6 +109,7 @@ export const SmallCardDoctor = () => {
     setOpen(false);
     setConfirm(false);
   };
+
   return (
     <CustomizedPaper>
       <Box display="flex" gap="32px">
@@ -125,7 +131,14 @@ export const SmallCardDoctor = () => {
           flexDirection="column"
           justifyContent="space-between"
         >
-          <BoxCalendar></BoxCalendar>
+          <BoxCalendar>
+            <Calendar />
+            <Box display="flex" justifyContent="center">
+              <Button variant="text" endIcon={<ChevronDown />}>
+                {BUTTON_SHOW_MORE}
+              </Button>
+            </Box>
+          </BoxCalendar>
           <Button
             variant="contained"
             sx={{ width: "100%" }}

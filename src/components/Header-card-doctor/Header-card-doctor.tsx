@@ -2,15 +2,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import avatar from "~/assets/images/doctor-avatar.png";
-import { Map, MapPin, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import Chips from "~/components/Header-card-doctor/Chips";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { chipsMOCKdata, contactMOCKdata } from "./constant-header-doctor-card";
 import { IContactPhoneWithIcon } from "~/common";
 import ContactPhoneWithIcon from "~/components/atomic/Contact-phone-with-icon";
-import { AddressesAndInfoDoctor } from "~/components/Addresses-and-info-doctor";
-import { Link } from "react-router-dom";
 import { MapInfoDoctor } from "~/components/Map-info-doctor";
 
 const HeaderCardDoctor = () => {

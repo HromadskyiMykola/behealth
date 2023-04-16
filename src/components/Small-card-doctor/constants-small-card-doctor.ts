@@ -22,3 +22,4 @@ export const POP_UP_DOC_APPOINTMENT_2_ALERT =
   "Очікуйте підтвердження від лікаря в особистому кабінеті.";
 export const POP_UP_DOC_APPOINTMENT_2_GRATITUDE =
   "Дякуємо що обираєте beHealth, ми трудимось над тим, щоб Вам було зручно користуватись сервісом.";
+export const BUTTON_SHOW_MORE = "Показати більше";
