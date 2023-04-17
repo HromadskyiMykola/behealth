@@ -1,11 +1,5 @@
 import React, { FC } from "react";
-import {
-  Box,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Chips } from "~/components/clinic/Chips";
 import { ClockIcon, MapPinIcon, Share2Icon } from "lucide-react";
 import { ClinicCardProps } from "~/components/clinic";
@@ -80,9 +74,11 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
               <Typography color="212121" variant="body2">
                 {type}
               </Typography>
-              <IconButton sx={{ p: 0 }}>
-                <Share2Icon size={24} color="#757875" />
-              </IconButton>
+              <Share2Icon
+                size={24}
+                color="#757875"
+                style={{ cursor: "pointer" }}
+              />
             </Box>
             <Typography color="212121" variant="h5">
               {name}
