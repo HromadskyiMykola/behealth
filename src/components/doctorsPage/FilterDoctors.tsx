@@ -20,12 +20,12 @@ import { KeyboardArrowDown } from "@mui/icons-material";
 
 import { CustomizedPaper, SelectWithPlaceholder } from "../atomic";
 
+const minDistance = 10;
+
 export const FilterDoctors = () => {
   const { palette, typography } = useTheme();
   const [rangeCost, setRangeCost] = useState<number[]>([0, 10]);
   const [rangeExperience, setRangeExperience] = useState<number[]>([0, 10]);
-
-  const minDistance = 10;
 
   const handleRangeCost = (
     event: Event,

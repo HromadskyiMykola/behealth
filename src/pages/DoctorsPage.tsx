@@ -9,16 +9,24 @@ import {
   styled,
   useTheme,
 } from "@mui/material";
-import { BreadcrumbsUkr } from "~/components/atomic";
-
 import {
-    FilterDoctors,
-  SearchBar,
-  SelectBar,
-  SelectedDoctors,
-} from "~/components/doctorsPage";
+  BreadcrumbsUkr,
+  PaginationBottomBar,
+  SelectedItemsBox,
+  SelectTopBar,
+} from "~/components/atomic";
+
+import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
 
 import HeaderCardDoctor from "~/components/Header-card-doctor/Header-card-doctor";
+
+const data = [
+  { key: 0, label: "Приватна клініка" },
+  { key: 1, label: "Добре" },
+  { key: 2, label: "Дуже добре" },
+  { key: 3, label: "Вища освіта" },
+  { key: 4, label: "Бімба! :)" },
+];
 
 export const DoctorsPage = () => {
   const { palette } = useTheme();
@@ -38,15 +46,17 @@ export const DoctorsPage = () => {
 
       <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
         <Box sx={{ flex: "0 1 328px" }}>
-                  <SelectedDoctors />
-                  
-                  <FilterDoctors/>
+          <SelectedItemsBox data={data} />
+
+          <FilterDoctors />
         </Box>
 
         <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
-          <SelectBar />
+          <SelectTopBar />
 
           <HeaderCardDoctor />
+
+          <PaginationBottomBar />
         </Box>
       </Stack>
     </Container>
