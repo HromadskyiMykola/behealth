@@ -196,12 +196,3 @@ export const PROFILE_APPOINTMENT_DETAILS_INFO: IProfileAppointmentDetails = {
   ],
 };
 
-export const PROFILE_APPOINTMENT_DETAILS_INFO_NAVIGATION: IProfileAppointmentDetailsInfoNavigation[] =
-  [
-    {
-      title: "Дані прийому",
-    },
-    {
-      title: "Додані медзаписи",
-    },
-  ];
