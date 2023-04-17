@@ -18,7 +18,7 @@ const StyledSelect = styled(Select)(({ theme }) => ({
   ...theme.typography.body2,
 }));
 
-export const SelectBar = () => {
+export const SelectTopBar = () => {
   return (
     <Paper sx={{ mb: "24px", p: "10px 16px", borderRadius: "8px" }}>
       <StyledSelect IconComponent={KeyboardArrowDown} value={1}>

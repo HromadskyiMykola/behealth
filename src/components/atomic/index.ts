@@ -11,3 +11,6 @@ export * from "./ReactHookFormSelect";
 export * from "./SelectWithPlaceholder";
 export * from "./SimpleModal";
 export * from "./ButtonM";
+export * from "./SelectedItemsBox";
+export * from "./SelectTopBar";
+export * from "./PaginationBottomBar";

@@ -1,22 +1,16 @@
 import { Box, Chip, Stack, Typography, useTheme } from "@mui/material";
-import { CustomizedPaper } from "../atomic";
+import { CustomizedPaper } from ".";
 import { useState } from "react";
 
-interface ChipData {
+type ChipData = {
   key: number;
   label: string;
-}
+};
 
-export const SelectedDoctors = () => {
+export const SelectedItemsBox = ({ data }: { data: ChipData[] }) => {
   const { palette } = useTheme();
 
-  const [chipData, setChipData] = useState<readonly ChipData[]>([
-    { key: 0, label: "Приватна клініка" },
-    { key: 1, label: "Добре" },
-    { key: 2, label: "Дуже добре" },
-    { key: 3, label: "Вища освіта" },
-    { key: 4, label: "Бімба! :) " },
-  ]);
+  const [chipData, setChipData] = useState<ChipData[]>(data);
 
   const handleDelete = (chipToDelete: ChipData) => () => {
     setChipData((chips) =>
@@ -39,7 +33,7 @@ export const SelectedDoctors = () => {
         </Typography>
 
         <Typography variant="body2" color={palette.custom.primary20}>
-          287 лікарів
+          287 папуг
         </Typography>
       </Stack>
 
