@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs, BreadcrumbsProps, Typography } from "@mui/material";
 import { NavigateNext } from "@mui/icons-material";
 
 import { TRoute } from "~/common";
@@ -25,7 +25,7 @@ function findRouteLabel(name: string, routes: TRoute[]): string {
   return "";
 }
 
-export function BreadcrumbsUkr() {
+export function BreadcrumbsUkr({ sx }: BreadcrumbsProps) {
   const location = useLocation();
   const pathNames = useMemo(
     () => location.pathname.split("/").filter((p) => p),
@@ -37,6 +37,7 @@ export function BreadcrumbsUkr() {
     <Breadcrumbs
       separator={<NavigateNext fontSize="small" />}
       aria-label="Шлях"
+      sx={sx}
     >
       <Typography
         variant="caption"
@@ -45,7 +46,7 @@ export function BreadcrumbsUkr() {
         to="/"
         sx={sx}
       >
-        {"Головна"}
+        Головна
       </Typography>
 
       {pathNames.map((name, index) => {

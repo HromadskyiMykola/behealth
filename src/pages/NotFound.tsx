@@ -15,12 +15,10 @@ export function NotFound() {
         gap: 4,
       }}
     >
-      <Typography variant="h1">{"404"}</Typography>
-      <Typography variant="h4">
-        {"Бі-буп.. Такої сторінки не існує."}
-      </Typography>
+      <Typography variant="h1">404</Typography>
+      <Typography variant="h4">Бі-буп.. Такої сторінки не існує.</Typography>
       <Button variant="contained" sx={{ mt: 2 }} onClick={() => navigate(-1)}>
-        {"Повернутись"}
+        Повернутись
       </Button>
     </Box>
   );
