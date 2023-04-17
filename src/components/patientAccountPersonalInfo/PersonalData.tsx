@@ -11,7 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { CustomizedInput, DatePickerInput, SelectWithPlaceholder } from "../atomic";
+import {
+  CustomizedInput,
+  DatePickerInput,
+  SelectWithPlaceholder,
+} from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
 
 type PersonalDataEditProps = {
@@ -193,6 +197,7 @@ export const PersonalDataEdit = ({
             // TODO     rules={validationRules.middleName}
             render={({ field }) => (
               <SelectWithPlaceholder
+                fullWidth
                 label="Стать"
                 placeholder="Стать"
                 {...field}

@@ -18,7 +18,7 @@ function CustomInput(props: TextFieldProps, ref: Ref<HTMLDivElement>) {
           {label}
         </Typography>
       )}
-      <TextField
+      <TextField 
         {...otherProps}
         ref={ref}
         FormHelperTextProps={{

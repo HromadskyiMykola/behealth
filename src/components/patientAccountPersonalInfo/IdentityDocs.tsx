@@ -119,6 +119,7 @@ export const IdentityDocsEdit = ({
             rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
+                fullWidth
                 placeholder="Оберіть тип"
                 label="Тип документа*"
                 {...field}
