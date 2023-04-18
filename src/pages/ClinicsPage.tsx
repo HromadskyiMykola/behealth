@@ -17,7 +17,8 @@ import {
   SelectTopBar,
 } from "~/components/atomic";
 
-import { ClinicInfo, FilterClinics, SearchClinics } from "~/components/clinic";
+import { FilterClinics, SearchClinics } from "~/components/clinic";
+import { Clinics } from "~/components/clinic/Clinics";
 
 const data = [
   { key: 0, label: "Приватна клініка" },
@@ -51,7 +52,7 @@ export const ClinicsPage = () => {
         <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
           <SelectTopBar />
 
-          <ClinicInfo />
+          <Clinics />
 
           <PaginationBottomBar />
         </Box>

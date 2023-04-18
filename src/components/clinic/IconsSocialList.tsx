@@ -9,6 +9,7 @@ export const IconsSocialList = () => {
       {ICONS_SOCIAL_LIST.map(({ icon, name, link }) => (
         <Grid key={name} item>
           <Link
+            target="_blank"
             to={link}
             style={{
               textDecoration: "none",
