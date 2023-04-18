@@ -191,7 +191,7 @@ export const PersonalDataEdit = ({
 
         <Grid item laptop={4}>
           <Controller
-            name="gender"
+            name="sex"
             control={control}
             // defaultValue={undefined}
             // TODO     rules={validationRules.middleName}
