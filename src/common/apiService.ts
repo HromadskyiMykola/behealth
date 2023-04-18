@@ -6,10 +6,12 @@ import {
   TLoginData,
   TForgotPassData,
   TAuthFormValues,
+  TPatientAdditionalData,
+  TResetPassData,
 } from "./types-and-interfaces";
 
 import { ERouteNames } from "~/routes/routeNames";
-import { useAuth } from "~/providers";
+import { useAuthProvider } from "~/providers";
 
 const errorHandler = (error: any): string => {
   const log = (name: string, data: any) =>
@@ -38,10 +40,42 @@ const errorHandler = (error: any): string => {
   );
 };
 
+const buildRequestData = (data: any) => {
+  const {
+    firstName,
+    middleName,
+    lastName,
+    mobileNumber,
+    docSerialNum,
+    issuedBy,
+    addressType,
+    birthDate,
+    workType,
+    ...rest
+  } = data;
+
+  return {
+    ...(addressType ? { address_type: addressType } : {}),
+    ...(firstName ? { name: firstName } : {}),
+    ...(middleName ? { fathername: middleName } : {}),
+    ...(lastName ? { surname: lastName } : {}),
+    ...(workType ? { work_type: workType } : {}),
+    ...(mobileNumber ? { phone: mobileNumber } : {}),
+    ...(birthDate ? { birthday: birthDate } : {}),
+    ...(docSerialNum ? { series: docSerialNum } : {}),
+    ...(issuedBy ? { issued_by: issuedBy } : {}),
+    ...(workType ? { work_type: workType } : {}),
+    ...(workType ? { work_type: workType } : {}),
+    ...(workType ? { work_type: workType } : {}),
+    ...(workType ? { work_type: workType } : {}),
+    ...rest,
+  };
+};
+
 const useApiService = () => {
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser } = useAuthProvider();
 
   const clearApiError = useCallback(() => setApiError(null), []);
 
@@ -100,30 +134,54 @@ const useApiService = () => {
   );
 
   const emailConfirmation = useCallback(
-    (data: TAuthFormValues, token: string | undefined) =>
+    ({
+      birthDate,
+      firstName,
+      lastName,
+      mobileNumber,
+      token,
+    }: TAuthFormValues & { token: string | undefined }) => {
+      const data = {
+        birthday: birthDate,
+        name: firstName,
+        surname: lastName,
+        phone: mobileNumber,
+        token,
+      };
+
+      return _requestWithErrorHandling(
+        _apiClient.post(`confirmation?token=${token}`, data)
+      );
+    },
+    []
+  );
+
+  const resetPassword = useCallback(
+    ({ userType, token, password }: TResetPassData) =>
       _requestWithErrorHandling(
-        _apiClient.post(ERouteNames.CONFIRMATION + `?token=${token}`, data)
+        _apiClient.post(`reset?token=${token}&user_type=${userType}`, {
+          password,
+        })
       ),
     []
   );
 
   const forgotPassword = useCallback(
-    (data: TForgotPassData) =>
-      _requestWithErrorHandling(_apiClient.post("forgot", data)),
-    []
-  );
-
-  const getAppointments = useCallback(
-    (data: any) =>
+    ({ email, userType }: TForgotPassData) =>
       _requestWithErrorHandling(
-        _apiClient.get("patient-account/appointments", data)
+        _apiClient.post("forgot", { email, user_type: userType })
       ),
     []
   );
 
   const getDoctors = useCallback(
-    (data: any) =>
-      _requestWithErrorHandling(_apiClient.get(ERouteNames.DOCTORS, data)),
+    () => _requestWithErrorHandling(_apiClient.get("doctors")),
+    []
+  );
+
+  const getAppointments = useCallback(
+    () =>
+      _requestWithErrorHandling(_apiClient.get("patient-account/appointments")),
     []
   );
 
@@ -136,25 +194,37 @@ const useApiService = () => {
   );
 
   const createPatientAdditionalInfo = useCallback(
-    (data: any) =>
-      _requestWithErrorHandling(
-        _apiClient.post("patient-account/additional-data", data)
-      ),
+    (data: TPatientAdditionalData) => {
+      const { addressType, workType, ...rest } = data;
+
+      return _requestWithErrorHandling(
+        _apiClient.post("patient-account/additional-data", {
+          address_type: addressType,
+          work_type: workType,
+          ...rest,
+        })
+      );
+    },
     []
   );
 
   const updatePatientAdditionalInfo = useCallback(
-    (data: any) =>
+    (data: TPatientAdditionalData) =>
       _requestWithErrorHandling(
-        _apiClient.put("patient-account/additional-data", data)
+        _apiClient.put(
+          "patient-account/additional-data",
+          buildRequestData(data)
+        )
       ),
     []
   );
 
   const deletePatientAdditionalInfo = useCallback(
-    (data: any) =>
+    (data: TPatientAdditionalData) =>
       _requestWithErrorHandling(
-        _apiClient.delete("patient-account/additional-data", data)
+        _apiClient.delete("patient-account/additional-data", {
+          params: buildRequestData(data),
+        })
       ),
     []
   );
@@ -191,25 +261,38 @@ const useApiService = () => {
     []
   );
 
-  return {
-    loading,
-    apiError,
-    clearApiError,
+  const auth = Object.freeze({
     signUp,
     signIn,
     emailConfirmation,
     forgotPassword,
+    resetPassword,
+  });
+
+  const patient = Object.freeze({
     getAppointments,
+    additionalInfo: Object.freeze({
+      get: getPatientAdditionalInfo,
+      create: createPatientAdditionalInfo,
+      update: updatePatientAdditionalInfo,
+      delete: deletePatientAdditionalInfo,
+    }),
+    personalInfo: Object.freeze({
+      get: getPatientPersonalInfo,
+      create: createPatientPersonalInfo,
+      update: updatePatientPersonalInfo,
+      delete: deletePatientPersonalInfo,
+    }),
+  });
+
+  return Object.freeze({
+    loading,
+    apiError,
+    clearApiError,
     getDoctors,
-    getPatientAdditionalInfo,
-    createPatientAdditionalInfo,
-    updatePatientAdditionalInfo,
-    deletePatientAdditionalInfo,
-    getPatientPersonalInfo,
-    createPatientPersonalInfo,
-    updatePatientPersonalInfo,
-    deletePatientPersonalInfo,
-  };
+    auth,
+    patient,
+  });
 };
 
 export { useApiService };

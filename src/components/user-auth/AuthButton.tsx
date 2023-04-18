@@ -1,7 +1,7 @@
 import { UserIcon } from "lucide-react";
 
 import { FormModal } from ".";
-import { useAuth, useModalState } from "~/providers";
+import { useAuthProvider, useModalState } from "~/providers";
 import { useNavigate } from "react-router-dom";
 import { ERouteNames } from "~/routes/routeNames";
 import { ButtonM } from "../atomic";
@@ -9,7 +9,7 @@ import { EUserType } from "~/common";
 
 const NestedButton = () => {
   const { setOpenMainModal } = useModalState();
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser } = useAuthProvider();
   const navigate = useNavigate();
 
   const handleButton = () => {

@@ -27,14 +27,14 @@ import {
 import { BreadcrumbsUkr, TabLink } from "~/components/atomic/index";
 
 import { ERouteNames } from "~/routes/routeNames";
-import { useAuth } from "~/providers";
+import { useAuthProvider } from "~/providers";
 
 const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 
 const NavTabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { singOutProvider } = useAuth();
+  const { singOutProvider } = useAuthProvider();
 
   const handleLogout = useCallback(() => {
     navigate(ERouteNames.HOME);

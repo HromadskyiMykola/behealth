@@ -32,9 +32,9 @@ export function FormModal() {
   const { openMainModal, setOpenMainModal } = useModalState();
 
   const [mode, setMode] = useState<EAuthMode>(EAuthMode.LOGIN);
-  const isLoginMode: boolean = mode === EAuthMode.LOGIN;
-  const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
-  const isRecoveryMode: boolean = mode === EAuthMode.RECOVERY;
+  const isLoginMode = mode === EAuthMode.LOGIN;
+  const isRegisterMode = mode === EAuthMode.REGISTER;
+  const isRecoveryMode = mode === EAuthMode.RECOVERY;
 
   const theme = useTheme();
 

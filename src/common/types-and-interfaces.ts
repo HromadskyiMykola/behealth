@@ -19,7 +19,7 @@ export type TAuthFormValues = {
   userType: EUserType;
   birthDate: string;
   tin: string;
-  gender: "male" | "female" | "";
+  sex: "male" | "female" | "";
   chooseDoctor: string;
   time: string;
   docType: string;
@@ -200,8 +200,8 @@ export interface ButtonsFilteringProps {
   CardsFiltering: (e: React.MouseEvent<HTMLButtonElement>) => void;
   activeButton: string;
 }
-// apiService types
 
+// apiService types
 export type TSignUpData = {
   email: string;
   password: string;
@@ -216,7 +216,13 @@ export type TLoginData = {
 
 export type TForgotPassData = {
   email: string;
-  user_type: EUserType;
+  userType: EUserType;
+};
+
+export type TResetPassData = {
+  token: string;
+  userType: EUserType;
+  password: string;
 };
 
 export type TSignInProvider = {
@@ -224,6 +230,34 @@ export type TSignInProvider = {
   token: string;
   type: EUserType;
 };
+
+export type TPatientAdditionalData = {
+  type?: "address" | "work";
+  addressType?: string;
+  settlement?: string;
+  house?: string;
+  apartments?: string;
+  workType?: string;
+  place?: string;
+  position?: string;
+};
+export type TPatientPersonalData = {
+  type: "patient_info" | "document";
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  birthDate: string;
+  tin: string;
+  sex: string;
+  series: string;
+  docSerialNum: string;
+  issuedBy: string;
+  date: string;
+};
+
+// apiService types
 
 export interface IChips {
   text: string;

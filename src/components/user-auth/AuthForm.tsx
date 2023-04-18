@@ -16,7 +16,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuth } from "~/providers";
+import { useModalState, useAuthProvider } from "~/providers";
 
 import {
   TAuthFormValues,
@@ -36,14 +36,14 @@ type TAuthFormProps = {
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const [userType, setUserType] = useState<EUserType>(EUserType.PATIENT);
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
-  const { singInProvider } = useAuth();
+  const { singInProvider } = useAuthProvider();
   const navigate = useNavigate();
-  const { apiError, loading, signUp, signIn, forgotPassword } = useApiService();
+  const { apiError, loading, auth } = useApiService();
   const { palette } = useTheme();
 
-  const isLoginMode: boolean = mode === EAuthMode.LOGIN;
-  const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
-  const isRecoveryMode: boolean = mode === EAuthMode.RECOVERY;
+  const isLoginMode = mode === EAuthMode.LOGIN;
+  const isRegisterMode = mode === EAuthMode.REGISTER;
+  const isRecoveryMode = mode === EAuthMode.RECOVERY;
 
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({
@@ -57,7 +57,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     if (isRegisterMode) {
       const { email, newPassword: password } = data;
 
-      signUp({ email, password }).then(() => {
+      auth.signUp({ email, password }).then(() => {
         reset();
         setSimpleModalMessage(<ThanksSingUpMessage />);
       });
@@ -66,8 +66,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     if (isLoginMode) {
       const { rememberMe, email, newPassword } = data;
 
-      signIn({ email, password: newPassword, user_type: userType }).then(
-        (res) => {
+      auth
+        .signIn({ email, password: newPassword, user_type: userType })
+        .then((res) => {
           singInProvider({ ...res, type: userType, rememberMe });
           setOpenMainModal(false);
           setSimpleModalMessage(false);
@@ -77,16 +78,13 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               ? ERouteNames.PATIENT_ACCOUNT
               : ERouteNames.DOCTOR_ACCOUNT
           );
-        }
-      );
+        });
     }
 
     if (isRecoveryMode) {
       const { email } = data;
 
-      forgotPassword({ email, user_type: userType }).then(
-        setSimpleModalMessage
-      );
+      auth.forgotPassword({ email, userType }).then(setSimpleModalMessage);
     }
 
     // console.log(formState);
