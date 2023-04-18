@@ -11,7 +11,11 @@ export const SearchDocs = () => {
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
-          <SelectWithPlaceholder label="Спеціальність" placeholder="Обрати">
+          <SelectWithPlaceholder
+            sx={{ width: "100%" }}
+            label="Спеціальність"
+            placeholder="Обрати"
+          >
             <MenuItem value="neurologist">Невролог</MenuItem>
             <MenuItem value="urologist">Уролог</MenuItem>
           </SelectWithPlaceholder>
