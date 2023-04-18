@@ -24,7 +24,8 @@ export const GetDateNextWeek = () => {
     const dayOfWeek = daysOfWeek[date.day()];
     const month = months[date.month()];
     const dayOfMonth = date.date();
-    const dateInfo = { dayOfWeek, month, dayOfMonth };
+    const formattedDate = date.format("DD.MM.YYYY");
+    const dateInfo = { dayOfWeek, month, dayOfMonth, formattedDate };
     datesForWeek.push(dateInfo);
   }
   return datesForWeek;
