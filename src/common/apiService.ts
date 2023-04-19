@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import { useCallback, useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
 
 import {
   TSignUpData,
@@ -8,12 +8,26 @@ import {
   TAuthFormValues,
   TPatientAdditionalData,
   TResetPassData,
+  TPatientPersonalData,
 } from "./types-and-interfaces";
 
-import { ERouteNames } from "~/routes/routeNames";
 import { useAuthProvider } from "~/providers";
 
-const errorHandler = (error: any): string => {
+// TODO: import { mockApi } from "./mockApi";
+
+// TODO: const USE_MOCK_API = false;
+
+const apiClient = axios.create({
+  baseURL: "https://www.behealth.pp.ua/api/v1/",
+});
+
+const errorHandler = (error: any): any => {
+  const { name, response, request, message, code } = error;
+
+  if (typeof response?.data === "string" && response.data.includes("DOCTYPE")) {
+    response.data = "there was useless information here...";
+  }
+
   const log = (name: string, data: any) =>
     console.warn(
       `%c${name}`,
@@ -21,27 +35,30 @@ const errorHandler = (error: any): string => {
       data
     );
 
-  log("Debugging " + error.name + " >>", error.code);
-  log("request status >>", error.request?.status);
-  log("response status >>", error.response?.status);
-  log("err message >>", error.message);
-  log("request err data >>", error.request);
-  log("response err data >>", error.response?.data);
-  log("response err headers >>", error.response?.headers);
+  log("Debugging " + name + " >>", code);
+  log("request status >>", request?.status);
+  log("response status >>", response?.status);
+  log("err message >>", message);
+  log("request err data >>", request);
+  log("response err data >>", response?.data);
+  log("response err headers >>", response?.headers);
 
   console.log("Full error instance >>", error);
 
   return (
-    error.response?.data?.error ||
-    error.response?.statusText + " " + error.message ||
-    error.code ||
-    error.name ||
+    response?.data?.error ||
+    response?.statusText + " " + message ||
+    code ||
+    name ||
     "Unknown error"
   );
 };
 
+// Unfortunately, back-end developers don't understand that the names of the parameters should be correct,
+// so i had to make the function to transform the output data.
 const buildRequestData = (data: any) => {
   const {
+    userType,
     firstName,
     middleName,
     lastName,
@@ -51,47 +68,80 @@ const buildRequestData = (data: any) => {
     addressType,
     birthDate,
     workType,
+    tin,
     ...rest
   } = data;
 
   return {
-    ...(addressType ? { address_type: addressType } : {}),
+    ...(userType ? { user_type: userType } : {}),
     ...(firstName ? { name: firstName } : {}),
     ...(middleName ? { fathername: middleName } : {}),
     ...(lastName ? { surname: lastName } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(mobileNumber ? { phone: mobileNumber } : {}),
     ...(birthDate ? { birthday: birthDate } : {}),
+    ...(mobileNumber ? { phone: mobileNumber } : {}),
+    ...(addressType ? { address_type: addressType } : {}),
+    ...(workType ? { work_type: workType } : {}),
     ...(docSerialNum ? { series: docSerialNum } : {}),
     ...(issuedBy ? { issued_by: issuedBy } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(workType ? { work_type: workType } : {}),
+    ...(tin ? { itn: tin } : {}),
     ...rest,
   };
 };
 
 const useApiService = () => {
   const [loading, setLoading] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
+  const [apiError, setApiError] = useState<any>(null);
   const { authenticatedUser } = useAuthProvider();
 
   const clearApiError = useCallback(() => setApiError(null), []);
 
-  axios.interceptors.request.use((config) => {
-    const token = authenticatedUser?.token
-      ? `Bearer ${authenticatedUser.token}`
-      : "";
+  useEffect(() => {
+    const interceptorId = apiClient.interceptors.request.use((config) => {
+      const token = authenticatedUser?.token
+        ? `Bearer ${authenticatedUser.token}`
+        : "";
 
-    if (token) config.headers.Authorization = token;
+      // add a token to all requests
+      if (config.headers && token) config.headers.Authorization = token;
 
-    return config;
-  });
+      // transform data in all requests
+      if (config.method === "post" || config.method === "put") {
+        config.data = buildRequestData(config.data);
+      } else if (config.method === "delete") {
+        config.params = buildRequestData(config.params);
+      }
 
-  const _apiClient = axios.create({
-    baseURL: "https://www.behealth.pp.ua/api/v1/",
-  });
+      return config;
+    });
+
+    return () => {
+      apiClient.interceptors.request.eject(interceptorId);
+    };
+  }, [authenticatedUser]);
+
+  // TODO: на випадок подальших тупняків від беків, реалізувати фіктивній АРІ
+
+  // if (USE_MOCK_API) {
+  //   apiClient.interceptors.request.use((config) => {
+  //     config.adapter = async () => {
+  //       switch (config.url) {
+  //         case "/doctors":
+  //           return {
+  //             data: mockApi.getDoctorsData(),
+  //             status: 200,
+  //             statusText: "OK",
+  //             config,
+  //             headers: {},
+  //           };
+  //         // TODO: додати ендпоінти
+  //         default:
+  //           throw new Error(`No mock data for ${config.url}`);
+  //       }
+  //     };
+
+  //     return config;
+  //   });
+  // }
 
   const _requestWithErrorHandling = useCallback(
     async <T>(request: Promise<AxiosResponse<T>>) => {
@@ -116,14 +166,14 @@ const useApiService = () => {
 
   const signUp = useCallback(
     (data: TSignUpData) =>
-      _requestWithErrorHandling(_apiClient.post("signup", data)),
+      _requestWithErrorHandling(apiClient.post("signup", data)),
     []
   );
 
   const signIn = useCallback(
     (data: TLoginData) =>
       _requestWithErrorHandling(
-        _apiClient.post("login", data).then((res) => {
+        apiClient.post("login", data).then((res) => {
           // if (!res.data?.token)
           //   throw new Error(`// ${res.data} // Token not found in response`);
 
@@ -134,32 +184,25 @@ const useApiService = () => {
   );
 
   const emailConfirmation = useCallback(
-    ({
-      birthDate,
-      firstName,
-      lastName,
-      mobileNumber,
-      token,
-    }: TAuthFormValues & { token: string | undefined }) => {
-      const data = {
-        birthday: birthDate,
-        name: firstName,
-        surname: lastName,
-        phone: mobileNumber,
-        token,
-      };
-
-      return _requestWithErrorHandling(
-        _apiClient.post(`confirmation?token=${token}`, data)
-      );
-    },
+    (
+      { firstName, lastName, birthDate, mobileNumber }: TAuthFormValues,
+      token: string | undefined
+    ) =>
+      _requestWithErrorHandling(
+        apiClient.post(`confirmation?token=${token}`, {
+          firstName,
+          lastName,
+          birthDate,
+          mobileNumber,
+        })
+      ),
     []
   );
 
   const resetPassword = useCallback(
     ({ userType, token, password }: TResetPassData) =>
       _requestWithErrorHandling(
-        _apiClient.post(`reset?token=${token}&user_type=${userType}`, {
+        apiClient.post(`reset?token=${token}&user_type=${userType}`, {
           password,
         })
       ),
@@ -168,53 +211,41 @@ const useApiService = () => {
 
   const forgotPassword = useCallback(
     ({ email, userType }: TForgotPassData) =>
-      _requestWithErrorHandling(
-        _apiClient.post("forgot", { email, user_type: userType })
-      ),
+      _requestWithErrorHandling(apiClient.post("forgot", { email, userType })),
     []
   );
 
   const getDoctors = useCallback(
-    () => _requestWithErrorHandling(_apiClient.get("doctors")),
+    () => _requestWithErrorHandling(apiClient.get("doctors")),
     []
   );
 
   const getAppointments = useCallback(
     () =>
-      _requestWithErrorHandling(_apiClient.get("patient-account/appointments")),
+      _requestWithErrorHandling(apiClient.get("patient-account/appointments")),
     []
   );
 
   const getPatientAdditionalInfo = useCallback(
     () =>
       _requestWithErrorHandling(
-        _apiClient.get("patient-account/additional-data")
+        apiClient.get("patient-account/additional-data")
       ),
     []
   );
 
   const createPatientAdditionalInfo = useCallback(
-    (data: TPatientAdditionalData) => {
-      const { addressType, workType, ...rest } = data;
-
-      return _requestWithErrorHandling(
-        _apiClient.post("patient-account/additional-data", {
-          address_type: addressType,
-          work_type: workType,
-          ...rest,
-        })
-      );
-    },
+    (data: TPatientAdditionalData) =>
+      _requestWithErrorHandling(
+        apiClient.post("patient-account/additional-data/create", data)
+      ),
     []
   );
 
   const updatePatientAdditionalInfo = useCallback(
     (data: TPatientAdditionalData) =>
       _requestWithErrorHandling(
-        _apiClient.put(
-          "patient-account/additional-data",
-          buildRequestData(data)
-        )
+        apiClient.put("patient-account/additional-data/update", data)
       ),
     []
   );
@@ -222,8 +253,8 @@ const useApiService = () => {
   const deletePatientAdditionalInfo = useCallback(
     (data: TPatientAdditionalData) =>
       _requestWithErrorHandling(
-        _apiClient.delete("patient-account/additional-data", {
-          params: buildRequestData(data),
+        apiClient.delete("patient-account/additional-data/destroy", {
+          params: data,
         })
       ),
     []
@@ -232,31 +263,33 @@ const useApiService = () => {
   const getPatientPersonalInfo = useCallback(
     () =>
       _requestWithErrorHandling(
-        _apiClient.get("patient-account/personal-information")
+        apiClient.get("patient-account/personal-information")
       ),
     []
   );
 
   const createPatientPersonalInfo = useCallback(
-    (data: any) =>
+    (data: TPatientPersonalData) =>
       _requestWithErrorHandling(
-        _apiClient.post("patient-account/personal-information", data)
+        apiClient.post("patient-account/personal-information/create", data)
       ),
     []
   );
 
   const updatePatientPersonalInfo = useCallback(
-    (data: any) =>
+    (data: TPatientPersonalData) =>
       _requestWithErrorHandling(
-        _apiClient.put("patient-account/personal-information", data)
+        apiClient.put("patient-account/personal-information/update", data)
       ),
     []
   );
 
   const deletePatientPersonalInfo = useCallback(
-    (data: any) =>
+    (data: TPatientPersonalData) =>
       _requestWithErrorHandling(
-        _apiClient.delete("patient-account/personal-information", data)
+        apiClient.delete("patient-account/personal-information/destroy", {
+          params: data,
+        })
       ),
     []
   );

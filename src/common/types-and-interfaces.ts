@@ -12,7 +12,7 @@ export type TAuthFormValues = {
   lastName: string;
   email: string;
   mobileNumber: string;
-  newPassword: string;
+  password: string;
   confirmPassword: string;
   loginPassword: string;
   rememberMe: boolean;
@@ -210,7 +210,7 @@ export type TSignUpData = {
 export type TLoginData = {
   email: string;
   password: string;
-  user_type: EUserType;
+  userType: EUserType;
   rememberMe?: boolean;
 };
 

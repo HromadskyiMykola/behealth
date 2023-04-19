@@ -34,9 +34,7 @@ export function PatientPersonalIdentification() {
   const { errors } = formState;
 
   const onSubmit = (data: TAuthFormValues) => {
-    auth.emailConfirmation({ ...data, token }).then((res) => {
-      console.log(res); // TODO:
-
+    auth.emailConfirmation(data, token).then((res) => {
       singInProvider({ ...res, type: EUserType.PATIENT });
 
       navigate(ERouteNames.PATIENT_ACCOUNT);

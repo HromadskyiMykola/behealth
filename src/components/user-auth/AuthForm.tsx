@@ -55,7 +55,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
   const onSubmit = (data: TAuthFormValues) => {
     if (isRegisterMode) {
-      const { email, newPassword: password } = data;
+      const { email, password } = data;
 
       auth.signUp({ email, password }).then(() => {
         reset();
@@ -64,21 +64,19 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     }
 
     if (isLoginMode) {
-      const { rememberMe, email, newPassword } = data;
+      const { rememberMe, email, password } = data;
 
-      auth
-        .signIn({ email, password: newPassword, user_type: userType })
-        .then((res) => {
-          singInProvider({ ...res, type: userType, rememberMe });
-          setOpenMainModal(false);
-          setSimpleModalMessage(false);
+      auth.signIn({ email, password, userType }).then((res) => {
+        singInProvider({ ...res, type: userType, rememberMe });
+        setOpenMainModal(false);
+        setSimpleModalMessage(false);
 
-          navigate(
-            userType === EUserType.PATIENT
-              ? ERouteNames.PATIENT_ACCOUNT
-              : ERouteNames.DOCTOR_ACCOUNT
-          );
-        });
+        navigate(
+          userType === EUserType.PATIENT
+            ? ERouteNames.PATIENT_ACCOUNT
+            : ERouteNames.DOCTOR_ACCOUNT
+        );
+      });
     }
 
     if (isRecoveryMode) {
@@ -162,12 +160,12 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
             {(isLoginMode || isRegisterMode) && ( // PASSWORD
               <Controller
-                name="newPassword"
+                name="password"
                 control={control}
                 defaultValue=""
                 rules={
                   isRegisterMode
-                    ? validationRules.newPassword
+                    ? validationRules.password
                     : validationRules.loginPassword
                 }
                 render={({ field }) => (
@@ -175,8 +173,8 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                     label="Пароль"
                     placeholder="123qwe!@#QWE"
                     {...field}
-                    error={!!errors.newPassword}
-                    helperText={errors.newPassword?.message || " "}
+                    error={!!errors.password}
+                    helperText={errors.password?.message || " "}
                   />
                 )}
               />
@@ -187,7 +185,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                 name="confirmPassword"
                 control={control}
                 defaultValue=""
-                rules={validationRules.confirmPassword(watch("newPassword"))}
+                rules={validationRules.confirmPassword(watch("password"))}
                 render={({ field }) => (
                   <PasswordInput
                     label="Підтвердження паролю"
