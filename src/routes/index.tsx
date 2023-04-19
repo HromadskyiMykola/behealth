@@ -55,7 +55,7 @@ export const patientRoutes: TRoute[] = [
         label: "",
       },
       {
-        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
+        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS,
         element: <Pages.PatientAccountAppointments />,
         label: "Записи",
         children: [
@@ -93,8 +93,8 @@ export const patientRoutes: TRoute[] = [
 export const doctorRoutes: TRoute[] = [
   ...commonRoutes,
   {
-    path: ERouteNames.PROFILE,
-    element: <Pages.ProfilePage />,
+    path: ERouteNames.DOCTOR_ACCOUNT,
+    element: <Pages.DoctorAccountPage />,
     label: "ВКАЗАТИ НАЗВУ",
   },
 ];

@@ -2,8 +2,6 @@ import { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tab, TabProps, styled } from "@mui/material";
 
-type TabLinkProps = TabProps & { to: string };
-
 const StyledTab = styled(Tab)(
   ({
     theme: {
@@ -27,13 +25,13 @@ const StyledTab = styled(Tab)(
   })
 ) as typeof Tab;
 
-export const TabLink = ({ to, ...tabProps }: TabLinkProps) => {
+export const TabLink = (props: TabProps) => {
   const navigate = useNavigate();
 
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();
-    navigate(to);
+    navigate(props.value);
   };
 
-  return <StyledTab onClick={handleClick} {...tabProps} iconPosition="start" />;
+  return <StyledTab onClick={handleClick} {...props} iconPosition="start" />;
 };
