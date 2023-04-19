@@ -17,8 +17,7 @@ import {
   SelectTopBar,
 } from "~/components/atomic";
 
-import { FilterClinics, SearchClinics } from "~/components/clinic";
-import { Clinics } from "~/components/clinic/Clinics";
+import { FilterClinics, SearchClinics, Clinics } from "~/components/clinic";
 
 const data = [
   { key: 0, label: "Приватна клініка" },
