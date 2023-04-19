@@ -13,7 +13,8 @@ export const AppRouter = () => {
     path: "/",
     element: <Root />,
     children: !authenticatedUser
-      ? commonRoutes
+      // ? commonRoutes
+      ? [...commonRoutes, ...doctorRoutes] // TODO:
       : authenticatedUser.type === EUserType.PATIENT
       ? patientRoutes
       : doctorRoutes,

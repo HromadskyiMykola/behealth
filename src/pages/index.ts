@@ -14,3 +14,4 @@ export * from "./NotFound";
 export * from "./Root";
 export * from "./PatientPersonalIdentification";
 export * from './ClinicInfoPage'
+export * from "./DoctorAccountPage";
