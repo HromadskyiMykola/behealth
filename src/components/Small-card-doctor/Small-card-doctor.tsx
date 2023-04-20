@@ -11,16 +11,14 @@ import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { X, ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
 import {
   AT_RECEPTION,
-  BUTTON_SHOW_MORE,
   POP_UP_DOC_APPOINTMENT_1,
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
-import { Calendar } from "~/components/Small-card-doctor/Calendar";
-import { useModalState, useAuth } from "~/providers";
+import { useAuthProvider, useModalState } from "~/providers";
 import { FormModal } from "~/components/user-auth";
 import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
 
@@ -46,7 +44,6 @@ const CloseBox = styled("div")(({ theme }) => ({
 const BoxCalendar = styled("div")(({ theme }) => ({
   background: "#F6F8F7",
   width: "332px",
-  // height: "308px",
   borderRadius: "10px",
   padding: "26px 32px",
 }));
@@ -83,7 +80,7 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 
 export const SmallCardDoctor = () => {
   const { custom } = useTheme().palette;
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser } = useAuthProvider();
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
 
   const [open, setOpen] = React.useState(false);
@@ -135,7 +132,7 @@ export const SmallCardDoctor = () => {
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
-          gap="24px"
+          gap="16px"
         >
           <BoxCalendar>
             {/*<Calendar />*/}
@@ -143,7 +140,7 @@ export const SmallCardDoctor = () => {
           </BoxCalendar>
           <Button
             variant="contained"
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", height: "40px" }}
             onClick={handleOpen}
           >
             Записатися

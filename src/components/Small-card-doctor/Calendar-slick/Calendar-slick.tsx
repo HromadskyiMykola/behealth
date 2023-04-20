@@ -111,7 +111,7 @@ export const CalendarSlick = () => {
         })}
       </Slider>
 
-      <Box display="flex" justifyContent="center" pt={2}>
+      <Box display="flex" justifyContent="center">
         <Button
           variant="text"
           endIcon={!showMore ? <ChevronDown /> : <ChevronUp />}
