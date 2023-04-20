@@ -15,3 +15,4 @@ export * from "./Text-with-icon";
 export * from "./SelectedItemsBox";
 export * from "./SelectTopBar";
 export * from "./PaginationBottomBar";
+export * from "./AppointmentScheduleDate";

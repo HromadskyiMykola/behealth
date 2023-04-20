@@ -93,7 +93,7 @@ export function UserTypeSelector({
         {...(userType === EUserType.PATIENT ? unselected : selected)}
         onClick={() => onChange(EUserType.DOCTOR)}
       >
-        Доктор
+        Лікар
       </Button>
     </Stack>
   );

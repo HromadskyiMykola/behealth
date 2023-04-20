@@ -142,7 +142,7 @@ export const DoctorAccountPage = () => {
           <NavTabs />
         </Grid>
         <Grid item xs>
-          {/* <Outlet /> */}
+          <Outlet />
         </Grid>
       </Grid>
     </Container>

@@ -3,6 +3,7 @@ import { TRoute } from "~/common";
 import { ERouteNames } from "./routeNames";
 
 import * as Pages from "~/pages/index";
+import { AppointmentScheduleDate } from "~/components/atomic";
 
 export const commonRoutes: TRoute[] = [
   {
@@ -97,7 +98,16 @@ export const doctorRoutes: TRoute[] = [
     element: <Pages.DoctorAccountPage />,
     label: "Кабінет лікаря",
     children: [
-      
+      {
+        index: true,
+        element: <AppointmentScheduleDate />,
+        label: "",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS,
+        element: <AppointmentScheduleDate />,
+        label: "Розклад прийомів",
+      },
     ],
   } as TRoute,
 ];
