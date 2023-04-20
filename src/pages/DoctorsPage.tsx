@@ -18,7 +18,7 @@ import {
 
 import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
 
-import HeaderCardDoctor from "~/components/Header-card-doctor/Header-card-doctor";
+import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 const data = [
   { key: 0, label: "Приватна клініка" },
@@ -54,7 +54,7 @@ export const DoctorsPage = () => {
         <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
           <SelectTopBar />
 
-          <HeaderCardDoctor />
+          <SmallCardDoctor />
 
           <PaginationBottomBar />
         </Box>

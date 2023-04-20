@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { chipsMOCKdata, contactMOCKdata } from "./constant-header-doctor-card";
 import { IContactPhoneWithIcon } from "~/common";
 import ContactPhoneWithIcon from "~/components/atomic/Contact-phone-with-icon";
-import { AddressesAndInfoDoctor } from "~/components/Addresses-and-info-doctor";
+import { MapInfoDoctor } from "~/components/Map-info-doctor";
 
 const HeaderCardDoctor = () => {
   return (
@@ -72,7 +72,24 @@ const HeaderCardDoctor = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item lg={6} md={12} width="100%">
-              <AddressesAndInfoDoctor />
+              <Box
+                display="flex"
+                flexDirection="column"
+                gap="16px"
+                border=" 1px solid #E1E3E0"
+                borderRadius="10px"
+                padding="16px 24px"
+              >
+                <Box>
+                  <Typography variant="caption" component="span">
+                    ФОП Князєва О.С.
+                  </Typography>
+                  <Typography variant="caption" component="span" ml={1}>
+                    Приватна клініка
+                  </Typography>
+                </Box>
+                <MapInfoDoctor />
+              </Box>
             </Grid>
             <Grid item lg={6} md={12} width="100%">
               <Box
@@ -82,6 +99,11 @@ const HeaderCardDoctor = () => {
                 border=" 1px solid #E1E3E0"
                 borderRadius="10px"
                 padding="16px 24px"
+                sx={{
+                  "@media (min-width: 1408px)": {
+                    padding: "19.5px 24px",
+                  },
+                }}
               >
                 <Typography variant="caption" component="p">
                   Контакти лікаря:

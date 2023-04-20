@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Map, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { styled } from "@mui/system";
 
 export const AddressesAndInfoDoctor = (data: any) => {
   return (
