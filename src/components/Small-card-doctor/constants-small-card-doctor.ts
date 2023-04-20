@@ -23,3 +23,4 @@ export const POP_UP_DOC_APPOINTMENT_2_ALERT =
 export const POP_UP_DOC_APPOINTMENT_2_GRATITUDE =
   "Дякуємо що обираєте beHealth, ми трудимось над тим, щоб Вам було зручно користуватись сервісом.";
 export const BUTTON_SHOW_MORE = "Показати більше";
+export const BUTTON_SHOW_LESS = "Згорнути";

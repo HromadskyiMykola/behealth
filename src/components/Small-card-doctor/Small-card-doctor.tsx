@@ -22,6 +22,7 @@ import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-
 import { Calendar } from "~/components/Small-card-doctor/Calendar";
 import { useModalState, useAuth } from "~/providers";
 import { FormModal } from "~/components/user-auth";
+import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -45,10 +46,9 @@ const CloseBox = styled("div")(({ theme }) => ({
 const BoxCalendar = styled("div")(({ theme }) => ({
   background: "#F6F8F7",
   width: "332px",
-  height: "306px",
+  // height: "308px",
   borderRadius: "10px",
   padding: "26px 32px",
-  gap: "26px",
 }));
 const ModalPaper = styled(Paper)(({ theme }) => ({
   position: "absolute" as "absolute",
@@ -135,14 +135,11 @@ export const SmallCardDoctor = () => {
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
+          gap="24px"
         >
           <BoxCalendar>
-            <Calendar />
-            <Box display="flex" justifyContent="center" pt={2}>
-              <Button variant="text" endIcon={<ChevronDown />}>
-                {BUTTON_SHOW_MORE}
-              </Button>
-            </Box>
+            {/*<Calendar />*/}
+            <CalendarSlick />
           </BoxCalendar>
           <Button
             variant="contained"
