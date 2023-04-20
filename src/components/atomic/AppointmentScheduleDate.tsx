@@ -60,6 +60,7 @@ const CustomToolBar: FC<CustomToolBarProps> = ({ date, onChange }) => {
 const StyledStaticDatePicker = styled(StaticDatePicker)`
   & .PrivatePickersSlideTransition-root {
     overflow-x: unset;
+    height: 100%;
   }
   & .MuiPickerStaticWrapper-root,
   .MuiPickerStaticWrapper-content,
@@ -77,7 +78,9 @@ const StyledStaticDatePicker = styled(StaticDatePicker)`
     margin: 24px 0;
   }
   & .MuiTypography-root {
+    color: #212121;
     margin: 0 8px;
+    font-size: 16px;
   }
   & .MuiButtonBase-root,
   .MuiPickersDay-root {
@@ -85,6 +88,9 @@ const StyledStaticDatePicker = styled(StaticDatePicker)`
     margin: 0 8px;
     font-size: 16px;
     background-color: transparent;
+  }
+  & .MuiDayPicker-header {
+    border-bottom: 0.75px solid #b2ccc0;
   }
   & .MuiPickersCalendarHeader-root {
     display: none;
