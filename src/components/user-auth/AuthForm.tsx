@@ -59,7 +59,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
       auth.signUp({ email, password }).then(() => {
         reset();
-        setSimpleModalMessage(<ThanksSingUpMessage />);
+        setSimpleModalMessage(<ThanksSingUpMessage email={email} />);
       });
     }
 
