@@ -1,37 +1,35 @@
-import { Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
 
 import { ButtonTimer } from "../atomic";
 
-export function ThanksSingUpMessage() {
+export function ThanksSingUpMessage({ email }: { email: string }) {
+  const { custom } = useTheme().palette;
+
   return (
-    <>
-      <Typography variant="h5" mb="16px">
+    <Box maxWidth="589px">
+      <Typography variant="h5" textAlign="center" mb="32px">
         Дякуємо за реєстрацію!
       </Typography>
-      <Typography
-        sx={{ display: "flex", alignItems: "center", color: "#7D968B" }}
-      >
+      <Typography textAlign="center" color={custom.secondary60} mb="25px">
         <AlertTriangleIcon
           style={{ marginRight: "16px", flexShrink: 0 }}
           size={22}
         />
         Перевірте свою електронну пошту та папку “Спам”
       </Typography>
-      <Typography textAlign="center">
+      <Typography variant="subtitle2" textAlign="center" mb="32px">
         Натисніть на посилання, яке ми відправили Вам у листі на вказану
-        електронну пошту tarshevchenko@gmail.com
+        електронну пошту{" "}
+        <Typography variant="subtitle2" display="inline" color="primary">
+          {email}
+        </Typography>
       </Typography>
 
-      <ButtonTimer
-        onClick={() => {}}
-        fullWidth
-        variant="contained"
-        sx={{ mt: "16px" }}
-      >
+      <ButtonTimer onClick={() => {}} fullWidth variant="contained">
         Відправити повторний лист
       </ButtonTimer>
-    </>
+    </Box>
   );
 }

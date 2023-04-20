@@ -95,6 +95,9 @@ export const doctorRoutes: TRoute[] = [
   {
     path: ERouteNames.DOCTOR_ACCOUNT,
     element: <Pages.DoctorAccountPage />,
-    label: "ВКАЗАТИ НАЗВУ",
-  },
+    label: "Кабінет лікаря",
+    children: [
+      
+    ],
+  } as TRoute,
 ];
