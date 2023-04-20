@@ -14,7 +14,6 @@ export const ClinicInfo = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <SmallClinicCard card={CLINIC_CARD} />
       <MainClinicCard card={CLINIC_CARD} />
       <Box
         sx={{

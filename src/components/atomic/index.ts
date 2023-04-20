@@ -12,3 +12,6 @@ export * from "./SelectWithPlaceholder";
 export * from "./SimpleModal";
 export * from "./ButtonM";
 export * from "./Text-with-icon";
+export * from "./SelectedItemsBox";
+export * from "./SelectTopBar";
+export * from "./PaginationBottomBar";

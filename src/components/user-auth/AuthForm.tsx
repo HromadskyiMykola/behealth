@@ -16,7 +16,7 @@ import {
 import { CustomizedInput, PasswordInput } from "../atomic";
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuth } from "~/providers";
+import { useModalState, useAuthProvider } from "~/providers";
 
 import {
   TAuthFormValues,
@@ -36,14 +36,14 @@ type TAuthFormProps = {
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const [userType, setUserType] = useState<EUserType>(EUserType.PATIENT);
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
-  const { singInProvider } = useAuth();
+  const { singInProvider } = useAuthProvider();
   const navigate = useNavigate();
-  const { apiError, loading, signUp, signIn, forgotPassword } = useApiService();
+  const { apiError, loading, auth } = useApiService();
   const { palette } = useTheme();
 
-  const isLoginMode: boolean = mode === EAuthMode.LOGIN;
-  const isRegisterMode: boolean = mode === EAuthMode.REGISTER;
-  const isRecoveryMode: boolean = mode === EAuthMode.RECOVERY;
+  const isLoginMode = mode === EAuthMode.LOGIN;
+  const isRegisterMode = mode === EAuthMode.REGISTER;
+  const isRecoveryMode = mode === EAuthMode.RECOVERY;
 
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({
@@ -55,38 +55,34 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
   const onSubmit = (data: TAuthFormValues) => {
     if (isRegisterMode) {
-      const { email, newPassword: password } = data;
+      const { email, password } = data;
 
-      signUp({ email, password }).then(() => {
+      auth.signUp({ email, password }).then(() => {
         reset();
-        setSimpleModalMessage(<ThanksSingUpMessage />);
+        setSimpleModalMessage(<ThanksSingUpMessage email={email} />);
       });
     }
 
     if (isLoginMode) {
-      const { rememberMe, email, newPassword } = data;
+      const { rememberMe, email, password } = data;
 
-      signIn({ email, password: newPassword, user_type: userType }).then(
-        (res) => {
-          singInProvider({ ...res, type: userType, rememberMe });
-          setOpenMainModal(false);
-          setSimpleModalMessage(false);
+      auth.signIn({ email, password, userType }).then((res) => {
+        singInProvider({ ...res, type: userType, rememberMe });
+        setOpenMainModal(false);
+        setSimpleModalMessage(false);
 
-          navigate(
-            userType === EUserType.PATIENT
-              ? ERouteNames.PATIENT_ACCOUNT
-              : ERouteNames.DOCTOR_ACCOUNT
-          );
-        }
-      );
+        navigate(
+          userType === EUserType.PATIENT
+            ? ERouteNames.PATIENT_ACCOUNT
+            : ERouteNames.DOCTOR_ACCOUNT
+        );
+      });
     }
 
     if (isRecoveryMode) {
       const { email } = data;
 
-      forgotPassword({ email, user_type: userType }).then(
-        setSimpleModalMessage
-      );
+      auth.forgotPassword({ email, userType }).then(setSimpleModalMessage);
     }
 
     // console.log(formState);
@@ -164,12 +160,12 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
             {(isLoginMode || isRegisterMode) && ( // PASSWORD
               <Controller
-                name="newPassword"
+                name="password"
                 control={control}
                 defaultValue=""
                 rules={
                   isRegisterMode
-                    ? validationRules.newPassword
+                    ? validationRules.password
                     : validationRules.loginPassword
                 }
                 render={({ field }) => (
@@ -177,8 +173,8 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                     label="Пароль"
                     placeholder="123qwe!@#QWE"
                     {...field}
-                    error={!!errors.newPassword}
-                    helperText={errors.newPassword?.message || " "}
+                    error={!!errors.password}
+                    helperText={errors.password?.message || " "}
                   />
                 )}
               />
@@ -189,7 +185,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                 name="confirmPassword"
                 control={control}
                 defaultValue=""
-                rules={validationRules.confirmPassword(watch("newPassword"))}
+                rules={validationRules.confirmPassword(watch("password"))}
                 render={({ field }) => (
                   <PasswordInput
                     label="Підтвердження паролю"

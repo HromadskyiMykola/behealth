@@ -23,6 +23,11 @@ export const commonRoutes: TRoute[] = [
     label: "Заклади",
   },
   {
+    path: ERouteNames.CLINICS + '/:id',
+    element: <Pages.ClinicInfoPage />,
+    label: "Інформація про заклад",
+  },
+  {
     path: ERouteNames.CONFIRMATION,
     element: (
       <>
@@ -50,7 +55,7 @@ export const patientRoutes: TRoute[] = [
         label: "",
       },
       {
-        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENT,
+        path: ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS,
         element: <Pages.PatientAccountAppointments />,
         label: "Записи",
         children: [
@@ -88,8 +93,11 @@ export const patientRoutes: TRoute[] = [
 export const doctorRoutes: TRoute[] = [
   ...commonRoutes,
   {
-    path: ERouteNames.PROFILE,
-    element: <Pages.ProfilePage />,
-    label: "ВКАЗАТИ НАЗВУ",
-  },
+    path: ERouteNames.DOCTOR_ACCOUNT,
+    element: <Pages.DoctorAccountPage />,
+    label: "Кабінет лікаря",
+    children: [
+      
+    ],
+  } as TRoute,
 ];

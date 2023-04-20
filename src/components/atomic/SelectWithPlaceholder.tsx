@@ -5,12 +5,15 @@ import {
   Select,
   SelectProps,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
 
 type SelectWithPlaceholderProps = SelectProps & { helperText?: string };
 
 const styleHelperText = {
+  position: "absolute",
+  top: "80px",
   width: "calc(100% - 30px)",
   fontSize: "12px",
   lineHeight: "1.25",
@@ -20,12 +23,18 @@ function CustomSelect(
   props: SelectWithPlaceholderProps,
   ref: Ref<HTMLDivElement>
 ) {
-  const { helperText, placeholder, label, children, ...otherProps } = props;
+  const {
+    sx,
+    fullWidth,
+    helperText,
+    placeholder,
+    label,
+    children,
+    ...otherProps
+  } = props;
+  const { palette, typography } = useTheme();
 
   const styleSelect = {
-    padding: "12px 16px",
-    borderRadius: "8px",
-    "& .MuiOutlinedInput-input": { p: 0 },
     "& .MuiSelect-select .notranslate::after": placeholder
       ? {
           content: `"${placeholder}"`,
@@ -35,22 +44,36 @@ function CustomSelect(
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl sx={sx} fullWidth={fullWidth}>
       {label && (
-        <Typography pl="16px" mb="8px" color="#5C5F5D" variant="body2">
+        <Typography
+          pl="16px"
+          mb="8px"
+          color={palette.custom.neutral40}
+          variant="body2"
+        >
           {label}
         </Typography>
       )}
 
       <Select
         {...otherProps}
+        MenuProps={{
+          sx: {
+            "& .MuiMenuItem-root": {
+              ...typography.body2,
+            },
+          },
+        }}
         sx={styleSelect}
         IconComponent={KeyboardArrowDown}
       >
         {children}
       </Select>
 
-      <FormHelperText sx={styleHelperText}>{helperText}</FormHelperText>
+      <FormHelperText error sx={styleHelperText}>
+        {helperText}
+      </FormHelperText>
     </FormControl>
   );
 }

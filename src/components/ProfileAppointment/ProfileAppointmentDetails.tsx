@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { ProfileAppointmentListItem } from "~/components/ProfileAppointment/ProfileAppointmentListItem";
-import { ProfileAppointmentDetailsNavigation } from "~/components/ProfileAppointment/ProfileAppointmentDetailsNavigation";
 import {
   PROFILE_APPOINTMENT,
   PROFILE_APPOINTMENT_DETAILS_INFO,
-  PROFILE_APPOINTMENT_DETAILS_INFO_NAVIGATION,
 } from "~/components/ProfileAppointment/profile-appointment.constants";
 import { ProfileAppointmentDetailsInfoCard } from "~/components/ProfileAppointment/ProfileAppointmentDetailsInfoCard";
 import { useParams } from "react-router-dom";
 import { IProfileAppointmentCard } from "~/common";
 
 export const ProfileAppointmentDetails = () => {
-  const { visitInfo, medicalRecords } = PROFILE_APPOINTMENT_DETAILS_INFO;
-  const [targetButton, setTargetButton] = useState<number>(0);
+  const [value, setValue] = React.useState<number>(0);
   const [card, setCard] = useState<IProfileAppointmentCard | null>(null);
   const { id } = useParams();
+
+  const { visitInfo, medicalRecords } = PROFILE_APPOINTMENT_DETAILS_INFO;
 
   useEffect(() => {
     PROFILE_APPOINTMENT.cards.map((item) => {
@@ -24,6 +23,10 @@ export const ProfileAppointmentDetails = () => {
       }
     });
   }, []);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
   return (
     <Box>
@@ -47,35 +50,38 @@ export const ProfileAppointmentDetails = () => {
           gap: "48px",
         }}
       >
-        <ProfileAppointmentDetailsNavigation
-          setTargetButton={setTargetButton}
-          targetButton={targetButton}
-          navigation={PROFILE_APPOINTMENT_DETAILS_INFO_NAVIGATION}
-        />
-        {targetButton === 0 ? (
-          <>
-            {visitInfo.map(({ details, title, code, subtitle }) => (
-              <ProfileAppointmentDetailsInfoCard
-                key={title}
-                details={details || []}
-                title={title}
-                code={code}
-                subtitle={subtitle}
-              />
-            ))}
-          </>
-        ) : (
-          <>
-            {medicalRecords.map(({ details, title, code, subtitle }) => (
-              <ProfileAppointmentDetailsInfoCard
-                key={title}
-                details={details || []}
-                title={title}
-                code={code}
-                subtitle={subtitle}
-              />
-            ))}
-          </>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          sx={{
+            borderBottom: " 1px solid #B2CCC0",
+            "& .MuiTab-root": { padding: 0 },
+            "& .MuiTabs-flexContainer": {
+              display: "flex",
+              gap: "32px",
+            },
+            "& .MuiTabs-indicator": { height: "1px" },
+            "& button": {
+              color: "#1E352D",
+              fontSize: "14px",
+              fontWeight: 600,
+              lineHeight: "22px",
+            },
+          }}
+        >
+          <Tab label="Дані прийому" />
+          <Tab label="Додані медзаписи" />
+        </Tabs>
+        {(value === 0 ? visitInfo : medicalRecords).map(
+          ({ details, title, code, subtitle }) => (
+            <ProfileAppointmentDetailsInfoCard
+              key={title}
+              details={details || []}
+              title={title}
+              code={code}
+              subtitle={subtitle}
+            />
+          )
         )}
       </Box>
     </Box>

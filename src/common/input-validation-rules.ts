@@ -56,14 +56,14 @@ const validationRules = {
     },
     pattern: {
       value:
-        /^([a-z0-9&'*+._%-]+(\.[a-z0-9&'*+._%-]+)*)@[a-z0-9]+\.[a-z]{2,}$/i,
+        /^([a-z0-9&'*+._%-]+(\.[a-z0-9&'*+._%-]+)*)@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/i,
       message: "Будь ласка, введіть коректну e-mail адресу",
     },
   },
 
   loginPassword: passwordValidation,
 
-  newPassword: {
+  password: {
     ...passwordValidation,
     pattern: {
       value:

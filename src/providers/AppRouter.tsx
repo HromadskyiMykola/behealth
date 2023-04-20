@@ -4,16 +4,17 @@ import { EUserType, TRoute } from "~/common";
 
 import { commonRoutes, patientRoutes, doctorRoutes } from "~/routes";
 import { Root, NotFound } from "~/pages";
-import { useAuth } from "./AuthProvider";
+import { useAuthProvider } from "./AuthProvider";
 
 export const AppRouter = () => {
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser } = useAuthProvider();
 
   const rootRoute: TRoute = {
     path: "/",
     element: <Root />,
     children: !authenticatedUser
-      ? commonRoutes
+        // ? commonRoutes  TODO: !!!
+      ? [...commonRoutes, ...doctorRoutes, ...patientRoutes] // TODO: !!!
       : authenticatedUser.type === EUserType.PATIENT
       ? patientRoutes
       : doctorRoutes,

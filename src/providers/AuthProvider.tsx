@@ -12,7 +12,7 @@ export const AuthContext = createContext<AuthContextData>(
   {} as AuthContextData
 );
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuthProvider = () => useContext(AuthContext);
 
 const getCurrentUser = (): { token: string; type: string } | null => {
   const userString = localStorage.getItem("user") || sessionStorage.getItem("user");

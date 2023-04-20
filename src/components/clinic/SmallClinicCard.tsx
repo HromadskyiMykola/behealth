@@ -15,6 +15,9 @@ import Life from "~/assets/CustomIcon/Life";
 import { ClinicAppointmentModal } from "~/components/clinic/ClinicAppointmentModal";
 import { Chips } from "~/components/clinic/Chips";
 import { CustomizedPaper } from "~/components/atomic";
+import { useNavigate } from "react-router-dom";
+
+const maxGridsToShow = 4;
 
 export interface ClinicCardProps {
   card: IClinicCard;
@@ -23,12 +26,11 @@ export interface ClinicCardProps {
 export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
   const [showAll, setShowAll] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const maxGridsToShow = 4;
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
 
   const { working, address, medicine, name, img, type, chips, phone } = card;
-
-  const theme = useTheme();
-  const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
 
   const closeModal = () => setIsOpen(false);
 
@@ -185,7 +187,8 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
             <Button variant="outlined" onClick={() => setIsOpen(true)}>
               <Typography variant="button">Швидкий запис</Typography>
             </Button>
-            <Button variant="contained">
+
+            <Button variant="contained" onClick={() => navigate("1")}>
               <Typography variant="button">Детальніше</Typography>
             </Button>
           </Grid>

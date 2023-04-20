@@ -45,7 +45,9 @@ export function UserTypeSelector({
       borderRadius: "10px",
       backgroundColor: palette.custom.primary100,
       color: palette.primary.main,
+      border: `1px solid ${palette.custom.primary100}`,
       "&:hover": {
+        border: `1px solid ${palette.custom.primary95}`,
         backgroundColor: palette.custom.primary95,
       },
     },

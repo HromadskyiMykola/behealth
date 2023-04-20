@@ -46,17 +46,17 @@ export function PatientAccountPasswordNSecurity() {
           />
 
           <Controller
-            name="newPassword"
+            name="password"
             control={control}
             defaultValue=""
-            rules={validationRules.newPassword}
+            rules={validationRules.password}
             render={({ field }) => (
               <PasswordInput
                 label="Новий пароль*"
                 placeholder="Вигадайте пароль"
                 {...field}
-                error={!!errors.newPassword}
-                helperText={errors.newPassword?.message || " "}
+                error={!!errors.password}
+                helperText={errors.password?.message || " "}
               />
             )}
           />
@@ -65,7 +65,7 @@ export function PatientAccountPasswordNSecurity() {
             name="confirmPassword"
             control={control}
             defaultValue=""
-            rules={validationRules.confirmPassword(watch("newPassword"))}
+            rules={validationRules.confirmPassword(watch("loginPassword"))}
             render={({ field }) => (
               <PasswordInput
                 label="Повторіть новий пароль*"

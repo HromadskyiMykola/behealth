@@ -43,11 +43,12 @@ const NavTabs = () => {
 
   const matchPath = useMemo(() => {
     const tabsValues = [
-      ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS,
-      ERouteNames.PATIENT_ACCOUNT_HELP,
-      ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO,
-      ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
-      ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
+      ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS,
+      ERouteNames.DOCTOR_ACCOUNT_APPOINTMENTS,
+      ERouteNames.DOCTOR_ACCOUNT_HELP,
+      ERouteNames.DOCTOR_ACCOUNT_PERSONAL_INFO,
+      ERouteNames.DOCTOR_ACCOUNT_PROFESSIONAL_DATA,
+      ERouteNames.DOCTOR_ACCOUNT_PASSWORD_N_SECURITY,
     ];
     const pathNames = location.pathname.split("/");
 
@@ -55,12 +56,12 @@ const NavTabs = () => {
   }, [location]);
 
   const [value, setValue] = useState(
-    matchPath || ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS
+    matchPath || ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS
   );
 
   useEffect(() => {
     if (matchPath !== value) {
-      setValue(matchPath || ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS);
+      setValue(matchPath || ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS);
     }
   }, [matchPath, value]);
 
@@ -82,12 +83,17 @@ const NavTabs = () => {
       >
         <TabLink
           icon={<ClockIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS}
+          value={ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS}
+          label="Розклад прийомів"
+        />
+        <TabLink
+          icon={<ClockIcon style={{ flexShrink: 0 }} size={22} />}
+          value={ERouteNames.DOCTOR_ACCOUNT_APPOINTMENTS}
           label="Записи"
         />
         <TabLink
           icon={<HelpCircleIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_HELP}
+          value={ERouteNames.DOCTOR_ACCOUNT_HELP}
           label="Допомога"
         />
 
@@ -95,13 +101,13 @@ const NavTabs = () => {
 
         <TabLink
           icon={<UserCogIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
+          value={ERouteNames.DOCTOR_ACCOUNT_PERSONAL_INFO}
           label="Особиста інформація"
         />
         <TabLink
           icon={<FolderClosedIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
-          label="Додаткові дані"
+          value={ERouteNames.DOCTOR_ACCOUNT_PROFESSIONAL_DATA}
+          label="Професійні дані"
         />
         <TabLink
           icon={<LockIcon style={{ flexShrink: 0 }} size={22} />}
@@ -122,7 +128,7 @@ const NavTabs = () => {
   );
 };
 
-export function PatientAccountPage() {
+export const DoctorAccountPage = () => {
   return (
     <Container sx={{ mb: "30px", mt: "30px" }}>
       <Grid container spacing={3}>
@@ -130,15 +136,15 @@ export function PatientAccountPage() {
           <BreadcrumbsUkr />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h4">{"Вітаємо, Тарас"}</Typography>
+          <Typography variant="h4">{"Вітаємо, Ольга"}</Typography>
         </Grid>
         <Grid item xs={3}>
           <NavTabs />
         </Grid>
         <Grid item xs>
-          <Outlet />
+          {/* <Outlet /> */}
         </Grid>
       </Grid>
     </Container>
   );
-}
+};

@@ -7,8 +7,11 @@ export * from "./PatientAccountAdditionalData";
 export * from "./PatientAccountPasswordNSecurity";
 export * from "./AboutPage";
 export * from "./DoctorsPage";
+export * from "./DoctorPage";
 export * from "./ClinicsPage";
 export * from "./ProfilePage";
-export * from "./404";
+export * from "./NotFound";
 export * from "./Root";
 export * from "./PatientPersonalIdentification";
+export * from './ClinicInfoPage'
+export * from "./DoctorAccountPage";

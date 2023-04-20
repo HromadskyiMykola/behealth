@@ -17,26 +17,24 @@ import {
   validationRules,
 } from "~/common";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "~/providers";
+import { useAuthProvider } from "~/providers";
 import { ERouteNames } from "~/routes/routeNames";
 
 export function PatientPersonalIdentification() {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
   const { token } = useParams();
-  const { apiError, loading, emailConfirmation } = useApiService();
-  const { singInProvider } = useAuth();
+  const { apiError, loading, auth } = useApiService();
+  const { singInProvider } = useAuthProvider();
   const navigate = useNavigate();
+
   const { control, handleSubmit, formState } = useForm<TAuthFormValues>({
     mode: "onChange",
     delayError: 1000,
   });
-
   const { errors } = formState;
 
   const onSubmit = (data: TAuthFormValues) => {
-    emailConfirmation(data, token).then((res) => {
-      console.log(res); // TODO:
-
+    auth.emailConfirmation(data, token).then((res) => {
       singInProvider({ ...res, type: EUserType.PATIENT });
 
       navigate(ERouteNames.PATIENT_ACCOUNT);
@@ -44,7 +42,6 @@ export function PatientPersonalIdentification() {
     console.log(data);
     console.log(formState);
   };
-
 
   return (
     <Dialog

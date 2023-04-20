@@ -166,7 +166,7 @@ export const ProfileAppointmentListItem: FC<
                 style={{ color: "inherit", textDecoration: "none" }}
                 to={
                   pathname === "/patient-account"
-                    ? ERouteNames.PATIENT_ACCOUNT_APPOINTMENT + "/" + cardId
+                    ? ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS + "/" + cardId
                     : pathname.concat("/" + cardId)
                 }
               >

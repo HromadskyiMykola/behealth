@@ -143,7 +143,7 @@ export const ProfileAppointmentPage = () => {
           p: "16px 32px",
         }}
       >
-        <Pagination count={10} setState={setPage} />
+        <Pagination count={7} setState={setPage} />
       </Box>
     </>
   );
