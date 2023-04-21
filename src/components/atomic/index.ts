@@ -16,3 +16,4 @@ export * from "./SelectedItemsBox";
 export * from "./SelectTopBar";
 export * from "./PaginationBottomBar";
 export * from "./AppointmentScheduleDate";
+export * from "./AppointmentScheduleTime";
