@@ -30,6 +30,16 @@ export const IdentityDocs = () => (
       "& td": { borderBottom: "none" },
     }}
   >
+    {/* // */}
+    <Typography
+      variant="body2"
+      pl="16px"
+      mb={2} // temp
+    >
+      Документи, що засвідчують особу не додані.
+    </Typography>
+    {/* // */}
+
     <Table size="small">
       <TableBody>
         <TableRow>

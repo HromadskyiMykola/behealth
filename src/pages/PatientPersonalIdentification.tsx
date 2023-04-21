@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button, Dialog, Grid, Typography } from "@mui/material";
+import { Button, Dialog, Grid, Typography, useTheme } from "@mui/material";
 
 import {
   CustomizedInput,
@@ -16,13 +16,16 @@ import {
   useApiService,
   validationRules,
 } from "~/common";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuthProvider } from "~/providers";
 import { ERouteNames } from "~/routes/routeNames";
 
 export function PatientPersonalIdentification() {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
-  const { token } = useParams();
+  let [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const email = searchParams.get("email");
+  const { custom } = useTheme().palette;
   const { apiError, loading, auth } = useApiService();
   const { singInProvider } = useAuthProvider();
   const navigate = useNavigate();
@@ -35,6 +38,9 @@ export function PatientPersonalIdentification() {
 
   const onSubmit = (data: TAuthFormValues) => {
     auth.emailConfirmation(data, token).then((res) => {
+      // console.log(data);
+      // console.log(res);
+
       singInProvider({ ...res, type: EUserType.PATIENT });
 
       navigate(ERouteNames.PATIENT_ACCOUNT);
@@ -48,7 +54,6 @@ export function PatientPersonalIdentification() {
       open={openIdentificationModal}
       maxWidth="md"
       sx={{
-        //  maxWidth: "712px",
         "& .MuiPaper-root": {
           borderRadius:
             // mobileDevice ? 0 :
@@ -63,7 +68,7 @@ export function PatientPersonalIdentification() {
         p="32px"
         gap="24px"
         direction="column"
-        sx={{ maxWidth: "712px" }}
+        width="712px"
         noValidate
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -71,7 +76,10 @@ export function PatientPersonalIdentification() {
           <Typography variant="h5">
             Ідентифікація особи та реєстрація
           </Typography>
-          <Typography variant="body2" sx={{ mt: "16px", color: "#8E918F" }}>
+          <Typography
+            variant="body2"
+            sx={{ mt: "16px", color: custom.neutral60 }}
+          >
             Заповніть необхідні поля, аби завершити реєстрацію. Нам потрібна ця
             інформація, аби забезпечити зручність для пацієнтів та медичних
             працівників."
@@ -167,20 +175,11 @@ export function PatientPersonalIdentification() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Controller
-              name="email"
-              control={control}
-              defaultValue=""
-              rules={validationRules.email}
-              render={({ field }) => (
-                <CustomizedInput
-                  label="Електронна пошта*"
-                  placeholder="Введіть e-mail"
-                  {...field}
-                  error={!!errors.email}
-                  helperText={errors.email?.message || " "}
-                />
-              )}
+            <CustomizedInput
+              label="Електронна пошта*"
+              placeholder="Введіть e-mail"
+              disabled
+              value={email}
             />
           </Grid>
         </Grid>
