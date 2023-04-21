@@ -91,8 +91,9 @@ const useApiService = () => {
         const data = transformResponseData(response.data);
 
         console.log("OK >>", data);
+        console.log("OK >>", response.data);
 
-        return data;
+        return response.data;
       } catch (error) {
         setApiError(errorHandler(error));
 

@@ -8,8 +8,8 @@ import avatar from "~/assets/images/avatar.png";
 import {
   ContactInfo,
   ContactInfoEdit,
-  IdentityDocs,
-  IdentityDocsEdit,
+  IdentityDocuments,
+  IdentityDocumentsEdit,
   PersonalData,
   PersonalDataEdit,
 } from "~/components/patientAccountPersonalInfo";
@@ -20,15 +20,15 @@ export function PatientAccountPersonalInfo() {
 
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
-  const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(false);
+  const [isEditIdentityDocuments, setIsEditIdentityDocuments] = useState(false);
 
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
 
   const handleEditPersonalData = () =>
     setIsEditPersonalData(!isEditPersonalData);
 
-  const handleEditIdentityDocs = () =>
-    setIsEditIdentityDocs(!isEditIdentityDocs);
+  const handleEditIdentityDocuments = () =>
+    setIsEditIdentityDocuments(!isEditIdentityDocuments);
 
   useEffect(() => {
     patient.personalInfo.get().then(setPatientPersonalData);
@@ -100,22 +100,22 @@ export function PatientAccountPersonalInfo() {
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditIdentityDocs}
-            disabled={!patientPersonalData || isEditIdentityDocs}
+            onClick={handleEditIdentityDocuments}
+            disabled={!patientPersonalData || isEditIdentityDocuments}
           />
         </Stack>
 
-        {/* Docs info */}
+        {/* Documents info */}
 
         {!patientPersonalData && (
           <Skeleton variant="text" sx={{ height: 150 }} />
         )}
 
         {patientPersonalData &&
-          (isEditIdentityDocs ? (
-            <IdentityDocsEdit handleEditIdentityDocs={handleEditIdentityDocs} />
+          (isEditIdentityDocuments ? (
+            <IdentityDocumentsEdit handleEditIdentityDocuments={handleEditIdentityDocuments} />
           ) : (
-            <IdentityDocs />
+            <IdentityDocuments />
           ))}
       </CustomizedPaper>
     </>

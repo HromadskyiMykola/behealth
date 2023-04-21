@@ -3,7 +3,6 @@ export const enum ERouteNames {
   ABOUT = "about",
   DOCTORS = "doctors",
   CLINICS = "clinics",
-  // PROFILE = "profile",
   CONFIRMATION = "confirmation",
   PATIENT_ACCOUNT = "patient-account",
   PATIENT_ACCOUNT_APPOINTMENTS = "appointments",
@@ -18,4 +17,5 @@ export const enum ERouteNames {
   DOCTOR_ACCOUNT_PERSONAL_INFO = "personal-information",
   DOCTOR_ACCOUNT_PROFESSIONAL_DATA = "professional-data",
   DOCTOR_ACCOUNT_PASSWORD_N_SECURITY = "password-n-security",
+  DOCTOR_ACCOUNT_HEAD_DOCTOR = "head-doctor",
 }
