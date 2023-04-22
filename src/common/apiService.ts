@@ -90,7 +90,8 @@ const useApiService = () => {
         const response = await request;
         const data = transformResponseData(response.data);
 
-        console.log("OK >>", data);
+        console.log("OK >>", response.data);
+        console.log("mod >>", data);
 
         return data;
       } catch (error) {

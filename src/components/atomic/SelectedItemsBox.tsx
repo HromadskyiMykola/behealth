@@ -7,10 +7,10 @@ type ChipData = {
   label: string;
 };
 
-export const SelectedItemsBox = ({ data }: { data: ChipData[] }) => {
+export const SelectedItemsBox = ({ data = []}: { data?: ChipData[] }) => {
   const { palette } = useTheme();
 
-  const [chipData, setChipData] = useState<ChipData[]>(data);
+  const [chipData, setChipData] = useState<ChipData[] | []>(data);
 
   const handleDelete = (chipToDelete: ChipData) => () => {
     setChipData((chips) =>
@@ -44,6 +44,13 @@ export const SelectedItemsBox = ({ data }: { data: ChipData[] }) => {
         columnGap="8px"
         rowGap="12px"
       >
+        {chipData.length > 0 && (
+          <Chip
+            color="error"
+            label="Скинути всі"
+            onClick={() => setChipData([])}
+          />
+        )}
         {chipData.map((data) => (
           <Chip
             key={data.key}

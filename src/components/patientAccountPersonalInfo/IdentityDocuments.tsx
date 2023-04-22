@@ -18,11 +18,11 @@ import {
 } from "../atomic";
 import { TAuthFormValues, validationRules } from "~/common";
 
-type IdentityDocsEditProps = {
-  handleEditIdentityDocs: () => void;
+type IdentityDocumentsEditProps = {
+  handleEditIdentityDocuments: () => void;
 };
 
-export const IdentityDocs = () => (
+export const IdentityDocuments = () => (
   <TableContainer
     sx={{
       display: "inline-block",
@@ -96,9 +96,9 @@ export const IdentityDocs = () => (
   </TableContainer>
 );
 
-export const IdentityDocsEdit = ({
-  handleEditIdentityDocs,
-}: IdentityDocsEditProps) => {
+export const IdentityDocumentsEdit = ({
+  handleEditIdentityDocuments,
+}: IdentityDocumentsEditProps) => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -223,7 +223,7 @@ export const IdentityDocsEdit = ({
           variant="text"
           onClick={() => {
             reset();
-            handleEditIdentityDocs();
+            handleEditIdentityDocuments();
             // setMode("RECOVERY");
           }}
         >

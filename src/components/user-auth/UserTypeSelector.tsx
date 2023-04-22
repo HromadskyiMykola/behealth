@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 import { Box, Button, Stack, useTheme } from "@mui/material";
 import { Glasses, Smile } from "lucide-react";
-import { ReactNode } from "react";
+
 import { EUserType } from "~/common";
 
 interface UserTypeSelectorProps {

@@ -3,51 +3,25 @@ import { Controller, useForm } from "react-hook-form";
 
 import { Button, Dialog, Grid, Typography, useTheme } from "@mui/material";
 
-import {
-  CustomizedInput,
-  DatePickerInput,
-  InputMobileNumber,
-  SimpleModal,
-} from "~/components/atomic/index";
+import { CustomizedInput, DatePickerInput, InputMobileNumber } from "../atomic";
 
-import {
-  EUserType,
-  TAuthFormValues,
-  useApiService,
-  validationRules,
-} from "~/common";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useAuthProvider } from "~/providers";
-import { ERouteNames } from "~/routes/routeNames";
+import { TAuthFormValues, validationRules } from "~/common";
 
-export function PatientPersonalIdentification() {
+interface IProps {
+  onSubmit: (data: TAuthFormValues) => void;
+  email: string | null;
+}
+
+export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
-  let [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
-  const email = searchParams.get("email");
   const { custom } = useTheme().palette;
-  const { apiError, loading, auth } = useApiService();
-  const { singInProvider } = useAuthProvider();
-  const navigate = useNavigate();
 
   const { control, handleSubmit, formState } = useForm<TAuthFormValues>({
     mode: "onChange",
     delayError: 1000,
   });
+
   const { errors } = formState;
-
-  const onSubmit = (data: TAuthFormValues) => {
-    auth.emailConfirmation(data, token).then((res) => {
-      // console.log(data);
-      // console.log(res);
-
-      singInProvider({ ...res, type: EUserType.PATIENT });
-
-      navigate(ERouteNames.PATIENT_ACCOUNT);
-    });
-    console.log(data);
-    console.log(formState);
-  };
 
   return (
     <Dialog
@@ -201,8 +175,6 @@ export function PatientPersonalIdentification() {
           Завершити реєстрацію
         </Button>
       </Grid>
-
-      <SimpleModal apiError={apiError} loading={loading} />
     </Dialog>
   );
 }
