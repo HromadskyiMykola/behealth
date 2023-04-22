@@ -4,6 +4,8 @@ import { ERouteNames } from "./routeNames";
 
 import * as Pages from "~/pages/index";
 
+import { EmailConfirmation, ResetPassword } from "~/components/user-auth";
+
 export const commonRoutes: TRoute[] = [
   {
     index: true,
@@ -28,14 +30,24 @@ export const commonRoutes: TRoute[] = [
     label: "Інформація про заклад",
   },
   {
-    path: ERouteNames.CONFIRMATION,
+    path: ERouteNames.EMAIL_CONFIRMATION,
     element: (
       <>
         <Pages.HomePage />
-        <Pages.PatientPersonalIdentification />
+        <EmailConfirmation />
       </>
     ),
-    label: "підтвердження пошти та ідентифікація",
+    label: "Підтвердження пошти та ідентифікація",
+  },
+  {
+    path: ERouteNames.PASSWORD_RESET,
+    element: (
+      <>
+        <Pages.HomePage />
+        <ResetPassword />
+      </>
+    ),
+    label: "Скидання паролю",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];

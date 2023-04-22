@@ -4,3 +4,7 @@ export * from "./MainModal";
 export * from "./ThanksSingUpMessage";
 export * from "./UserAgreement";
 export * from "./UserTypeSelector";
+export * from "./EmailConfirmation";
+export * from "./ResetPassword";
+export * from "./ResetPasswordModal";
+export * from "./PatientPersonalIdentification";

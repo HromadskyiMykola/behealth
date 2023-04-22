@@ -13,10 +13,11 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { useModalState, useAuthProvider } from "~/providers";
 import { CustomizedInput, PasswordInput } from "../atomic";
+
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-import { useModalState, useAuthProvider } from "~/providers";
 
 import {
   TAuthFormValues,

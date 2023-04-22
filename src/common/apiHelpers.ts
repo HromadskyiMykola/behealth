@@ -31,6 +31,8 @@ export const transformRequestData = (data: any) => {
 };
 
 export const transformResponseData = (data: any) => {
+  if (data?.status) return data.status;
+
   const {
     user_type,
     name,
@@ -64,7 +66,8 @@ export const errorHandler = (error: any): any => {
   const { name, response, request, message, code } = error;
 
   if (typeof response?.data === "string" && response.data.includes("DOCTYPE")) {
-    response.data = "there was useless information here...";
+    response.data =
+      "The response contains HTML markup. See the full error instance.";
   }
 
   const log = (name: string, data: any) =>
@@ -85,7 +88,7 @@ export const errorHandler = (error: any): any => {
   console.log("Full error instance >>", error);
 
   return (
-    response?.data?.error ||
+    JSON.stringify(response?.data?.error) ||
     response?.statusText + " " + message ||
     code ||
     name ||

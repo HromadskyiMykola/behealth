@@ -69,7 +69,7 @@ export const AccountPasswordNSecurity = () => {
             name="confirmPassword"
             control={control}
             defaultValue=""
-            rules={validationRules.confirmPassword(watch("loginPassword"))}
+            rules={validationRules.confirmPassword(watch("password"))}
             render={({ field }) => (
               <PasswordInput
                 label="Повторіть новий пароль*"
