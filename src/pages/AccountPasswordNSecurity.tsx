@@ -1,12 +1,13 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
+import { CustomizedPaper } from "~/components/atomic";
+import { TAuthFormValues } from "~/common";
 import {
-  CustomizedInput,
-  CustomizedPaper,
-  PasswordInput,
-} from "~/components/atomic/index";
-import { validationRules, TAuthFormValues } from "~/common";
+  RHFConfirmPassword,
+  RHFLoginPassword,
+  RHFPasswordInput,
+} from "~/components/ReactHookFormFields";
 
 export const AccountPasswordNSecurity = () => {
   const { control, handleSubmit, formState, watch, reset } =
@@ -33,64 +34,16 @@ export const AccountPasswordNSecurity = () => {
           justifyContent="space-between"
           alignItems="stretch"
         >
-          <Controller
-            name="loginPassword"
-            control={control}
-            defaultValue=""
-            rules={validationRules.loginPassword}
-            render={({ field }) => (
-              <PasswordInput
-                label="Поточний пароль*"
-                placeholder="Введіть пароль"
-                {...field}
-                error={!!errors.loginPassword}
-                helperText={errors.loginPassword?.message || " "}
-              />
-            )}
-          />
+          <RHFLoginPassword control={control} errors={errors} />
 
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            rules={validationRules.password}
-            render={({ field }) => (
-              <PasswordInput
-                label="Новий пароль*"
-                placeholder="Вигадайте пароль"
-                {...field}
-                error={!!errors.password}
-                helperText={errors.password?.message || " "}
-              />
-            )}
-          />
+          <RHFPasswordInput control={control} errors={errors} />
 
-          <Controller
-            name="confirmPassword"
-            control={control}
-            defaultValue=""
-            rules={validationRules.confirmPassword(watch("password"))}
-            render={({ field }) => (
-              <PasswordInput
-                label="Повторіть новий пароль*"
-                placeholder="Продублюйте пароль"
-                {...field}
-                error={!!errors.confirmPassword}
-                helperText={errors.confirmPassword?.message || " "}
-              />
-            )}
-          />
+          <RHFConfirmPassword control={control} errors={errors} watch={watch} />
         </Stack>
       </Stack>
 
       <Stack direction="row" spacing={2}>
-        <Button
-          variant="text"
-          onClick={() => {
-            reset();
-            // setMode("RECOVERY");
-          }}
-        >
+        <Button variant="text" onClick={() => reset()}>
           Забули пароль?
         </Button>
 

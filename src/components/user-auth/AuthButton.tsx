@@ -8,7 +8,7 @@ import { ERouteNames } from "~/routes/routeNames";
 import { FormModal } from ".";
 import { ButtonM } from "../atomic";
 
-const NestedButton = () => {
+const AuthButton = () => {
   const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuthProvider();
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const NestedButton = () => {
 export const AuthorizationButton = () => {
   return (
     <>
-      <NestedButton />
+      <AuthButton />
       <FormModal />
     </>
   );

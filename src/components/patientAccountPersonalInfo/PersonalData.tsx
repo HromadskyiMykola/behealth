@@ -11,12 +11,15 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { SelectWithPlaceholder } from "../atomic";
+import { TAuthFormValues } from "~/common";
 import {
-  CustomizedInput,
-  DatePickerInput,
-  SelectWithPlaceholder,
-} from "../atomic";
-import { TAuthFormValues, validationRules } from "~/common";
+  RHFBirthDate,
+  RHFFirstName,
+  RHFLastName,
+  RHFMiddleName,
+  RHFTin,
+} from "../ReactHookFormFields";
 
 type PersonalDataEditProps = {
   handleEditPersonalData: () => void;
@@ -102,91 +105,23 @@ export const PersonalDataEdit = ({
         // alignItems="stretch"
       >
         <Grid item laptop={4}>
-          <Controller
-            name="lastName"
-            control={control}
-            defaultValue=""
-            rules={validationRules.lastName}
-            render={({ field }) => (
-              <CustomizedInput
-                autoFocus
-                label="Прізвище*"
-                {...field}
-                error={!!errors.lastName}
-                helperText={errors.lastName?.message || " "}
-              />
-            )}
-          />
+          <RHFLastName control={control} errors={errors} autoFocus />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="firstName"
-            control={control}
-            defaultValue=""
-            rules={validationRules.firstName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="Ім’я*"
-                placeholder="Олександр"
-                {...field}
-                error={!!errors.firstName}
-                helperText={errors.firstName?.message || " "}
-              />
-            )}
-          />
+          <RHFFirstName control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="middleName"
-            control={control}
-            defaultValue=""
-            rules={validationRules.middleName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="По батькові"
-                {...field}
-                error={!!errors.middleName}
-                helperText={errors.middleName?.message || " "}
-              />
-            )}
-          />
+          <RHFMiddleName control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="birthDate"
-            control={control}
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field }) => (
-              <DatePickerInput
-                label="Дата народження*"
-                {...field}
-                onChange={field.onChange}
-                // TODO     error={!!errors.firstName}
-                // helperText={errors.firstName?.message || " "}
-              />
-            )}
-          />
+          <RHFBirthDate control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="tin"
-            control={control}
-            defaultValue=""
-            // TODO     rules={validationRules.middleName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="ІПН"
-                {...field}
-                // TODO       error={!!errors.middleName}
-                helperText={errors.middleName?.message || " "}
-              />
-            )}
-          />
+          <RHFTin control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
