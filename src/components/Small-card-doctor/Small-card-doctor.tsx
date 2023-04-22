@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   styled,
   useTheme,
@@ -14,16 +13,13 @@ import {
   IconButton,
 } from "@mui/material";
 import { XIcon } from "lucide-react";
-
 import { useAuthProvider, useModalState } from "~/providers";
 import { FormModal } from "~/components/user-auth";
-
 import {
   AT_RECEPTION,
   POP_UP_DOC_APPOINTMENT_1,
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
-
 import { HeaderItem } from "~/components/Small-card-doctor/Header-item";
 import { MapInfoDoctor } from "~/components/Map-info-doctor";
 import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
@@ -134,7 +130,6 @@ export const SmallCardDoctor = () => {
           gap="16px"
         >
           <BoxCalendar>
-            {/*<Calendar />*/}
             <CalendarSlick />
           </BoxCalendar>
           <Button

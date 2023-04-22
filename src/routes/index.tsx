@@ -20,6 +20,11 @@ export const commonRoutes: TRoute[] = [
     label: "Лікарі",
   },
   {
+    path: ERouteNames.DOCTORS + "/:id",
+    element: <Pages.DoctorPage />,
+    label: "Лікарі",
+  },
+  {
     path: ERouteNames.CLINICS,
     element: <Pages.ClinicsPage />,
     label: "Заклади",
