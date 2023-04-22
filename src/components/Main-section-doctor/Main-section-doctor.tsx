@@ -4,15 +4,16 @@ import HeaderSection from "~/components/Main-section-doctor/Header-section";
 import Box from "@mui/material/Box";
 import AdmissionRulesDoctor from "~/components/Main-section-doctor/Admission-rules-doctor";
 import { RatingDoctor } from "~/components/Main-section-doctor/Rating-doctor";
+import Stack from "@mui/material/Stack";
 
 export const MainSectionDoctor = () => {
   return (
     <Paper>
-      <Box p="32px">
+      <Stack p="32px" spacing={8}>
         <HeaderSection />
         <AdmissionRulesDoctor />
         <RatingDoctor />
-      </Box>
+      </Stack>
     </Paper>
   );
 };

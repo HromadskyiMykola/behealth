@@ -125,9 +125,9 @@ export const AppointmentScheduleDate = () => {
       height="574px"
       width="656px"
       justifyContent="space-between"
-      sx={{ backgroundColor: "#F6F8F7" }}
+      bgcolor="#F6F8F7"
     >
-      <Typography>Виберіть зручну дату</Typography>
+      <Typography variant="subtitle1">Виберіть зручну дату</Typography>
 
       <CustomToolBar date={value} onChange={handleChange} />
 
