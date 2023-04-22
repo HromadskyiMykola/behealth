@@ -11,12 +11,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import {
-  CustomizedInput,
-  DatePickerInput,
-  SelectWithPlaceholder,
-} from "../atomic";
-import { TAuthFormValues, validationRules } from "~/common";
+import { CustomizedInput, SelectWithPlaceholder } from "../atomic";
+import { TAuthFormValues } from "~/common";
+import { RHFBirthDate, RHFMiddleName, RHFTin } from "../ReactHookFormFields";
 
 type IdentityDocumentsEditProps = {
   handleEditIdentityDocuments: () => void;
@@ -30,7 +27,6 @@ export const IdentityDocuments = () => (
       "& td": { borderBottom: "none" },
     }}
   >
-    {/* // */}
     <Typography
       variant="body2"
       pl="16px"
@@ -38,7 +34,6 @@ export const IdentityDocuments = () => (
     >
       Документи, що засвідчують особу не додані.
     </Typography>
-    {/* // */}
 
     <Table size="small">
       <TableBody>
@@ -164,57 +159,15 @@ export const IdentityDocumentsEdit = ({
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="middleName" // TODO:
-            control={control}
-            defaultValue=""
-            rules={validationRules.middleName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="Ким видано*"
-                placeholder="4 цифри на задній стороні"
-                {...field}
-                error={!!errors.middleName}
-                helperText={errors.middleName?.message || " "}
-              />
-            )}
-          />
+          <RHFMiddleName control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="birthDate" // TODO:
-            control={control}
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field }) => (
-              <DatePickerInput
-                label="Дата видачі*"
-                {...field}
-                onChange={field.onChange}
-                // TODO:     error={!!errors.firstName}
-                // helperText={errors.firstName?.message || " "}
-              />
-            )}
-          />
+          <RHFBirthDate control={control} errors={errors} />
         </Grid>
 
         <Grid item laptop={4}>
-          <Controller
-            name="tin" // TODO:
-            control={control}
-            defaultValue=""
-            // TODO:     rules={validationRules.middleName}
-            render={({ field }) => (
-              <CustomizedInput
-                label="Номер*"
-                placeholder="Номер запису документу"
-                {...field}
-                // TODO:       error={!!errors.middleName}
-                helperText={errors.middleName?.message || " "}
-              />
-            )}
-          />
+          <RHFTin control={control} errors={errors} />
         </Grid>
       </Grid>
 

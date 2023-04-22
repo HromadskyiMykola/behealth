@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   useTheme,
-  useMediaQuery,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -12,7 +11,7 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { EAuthMode } from "~/common";
+import { TAuthMode, useDeviceType } from "~/common";
 import { useModalState } from "~/providers";
 
 import { AuthForm } from ".";
@@ -22,25 +21,21 @@ import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 export function FormModal() {
   const { openMainModal, setOpenMainModal } = useModalState();
+  const isMobile = useDeviceType();
 
-  const [mode, setMode] = useState<EAuthMode>(EAuthMode.LOGIN);
-  const isLoginMode = mode === EAuthMode.LOGIN;
-  const isRegisterMode = mode === EAuthMode.REGISTER;
-  const isRecoveryMode = mode === EAuthMode.RECOVERY;
+  const [mode, setMode] = useState<TAuthMode>({ isLoginMode: true });
 
   const theme = useTheme();
   const { custom, primary } = theme.palette;
 
-  const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
     <Dialog
       sx={{
-        "& .MuiPaper-root": { borderRadius: mobileDevice ? 0 : "26px" },
+        "& .MuiPaper-root": { borderRadius: isMobile ? 0 : "26px" },
       }}
       // fullWidth
       maxWidth="lg"
-      fullScreen={mobileDevice}
+      fullScreen={isMobile}
       scroll={"body"}
       open={openMainModal}
       onClose={() => setOpenMainModal(false)}
@@ -69,7 +64,7 @@ export function FormModal() {
 
         <Grid container spacing="32px" alignItems="center">
           <Grid item md={5} sx={{ display: { xs: "none", md: "block" } }}>
-            {!isRecoveryMode && (
+            {!mode.isRecoveryMode && (
               <DialogTitle
                 sx={{
                   pl: 0,
@@ -77,22 +72,22 @@ export function FormModal() {
                   color: custom.primary100,
                 }}
               >
-                {isLoginMode ? "Авторизація" : "Реєстрація"}
+                {mode.isLoginMode ? "Авторизація" : "Реєстрація"}
               </DialogTitle>
             )}
 
-            {!isRecoveryMode && (
+            {!mode.isRecoveryMode && (
               <Typography variant="body2" sx={{ color: custom.primary100 }}>
-                {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
+                {mode.isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
                 {", щоб отримати доступ до особистого кабінету beHealth."}
               </Typography>
             )}
 
             <img
-              src={isLoginMode ? logoSignIn : logoSignUp}
+              src={mode.isLoginMode ? logoSignIn : logoSignUp}
               style={{
                 maxWidth: "100%",
-                display: mobileDevice ? "none" : "block",
+                display: isMobile ? "none" : "block",
               }}
               alt="logo sign in / sign up"
             />
@@ -106,21 +101,3 @@ export function FormModal() {
     </Dialog>
   );
 }
-
-////////////////////////////////////////////////
-// const showMode = (mode: Mode) => {
-//   switch (mode) {
-//     case "LOGIN":
-//       return "Авторизація";
-
-//     case "REGISTER":
-//       return "Реєстрація";
-
-//     case "RECOVERY":
-//       return "Відновлення паролю";
-
-//     default:
-//       return "beHealth";
-//   }
-// };
-//////////////////////////////////////////////

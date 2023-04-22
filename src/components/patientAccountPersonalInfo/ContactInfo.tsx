@@ -8,11 +8,11 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
-import { CustomizedInput, InputMobileNumber } from "../atomic";
-import { TAuthFormValues, validationRules } from "~/common";
+import { useForm } from "react-hook-form";
+import { TAuthFormValues } from "~/common";
 
 import { AlertTriangleIcon } from "lucide-react";
+import { RHFEmail, RHFMobileNumber } from "../ReactHookFormFields";
 
 type ContactInfoEditProps = {
   handleEditContactInfo: () => void;
@@ -66,7 +66,9 @@ export const ContactInfo = () => (
   </TableContainer>
 );
 
-export const ContactInfoEdit = ({ handleEditContactInfo }: ContactInfoEditProps) => {
+export const ContactInfoEdit = ({
+  handleEditContactInfo,
+}: ContactInfoEditProps) => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -88,37 +90,9 @@ export const ContactInfoEdit = ({ handleEditContactInfo }: ContactInfoEditProps)
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Controller
-          name="email"
-          control={control}
-          defaultValue=""
-          rules={validationRules.email}
-          render={({ field }) => (
-            <CustomizedInput
-              label="Електронна пошта*"
-              placeholder="Введіть e-mail"
-              {...field}
-              error={!!errors.email}
-              helperText={errors.email?.message || " "}
-            />
-          )}
-        />
+        <RHFEmail control={control} errors={errors} autoFocus />
 
-        <Controller
-          name="mobileNumber"
-          control={control}
-          defaultValue=""
-          rules={validationRules.mobileNumber}
-          render={({ field }) => (
-            <InputMobileNumber
-              label="Номер телефону*"
-              placeholder="+38 (XXX) XXX XX XX"
-              {...field}
-              error={!!errors.mobileNumber}
-              helperText={errors.mobileNumber?.message || " "}
-            />
-          )}
-        />
+        <RHFMobileNumber control={control} errors={errors} />
       </Stack>
 
       <Stack direction="row" spacing={2}>

@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button, Typography, Stack, useTheme, Dialog } from "@mui/material";
 
-import { PasswordInput } from "../atomic";
-
-import { TAuthFormValues, validationRules } from "~/common";
+import { TAuthFormValues, useDeviceType } from "~/common";
+import { RHFPasswordInput, RHFConfirmPassword } from "../ReactHookFormFields";
 
 interface IProps {
   onSubmit: (data: TAuthFormValues) => void;
@@ -14,21 +13,26 @@ interface IProps {
 export const ResetPasswordModal = ({ onSubmit }: IProps) => {
   const [openResetPasswordModal, setOpenResetPasswordModal] = useState(true);
   const { palette } = useTheme();
+  const isMobile = useDeviceType();
 
   const { control, handleSubmit, formState, watch } = useForm<TAuthFormValues>({
-    mode: "onChange",
-    delayError: 1000,
+    mode: "onBlur",
   });
 
   const { errors } = formState;
 
+  useEffect(
+    () => () => setOpenResetPasswordModal(false),
+    [formState.isSubmitted]
+  );
+
   return (
     <Dialog
       open={openResetPasswordModal}
-      // fullScreen
+      fullScreen={isMobile}
       sx={{
         "& .MuiPaper-root": {
-          borderRadius: "12px",
+          borderRadius: isMobile ? 0 : "12px",
         },
       }}
       onClose={() => setOpenResetPasswordModal(false)}
@@ -48,37 +52,9 @@ export const ResetPasswordModal = ({ onSubmit }: IProps) => {
           Зміна паролю
         </Typography>
 
-        <Controller
-          name="password"
-          control={control}
-          defaultValue=""
-          rules={validationRules.password}
-          render={({ field }) => (
-            <PasswordInput
-              label="Новий пароль*"
-              placeholder="Вигадайте пароль"
-              {...field}
-              error={!!errors.password}
-              helperText={errors.password?.message || " "}
-            />
-          )}
-        />
+        <RHFPasswordInput control={control} errors={errors} />
 
-        <Controller
-          name="confirmPassword"
-          control={control}
-          defaultValue=""
-          rules={validationRules.confirmPassword(watch("password"))}
-          render={({ field }) => (
-            <PasswordInput
-              label="Повторіть новий пароль*"
-              placeholder="Продублюйте пароль"
-              {...field}
-              error={!!errors.confirmPassword}
-              helperText={errors.confirmPassword?.message || " "}
-            />
-          )}
-        />
+        <RHFConfirmPassword control={control} errors={errors} watch={watch} />
 
         <Stack direction="row" justifyContent="space-between">
           <Button

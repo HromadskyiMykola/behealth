@@ -9,31 +9,33 @@ import {
   Stack,
   FormControlLabel,
   Checkbox,
-  LinearProgress,
   useTheme,
 } from "@mui/material";
 
 import { useModalState, useAuthProvider } from "~/providers";
-import { CustomizedInput, PasswordInput } from "../atomic";
 
 import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 
-
 import {
   TAuthFormValues,
-  validationRules,
   EUserType,
-  EAuthMode,
   useApiService,
+  useDeviceType,
+  TAuthMode,
 } from "~/common";
 
 import { ERouteNames } from "~/routes/routeNames";
+import {
+  RHFConfirmPassword,
+  RHFEmail,
+  RHFPasswordInput,
+} from "../ReactHookFormFields";
+import { SimpleModal } from "../atomic";
 
 type TAuthFormProps = {
-  mode: EAuthMode;
-  setMode: (mode: EAuthMode) => void;
+  mode: TAuthMode;
+  setMode: (mode: TAuthMode) => void;
 };
-
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const [userType, setUserType] = useState<EUserType>(EUserType.PATIENT);
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
@@ -41,10 +43,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const navigate = useNavigate();
   const { apiError, loading, auth } = useApiService();
   const { palette } = useTheme();
+  const isMobile = useDeviceType();
 
-  const isLoginMode = mode === EAuthMode.LOGIN;
-  const isRegisterMode = mode === EAuthMode.REGISTER;
-  const isRecoveryMode = mode === EAuthMode.RECOVERY;
+  const { isLoginMode, isRegisterMode, isRecoveryMode } = mode;
 
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({
@@ -85,21 +86,12 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
       auth.forgotPassword({ email, userType }).then(setSimpleModalMessage);
     }
-
-    // console.log(formState);
   };
-
-  useEffect(() => {
-    apiError && setSimpleModalMessage(apiError);
-
-    loading &&
-      setSimpleModalMessage(
-        <LinearProgress color="success" sx={{ width: "100%" }} />
-      );
-  }, [apiError, loading]);
 
   return (
     <>
+      <SimpleModal apiError={apiError} loading={loading} />
+
       <Box>
         {!isRegisterMode && (
           <UserTypeSelector userType={userType} onChange={setUserType} />
@@ -112,7 +104,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
           }}
         >
           <Typography sx={{ alignSelf: "center", mb: "16px" }} variant="h5">
-            {mode}
+            {(isLoginMode && "Вхід") ||
+              (isRegisterMode && "Реєстрація") ||
+              (isRecoveryMode && "Відновлення паролю")}
           </Typography>
 
           <Stack
@@ -134,7 +128,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               color={palette.primary.main}
               onClick={() => {
                 reset();
-                setMode(isLoginMode ? EAuthMode.REGISTER : EAuthMode.LOGIN);
+                setMode(
+                  isLoginMode ? { isLoginMode: true } : { isRegisterMode: true }
+                );
               }}
             >
               {isLoginMode ? "Зареєструватися" : "Увійти"}
@@ -142,60 +138,21 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
           </Stack>
 
           <form noValidate onSubmit={handleSubmit(onSubmit)}>
-            <Controller // EMAIL
-              name="email"
+            <RHFEmail
               control={control}
-              defaultValue=""
-              rules={validationRules.email}
-              render={({ field }) => (
-                <CustomizedInput
-                  label="Електронна пошта"
-                  placeholder="mail@example.com"
-                  autoFocus={isLoginMode || isRecoveryMode}
-                  {...field}
-                  error={!!errors.email}
-                  helperText={errors.email?.message || " "}
-                />
-              )}
+              errors={errors}
+              autoFocus={!!isLoginMode || !!isRecoveryMode}
             />
 
             {(isLoginMode || isRegisterMode) && ( // PASSWORD
-              <Controller
-                name="password"
-                control={control}
-                defaultValue=""
-                rules={
-                  isRegisterMode
-                    ? validationRules.password
-                    : validationRules.loginPassword
-                }
-                render={({ field }) => (
-                  <PasswordInput
-                    label="Пароль"
-                    placeholder="123qwe!@#QWE"
-                    {...field}
-                    error={!!errors.password}
-                    helperText={errors.password?.message || " "}
-                  />
-                )}
-              />
+              <RHFPasswordInput control={control} errors={errors} />
             )}
 
             {isRegisterMode && ( // CONFIRM PASS
-              <Controller
-                name="confirmPassword"
+              <RHFConfirmPassword
                 control={control}
-                defaultValue=""
-                rules={validationRules.confirmPassword(watch("password"))}
-                render={({ field }) => (
-                  <PasswordInput
-                    label="Підтвердження паролю"
-                    placeholder="123qwe!@#QWE"
-                    {...field}
-                    error={!!errors.confirmPassword}
-                    helperText={errors.confirmPassword?.message || " "}
-                  />
-                )}
+                errors={errors}
+                watch={watch}
               />
             )}
 
@@ -224,7 +181,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                   color={palette.primary.main}
                   onClick={() => {
                     reset();
-                    setMode(EAuthMode.RECOVERY);
+                    setMode({ isRecoveryMode: true });
                   }}
                 >
                   Забули пароль?
@@ -235,7 +192,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             {isRegisterMode && (
               <Stack direction="row" alignItems="flex-start">
                 <Controller
-                  name="rememberMe"
+                  name="userAgreement"
                   control={control}
                   defaultValue={false}
                   rules={{ required: true }}

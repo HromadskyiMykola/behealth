@@ -40,11 +40,12 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
         {children && <span>{children}</span>}
         {apiError && <span>{apiError}</span>}
 
-        {isValidElement(simpleModalMessage) ? (
-          simpleModalMessage
-        ) : (
-          <span>{simpleModalMessage}</span>
-        )}
+        {simpleModalMessage &&
+          (isValidElement(simpleModalMessage) ? (
+            simpleModalMessage
+          ) : (
+            <span>{simpleModalMessage}</span>
+          ))}
 
         {loading && <LinearProgress color="success" sx={{ width: "100%" }} />}
       </Stack>

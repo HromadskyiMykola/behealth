@@ -16,6 +16,7 @@ export type TAuthFormValues = {
   confirmPassword: string;
   loginPassword: string;
   rememberMe: boolean;
+  userAgreement: boolean;
   userType: EUserType;
   birthDate: string;
   tin: string;
@@ -83,11 +84,11 @@ export interface FooterColumNavigateLinksProps {
   itIsLink?: boolean;
 }
 
-export const enum EAuthMode {
-  LOGIN = "Вхід",
-  REGISTER = "Реєстрація",
-  RECOVERY = "Відновлення паролю",
-}
+export type TAuthMode = {
+  isLoginMode?: boolean;
+  isRegisterMode?: boolean;
+  isRecoveryMode?: boolean;
+};
 
 export type TRoute = RouteObject & {
   label: string;
