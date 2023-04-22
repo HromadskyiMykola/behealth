@@ -268,3 +268,8 @@ export interface IContactPhoneWithIcon {
   phone: string;
   order?: number;
 }
+
+export interface ISelectItemHeaderValue {
+  value: string;
+  text: string;
+}
