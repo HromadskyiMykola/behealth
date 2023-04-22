@@ -16,9 +16,9 @@ export function Root() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ModalStateProvider>
-        {/*<Header />*/}
+        <Header />
         <Outlet />
-        {/*<Footer />*/}
+        <Footer />
         <SimpleModal />
       </ModalStateProvider>
     </LocalizationProvider>
