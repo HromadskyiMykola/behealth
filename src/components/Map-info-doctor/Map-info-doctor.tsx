@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material";
+import { GoogleMapLink } from "~/components/atomic";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -43,16 +44,7 @@ export const MapInfoDoctor = () => {
         <Typography variant="caption" component="span">
           м. Київ, вул. Попудренка, 7, каб. 2
         </Typography>
-        <Link to={""} style={{ textDecoration: "none" }}>
-          <Typography
-            variant="captionS"
-            component="span"
-            color={custom.primary70}
-            pl={1}
-          >
-            Відкрити на карті
-          </Typography>
-        </Link>
+        <GoogleMapLink address={"м. Київ, вул. Гмирі Бориса, 14 Б"} />
       </BoxInfo>
     </Box>
   );

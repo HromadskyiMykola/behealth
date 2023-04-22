@@ -17,3 +17,4 @@ export * from "./SelectTopBar";
 export * from "./PaginationBottomBar";
 export * from "./AppointmentScheduleDate";
 export * from "./AppointmentScheduleTime";
+export * from "./GoogleMapLink";

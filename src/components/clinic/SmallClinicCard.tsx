@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import { GoogleMapLink } from "~/components/clinic/GoogleMapLink";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   VerifiedIcon,
@@ -14,7 +13,7 @@ import FooterContactPhone from "~/components/FooterContactPhone/FooterContactPho
 import Life from "~/assets/CustomIcon/Life";
 import { ClinicAppointmentModal } from "~/components/clinic/ClinicAppointmentModal";
 import { Chips } from "~/components/clinic/Chips";
-import { CustomizedPaper } from "~/components/atomic";
+import { CustomizedPaper, GoogleMapLink } from "~/components/atomic";
 import { useNavigate } from "react-router-dom";
 
 const maxGridsToShow = 4;

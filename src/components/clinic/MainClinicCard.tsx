@@ -5,8 +5,8 @@ import { ClockIcon, MapPinIcon, Share2Icon } from "lucide-react";
 import { ClinicCardProps } from "~/components/clinic";
 import FooterContactPhone from "~/components/FooterContactPhone/FooterContactPhone";
 import Life from "~/assets/CustomIcon/Life";
-import { GoogleMapLink } from "~/components/clinic/GoogleMapLink";
 import { ClinicMedicine } from "~/components/clinic/ClinicMedicine";
+import { GoogleMapLink } from "~/components/atomic";
 
 export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
   const { working, address, medicine, name, img, type, chips, phone } = card;
