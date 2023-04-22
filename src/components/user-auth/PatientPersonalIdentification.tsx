@@ -1,54 +1,33 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button, Dialog, Grid, Typography } from "@mui/material";
+import { Button, Dialog, Grid, Typography, useTheme } from "@mui/material";
 
-import {
-  CustomizedInput,
-  DatePickerInput,
-  InputMobileNumber,
-  SimpleModal,
-} from "~/components/atomic/index";
+import { CustomizedInput, DatePickerInput, InputMobileNumber } from "../atomic";
 
-import {
-  EUserType,
-  TAuthFormValues,
-  useApiService,
-  validationRules,
-} from "~/common";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuthProvider } from "~/providers";
-import { ERouteNames } from "~/routes/routeNames";
+import { TAuthFormValues, validationRules } from "~/common";
 
-export function PatientPersonalIdentification() {
+interface IProps {
+  onSubmit: (data: TAuthFormValues) => void;
+  email: string | null;
+}
+
+export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
-  const { token } = useParams();
-  const { apiError, loading, auth } = useApiService();
-  const { singInProvider } = useAuthProvider();
-  const navigate = useNavigate();
+  const { custom } = useTheme().palette;
 
   const { control, handleSubmit, formState } = useForm<TAuthFormValues>({
     mode: "onChange",
     delayError: 1000,
   });
+
   const { errors } = formState;
-
-  const onSubmit = (data: TAuthFormValues) => {
-    auth.emailConfirmation(data, token).then((res) => {
-      singInProvider({ ...res, type: EUserType.PATIENT });
-
-      navigate(ERouteNames.PATIENT_ACCOUNT);
-    });
-    console.log(data);
-    console.log(formState);
-  };
 
   return (
     <Dialog
       open={openIdentificationModal}
       maxWidth="md"
       sx={{
-        //  maxWidth: "712px",
         "& .MuiPaper-root": {
           borderRadius:
             // mobileDevice ? 0 :
@@ -63,7 +42,7 @@ export function PatientPersonalIdentification() {
         p="32px"
         gap="24px"
         direction="column"
-        sx={{ maxWidth: "712px" }}
+        width="712px"
         noValidate
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -71,7 +50,10 @@ export function PatientPersonalIdentification() {
           <Typography variant="h5">
             Ідентифікація особи та реєстрація
           </Typography>
-          <Typography variant="body2" sx={{ mt: "16px", color: "#8E918F" }}>
+          <Typography
+            variant="body2"
+            sx={{ mt: "16px", color: custom.neutral60 }}
+          >
             Заповніть необхідні поля, аби завершити реєстрацію. Нам потрібна ця
             інформація, аби забезпечити зручність для пацієнтів та медичних
             працівників."
@@ -167,20 +149,11 @@ export function PatientPersonalIdentification() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Controller
-              name="email"
-              control={control}
-              defaultValue=""
-              rules={validationRules.email}
-              render={({ field }) => (
-                <CustomizedInput
-                  label="Електронна пошта*"
-                  placeholder="Введіть e-mail"
-                  {...field}
-                  error={!!errors.email}
-                  helperText={errors.email?.message || " "}
-                />
-              )}
+            <CustomizedInput
+              label="Електронна пошта*"
+              placeholder="Введіть e-mail"
+              disabled
+              value={email}
             />
           </Grid>
         </Grid>
@@ -202,8 +175,6 @@ export function PatientPersonalIdentification() {
           Завершити реєстрацію
         </Button>
       </Grid>
-
-      <SimpleModal apiError={apiError} loading={loading} />
     </Dialog>
   );
 }

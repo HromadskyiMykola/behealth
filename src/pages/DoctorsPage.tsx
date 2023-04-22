@@ -51,7 +51,7 @@ export const DoctorsPage = () => {
           <FilterDoctors />
         </Box>
 
-        <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
+        <Box sx={{ flex: "1 0 auto" }}>
           <SelectTopBar />
 
           <SmallCardDoctor />

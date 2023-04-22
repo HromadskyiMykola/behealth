@@ -4,6 +4,8 @@ import { ERouteNames } from "./routeNames";
 
 import * as Pages from "~/pages/index";
 
+import { EmailConfirmation, ResetPassword } from "~/components/user-auth";
+
 export const commonRoutes: TRoute[] = [
   {
     index: true,
@@ -23,24 +25,32 @@ export const commonRoutes: TRoute[] = [
     label: "Заклади",
   },
   {
-    path: ERouteNames.CLINICS + '/:id',
+    path: ERouteNames.CLINICS + "/:id",
     element: <Pages.ClinicInfoPage />,
     label: "Інформація про заклад",
   },
   {
-    path: ERouteNames.CONFIRMATION,
+    path: ERouteNames.EMAIL_CONFIRMATION,
     element: (
       <>
         <Pages.HomePage />
-        <Pages.PatientPersonalIdentification />
+        <EmailConfirmation />
       </>
     ),
-    label: "підтвердження пошти та ідентифікація",
+    label: "Підтвердження пошти та ідентифікація",
+  },
+  {
+    path: ERouteNames.PASSWORD_RESET,
+    element: (
+      <>
+        <Pages.HomePage />
+        <ResetPassword />
+      </>
+    ),
+    label: "Скидання паролю",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
 ];
-
-// export const publicRoutes: TRoute[] = [...commonRoutes];
 
 export const patientRoutes: TRoute[] = [
   ...commonRoutes,
@@ -83,7 +93,7 @@ export const patientRoutes: TRoute[] = [
       },
       {
         path: ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
-        element: <Pages.PatientAccountPasswordNSecurity />,
+        element: <Pages.AccountPasswordNSecurity />,
         label: "Додаткові дані",
       },
     ],
@@ -97,7 +107,46 @@ export const doctorRoutes: TRoute[] = [
     element: <Pages.DoctorAccountPage />,
     label: "Кабінет лікаря",
     children: [
-      
+      {
+        index: true,
+        element: <div></div>,
+        label: "",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_SCHEDULE_OF_RECEPTIONS,
+        element: <div></div>,
+        label: "Розклад прийомів",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_APPOINTMENTS,
+        element: <div></div>,
+        label: "Записи",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_HELP,
+        element: <div></div>,
+        label: "Допомога",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_HEAD_DOCTOR,
+        element: <div></div>,
+        label: "Головний лікарь",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_PERSONAL_INFO,
+        element: <div></div>,
+        label: "Особиста інформація",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_PROFESSIONAL_DATA,
+        element: <div></div>,
+        label: "Професійні дані",
+      },
+      {
+        path: ERouteNames.DOCTOR_ACCOUNT_PASSWORD_N_SECURITY,
+        element: <Pages.AccountPasswordNSecurity />,
+        label: "Пароль та безпека",
+      },
     ],
   } as TRoute,
 ];

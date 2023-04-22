@@ -20,15 +20,7 @@ import { AuthForm } from ".";
 import logoSignIn from "~/assets/images/logo_sign_in.png";
 import logoSignUp from "~/assets/images/logo_sign_up.png";
 
-const secondaryColor = "#FFFFFF";
-
 export function FormModal() {
-  const {
-    palette: {
-      primary: { main: primaryColor },
-    },
-  } = useTheme();
-
   const { openMainModal, setOpenMainModal } = useModalState();
 
   const [mode, setMode] = useState<EAuthMode>(EAuthMode.LOGIN);
@@ -37,6 +29,7 @@ export function FormModal() {
   const isRecoveryMode = mode === EAuthMode.RECOVERY;
 
   const theme = useTheme();
+  const { custom, primary } = theme.palette;
 
   const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -57,7 +50,7 @@ export function FormModal() {
           height: { xs: "100vh", sm: "auto" },
           maxWidth: "1000px",
           p: "80px",
-          backgroundColor: primaryColor,
+          backgroundColor: primary.main,
         }}
       >
         <IconButton
@@ -66,7 +59,7 @@ export function FormModal() {
             p: 0,
             top: "28px",
             right: "28px",
-            color: secondaryColor,
+            color: custom.primary100,
           }}
           aria-label="close"
           onClick={() => setOpenMainModal(false)}
@@ -78,14 +71,18 @@ export function FormModal() {
           <Grid item md={5} sx={{ display: { xs: "none", md: "block" } }}>
             {!isRecoveryMode && (
               <DialogTitle
-                sx={{ pl: 0, typography: "h3", color: secondaryColor }}
+                sx={{
+                  pl: 0,
+                  typography: "h3",
+                  color: custom.primary100,
+                }}
               >
                 {isLoginMode ? "Авторизація" : "Реєстрація"}
               </DialogTitle>
             )}
 
             {!isRecoveryMode && (
-              <Typography variant="body2" sx={{ color: secondaryColor }}>
+              <Typography variant="body2" sx={{ color: custom.primary100 }}>
                 {isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
                 {", щоб отримати доступ до особистого кабінету beHealth."}
               </Typography>

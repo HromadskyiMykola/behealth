@@ -1,10 +1,14 @@
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, Typography } from "@mui/material";
 
-import { CustomizedInput, CustomizedPaper, PasswordInput } from "~/components/atomic/index";
+import {
+  CustomizedInput,
+  CustomizedPaper,
+  PasswordInput,
+} from "~/components/atomic/index";
 import { validationRules, TAuthFormValues } from "~/common";
 
-export function PatientAccountPasswordNSecurity() {
+export const AccountPasswordNSecurity = () => {
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
@@ -65,7 +69,7 @@ export function PatientAccountPasswordNSecurity() {
             name="confirmPassword"
             control={control}
             defaultValue=""
-            rules={validationRules.confirmPassword(watch("loginPassword"))}
+            rules={validationRules.confirmPassword(watch("password"))}
             render={({ field }) => (
               <PasswordInput
                 label="Повторіть новий пароль*"
@@ -101,5 +105,4 @@ export function PatientAccountPasswordNSecurity() {
       </Stack>
     </CustomizedPaper>
   );
-}
-
+};

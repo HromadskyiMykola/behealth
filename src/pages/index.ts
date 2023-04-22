@@ -4,7 +4,7 @@ export * from "./PatientAccountAppointments";
 export * from "./PatientAccountHelp";
 export * from "./PatientAccountPersonalInfo";
 export * from "./PatientAccountAdditionalData";
-export * from "./PatientAccountPasswordNSecurity";
+export * from "./AccountPasswordNSecurity";
 export * from "./AboutPage";
 export * from "./DoctorsPage";
 export * from "./DoctorPage";
@@ -12,6 +12,5 @@ export * from "./ClinicsPage";
 export * from "./ProfilePage";
 export * from "./NotFound";
 export * from "./Root";
-export * from "./PatientPersonalIdentification";
 export * from './ClinicInfoPage'
 export * from "./DoctorAccountPage";

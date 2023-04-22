@@ -1,29 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic/index";
+
+import { useApiService } from "~/common";
 
 import avatar from "~/assets/images/avatar.png";
 import {
   ContactInfo,
   ContactInfoEdit,
-  IdentityDocs,
-  IdentityDocsEdit,
+  IdentityDocuments,
+  IdentityDocumentsEdit,
   PersonalData,
   PersonalDataEdit,
 } from "~/components/patientAccountPersonalInfo";
 
 export function PatientAccountPersonalInfo() {
+  const { patient } = useApiService();
+  const [patientPersonalData, setPatientPersonalData] = useState(null);
+
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
-  const [isEditIdentityDocs, setIsEditIdentityDocs] = useState(false);
+  const [isEditIdentityDocuments, setIsEditIdentityDocuments] = useState(false);
 
   const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
 
   const handleEditPersonalData = () =>
     setIsEditPersonalData(!isEditPersonalData);
 
-  const handleEditIdentityDocs = () =>
-    setIsEditIdentityDocs(!isEditIdentityDocs);
+  const handleEditIdentityDocuments = () =>
+    setIsEditIdentityDocuments(!isEditIdentityDocuments);
+
+  useEffect(() => {
+    patient.personalInfo.get().then(setPatientPersonalData);
+  }, []);
 
   return (
     <>
@@ -35,77 +44,79 @@ export function PatientAccountPersonalInfo() {
 
           <ButtonEditIcon
             onClick={handleEditContactInfo}
-            disabled={isEditContactInfo}
+            disabled={!patientPersonalData || isEditContactInfo}
           />
         </Stack>
 
-        {/* <Stack direction="row" gap={2}>
-          <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
-          <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
-        </Stack> */}
+        {/* Contact info */}
+        {!patientPersonalData && (
+          <Stack direction="row" gap={2}>
+            <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
+            <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
+          </Stack>
+        )}
 
-        <Stack direction="row" gap={2}>
-          <img src={avatar} alt="avatar" />
+        {patientPersonalData && (
+          <Stack direction="row" gap={2}>
+            <img src={avatar} alt="avatar" />
 
-          {isEditContactInfo ? (
-            <ContactInfoEdit handleEditContactInfo={handleEditContactInfo} />
-          ) : (
-            <ContactInfo />
-          )}
-        </Stack>
+            {isEditContactInfo ? (
+              <ContactInfoEdit handleEditContactInfo={handleEditContactInfo} />
+            ) : (
+              <ContactInfo />
+            )}
+          </Stack>
+        )}
       </CustomizedPaper>
 
-      {/* ///       Персональні дані          /// */}
+      {/* Personal info */}
       <CustomizedPaper>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">Персональні дані</Typography>
 
           <ButtonEditIcon
             onClick={handleEditPersonalData}
-            disabled={isEditPersonalData}
+            disabled={!patientPersonalData || isEditPersonalData}
           />
         </Stack>
 
-        {/* <Skeleton variant="text" sx={{ height: 150 }} /> */}
-
-        {isEditPersonalData ? (
-          <PersonalDataEdit handleEditPersonalData={handleEditPersonalData} />
-        ) : (
-          <PersonalData />
+        {!patientPersonalData && (
+          <Skeleton variant="text" sx={{ height: 150 }} />
         )}
+
+        {patientPersonalData &&
+          (isEditPersonalData ? (
+            <PersonalDataEdit handleEditPersonalData={handleEditPersonalData} />
+          ) : (
+            <PersonalData />
+          ))}
 
         <Stack
           direction="row"
           justifyContent="space-between"
           mt="24px"
-          mb="24px"
+          // mb="24px"
         >
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditIdentityDocs}
-            disabled={isEditIdentityDocs}
+            onClick={handleEditIdentityDocuments}
+            disabled={!patientPersonalData || isEditIdentityDocuments}
           />
         </Stack>
 
-        <Typography variant="body2" pl="16px"
-        mb={2}  // temp
-        >
-          Документи, що засвідчують особу не додані.
-        </Typography>
+        {/* Documents info */}
 
-        {/* <Skeleton variant="text" /> */}
-
-        {isEditIdentityDocs ? (
-          <IdentityDocsEdit handleEditIdentityDocs={handleEditIdentityDocs} />
-        ) : (
-          <IdentityDocs />
+        {!patientPersonalData && (
+          <Skeleton variant="text" sx={{ height: 150 }} />
         )}
 
-
-
-
-
+        {patientPersonalData &&
+          (isEditIdentityDocuments ? (
+            <IdentityDocumentsEdit handleEditIdentityDocuments={handleEditIdentityDocuments} />
+          ) : (
+            <IdentityDocuments />
+          ))}
       </CustomizedPaper>
     </>
   );

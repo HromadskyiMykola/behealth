@@ -1,46 +1,35 @@
-import Box from "@mui/material/Box";
-import React from "react";
-import { HeaderItem } from "~/components/Small-card-doctor/Header-item";
-import { styled } from "@mui/system";
-import { MapInfoDoctor } from "~/components/Map-info-doctor";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material";
-import Button from "@mui/material/Button";
-import { CustomizedPaper } from "~/components/atomic";
-import Modal from "@mui/material/Modal";
-import Paper from "@mui/material/Paper";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import { X } from "lucide-react";
+import { useState } from "react";
+
+import {
+  styled,
+  useTheme,
+  Stack,
+  Box,
+  Button,
+  Modal,
+  Paper,
+  List,
+  ListItem,
+  Typography,
+  IconButton,
+} from "@mui/material";
+import { XIcon } from "lucide-react";
+
+import { useAuthProvider, useModalState } from "~/providers";
+import { FormModal } from "~/components/user-auth";
+
 import {
   AT_RECEPTION,
   POP_UP_DOC_APPOINTMENT_1,
   POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
-import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
-import { useAuthProvider, useModalState } from "~/providers";
-import { FormModal } from "~/components/user-auth";
-import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
 
-const BoxInfo = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: "38px",
-  padding: "16px",
-  borderRadius: "10px",
-  border: `1px solid ${theme.palette.custom.neutral90}`,
-}));
-const CloseBox = styled("div")(({ theme }) => ({
-  display: "flex",
-  position: "absolute" as "absolute",
-  top: "21px",
-  right: "21px",
-  width: "25px",
-  height: "25px",
-  justifyContent: "center",
-  alignItems: "center",
-  color: theme.palette.custom.primary50,
-}));
+import { HeaderItem } from "~/components/Small-card-doctor/Header-item";
+import { MapInfoDoctor } from "~/components/Map-info-doctor";
+import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
+import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
+import { CustomizedPaper } from "~/components/atomic";
+
 const BoxCalendar = styled("div")(({ theme }) => ({
   background: "#F6F8F7",
   width: "332px",
@@ -83,8 +72,8 @@ export const SmallCardDoctor = () => {
   const { authenticatedUser } = useAuthProvider();
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
 
-  const [open, setOpen] = React.useState(false);
-  const [confirm, setConfirm] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [confirm, setConfirm] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -117,8 +106,17 @@ export const SmallCardDoctor = () => {
       <Box display="flex" gap="32px">
         <Box display="flex" flexDirection="column" gap="32px">
           <HeaderItem />
-          <BoxInfo>
+
+          <Stack
+            maxWidth="620px"
+            width="100%"
+            gap="38px"
+            p="16px"
+            borderRadius="10px"
+            sx={{ border: `1px solid ${custom.neutral90}` }}
+          >
             <MapInfoDoctor />
+
             <Typography
               variant="caption"
               component="p"
@@ -126,8 +124,9 @@ export const SmallCardDoctor = () => {
             >
               {AT_RECEPTION}
             </Typography>
-          </BoxInfo>
+          </Stack>
         </Box>
+
         <Box
           display="flex"
           flexDirection="column"
@@ -152,9 +151,17 @@ export const SmallCardDoctor = () => {
             aria-describedby="PopUp-Appointment-1"
           >
             <ModalPaper>
-              <CloseBox onClick={() => setOpen(false)}>
-                <X size="24px" />
-              </CloseBox>
+              <IconButton
+                sx={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                }}
+                onClick={() => setOpen(false)}
+              >
+                <XIcon />
+              </IconButton>
+
               <Box display="flex" justifyContent="center">
                 <Typography variant="h5">Запис до лікаря</Typography>
               </Box>

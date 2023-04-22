@@ -1,5 +1,4 @@
 import { Box, Typography, useTheme } from "@mui/material";
-
 import { AlertTriangleIcon } from "lucide-react";
 
 import { ButtonTimer } from "../atomic";
