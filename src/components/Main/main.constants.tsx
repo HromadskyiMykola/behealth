@@ -18,6 +18,10 @@ import { HeadPhones } from "~/assets/CustomIcon/HeadPhones";
 import howItWorks1 from "~/assets/images/how-it-work-1.png";
 import howItWorks2 from "~/assets/images/how-it-work-2.png";
 import howItWorks3 from "~/assets/images/how-it-work-3.png";
+import ain from "~/assets/images/ain-chanel.png";
+import ictv from "~/assets/images/ictv-chanel.png";
+import twentyFourth from "~/assets/images/24-chanel.png";
+import onePlusOne from "~/assets/images/1+1-chanel.png";
 
 export const CHOOSE_DOCTORS_LIST: IChooseDoctor[] = [
   {
@@ -237,5 +241,28 @@ export const HOW_IT_WORKS_CARD_LIST = [
     image: howItWorks3,
     title: "Результати онлайн",
     text: "Оберіть лікаря та запишіться на зручний час Оберіть лікаря та запишіться на зручний час",
+  },
+];
+
+export const newsList = [
+  {
+    icon: ain,
+    description:
+        "Битва з чергами: як сервіс beHealth за два роки виріс з 7 до 23 000 пацієентів на день",
+  },
+  {
+    icon: ictv,
+    description:
+        "Медреформа: від класичних черг до запису онлайн за 2 хвилини, в сюжеті Вікна-новини.",
+  },
+  {
+    icon: twentyFourth,
+    description:
+        "До електронного реєстру підключили перший центр медико-санітарної допомоги.",
+  },
+  {
+    icon: onePlusOne,
+    description:
+        "Старт медичної реформи надав можливість онлайн запису до лікарів первинної ланки.",
   },
 ];

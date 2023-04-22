@@ -44,9 +44,9 @@ const Video = () => {
         {!play && (
           <Box
             position="absolute"
-            top="40%"
-            left="45%"
             display="flex"
+            top='50%'
+            right='50%'
             justifyContent="center"
             alignItems="center"
             height="80px"
@@ -54,6 +54,9 @@ const Video = () => {
             borderRadius="200px"
             bgcolor="rgba(255, 255, 255, 0.15)"
             onClick={() => setPlay(true)}
+            sx={{
+              transform: "translate(50%, -50%)",
+            }}
           >
             <Play color="#E7FFF3" />
           </Box>

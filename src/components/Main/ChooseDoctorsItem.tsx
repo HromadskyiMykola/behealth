@@ -1,7 +1,10 @@
 import React from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
-import { ArrowForwardIosRounded } from "@mui/icons-material";
+import { ChevronRightIcon } from "lucide-react";
 
 export const ChooseDoctorsList = ({ doctor: { icon, name, count } }: any) => {
   return (
@@ -34,17 +37,47 @@ export const ChooseDoctorsList = ({ doctor: { icon, name, count } }: any) => {
           >
             {icon}
           </Box>
-          <Typography variant={"subtitle1"} sx={{ color: "#00513E" }}>
+          <Typography
+            color="#00513E"
+            sx={{
+              typography: {
+                xs: "subtitle2",
+                md: "subtitle1",
+              },
+              display: {
+                xs: "none",
+                md: "block",
+              },
+            }}
+          >
             {name}
           </Typography>
+          <Box
+            display={{
+              xs: "block",
+              md: "none",
+            }}
+          >
+            <Typography color="#00513E" variant={"subtitle2"}>
+              {name}
+            </Typography>
+            <Typography color="#7D968B" variant={"caption"}>
+              {count} лікарів
+            </Typography>
+          </Box>
         </Box>
-        <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <Box
+          display={{
+            xs: "none",
+            md: "flex",
+          }}
+          gap="8px"
+          alignItems="center"
+        >
           <Typography variant={"caption"} sx={{ color: "#7D968B" }}>
             {count} лікарів
           </Typography>
-          <IconButton>
-            <ArrowForwardIosRounded sx={{ color: "#00513E" }} />
-          </IconButton>
+          <ChevronRightIcon color="#00513E" size={32} />
         </Box>
       </Box>
     </Link>
