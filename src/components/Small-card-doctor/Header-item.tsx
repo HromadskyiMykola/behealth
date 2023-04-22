@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import React from "react";
 import avatar from "~/assets/images/doctor-avatar.png";
-import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
+import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 
 export const HeaderItem = () => {
   return (
