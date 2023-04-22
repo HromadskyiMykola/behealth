@@ -1,5 +1,10 @@
 import React from "react";
-import { Grid, Box, Typography, Container } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from "@mui/material";
 import { MUILink } from "./MUILink";
 import { CHOOSE_DOCTORS_LIST } from "./main.constants";
 import { IChooseDoctor } from "~/common";
@@ -7,12 +12,32 @@ import { ChooseDoctorsList } from "./ChooseDoctorsItem";
 
 export const ChooseDoctor = () => {
   return (
-    <Box sx={{ p: "120px 0", background: "#f7fcf9" }}>
+    <Box
+      padding={{ xs: "38px 0 26px 0", md: "120px 0" }}
+      sx={{
+        background: "#f7fcf9",
+      }}
+    >
       <Container>
         <Box
-          sx={{ mb: "64px", display: "flex", justifyContent: "space-between" }}
+          sx={{
+            mb: {
+              xs: "24px",
+              md: "64px",
+            },
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
-          <Typography variant={"h4"} sx={{ color: "#00382A" }}>
+          <Typography
+            sx={{
+              color: "#00382A",
+              typography: {
+                xs: "subtitle1",
+                md: "h4",
+              },
+            }}
+          >
             Оберіть лікаря
           </Typography>
           <MUILink path={"/doctors"} text={"Переглянути усіх лікарів"} />

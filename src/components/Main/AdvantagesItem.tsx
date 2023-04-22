@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { Box, ListItem, Typography } from "@mui/material";
+import {
+  Box,
+  ListItem,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Check } from "~/assets/CustomIcon/Check";
 import { IAdvantagesBlockProps } from "~/common";
 
@@ -7,15 +13,15 @@ export const AdvantagesItem: FC<IAdvantagesBlockProps> = ({
   title,
   description,
 }) => {
+  const theme = useTheme();
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <ListItem
       sx={{
         display: "flex",
         gap: "9px",
-        pl: "0",
-        pr: "0",
-        pb: "0",
-        pt: "0",
+        p: 0,
         alignItems: "start",
       }}
     >
@@ -35,10 +41,13 @@ export const AdvantagesItem: FC<IAdvantagesBlockProps> = ({
           gap: "4px",
         }}
       >
-        <Typography sx={{ display: "block" }} variant="subtitle1">
+        <Typography
+          sx={{ display: "block" }}
+          variant={sm ? "subtitle2" : "subtitle1"}
+        >
           {title}
         </Typography>
-        <Typography variant={"body2"}>{description}</Typography>
+        <Typography variant={sm ? "caption" : "body2"}>{description}</Typography>
       </Box>
     </ListItem>
   );

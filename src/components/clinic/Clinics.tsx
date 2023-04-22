@@ -10,7 +10,7 @@ export const Clinics = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {CLINIC_CARD_LIST.map((card: IClinicCard) => (
-        <SmallClinicCard card={card} />
+        <SmallClinicCard key={card.id} card={card} />
       ))}
     </Box>
   );

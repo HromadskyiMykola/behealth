@@ -10,16 +10,21 @@ import {
   TextField,
   InputAdornment,
   Paper,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { RoomOutlined } from "@mui/icons-material";
-import { Search as SearchIcon } from "lucide-react";
+import { FilterIcon, Search as SearchIcon } from "lucide-react";
 import { searchOptions } from "~/components/Main/main.constants";
 
 const styledContainer = {
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: {
+    xs: "center",
+    laptop: "space-between",
+  },
 };
 
 const styledBox = {
@@ -27,7 +32,7 @@ const styledBox = {
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
-  height: "708px",
+  paddingBottom: "58px",
   borderBottom: "1px solid #CEE9DC;",
   display: "flex",
 };
@@ -52,6 +57,9 @@ const searchOptionsSpreading = {
 };
 
 export const Hero = () => {
+  const theme = useTheme();
+  const laptopDevice = useMediaQuery(theme.breakpoints.down("laptop"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
   const [city, setCity] = useState("Уся Україна");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -61,25 +69,61 @@ export const Hero = () => {
   return (
     <Box sx={styledBox}>
       <Container sx={styledContainer}>
-        <Box sx={{ maxWidth: "807px", mt: "188px" }}>
-          <Typography variant={"h1"} sx={{ color: "#00382A", mb: "24px" }}>
+        <Box
+          sx={{
+            maxWidth: "807px",
+            mt: {
+              xs: "40px",
+              sm: "188px",
+            },
+          }}
+        >
+          <Typography
+            color="#00382A"
+            sx={{
+              typography: {
+                xs: "h5",
+                sm: "h1",
+              },
+              mb: "24px",
+            }}
+          >
             Шукайте{" "}
             <Typography
-              variant={"h1"}
+              color="#006C53"
               component="span"
-              sx={{ color: "#006C53" }}
+              sx={{
+                typography: {
+                  xs: "h5",
+                  sm: "h1",
+                },
+              }}
             >
               лікарів та клініки
             </Typography>{" "}
             не виходячи з дому
           </Typography>
-          <Typography variant={"body1"} sx={{ mb: "40px" }}>
+          <Typography
+            sx={{
+              mb: "40px",
+              typography: {
+                xs: "body2",
+                sm: "body1",
+              },
+            }}
+          >
             Завдяки інноваційній медичній реформі та системі eHealth, у вас є
             можливість зручно планувати свої походи до лікарні онлайн
           </Typography>
           <Search>
             <Autocomplete
-              sx={{ pl: "24px", width: "100%" }}
+              sx={{
+                pl: "24px",
+                width: "100%",
+                "&.MuiAutocomplete-root .MuiOutlinedInput-root": {
+                  padding: 0,
+                },
+              }}
               options={searchOptions}
               getOptionLabel={(option) => option.name + " " + option.speciality}
               filterOptions={(options, state) =>
@@ -188,81 +232,98 @@ export const Hero = () => {
                 </MenuItem>
               )}
             />
-            <Select
-              labelId="select-city"
-              id="select-city"
-              value={city}
-              label="City"
-              onChange={handleChange}
-              IconComponent={() => <RoomOutlined sx={{ color: "#999" }} />}
-              sx={{
-                fontSize: "16px",
-                p: "0 112px 0 16px",
-                borderLeft: "1px solid #999",
-                borderRadius: 0,
-                fontWeight: "500",
-                fontFamily: "Inter",
-                color: "#999",
-                "& .MuiOutlinedInput-input": { p: 0 },
-                boxShadow: "none",
-                ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
+            {sm ? (
+              <>
+                <Box
+                  sx={{
+                    p: "0 14px 0 16px",
+                    borderLeft: "1px solid #A4ADA8",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <FilterIcon color="#A4ADA8" fontSize={24} />
+                </Box>
+              </>
+            ) : (
+              <Select
+                labelId="select-city"
+                id="select-city"
+                value={city}
+                label="City"
+                onChange={handleChange}
+                IconComponent={() => <RoomOutlined sx={{ color: "#999" }} />}
+                sx={{
+                  fontSize: "16px",
+                  p: sm ? "0" : "0 112px 0 16px",
+                  borderLeft: "1px solid #999",
+                  borderRadius: 0,
+                  fontWeight: "500",
+                  fontFamily: "Inter",
+                  color: "#999",
+                  "& .MuiOutlinedInput-input": { p: 0 },
+                  boxShadow: "none",
+                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                  "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                    {
+                      border: 0,
+                    },
+                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                      border: 0,
+                    },
+                  "&.MuiInputBase-root": {
+                    display: "flex!important",
+                    flexDirection: "row-reverse!important",
+                    gap: "16px",
                   },
-                "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
-                  },
-                "&.MuiInputBase-root": {
-                  display: "flex!important",
-                  flexDirection: "row-reverse!important",
-                  gap: "16px",
-                },
-              }}
-            >
-              <MenuItem value={"Уся Україна"}>
-                <Typography
-                  fontSize={"16px"}
-                  sx={{ color: "#999" }}
-                  variant="caption"
-                >
-                  Уся Україна
-                </Typography>
-              </MenuItem>
-              <MenuItem value={"Cherkasy"}>
-                <Typography
-                  fontSize={"16px"}
-                  sx={{ color: "#999" }}
-                  variant="caption"
-                >
-                  Черкаси
-                </Typography>
-              </MenuItem>
-              <MenuItem value={"Kyiv"}>
-                <Typography
-                  fontSize={"16px"}
-                  sx={{ color: "#999" }}
-                  variant="caption"
-                >
-                  Київ
-                </Typography>
-              </MenuItem>
-              <MenuItem value={"Termopil"}>
-                <Typography
-                  fontSize={"16px"}
-                  sx={{ color: "#999" }}
-                  variant="caption"
-                >
-                  Тернопіль
-                </Typography>
-              </MenuItem>
-            </Select>
+                }}
+              >
+                <MenuItem value={"Уся Україна"}>
+                  <Typography
+                    fontSize={"16px"}
+                    sx={{ color: "#999" }}
+                    variant="caption"
+                  >
+                    Уся Україна
+                  </Typography>
+                </MenuItem>
+                <MenuItem value={"Cherkasy"}>
+                  <Typography
+                    fontSize={"16px"}
+                    sx={{ color: "#999" }}
+                    variant="caption"
+                  >
+                    Черкаси
+                  </Typography>
+                </MenuItem>
+                <MenuItem value={"Kyiv"}>
+                  <Typography
+                    fontSize={"16px"}
+                    sx={{ color: "#999" }}
+                    variant="caption"
+                  >
+                    Київ
+                  </Typography>
+                </MenuItem>
+                <MenuItem value={"Termopil"}>
+                  <Typography
+                    fontSize={"16px"}
+                    sx={{ color: "#999" }}
+                    variant="caption"
+                  >
+                    Тернопіль
+                  </Typography>
+                </MenuItem>
+              </Select>
+            )}
           </Search>
         </Box>
-        <Box sx={{ mt: "82px" }}>
-          <img src={image} alt="image" width={568} height={568} />
-        </Box>
+        {!laptopDevice && (
+          <Box sx={{ mt: "82px" }}>
+            <img src={image} alt="image" width={568} height={568} />
+          </Box>
+        )}
       </Container>
     </Box>
   );

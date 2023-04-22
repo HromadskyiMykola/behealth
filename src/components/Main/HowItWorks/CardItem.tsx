@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 interface CardItemProps {
   card: any;
@@ -8,6 +8,8 @@ interface CardItemProps {
 export const CardItem: FC<CardItemProps> = ({
   card: { id, image, title, text },
 }) => {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box
       sx={{
@@ -38,7 +40,7 @@ export const CardItem: FC<CardItemProps> = ({
           borderRadius: "50%",
           color: "white",
         }}
-        variant={"h5"}
+        variant={md ? "subtitle2" : "h5"}
         width={36}
         height={36}
       >
@@ -51,11 +53,14 @@ export const CardItem: FC<CardItemProps> = ({
           pb: "4px",
           color: "#002117",
         }}
-        variant={"h5"}
+        variant={md ? "subtitle2" : "h5"}
       >
         {title}
       </Typography>
-      <Typography sx={{ textAlign: "center" }} variant={"body2"}>
+      <Typography
+        sx={{ textAlign: "center" }}
+        variant={md ? "caption" : "body2"}
+      >
         {text}
       </Typography>
     </Box>

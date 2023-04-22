@@ -11,52 +11,77 @@ export const WhyUsContent = ({
         display: "flex",
         flexDirection: "column",
         gap: "24px",
-        width: "600px",
       }}
     >
-      <Typography sx={{ color: "#333333" }} variant="h4">
-        {title}
-      </Typography>
-      <Typography sx={{ color: "#7D968B" }} variant="body1">
-        {description}
-      </Typography>
-      {link}
-      <Grid
-        container
-        spacing={2}
+      <Typography
+        color="#333333"
         sx={{
-          marginTop: "0",
-          "& > :first-of-type": {
-            paddingLeft: 0,
-          },
-
-          "& > :nth-of-type(2n + 1)": {
-            paddingLeft: 0,
+          typography: {
+            xs: "subtitle1",
+            md: "h4",
           },
         }}
       >
+        {title}
+      </Typography>
+      <Typography
+        color="#7D968B"
+        sx={{
+          typography: {
+            xs: "body2",
+            md: "body1",
+          },
+        }}
+      >
+        {description}
+      </Typography>
+      {link}
+      <Grid container spacing={2}>
         {arrayItems.map(({ title, description, icon }) => {
           return (
             <Grid key={title} item xs={6}>
               <Box
                 sx={{
                   bgcolor: "#fff",
-                  p: "24px",
+                  p: {
+                    xs: "12px",
+                    md: "24px",
+                  },
                   border: "1px solid #cee9dc",
                   borderRadius: "12px",
+                  height: {
+                    xs: "214px",
+                    md: "196px",
+                  },
                 }}
               >
                 {icon}
                 <Typography
+                  display="block"
+                  color="#00382A"
                   sx={{
-                    m: "16px 0 8px 0",
-                    color: "##00382A",
+                    m: {
+                      xs: "8px 0 4px 0",
+                      md: "16px 0 8px 0",
+                    },
+                    typography: {
+                      xs: "caption",
+                      md: "subtitle1",
+                    },
                   }}
-                  variant="subtitle1"
                 >
                   {title}
                 </Typography>
-                <Typography sx={{ color: "##7D968B" }} variant="caption">
+                <Typography
+                  display="block"
+                  color="#7D968B"
+                  sx={{
+                    typography: {
+                      xs: "captionS",
+                      md: "caption",
+                    },
+                  }}
+                >
                   {description}
                 </Typography>
               </Box>
