@@ -124,8 +124,8 @@ export const createOverrideTheme = createTheme({
       styleOverrides: {
         root: {
           maxWidth: "1408px",
-          paddingLeft: "0",
-          paddingRight: "0",
+          // paddingLeft: "0",
+          // paddingRight: "0",
           // padding:'0 !important',
           "&._containerHeader": {
             display: "flex",

@@ -24,3 +24,5 @@ export const LINKS = [
     path: ERouteNames.ABOUT,
   },
 ];
+export const SING_IN = "Увійти";
+export const PERSONAL_CABINET = "Персональний Кабінет";

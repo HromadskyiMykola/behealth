@@ -4,6 +4,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -11,22 +14,17 @@ import { ERouteNames } from "~/routes/routeNames";
 import { AuthorizationButton, FormModal } from "~/components/user-auth";
 import Logo from "../../assets/CustomIcon/Logo";
 import { ButtonM } from "../atomic/ButtonM";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  IconButton,
-  useTheme,
-} from "@mui/material";
+import { useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   HEADER_SELECT_ITEM_VALUE,
   LINKS,
+  PERSONAL_CABINET,
+  SING_IN,
   SING_UP,
 } from "~/components/Header/constant-header";
 import { EUserType, ISelectItemHeaderValue } from "~/common";
-import { Menu as MenuIcon, UserIcon, X } from "lucide-react";
+import { Menu as MenuIcon, X } from "lucide-react";
 import { useAuthProvider, useModalState } from "~/providers";
 
 const selectStyle = {
@@ -50,9 +48,6 @@ const BoxFlex = styled(Box)(({ theme }) => ({
   display: "flex",
   gap: "24px",
   alignItems: "center",
-  // "@media (min-width: 1408px)": {
-  //   display: "none",
-  // },
 }));
 
 const Header: FC = (props) => {
@@ -209,14 +204,16 @@ const Header: FC = (props) => {
               >
                 <NavLink
                   to={
-                    authenticatedUser?.type === EUserType.PATIENT
+                    !authenticatedUser
+                      ? ERouteNames.HOME
+                      : authenticatedUser?.type === EUserType.PATIENT
                       ? ERouteNames.PATIENT_ACCOUNT
                       : ERouteNames.DOCTOR_ACCOUNT
                   }
                   style={{ textDecoration: "none" }}
                 >
                   <Typography variant="body2" color={palette.text.primary}>
-                    {!authenticatedUser ? "Увійти" : "Особистий кабінет"}
+                    {!authenticatedUser ? SING_IN : PERSONAL_CABINET}
                   </Typography>
                 </NavLink>
                 <FormModal />
