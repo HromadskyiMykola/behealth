@@ -30,17 +30,6 @@ import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-
 import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
 import { CustomizedPaper } from "~/components/atomic";
 
-const CloseBox = styled("div")(({ theme }) => ({
-  display: "flex",
-  position: "absolute" as "absolute",
-  top: "21px",
-  right: "21px",
-  width: "25px",
-  height: "25px",
-  justifyContent: "center",
-  alignItems: "center",
-  color: theme.palette.custom.primary50,
-}));
 const BoxCalendar = styled("div")(({ theme }) => ({
   background: "#F6F8F7",
   width: "332px",

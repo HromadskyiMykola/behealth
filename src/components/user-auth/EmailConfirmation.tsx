@@ -24,7 +24,6 @@ export const EmailConfirmation = () => {
 
       navigate(ERouteNames.PATIENT_ACCOUNT);
     });
-    console.log(data);
   };
 
   return (
