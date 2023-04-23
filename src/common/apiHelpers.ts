@@ -32,6 +32,7 @@ export const transformRequestData = (data: any) => {
 
 export const transformResponseData = (data: any) => {
   if (data?.status) return data.status;
+  if (data?.token) return data.token;
 
   const {
     user_type,

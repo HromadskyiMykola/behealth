@@ -16,11 +16,10 @@ export const EmailConfirmation = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data: TAuthFormValues) => {
-    auth.emailConfirmation(data, token).then((res) => {
-      // console.log(data);
-      // console.log(res);
+    auth.emailConfirmation(data, token).then((token) => {
+    
 
-      singInProvider({ ...res, type: EUserType.PATIENT });
+      singInProvider({ token, type: EUserType.PATIENT });
 
       navigate(ERouteNames.PATIENT_ACCOUNT);
     });

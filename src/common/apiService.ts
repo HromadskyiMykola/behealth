@@ -115,8 +115,8 @@ const useApiService = () => {
     (data: TLoginData) =>
       _requestWithErrorHandling(
         apiClient.post("login", data).then((res) => {
-          // if (!res.data?.token)
-          //   throw new Error(`// ${res.data} // Token not found in response`);
+          if (!res.data?.token)
+            throw new Error(`// ${res.data} // Token not found in response`);
 
           return res;
         })
@@ -130,12 +130,19 @@ const useApiService = () => {
       token: string | null
     ) =>
       _requestWithErrorHandling(
-        apiClient.post(`confirmation?token=${token}`, {
-          firstName,
-          lastName,
-          birthDate,
-          mobileNumber,
-        })
+        apiClient
+          .post(`confirmation?token=${token}`, {
+            firstName,
+            lastName,
+            birthDate,
+            mobileNumber,
+          })
+          .then((res) => {
+            if (!res.data?.token)
+              throw new Error(`// ${res.data} // Token not found in response`);
+
+            return res;
+          })
       ),
     []
   );
