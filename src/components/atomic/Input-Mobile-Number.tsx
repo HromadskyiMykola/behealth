@@ -1,7 +1,7 @@
 import { forwardRef, Ref } from "react";
 import ReactInputMask, { Props } from "react-input-mask";
 
-import { CustomizedInput } from "./CustomizedInput";
+import { CustomizedInput } from "./Customized-Input";
 
 function InputWithMask(props: any, ref: Ref<HTMLDivElement>) { // TODO choose props type
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

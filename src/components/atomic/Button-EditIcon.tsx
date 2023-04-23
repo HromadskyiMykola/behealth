@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { ButtonProps } from "@mui/material";
 import { EditIcon } from "lucide-react";
-import { ButtonM } from "./ButtonM";
+import { ButtonM } from "./Button-M";
 
 export const ButtonEditIcon: FC<ButtonProps> = (props) => (
   <ButtonM

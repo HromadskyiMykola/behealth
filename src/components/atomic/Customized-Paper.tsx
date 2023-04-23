@@ -3,6 +3,6 @@ import { Paper, styled } from "@mui/material";
 export const CustomizedPaper = styled(Paper)({
   borderRadius: "12px",
   padding: "32px",
-  width: "100%",
+  maxWidth: "100%",
   marginBottom: "16px",
 });
