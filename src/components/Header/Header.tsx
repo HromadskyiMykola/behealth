@@ -1,31 +1,38 @@
-import React, { FC, useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
+import { FC, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
+import {
+  AppBar,
+  Box,
+  Typography,
+  Select,
+  SelectChangeEvent,
+  MenuItem,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Container,
+  useTheme,
+  styled,
+  Stack,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { NavLink, useNavigate } from "react-router-dom";
+import { MenuIcon, XIcon } from "lucide-react";
+
+import { useAuthProvider, useModalState } from "~/providers";
+import { EUserType, ISelectItemHeaderValue } from "~/common";
 import { ERouteNames } from "~/routes/routeNames";
 import { AuthorizationButton, FormModal } from "~/components/user-auth";
-import Logo from "../../assets/CustomIcon/Logo";
-import { ButtonM } from "../atomic/ButtonM";
-import { useTheme } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Logo } from "~/assets/CustomIcon";
+import { ButtonM } from "../atomic";
+
 import {
   HEADER_SELECT_ITEM_VALUE,
   LINKS,
   PERSONAL_CABINET,
   SING_IN,
-  SING_UP,
+  MAKE_TO_APPOINTMENT,
 } from "~/components/Header/constant-header";
-import { EUserType, ISelectItemHeaderValue } from "~/common";
-import { Menu as MenuIcon, X } from "lucide-react";
-import { useAuthProvider, useModalState } from "~/providers";
 
 const selectStyle = {
   padding: 0,
@@ -44,12 +51,6 @@ const selectStyle = {
   },
 };
 
-const BoxFlex = styled(Box)(({ theme }) => ({
-  display: "flex",
-  gap: "24px",
-  alignItems: "center",
-}));
-
 const Header: FC = (props) => {
   const { palette } = useTheme();
   const { authenticatedUser } = useAuthProvider();
@@ -66,162 +67,132 @@ const Header: FC = (props) => {
   };
 
   return (
-    <AppBar className="appBar" position="static">
-      <Container className="_containerHeader">
-        <BoxFlex>
-          <NavLink to={ERouteNames.HOME}>
-            <Logo
-              width="180"
-              height="33"
-              viewBox="0 0 180 33"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-          </NavLink>
-          <Select
-            value={city}
-            onChange={handleChange}
-            IconComponent={KeyboardArrowDownIcon}
-            sx={selectStyle}
-          >
-            {HEADER_SELECT_ITEM_VALUE.map((city: ISelectItemHeaderValue) => {
-              const { value, text } = city;
-              return (
-                <MenuItem value={value} key={`Select-item-${value}`}>
-                  <Typography variant="caption">{text}</Typography>
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </BoxFlex>
-        <Box
-          sx={{
-            display: { md: "flex", xs: "none" },
-            gap: "24px",
-            alignItems: "center",
-          }}
+    <AppBar position="static">
+      <Container>
+        <Stack
+          direction="row"
+          height="80px"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <BoxFlex>
-            {LINKS.map(({ name, path }) => {
-              return (
+          <Stack direction="row" gap="24px" alignItems="center">
+            <Link to={ERouteNames.HOME}>
+              <Logo />
+            </Link>
+
+            <Select
+              value={city}
+              onChange={handleChange}
+              IconComponent={KeyboardArrowDownIcon}
+              sx={selectStyle}
+            >
+              {HEADER_SELECT_ITEM_VALUE.map(
+                ({ value, text }: ISelectItemHeaderValue) => (
+                  <MenuItem value={value} key={`Select-item-${value}`}>
+                    <Typography variant="caption">{text}</Typography>
+                  </MenuItem>
+                )
+              )}
+            </Select>
+          </Stack>
+
+          <Stack
+            component="nav"
+            direction="row"
+            gap="24px"
+            alignItems="center"
+            sx={{ display: { md: "flex", xs: "none" } }}
+          >
+            <Stack direction="row" gap="24px">
+              {LINKS.map(({ name, path }) => (
                 <NavLink
                   to={path}
                   key={`label-${name}`}
-                  style={{ textDecoration: "none" }}
+                  style={({ isActive }) => ({
+                    textDecoration: "none",
+                    color: isActive
+                      ? palette.custom.primary40
+                      : palette.text.primary,
+                  })}
                 >
-                  <Typography variant="body2" color={palette.text.primary}>
-                    {name}
-                  </Typography>
+                  <Typography variant="body2">{name}</Typography>
                 </NavLink>
-              );
-            })}
-          </BoxFlex>
-          <ButtonM variant="contained">
-            <Typography variant="button">{SING_UP}</Typography>
-          </ButtonM>
-          <AuthorizationButton />
-        </Box>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "none" },
-            gap: "24px",
-            alignItems: "center",
-          }}
-        >
-          <IconButton aria-label="menu" onClick={setToggleOpenMenu}>
-            {!openMenu ? (
-              <MenuIcon color={palette.text.secondary} />
-            ) : (
-              <X color={palette.text.secondary} />
-            )}
+              ))}
+            </Stack>
+
+            <ButtonM variant="contained">
+              <Typography variant="button">{MAKE_TO_APPOINTMENT}</Typography>
+            </ButtonM>
+
+            <AuthorizationButton />
+          </Stack>
+
+          <IconButton
+            sx={{ display: { xs: "flex", md: "none" } }}
+            aria-label="menu"
+            onClick={setToggleOpenMenu}
+          >
+            <MenuIcon color={palette.text.secondary} />
           </IconButton>
-          <Dialog open={openMenu} fullScreen>
-            <DialogContent sx={{ p: 0 }}>
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-between"
-                borderBottom={`1px solid ${palette.text.secondary}`}
-                p={2}
-              >
-                <Box width="100%" display="flex" justifyContent="center">
-                  <NavLink to={ERouteNames.HOME}>
-                    <Logo
-                      width="180"
-                      height="33"
-                      viewBox="0 0 180 33"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    />
-                  </NavLink>
-                </Box>
-                <Box>
-                  <IconButton
-                    aria-label="menu"
-                    onClick={() => setOpenMenu(false)}
-                  >
-                    <X color={palette.text.secondary} />
-                  </IconButton>
-                </Box>
-              </Box>
-              {LINKS.map(({ name, path }) => {
-                return (
-                  <Box
-                    key={`label-${name}`}
-                    p="24px 18px"
-                    borderBottom={`1px solid ${palette.text.secondary}`}
-                    onClick={() => setOpenMenu(false)}
-                  >
-                    <NavLink to={path} style={{ textDecoration: "none" }}>
-                      <Typography variant="body2" color={palette.text.primary}>
-                        {name}
-                      </Typography>
-                    </NavLink>
-                  </Box>
-                );
-              })}
-              <Box
-                p="24px 18px"
-                borderBottom={`1px solid ${palette.text.secondary}`}
-                onClick={() => setOpenMenu(false)}
-              >
-                <NavLink
-                  to={ERouteNames.DOCTORS}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Typography variant="body2" color={palette.text.primary}>
-                    {SING_UP}
-                  </Typography>
-                </NavLink>
-              </Box>
-              <Box
-                p="24px 18px"
-                borderBottom={`1px solid ${palette.text.secondary}`}
-                onClick={() => {
-                  setOpenMenu(false);
-                  !authenticatedUser && setOpenMainModal(true);
-                }}
-              >
-                <NavLink
-                  to={
-                    !authenticatedUser
-                      ? ERouteNames.HOME
-                      : authenticatedUser?.type === EUserType.PATIENT
-                      ? ERouteNames.PATIENT_ACCOUNT
-                      : ERouteNames.DOCTOR_ACCOUNT
-                  }
-                  style={{ textDecoration: "none" }}
-                >
-                  <Typography variant="body2" color={palette.text.primary}>
-                    {!authenticatedUser ? SING_IN : PERSONAL_CABINET}
-                  </Typography>
-                </NavLink>
-                <FormModal />
-              </Box>
-            </DialogContent>
-          </Dialog>
-        </Box>
+        </Stack>
       </Container>
+
+      <Dialog open={openMenu} fullScreen>
+        <DialogContent sx={{ p: 0 }}>
+          <Stack
+            flexDirection="row"
+            justifyContent="space-between"
+            borderBottom={`1px solid ${palette.text.secondary}`}
+            p={2}
+          >
+            <Link
+              to={ERouteNames.HOME}
+              style={{ flexGrow: 1, textAlign: "center" }}
+            >
+              <Logo />
+            </Link>
+
+            <IconButton aria-label="menu" onClick={() => setOpenMenu(false)}>
+              <XIcon color={palette.text.secondary} />
+            </IconButton>
+          </Stack>
+
+          {LINKS.map(({ name, path }) => (
+            <Box
+              key={`label-${name}`}
+              p="24px 18px"
+              borderBottom={`1px solid ${palette.text.secondary}`}
+              onClick={() => setOpenMenu(false)}
+            >
+              <Link to={path} style={{ textDecoration: "none" }}>
+                <Typography variant="body2" color={palette.text.primary}>
+                  {name}
+                </Typography>
+              </Link>
+            </Box>
+          ))}
+
+          <Box
+            p="24px 18px"
+            borderBottom={`1px solid ${palette.text.secondary}`}
+            onClick={() => setOpenMenu(false)}
+          >
+            <Link to={ERouteNames.DOCTORS} style={{ textDecoration: "none" }}>
+              <Typography variant="body2" color={palette.text.primary}>
+                {MAKE_TO_APPOINTMENT}
+              </Typography>
+            </Link>
+          </Box>
+
+          <Box
+            p="24px 18px"
+            borderBottom={`1px solid ${palette.text.secondary}`}
+            onClick={() => setOpenMenu(false)}
+          >
+            <AuthorizationButton />
+          </Box>
+        </DialogContent>
+      </Dialog>
     </AppBar>
   );
 };

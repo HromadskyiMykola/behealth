@@ -6,3 +6,4 @@ export * from "./Facebook";
 export * from "./Logo.footer";
 export * from "./Telegram-icon";
 export * from "./Viber-icon";
+export * from "./Logo";

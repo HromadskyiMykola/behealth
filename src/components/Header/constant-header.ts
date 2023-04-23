@@ -9,7 +9,7 @@ export const HEADER_SELECT_ITEM_VALUE: ISelectItemHeaderValue[] = [
     text: "Тернопіль",
   },
 ];
-export const SING_UP = "Записатися";
+export const MAKE_TO_APPOINTMENT = "Записатися";
 export const LINKS = [
   {
     name: "Лікарі",

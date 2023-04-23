@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Instagram from "../../assets/CustomIcon/Instagram";
 import Facebook from "../../assets/CustomIcon/Facebook";
-import Logo from "../../assets/CustomIcon/Logo";
+import { Logo } from "~/assets/CustomIcon";
 import FooterInfoBlock from "../FooterInfoBlock/FooterInfoBlock";
 import {
     ABOUT_FOOTER_TEXT,
@@ -52,9 +52,6 @@ const Footer = () => {
                                 {/*<Logo*/}
                                 {/*    width="116"*/}
                                 {/*    height="21"*/}
-                                {/*    viewBox="0 0 116 21"*/}
-                                {/*    fill="none"*/}
-                                {/*    xmlns="http://www.w3.org/2000/svg"*/}
                                 {/*/>*/}
                                 <LogoFooter
                                     width="116"
