@@ -17,11 +17,8 @@ export const EmailConfirmation = () => {
 
   const onSubmit = (data: TAuthFormValues) => {
     auth.emailConfirmation(data, token).then((token) => {
-    
-
       singInProvider({ token, type: EUserType.PATIENT });
-
-      navigate(ERouteNames.PATIENT_ACCOUNT);
+      navigate("/" + ERouteNames.PATIENT_ACCOUNT);
     });
   };
 
