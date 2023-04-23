@@ -7,11 +7,14 @@ import { ERouteNames } from "~/routes/routeNames";
 
 import { FormModal } from ".";
 import { ButtonM } from "../atomic";
+import { Typography } from "@mui/material";
 
-const AuthButton = () => {
+export const AuthorizationButton = () => {
   const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuthProvider();
   const navigate = useNavigate();
+
+  const text = !authenticatedUser ? "Увійти" : "Особистий кабінет";
 
   const handleButton = () => {
     !authenticatedUser
@@ -24,20 +27,24 @@ const AuthButton = () => {
   };
 
   return (
-    <ButtonM
-      variant="outlined"
-      onClick={handleButton}
-      startIcon={<UserIcon style={{ flexShrink: 0 }} size={20} />}
-    >
-      {!authenticatedUser ? "Увійти" : "Особистий кабінет"}
-    </ButtonM>
-  );
-};
-
-export const AuthorizationButton = () => {
-  return (
     <>
-      <AuthButton />
+      <Typography
+        variant="body2"
+        onClick={handleButton}
+        sx={{ cursor: "pointer", display: { xs: "block", md: "none" } }}
+      >
+        {text}
+      </Typography>
+
+      <ButtonM
+        variant="outlined"
+        onClick={handleButton}
+        startIcon={<UserIcon style={{ flexShrink: 0 }} size={20} />}
+        sx={{ display: { xs: "none", md: "inline-flex" } }}
+      >
+        {text}
+      </ButtonM>
+
       <FormModal />
     </>
   );
