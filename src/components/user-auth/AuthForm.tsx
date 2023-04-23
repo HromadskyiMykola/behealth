@@ -129,7 +129,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               onClick={() => {
                 reset();
                 setMode(
-                  isLoginMode ? { isLoginMode: true } : { isRegisterMode: true }
+                  isLoginMode ? { isRegisterMode: true } : { isLoginMode: true }
                 );
               }}
             >
