@@ -78,8 +78,8 @@ export function FormModal() {
 
             {!mode.isRecoveryMode && (
               <Typography variant="body2" sx={{ color: custom.primary100 }}>
-                {mode.isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}
-                {", щоб отримати доступ до особистого кабінету beHealth."}
+                {mode.isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}, щоб
+                отримати доступ до особистого кабінету beHealth.
               </Typography>
             )}
 

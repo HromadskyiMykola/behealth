@@ -1,6 +1,12 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
-import { TSignInProvider } from "~/common";
+import { EUserType } from "~/common";
+
+type TSignInProvider = {
+  rememberMe?: boolean;
+  token: string;
+  type: EUserType;
+};
 
 interface AuthContextData {
   authenticatedUser: { token: string; type: string } | null;
@@ -15,13 +21,13 @@ export const AuthContext = createContext<AuthContextData>(
 export const useAuthProvider = () => useContext(AuthContext);
 
 const getCurrentUser = (): { token: string; type: string } | null => {
-  const userString = localStorage.getItem("user") || sessionStorage.getItem("user");
-  
+  const userString =
+    localStorage.getItem("user") || sessionStorage.getItem("user");
+
   if (userString) {
     const user = JSON.parse(userString);
-    // if (Object.hasOwn(user, "token")) {
-      return user;
-    // }
+
+    if (Object.hasOwn(user, "token")) return user;
   }
   return null;
 };

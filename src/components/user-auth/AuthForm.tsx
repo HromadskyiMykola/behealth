@@ -68,8 +68,8 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     if (isLoginMode) {
       const { rememberMe, email, password } = data;
 
-      auth.signIn({ email, password, userType }).then((res) => {
-        singInProvider({ ...res, type: userType, rememberMe });
+      auth.signIn({ email, password, userType }).then((token) => {
+        singInProvider({ token, type: userType, rememberMe });
         setOpenMainModal(false);
         setSimpleModalMessage(false);
 
@@ -129,7 +129,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
               onClick={() => {
                 reset();
                 setMode(
-                  isLoginMode ? { isLoginMode: true } : { isRegisterMode: true }
+                  isLoginMode ? { isRegisterMode: true } : { isLoginMode: true }
                 );
               }}
             >

@@ -226,12 +226,6 @@ export type TResetPassData = {
   password: string;
 };
 
-export type TSignInProvider = {
-  rememberMe: boolean;
-  token: string;
-  type: EUserType;
-};
-
 export type TPatientAdditionalData = {
   type?: "address" | "work";
   addressType?: string;

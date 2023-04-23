@@ -21,9 +21,11 @@ export function ThanksSingUpMessage({ email }: { email: string }) {
       <Typography variant="subtitle2" textAlign="center" mb="32px">
         Натисніть на посилання, яке ми відправили Вам у листі на вказану
         електронну пошту{" "}
-        <Typography variant="subtitle2" display="inline" color="primary">
-          {email}
-        </Typography>
+        <span>
+          <Typography variant="subtitle2" display="inline" color="primary">
+            {email}
+          </Typography>
+        </span>
       </Typography>
 
       <ButtonTimer onClick={() => {}} fullWidth variant="contained">
