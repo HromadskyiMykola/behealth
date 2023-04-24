@@ -11,8 +11,8 @@ import {
   RHFFirstName,
   RHFLastName,
   RHFMiddleName,
-  RHFMobileNumber,
-} from "../ReactHookFormFields";
+  RHFmobileNum,
+} from "../React-Hook-Form-Fields";
 
 interface IProps {
   onSubmit: (data: TAuthFormValues) => void;
@@ -85,7 +85,7 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <RHFMobileNumber control={control} errors={errors} />
+            <RHFmobileNum control={control} errors={errors} />
           </Grid>
 
           <Grid item xs={12} sm={6}>

@@ -6,8 +6,6 @@ export const enum EUserType {
   DOCTOR = "doctor",
 }
 
-
-
 export interface IAdvantagesBlockProps {
   title: string;
   description: string;
@@ -209,29 +207,36 @@ export type TResetPassData = {
 
 export type TPatientAdditionalData = {
   type?: "address" | "work";
-  addressType?: string;
-  settlement?: string;
-  house?: string;
-  apartments?: string;
-  workType?: string;
-  place?: string;
-  position?: string;
+  //
+  settlementType?: string;
+  settlementAndStr?: string;
+  houseNum?: string;
+  apartmentNum?: string;
+  //
+  employmentStatus?: string;
+  Workplace?: string;
+  jobTitle?: string;
+  //
+  eligibleCat?: string;
 };
 
 export type TPatientPersonalData = {
-  type: "patient_info" | "document";
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  birthDate: string;
-  tin: string;
-  sex: string;
-  series: string;
-  docSerialNum: string;
-  issuedBy: string;
-  date: string;
+  type?: "patient_info" | "document";
+  mobileNum?: string;
+  email?: string;
+  //
+  firstName?: string;
+  middleName?: string ;
+  lastName?: string;
+  birthDate?: string;
+  tin?: string;
+  sex?: "male" | "female" | "";
+  //
+  typeOfDoc?: string;
+  docSeries?: string;
+  issuedBy?: string;
+  dateOfIssue?: string;
+  docNum?: string;
 };
 
 export type TAuthFormValues = {
@@ -239,7 +244,7 @@ export type TAuthFormValues = {
   middleName: string;
   lastName: string;
   email: string;
-  mobileNumber: string;
+  mobileNum: string;
   password: string;
   confirmPassword: string;
   loginPassword: string;

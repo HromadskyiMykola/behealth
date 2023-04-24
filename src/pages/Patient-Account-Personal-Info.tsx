@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-import { TAuthFormValues, useApiService } from "~/common";
+import { TAuthFormValues, useApiService, useReactHookForm } from "~/common";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
@@ -29,30 +29,50 @@ export function PatientAccountPersonalInfo() {
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
   const [isEditIdentityDocuments, setIsEditIdentityDocuments] = useState(false);
 
-  const handleEditContactInfo = () => setIsEditContactInfo(!isEditContactInfo);
+  const handleEditContactInfo = () => {
+    setIsEditContactInfo(!isEditContactInfo);
+  };
 
-  const handleEditPersonalData = () =>
+  const handleEditPersonalData = () => {
     setIsEditPersonalData(!isEditPersonalData);
+  };
 
-  const handleEditIdentityDocuments = () =>
+  const handleEditIdentityDocuments = () => {
     setIsEditIdentityDocuments(!isEditIdentityDocuments);
+  };
 
   useEffect(() => {
     patient.personalInfo.get().then(setPatientPersonalData);
   }, []);
 
-  const { control, handleSubmit, formState, watch, reset } =
-    useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
+  // const { control, handleSubmit, formState, watch, reset } =
+  //   useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
 
-  const { errors } = formState;
+  // const { errors } = formState;
 
-  const onSubmit = (data: TAuthFormValues) => {
-    console.log(data);
-    console.log(formState);
-  };
+  const {
+    handleSubmit,
+    control,
+    watch,
+    isValid,
+    errors,
+    isSubmitSuccessful,
+    handleSubmitPatientPersonalInfo,
+  } = useReactHookForm();
+
+ const onSubmit = (data: TAuthFormValues) => {
+   
+
+  //  setPatientPersonalData(data);
+
+   handleSubmitPatientPersonalInfo(data);
+ };
+
+
 
   return (
-    <>
+    <form noValidate onSubmit={handleSubmit(onSubmit)}>
+      {/* Contact info */}
       <CustomizedPaper>
         <Stack direction="row" justifyContent="space-between" mb="24px">
           <Typography variant="h5">
@@ -65,7 +85,6 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
-        {/* Contact info */}
         {loading && (
           <Stack direction="row" gap={2}>
             <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
@@ -89,7 +108,6 @@ export function PatientAccountPersonalInfo() {
         )}
       </CustomizedPaper>
 
-      {/* Personal info */}
       <CustomizedPaper>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">Персональні дані</Typography>
@@ -100,15 +118,16 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
+        {/* Personal info */}
         {loading && <Skeleton variant="text" sx={{ height: 150 }} />}
 
         {!loading &&
           (isEditPersonalData ? (
             <PersonalDataEdit
-              handleEditPersonalData={handleEditPersonalData}
+              handleEditPersonalData={() => handleEditPersonalData()}
               control={control}
               errors={errors}
-              formState={formState}
+              isValid={isValid}
               personalData={personalData}
             />
           ) : (
@@ -139,13 +158,13 @@ export function PatientAccountPersonalInfo() {
               handleEditIdentityDocuments={handleEditIdentityDocuments}
               control={control}
               errors={errors}
-              formState={formState}
+              isValid={isValid}
               identityDocuments={identityDocuments}
             />
           ) : (
             <IdentityDocuments />
           ))}
       </CustomizedPaper>
-    </>
+    </form>
   );
 }

@@ -29,7 +29,7 @@ import {
   RHFConfirmPassword,
   RHFEmail,
   RHFPasswordInput,
-} from "../ReactHookFormFields";
+} from "../React-Hook-Form-Fields";
 import { SimpleModal } from "../atomic";
 
 type TAuthFormProps = {

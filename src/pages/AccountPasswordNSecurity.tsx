@@ -7,7 +7,7 @@ import {
   RHFConfirmPassword,
   RHFLoginPassword,
   RHFPasswordInput,
-} from "~/components/ReactHookFormFields";
+} from "~/components/React-Hook-Form-Fields";
 
 export const AccountPasswordNSecurity = () => {
   const { control, handleSubmit, formState, watch, reset } =

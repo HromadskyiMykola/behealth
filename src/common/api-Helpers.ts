@@ -6,7 +6,7 @@ const transformRequestData = (data: any) => {
     firstName,
     middleName,
     lastName,
-    mobileNumber,
+    mobileNum,
     docSerialNum,
     issuedBy,
     addressType,
@@ -21,7 +21,7 @@ const transformRequestData = (data: any) => {
     ...(middleName ? { second_name: middleName } : {}),
     ...(lastName ? { surname: lastName } : {}),
     ...(birthDate ? { birthday: birthDate } : {}),
-    ...(mobileNumber ? { phone: mobileNumber } : {}),
+    ...(mobileNum ? { phone: mobileNum } : {}),
     ...(addressType ? { address_type: addressType } : {}),
     ...(workType ? { work_type: workType } : {}),
     ...(docSerialNum ? { series: docSerialNum } : {}),
@@ -38,7 +38,7 @@ const _transformKey = (key: string): string => {
     second_name: "middleName",
     surname: "lastName",
     fullname: "fullName",
-    phone: "mobileNumber",
+    phone: "mobileNum",
     series: "docSerialNum",
     issued_by: "issuedBy",
     address_type: "addressType",
@@ -65,9 +65,8 @@ const transformResponseData = (data: any) => {
       const modKey = _transformKey(key);
       modData[modKey] = transformResponseData(data[key]);
 
-      // if (modKey === "mobileNumber") {
-      //   modData[modKey] = _formatPhoneNumber(modData[modKey]);
-      // }
+      // assign undefined, since null is not a valid value as the defaultValue for <Input/>
+      if (modData[modKey] === null) modData[modKey] = undefined;
     }
 
     return modData;

@@ -32,7 +32,12 @@ export const useReactHookForm = () => {
     console.log(formState);
   };
 
-  const handleSubmitPatientPersonalInfo = handleSubmit(onSubmit);
+  const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
+
+  const handleSubmitPatientPersonalInfo = (data: TAuthFormValues) => {
+    console.log(data);
+    // console.log(formState);
+  };
 
   // navigate("/patient-account");
 
@@ -50,8 +55,9 @@ export const useReactHookForm = () => {
 
   return {
     control,
-    // handleSubmit,
+    handleSubmit,
     handleSubmitPatientPersonalInfo,
+    handleSubmitPatientContactInfo,
     onSubmitPasswordReset,
     watch,
     reset,

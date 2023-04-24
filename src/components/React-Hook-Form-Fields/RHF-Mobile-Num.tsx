@@ -1,7 +1,7 @@
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { TextFieldProps } from "@mui/material";
 
-import { InputMobileNumber } from "../atomic";
+import { InputMobileNum  } from "../atomic";
 
 import { TAuthFormValues, validationRules } from "~/common";
 
@@ -11,7 +11,7 @@ type Props = TextFieldProps & {
   errors: FieldErrors<TAuthFormValues>;
 };
 
-export const RHFMobileNumber = ({
+export const RHFmobileNum = ({
   defaultValue = "",
   control,
   errors,
@@ -19,18 +19,18 @@ export const RHFMobileNumber = ({
 }: Props) => {
   return (
     <Controller
-      name="mobileNumber"
+      name="mobileNum"
       control={control}
       defaultValue={defaultValue}
-      rules={validationRules.mobileNumber}
+      rules={validationRules.mobileNum}
       render={({ field }) => (
-        <InputMobileNumber
+        <InputMobileNum 
           {...otherProps}
           label="Номер телефону*"
           placeholder="+38 (XXX) XXX XX XX"
           {...field}
-          error={!!errors.mobileNumber}
-          helperText={errors.mobileNumber?.message || " "}
+          error={!!errors.mobileNum}
+          helperText={errors.mobileNum?.message || " "}
         />
       )}
     />

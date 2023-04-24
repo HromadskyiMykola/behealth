@@ -4,14 +4,14 @@ import { Button, Grid, MenuItem, Stack } from "@mui/material";
 import { TAuthFormValues } from "~/common";
 
 import { CustomizedInput, DatePickerInput, SelectWithPlaceholder } from "../atomic";
-import {  RHFMiddleName, RHFTin } from "../ReactHookFormFields";
+import {  RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
 
 type IdentityDocumentsEditProps = {
   handleEditIdentityDocuments: () => void;
   identityDocuments: any;
   control: Control<TAuthFormValues>;
   errors: FieldErrors<TAuthFormValues>;
-  formState: FormState<TAuthFormValues>;
+  isValid: boolean;
 };
 
 export const IdentityDocumentsEdit = ({
@@ -19,7 +19,7 @@ export const IdentityDocumentsEdit = ({
   identityDocuments,
   control,
   errors,
-  formState,
+  isValid,
 }: IdentityDocumentsEditProps) => {
   return (
     <>
@@ -107,7 +107,7 @@ export const IdentityDocumentsEdit = ({
           Відмінити
         </Button>
 
-        <Button disabled={!formState.isValid} type="submit" variant="contained">
+        <Button disabled={!isValid} type="submit" variant="contained">
           Зберегти
         </Button>
       </Stack>

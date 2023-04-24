@@ -78,11 +78,19 @@ const validationRules = {
     validate: (value: string) => value === password || "Паролі не збігаються",
   }),
 
-  mobileNumber: {
+  mobileNum: {
     required: "Будь ласка, введіть номер телефону.",
     pattern: {
       value: /^380(?:[679]3|6[78]|9[678]|50|66|39)\d{7}$/,
       message: "Будь ласка, введіть коректний номер",
+    },
+  },
+
+  tin: {
+    required: "Будь ласка, введіть ІПН.",
+    pattern: {
+      value: /^\d{10}$/,
+      message: "ІПН складається з 10 цифр.",
     },
   },
 };

@@ -6,7 +6,7 @@ export * from "./Date-Picker-Input";
 export * from "./Password-Input";
 export * from "./Button-EditIcon";
 export * from "./Button-Timer";
-export * from "./Input-Mobile-Number";
+export * from "./Input-Mobile-Num";
 export * from "./ReactHookFormSelect";
 export * from "./Select-With-Placeholder";
 export * from "./Simple-Modal";

@@ -126,7 +126,7 @@ const useApiService = () => {
 
   const emailConfirmation = useCallback(
     (
-      { firstName, lastName, birthDate, mobileNumber }: TAuthFormValues,
+      { firstName, lastName, birthDate, mobileNum }: TAuthFormValues,
       token: string | null
     ) =>
       _requestWithErrorHandling(
@@ -135,7 +135,7 @@ const useApiService = () => {
             firstName,
             lastName,
             birthDate,
-            mobileNumber,
+            mobileNum,
           })
           .then((res) => {
             if (!res.data?.token)

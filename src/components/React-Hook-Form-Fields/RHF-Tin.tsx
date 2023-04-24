@@ -19,18 +19,18 @@ export const RHFTin = ({
 }: Props) => {
   return (
     <Controller
-      name="tin" // TODO:
+      name="tin"
       control={control}
       defaultValue={defaultValue}
-      // TODO:     rules={validationRules.middleName}
+      rules={validationRules.tin}
       render={({ field }) => (
         <CustomizedInput
           {...otherProps}
-          label="Номер*"
+          label="ІПН*"
           placeholder="Номер запису ІПН"
           {...field}
-          // TODO:       error={!!errors.middleName}
-          helperText={errors.middleName?.message || " "}
+          error={!!errors.tin}
+          helperText={errors.tin?.message || " "}
         />
       )}
     />

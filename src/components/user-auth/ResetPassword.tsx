@@ -3,7 +3,7 @@ import { Button, Typography, Stack, useTheme, Dialog } from "@mui/material";
 
 import { useReactHookForm, useDeviceType } from "~/common";
 
-import { RHFPasswordInput, RHFConfirmPassword } from "../ReactHookFormFields";
+import { RHFPasswordInput, RHFConfirmPassword } from "../React-Hook-Form-Fields";
 
 export const ResetPassword = () => {
   const [openResetPasswordModal, setOpenResetPasswordModal] = useState(true);
