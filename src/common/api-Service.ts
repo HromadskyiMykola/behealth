@@ -16,7 +16,7 @@ import {
   transformRequestData,
   transformResponseData,
   errorHandler,
-} from "./apiHelpers";
+} from "./api-Helpers";
 
 // TODO: import { mockApi } from "./mockApi";
 

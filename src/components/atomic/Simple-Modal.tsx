@@ -12,6 +12,9 @@ type TProps = {
 export function SimpleModal({ children, apiError, loading }: TProps) {
   const [openModal, setOpenModal] = useState(false);
   const { simpleModalMessage, setSimpleModalMessage } = useModalState();
+  const { loading: simpleModalMessageLoading } = (simpleModalMessage || {}) as {
+    loading: boolean;
+  };
 
   useEffect(() => {
     if (children || apiError || loading) {
@@ -41,13 +44,16 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
         {apiError && <span>{apiError}</span>}
 
         {simpleModalMessage &&
-          (isValidElement(simpleModalMessage) ? (
-            simpleModalMessage
-          ) : (
-            <span>{simpleModalMessage}</span>
-          ))}
+          isValidElement(simpleModalMessage) &&
+          simpleModalMessage}
 
-        {loading && <LinearProgress color="success" sx={{ width: "100%" }} />}
+        {simpleModalMessage && typeof simpleModalMessage === "string" && (
+          <span>{simpleModalMessage}</span>
+        )}
+
+        {(loading || simpleModalMessageLoading) && (
+          <LinearProgress color="success" sx={{ width: "100%" }} />
+        )}
       </Stack>
     </Dialog>
   );

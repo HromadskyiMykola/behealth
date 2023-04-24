@@ -1,6 +1,6 @@
 // Unfortunately, back-end developers don't understand that the names of the parameters should be correct,
 // so i had to make the function to transform the output data.
-export const transformRequestData = (data: any) => {
+const transformRequestData = (data: any) => {
   const {
     userType,
     firstName,
@@ -30,40 +30,54 @@ export const transformRequestData = (data: any) => {
   };
 };
 
-export const transformResponseData = (data: any) => {
+// transform response data
+const _transformKey = (key: string): string => {
+  const keyMap: { [key: string]: string } = {
+    user_type: "userType",
+    name: "firstName",
+    second_name: "middleName",
+    surname: "lastName",
+    fullname: "fullName",
+    phone: "mobileNumber",
+    series: "docSerialNum",
+    issued_by: "issuedBy",
+    address_type: "addressType",
+    birthday: "birthDate",
+    work_type: "workType",
+    contact_info: "contactInfo",
+    main_info: "personalData",
+    document: "identityDocuments",
+  };
+
+  return keyMap[key] || key;
+};
+
+const transformResponseData = (data: any) => {
   if (data?.status) return data.status;
   if (data?.token) return data.token;
 
-  const {
-    user_type,
-    name,
-    second_name,
-    surname,
-    phone,
-    series,
-    issued_by,
-    address_type,
-    birthday,
-    work_type,
-    ...rest
-  } = data;
+  const keyFinder = () => {
+    if (data === null || typeof data !== "object") return data;
 
-  return {
-    ...(user_type ? { userType: user_type } : {}),
-    ...(name ? { firstName: name } : {}),
-    ...(second_name ? { middleName: second_name } : {}),
-    ...(surname ? { lastName: surname } : {}),
-    ...(birthday ? { birthDate: birthday } : {}),
-    ...(phone ? { mobileNumber: phone } : {}),
-    ...(address_type ? { addressType: address_type } : {}),
-    ...(work_type ? { workType: work_type } : {}),
-    ...(series ? { docSerialNum: series } : {}),
-    ...(issued_by ? { issuedBy: issued_by } : {}),
-    ...rest,
+    const modData: { [key: string]: any } = {};
+
+    for (const key in data) {
+      const modKey = _transformKey(key);
+      modData[modKey] = transformResponseData(data[key]);
+
+      // if (modKey === "mobileNumber") {
+      //   modData[modKey] = _formatPhoneNumber(modData[modKey]);
+      // }
+    }
+
+    return modData;
   };
+
+  return keyFinder();
 };
 
-export const errorHandler = (error: any): any => {
+// error
+const errorHandler = (error: any): any => {
   const { name, response, request, message, code } = error;
 
   if (typeof response?.data === "string" && response.data.includes("DOCTYPE")) {
@@ -96,3 +110,5 @@ export const errorHandler = (error: any): any => {
     "Unknown error"
   );
 };
+
+export { errorHandler, transformResponseData, transformRequestData };

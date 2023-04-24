@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CustomizedPaper } from "~/components/atomic";
-import geekHubLogo from "~/assets/images/geekHubLogo.png";
+import geekHubLogo from "~/assets/images/geek-hub-logo.png";
 
 export function AboutPage() {
   return (

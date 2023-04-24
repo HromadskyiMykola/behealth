@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
-import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic/index";
+import { useForm } from "react-hook-form";
 
-import { useApiService } from "~/common";
+import { TAuthFormValues, useApiService } from "~/common";
+
+import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
 import avatar from "~/assets/images/avatar.png";
 import {
@@ -12,11 +14,16 @@ import {
   IdentityDocumentsEdit,
   PersonalData,
   PersonalDataEdit,
-} from "~/components/patientAccountPersonalInfo";
+} from "~/components/patient-Account-Personal-Info";
 
 export function PatientAccountPersonalInfo() {
-  const { patient } = useApiService();
-  const [patientPersonalData, setPatientPersonalData] = useState(null);
+  const { patient, loading } = useApiService();
+  const [patientPersonalData, setPatientPersonalData] = useState({
+    contactInfo: null,
+    identityDocuments: null,
+    personalData: null,
+  });
+  const { contactInfo, identityDocuments, personalData } = patientPersonalData;
 
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
@@ -34,6 +41,16 @@ export function PatientAccountPersonalInfo() {
     patient.personalInfo.get().then(setPatientPersonalData);
   }, []);
 
+  const { control, handleSubmit, formState, watch, reset } =
+    useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
+
+  const { errors } = formState;
+
+  const onSubmit = (data: TAuthFormValues) => {
+    console.log(data);
+    console.log(formState);
+  };
+
   return (
     <>
       <CustomizedPaper>
@@ -49,21 +66,24 @@ export function PatientAccountPersonalInfo() {
         </Stack>
 
         {/* Contact info */}
-        {!patientPersonalData && (
+        {loading && (
           <Stack direction="row" gap={2}>
             <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
             <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
           </Stack>
         )}
 
-        {patientPersonalData && (
+        {!loading && (
           <Stack direction="row" gap={2}>
             <img src={avatar} alt="avatar" />
 
             {isEditContactInfo ? (
-              <ContactInfoEdit handleEditContactInfo={handleEditContactInfo} />
+              <ContactInfoEdit
+                handleEditContactInfo={handleEditContactInfo}
+                contactInfo={contactInfo}
+              />
             ) : (
-              <ContactInfo />
+              <ContactInfo contactInfo={contactInfo} />
             )}
           </Stack>
         )}
@@ -80,15 +100,19 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
-        {!patientPersonalData && (
-          <Skeleton variant="text" sx={{ height: 150 }} />
-        )}
+        {loading && <Skeleton variant="text" sx={{ height: 150 }} />}
 
-        {patientPersonalData &&
+        {!loading &&
           (isEditPersonalData ? (
-            <PersonalDataEdit handleEditPersonalData={handleEditPersonalData} />
+            <PersonalDataEdit
+              handleEditPersonalData={handleEditPersonalData}
+              control={control}
+              errors={errors}
+              formState={formState}
+              personalData={personalData}
+            />
           ) : (
-            <PersonalData />
+            <PersonalData personalData={personalData} />
           ))}
 
         <Stack
@@ -107,13 +131,17 @@ export function PatientAccountPersonalInfo() {
 
         {/* Documents info */}
 
-        {!patientPersonalData && (
-          <Skeleton variant="text" sx={{ height: 150 }} />
-        )}
+        {loading && <Skeleton variant="text" sx={{ height: 150 }} />}
 
-        {patientPersonalData &&
+        {!loading &&
           (isEditIdentityDocuments ? (
-            <IdentityDocumentsEdit handleEditIdentityDocuments={handleEditIdentityDocuments} />
+            <IdentityDocumentsEdit
+              handleEditIdentityDocuments={handleEditIdentityDocuments}
+              control={control}
+              errors={errors}
+              formState={formState}
+              identityDocuments={identityDocuments}
+            />
           ) : (
             <IdentityDocuments />
           ))}

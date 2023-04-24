@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-type TSimpleModalMessage = string | boolean | ReactNode;
+type TSimpleModalMessage = { loading: true } | ReactNode;
 
 interface IModalContext {
   openMainModal: boolean;
@@ -24,7 +24,8 @@ export const useModalState = () => useContext(ModalContext);
 export const ModalStateProvider = ({ children }: { children: ReactNode }) => {
   const [openMainModal, setOpenMainModal] = useState(false);
 
-  const [simpleModalMessage, setSimpleModalMessage] = useState<TSimpleModalMessage>(false);
+  const [simpleModalMessage, setSimpleModalMessage] =
+    useState<TSimpleModalMessage>(null);
 
   const value = {
     openMainModal,

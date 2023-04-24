@@ -6,26 +6,7 @@ export const enum EUserType {
   DOCTOR = "doctor",
 }
 
-export type TAuthFormValues = {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  email: string;
-  mobileNumber: string;
-  password: string;
-  confirmPassword: string;
-  loginPassword: string;
-  rememberMe: boolean;
-  userAgreement: boolean;
-  userType: EUserType;
-  birthDate: string;
-  tin: string;
-  sex: "male" | "female" | "";
-  chooseDoctor: string;
-  time: string;
-  docType: string;
-  docSerialNum: string;
-};
+
 
 export interface IAdvantagesBlockProps {
   title: string;
@@ -236,6 +217,7 @@ export type TPatientAdditionalData = {
   place?: string;
   position?: string;
 };
+
 export type TPatientPersonalData = {
   type: "patient_info" | "document";
   firstName: string;
@@ -252,6 +234,26 @@ export type TPatientPersonalData = {
   date: string;
 };
 
+export type TAuthFormValues = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  password: string;
+  confirmPassword: string;
+  loginPassword: string;
+  rememberMe: boolean;
+  userAgreement: boolean;
+  userType: EUserType;
+  birthDate: string;
+  tin: string;
+  sex: "male" | "female" | "";
+  chooseDoctor: string;
+  time: string;
+  docType: string;
+  docSerialNum: string;
+};
 // apiService types
 
 export interface IChips {

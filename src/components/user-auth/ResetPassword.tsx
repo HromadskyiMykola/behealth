@@ -1,32 +1,77 @@
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button, Typography, Stack, useTheme, Dialog } from "@mui/material";
 
-import { EUserType, useApiService } from "~/common";
-import { useModalState } from "~/providers";
+import { useReactHookForm, useDeviceType } from "~/common";
 
-import { SimpleModal } from "../atomic";
-import { ResetPasswordModal } from ".";
+import { RHFPasswordInput, RHFConfirmPassword } from "../ReactHookFormFields";
 
 export const ResetPassword = () => {
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
-  const userTypeFromParams = searchParams.get("user_type");
-  const { auth, apiError, loading } = useApiService();
-  const { setSimpleModalMessage } = useModalState();
+  const [openResetPasswordModal, setOpenResetPasswordModal] = useState(true);
+  const { palette } = useTheme();
+  const isMobile = useDeviceType();
 
-  const onSubmit = ({ password }: { password: string }) => {
-    if (token && userTypeFromParams) {
-      const userType = userTypeFromParams as EUserType;
+  const {
+    control,
+    onSubmitPasswordReset,
+    watch,
+    isValid,
+    errors,
+    isSubmitSuccessful,
+  } = useReactHookForm();
 
-      auth
-        .resetPassword({ userType, token, password })
-        .then(setSimpleModalMessage);
-    }
-  };
+  useEffect(
+    () => () => {
+      setOpenResetPasswordModal(false);
+    },
+    [isSubmitSuccessful]
+  );
 
   return (
     <>
-      <ResetPasswordModal onSubmit={onSubmit} />
-      <SimpleModal apiError={apiError} loading={loading} />
+      <Dialog
+        open={openResetPasswordModal}
+        fullScreen={isMobile}
+        sx={{
+          "& .MuiPaper-root": {
+            borderRadius: isMobile ? 0 : "12px",
+          },
+        }}
+        onClose={() => setOpenResetPasswordModal(false)}
+      >
+        <Stack
+          m="auto"
+          component="form"
+          width="448px"
+          p="32px"
+          gap="24px"
+          noValidate
+          onSubmit={onSubmitPasswordReset}
+          justifyContent="space-between"
+          alignItems="stretch"
+        >
+          <Typography textAlign="center" variant="h5">
+            Зміна паролю
+          </Typography>
+
+          <RHFPasswordInput control={control} errors={errors} />
+
+          <RHFConfirmPassword control={control} errors={errors} watch={watch} />
+
+          <Stack direction="row" justifyContent="space-between">
+            <Button
+              variant="outlined"
+              sx={{ color: palette.custom.neutral40 }}
+              onClick={() => setOpenResetPasswordModal(false)}
+            >
+              Закрити
+            </Button>
+
+            <Button disabled={!isValid} type="submit" variant="contained">
+              Зберегти
+            </Button>
+          </Stack>
+        </Stack>
+      </Dialog>
     </>
   );
 };
