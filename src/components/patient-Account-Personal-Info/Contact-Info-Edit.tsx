@@ -1,7 +1,8 @@
 import { Button, Stack } from "@mui/material";
-import {  useReactHookForm } from "~/common";
+import { useReactHookForm } from "~/common";
 
 import { RHFEmail, RHFMobileNumber } from "../ReactHookFormFields";
+import { useEffect } from "react";
 
 type ContactInfoEditProps = {
   handleEditContactInfo: () => void;
@@ -12,57 +13,54 @@ export const ContactInfoEdit = ({
   handleEditContactInfo,
   contactInfo,
 }: ContactInfoEditProps) => {
-const {
-  control,
-  handleSubmitPatientPersonalInfo,
-  isValid,
-  formState,
-  errors,
+  const {
+    control,
+    handleSubmitPatientPersonalInfo,
+    isValid,
+    errors,
+    isSubmitSuccessful,
   } = useReactHookForm();
-  
-  console.log("compo", isValid);
-  
+
+  useEffect(
+    () => () => {
+      isSubmitSuccessful && handleEditContactInfo();
+    },
+
+    [isSubmitSuccessful]
+  );
+
   return (
-    <Stack>
+    <Stack
+      component="form"
+      noValidate
+      onSubmit={handleSubmitPatientPersonalInfo}
+    >
       <Stack
-        component="form"
-        noValidate
         spacing={{ md: 0, laptop: 1 }}
         direction={{ md: "column", laptop: "row" }}
         justifyContent="space-between"
         alignItems="stretch"
-        onSubmit={handleSubmitPatientPersonalInfo}
       >
         <RHFEmail
           control={control}
           errors={errors}
-          defaultValue=""
-          // autoFocus
+          defaultValue={contactInfo?.email}
+          autoFocus
         />
 
         <RHFMobileNumber
           control={control}
           errors={errors}
-          defaultValue={contactInfo?.mobileNumber}
+          // defaultValue={contactInfo?.mobileNumber}
         />
       </Stack>
 
       <Stack direction="row" spacing={2}>
-        <Button
-          variant="text"
-          onClick={() => {
-            handleEditContactInfo();
-          }}
-        >
+        <Button variant="text" onClick={() => handleEditContactInfo()}>
           Відмінити
         </Button>
 
-        <Button
-          disabled={!formState.isValid}
-          type="submit"
-          variant="contained"
-          // sx={{ backgroundColor: primaryColor }}
-        >
+        <Button disabled={!isValid} variant="contained" type="submit">
           Зберегти
         </Button>
       </Stack>

@@ -31,15 +31,6 @@ const transformRequestData = (data: any) => {
 };
 
 // transform response data
-const _formatPhoneNumber = (phoneNumber: string) => {
-  if (typeof phoneNumber !== "string") return phoneNumber;
-
-  return phoneNumber.replace(
-    /(\+\d{2})(\d{3})(\d{2})(\d{2})(\d{2})/,
-    "$1 ($2) $3 $4 $5"
-  );
-};
-
 const _transformKey = (key: string): string => {
   const keyMap: { [key: string]: string } = {
     user_type: "userType",
@@ -74,9 +65,9 @@ const transformResponseData = (data: any) => {
       const modKey = _transformKey(key);
       modData[modKey] = transformResponseData(data[key]);
 
-      if (modKey === "mobileNumber") {
-        modData[modKey] = _formatPhoneNumber(modData[modKey]);
-      }
+      // if (modKey === "mobileNumber") {
+      //   modData[modKey] = _formatPhoneNumber(modData[modKey]);
+      // }
     }
 
     return modData;

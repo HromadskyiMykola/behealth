@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
+import { phoneNumberFormatter } from "~/common";
 
 export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
   <TableContainer
@@ -41,7 +42,7 @@ export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
 
           <TableCell>
             <Typography variant="body2">
-              {contactInfo?.mobileNumber || "не вказано"}
+              {phoneNumberFormatter(contactInfo?.mobileNumber) || "не вказано"}
             </Typography>
           </TableCell>
         </TableRow>
