@@ -1,4 +1,4 @@
-import { apiService } from "./src/common/apiService";
+import { apiService } from "./src/common/api-Service";
 
 // run:  npx ts-node --project tsconfig.ts-node.json testApi.ts
 

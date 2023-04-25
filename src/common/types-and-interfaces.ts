@@ -6,27 +6,6 @@ export const enum EUserType {
   DOCTOR = "doctor",
 }
 
-export type TAuthFormValues = {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  email: string;
-  mobileNumber: string;
-  password: string;
-  confirmPassword: string;
-  loginPassword: string;
-  rememberMe: boolean;
-  userAgreement: boolean;
-  userType: EUserType;
-  birthDate: string;
-  tin: string;
-  sex: "male" | "female" | "";
-  chooseDoctor: string;
-  time: string;
-  docType: string;
-  docSerialNum: string;
-};
-
 export interface IAdvantagesBlockProps {
   title: string;
   description: string;
@@ -205,12 +184,12 @@ export interface ButtonsFilteringProps {
 // apiService types
 export type TSignUpData = {
   email: string;
-  password: string;
+  passwordNew: string;
 };
 
 export type TLoginData = {
   email: string;
-  password: string;
+  passwordCurrent: string;
   userType: EUserType;
   rememberMe?: boolean;
 };
@@ -223,35 +202,63 @@ export type TForgotPassData = {
 export type TResetPassData = {
   token: string;
   userType: EUserType;
-  password: string;
+  passwordNew: string;
 };
 
 export type TPatientAdditionalData = {
   type?: "address" | "work";
-  addressType?: string;
-  settlement?: string;
-  house?: string;
-  apartments?: string;
-  workType?: string;
-  place?: string;
-  position?: string;
+  //
+  settlementType?: string;
+  settlementAndStr?: string;
+  houseNum?: string;
+  apartmentNum?: string;
+  //
+  employmentStatus?: string;
+  workplace?: string;
+  jobTitle?: string;
+  //
+  eligibleCat?: string;
 };
+
 export type TPatientPersonalData = {
-  type: "patient_info" | "document";
+  type?: "patient_info" | "document";
+  mobileNum?: string;
+  email?: string;
+  //
+  firstName?: string;
+  middleName?: string ;
+  lastName?: string;
+  birthDate?: string;
+  tin?: string;
+  sex?: "male" | "female" | "";
+  //
+  typeOfDoc?: string;
+  docSeries?: string;
+  issuedBy?: string;
+  dateOfIssue?: string;
+  docNum?: string;
+};
+
+export type TAuthFormValues = TPatientPersonalData &{
   firstName: string;
   middleName: string;
   lastName: string;
   email: string;
-  phone: string;
+  mobileNum: string;
+  passwordNew: string;
+  passwordConfirm: string;
+  passwordCurrent: string;
+  rememberMe: boolean;
+  userAgreement: boolean;
+  userType: EUserType;
   birthDate: string;
   tin: string;
-  sex: string;
-  series: string;
-  docSerialNum: string;
-  issuedBy: string;
-  date: string;
+  sex: "male" | "female" | "";
+  chooseDoctor: string;
+  time: string;
+  typeOfDoc: string;
+  docNum: string;
 };
-
 // apiService types
 
 export interface IChips {

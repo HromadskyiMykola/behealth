@@ -4,7 +4,7 @@ import { ERouteNames } from "./routeNames";
 
 import * as Pages from "~/pages/index";
 
-import { EmailConfirmation, ResetPassword } from "~/components/user-auth";
+import { EmailConfirmation, PasswordReset } from "~/components/user-auth";
 
 export const commonRoutes: TRoute[] = [
   {
@@ -49,12 +49,14 @@ export const commonRoutes: TRoute[] = [
     element: (
       <>
         <Pages.HomePage />
-        <ResetPassword />
+        <PasswordReset />
       </>
     ),
     label: "Скидання паролю",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
+  { path: "test", element: <><PasswordReset/></>, label: "tests" },
+
 ];
 
 export const patientRoutes: TRoute[] = [
