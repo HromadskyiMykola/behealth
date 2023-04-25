@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -10,17 +10,21 @@ import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SelectWithPlaceholder } from "~/components/atomic";
+import { useApiService } from "~/common";
+import { useAuthProvider } from "~/providers";
+import { useNavigate } from "react-router-dom";
+import { ERouteNames } from "~/routes/routeNames";
 
 interface IFormInput {
   settlement: string;
-  type: string;
+  address_type: string;
   house: string;
   apartments: string;
 }
 
 const schema = yup
   .object({
-    type: yup.string().required("Поле не може бути пустим"),
+    address_type: yup.string().required("Поле не може бути пустим"),
     settlement: yup
       .string()
       .required("Поле не може бути пустим")
@@ -34,11 +38,11 @@ const schema = yup
       .string()
       .required("Поле не може бути пустим")
       .max(5, "Має бути не більше 5 символів")
-      .matches(/^\d\/]+$/, "Можуть бути використані тільки цифри і /"),
+      .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
     apartments: yup
       .string()
       .max(5, "Має бути не більше 5 символів")
-      .matches(/^\d\/]+$/, "Можуть бути використані тільки цифри і /"),
+      .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
   })
   .required();
 
@@ -46,28 +50,51 @@ const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.addresses;
 const TEXT_BUTTONS = TEXT_ADDRESSES_EDIT_FORM.button;
 
 // todo add type for props function
-export const AddressesForm = ({ closeEditForm }: any) => {
+export const AddressesForm = ({
+  closeEditForm,
+  valuePatientAdditionData,
+}: any) => {
+  function replaceNullWithUndefined(obj: { [key: string]: any }): void {
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        if (obj[key] === null) {
+          obj[key] = undefined;
+        } else if (typeof obj[key] === "object") {
+          replaceNullWithUndefined(obj[key]);
+        }
+      }
+    }
+  }
+  const test = replaceNullWithUndefined(valuePatientAdditionData);
   const {
     control,
     handleSubmit,
     resetField,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      //todo  "SomeText" change dataProps
-      type: "",
+      //   //todo  "SomeText" change dataProps
+      address_type: "",
       settlement: "",
-      house: "" || "SomeText",
+      house: "",
       apartments: "",
     },
     resolver: yupResolver(schema),
   });
+  const { patient } = useApiService();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
+    patient.additionalInfo.create({
+      type: "address",
+      ...data,
+    });
+    resetFieldValue();
   };
   const resetFieldValue = () => {
-    resetField("type");
+    resetField("address_type");
     resetField("settlement");
     resetField("house");
     resetField("apartments");
@@ -83,10 +110,11 @@ export const AddressesForm = ({ closeEditForm }: any) => {
       <Grid container spacing={2} mt="24px" pb="24px">
         <Grid item xs={4}>
           <Controller
-            name="type"
+            name="address_type"
             control={control}
             render={({ field }) => (
               <SelectWithPlaceholder
+                sx={{ width: "100%" }}
                 placeholder={TEXT_CHOICES.placeholder.select}
                 label={TEXT_CHOICES.title.select}
                 {...field}
@@ -104,7 +132,7 @@ export const AddressesForm = ({ closeEditForm }: any) => {
             )}
           />
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.type?.message}
+            {errors.address_type?.message}
           </Typography>
         </Grid>
         <Grid item xs={8}>

@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 
 import { useApiService } from "~/common";
@@ -8,18 +9,15 @@ import AdditionDataContainer from "~/components/tads.additionalData/Addition-dat
 export function PatientAccountAdditionalData() {
   const { patient } = useApiService();
   const [patientAdditionData, setPatientAdditionData] = useState(null);
- 
+
   useEffect(() => {
-    patient.personalInfo.get().then(setPatientAdditionData);
-  console.log(patientAdditionData);
-  
+    patient.additionalInfo.get().then(setPatientAdditionData);
+    console.log(patientAdditionData);
   }, []);
-
-
 
   return (
     <CustomizedPaper>
-      <AdditionDataContainer />
+      <AdditionDataContainer patientAdditionData={patientAdditionData} />
     </CustomizedPaper>
   );
 }

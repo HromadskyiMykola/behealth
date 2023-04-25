@@ -5,6 +5,7 @@ import Button from "@mui/material/Button/Button";
 import { Edit, Plus } from "lucide-react";
 import { AdditionalDataContentCard } from "~/components/tads.additionalData/content-components-addition-data/Addition-data-content-card";
 import { titleCards } from "~/components/tads.additionalData/const-additional-data";
+import { IPatientAdditionData } from "~/common";
 
 interface IMOCKdata {
   addresses: undefined;
@@ -41,27 +42,19 @@ const MOCKdataFull = {
 interface IAdditionData {
   item: string;
   index: number;
-  data: any;
+  valuePatientAdditionData: any | null;
 }
 
-const AdditionData = ({ item, index, data }: IAdditionData) => {
+const AdditionData = ({
+  item,
+  index,
+  valuePatientAdditionData,
+}: IAdditionData) => {
   const [isEditView, setIsEditView] = useState(false);
 
   const closeEditForm = () => {
     setIsEditView(!isEditView);
   };
-  // const isDataEmpty  = MOCKdataFull[Object.keys(MOCKdata)[index]] ;
-
-  function choseData(index: number) {
-    switch (index) {
-      case 0:
-        return data.addresses;
-      case 1:
-        return data.worksPlace;
-      case 2:
-        return data.preferenceCategories;
-    }
-  }
 
   const isDataEmpty = false;
   return (
@@ -73,17 +66,23 @@ const AdditionData = ({ item, index, data }: IAdditionData) => {
           item !== titleCards[2] && (
             <Button
               variant="text"
-              startIcon={isDataEmpty ? <Plus size="22" /> : <Edit size="22" />}
+              startIcon={
+                !valuePatientAdditionData ? (
+                  <Plus size="22" />
+                ) : (
+                  <Edit size="22" />
+                )
+              }
               onClick={() => setIsEditView(true)}
               disabled={isEditView}
             >
-              {isDataEmpty ? "Додати" : "Змінити"}
+              {!valuePatientAdditionData ? "Додати" : "Змінити"}
             </Button>
           )
         }
       </Box>
       <AdditionalDataContentCard
-        data={choseData(index)}
+        valuePatientAdditionData={valuePatientAdditionData}
         index={index}
         isEditView={isEditView}
         isDataEmpty={isDataEmpty}

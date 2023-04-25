@@ -268,3 +268,9 @@ export interface ISelectItemHeaderValue {
   value: string;
   text: string;
 }
+
+export interface IPatientAdditionData {
+  address: null | any;
+  preferenceCategories: null | any;
+  workPlace: null | any;
+}
