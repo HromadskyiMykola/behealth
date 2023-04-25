@@ -62,6 +62,7 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
       <IconButton
         sx={{
           position: "absolute",
+          p: 0,
           top: 12,
           right: 12,
         }}
