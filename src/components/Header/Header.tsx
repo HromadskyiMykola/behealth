@@ -13,7 +13,6 @@ import {
   IconButton,
   Container,
   useTheme,
-  styled,
   Stack,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -22,7 +21,7 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useAuthProvider, useModalState } from "~/providers";
 import { EUserType, ISelectItemHeaderValue } from "~/common";
 import { ERouteNames } from "~/routes/routeNames";
-import { AuthorizationButton, FormModal } from "~/components/user-auth";
+import { AuthButton } from "../user-auth";
 import { Logo } from "~/assets/CustomIcon";
 import { ButtonM } from "../atomic";
 
@@ -124,7 +123,7 @@ const Header: FC = (props) => {
               <Typography variant="button">{MAKE_TO_APPOINTMENT}</Typography>
             </ButtonM>
 
-            <AuthorizationButton />
+            <AuthButton />
           </Stack>
 
           <IconButton
@@ -189,7 +188,7 @@ const Header: FC = (props) => {
             borderBottom={`1px solid ${palette.text.secondary}`}
             onClick={() => setOpenMenu(false)}
           >
-            <AuthorizationButton />
+            <AuthButton />
           </Box>
         </DialogContent>
       </Dialog>

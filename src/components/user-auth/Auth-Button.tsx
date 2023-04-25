@@ -9,7 +9,7 @@ import { FormModal } from ".";
 import { ButtonM } from "../atomic";
 import { Typography } from "@mui/material";
 
-export const AuthorizationButton = () => {
+export const AuthButton = () => {
   const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuthProvider();
   const navigate = useNavigate();

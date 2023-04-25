@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import { XIcon } from "lucide-react";
 import { useAuthProvider, useModalState } from "~/providers";
-import { FormModal } from "~/components/user-auth";
+import { FormModal } from "../user-auth";
+
 import {
   AT_RECEPTION,
   POP_UP_DOC_APPOINTMENT_1,
