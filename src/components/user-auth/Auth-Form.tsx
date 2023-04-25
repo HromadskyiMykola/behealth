@@ -218,6 +218,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             )}
 
             <Button
+              fullWidth
               sx={{ mt: "24px" }}
               disabled={!formState.isValid || loading}
               type="submit"
