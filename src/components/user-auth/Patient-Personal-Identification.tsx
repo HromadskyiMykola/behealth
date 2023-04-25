@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Button, Dialog, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  Grid,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 import { CustomizedInput } from "../atomic";
 
-import { TAuthFormValues } from "~/common";
+import { TAuthFormValues, useDeviceType } from "~/common";
 import {
   RHFBirthDate,
   RHFFirstName,
@@ -21,7 +31,9 @@ interface IProps {
 
 export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
-  const { custom } = useTheme().palette;
+  const { breakpoints, palette } = useTheme();
+  const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
+  const isMobile = useDeviceType();
 
   const { control, handleSubmit, formState } = useForm<TAuthFormValues>({
     mode: "onChange",
@@ -32,34 +44,52 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
 
   return (
     <Dialog
+      fullScreen={isWidth380px}
+      scroll="body"
       open={openIdentificationModal}
-      maxWidth="md"
+      // maxWidth="laptop"
       sx={{
         "& .MuiPaper-root": {
-          borderRadius:
-            // mobileDevice ? 0 :
-            "12px",
+          borderRadius: isWidth380px
+            ? {
+                xs: "0px",
+              }
+            : "12px",
         },
       }}
       onClose={() => setOpenIdentificationModal(false)}
     >
+      <IconButton
+        sx={{
+          position: "absolute",
+          top: 12,
+          right: 12,
+        }}
+        color="primary"
+        onClick={() => setOpenIdentificationModal(false)}
+      >
+        <CloseIcon />
+      </IconButton>
+
       <Grid
         component="form"
         container
         p="32px"
         gap="24px"
         direction="column"
-        width="712px"
+        maxWidth="712px"
         noValidate
         onSubmit={handleSubmit(onSubmit)}
       >
+        <Grid item></Grid>
+
         <Grid item textAlign="center">
           <Typography variant="h5">
             Ідентифікація особи та реєстрація
           </Typography>
           <Typography
             variant="body2"
-            sx={{ mt: "16px", color: custom.neutral60 }}
+            sx={{ mt: "16px", color: palette.custom.neutral60 }}
           >
             Заповніть необхідні поля, аби завершити реєстрацію. Нам потрібна ця
             інформація, аби забезпечити зручність для пацієнтів та медичних
@@ -95,7 +125,7 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
 
         <Button
           variant="text"
-          sx={{ pl: "16px", alignSelf: "flex-start" }}
+          sx={{ pl: "16px", alignSelf: isMobile ? "center" : "flex-start" }}
           onClick={() => {}}
         >
           Чому це важливо?

@@ -27,7 +27,7 @@ export const createOverrideTheme = createTheme({
 
   breakpoints: {
     values: {
-      xs: 380,
+      xs: 0,
       sm: 768,
       md: 1024,
       lg: 1408,
@@ -120,22 +120,29 @@ export const createOverrideTheme = createTheme({
   },
 
   components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          maxWidth: "1408px",
-          // paddingLeft: "0",
-          // paddingRight: "0",
-          // padding:'0 !important',
-          "&._containerHeader": {
-            display: "flex",
-            alignItems: "center",
-            height: "80px",
-            justifyContent: "space-between",
-          },
-        },
-      },
+    MuiCssBaseline: {
+      styleOverrides: `
+        html {
+          min-width: 380px;
+        }
+      `,
     },
+
+    // MuiContainer: {
+    //   styleOverrides: {
+    //     root: {
+    //       // paddingLeft: "0",
+    //       // paddingRight: "0",
+    //       // padding:'0 !important',
+    //       "&._containerHeader": {
+    //         display: "flex",
+    //         alignItems: "center",
+    //         height: "80px",
+    //         justifyContent: "space-between",
+    //       },
+    //     },
+    //   },
+    // },
 
     MuiTypography: {
       styleOverrides: {

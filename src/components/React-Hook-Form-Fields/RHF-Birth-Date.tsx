@@ -30,6 +30,7 @@ export const RHFBirthDate = ({
           label="Дата народження*"
           {...field}
           onChange={field.onChange}
+          // helperText={errors.birthDate && "Вкажіть дату"}
         />
       )}
     />

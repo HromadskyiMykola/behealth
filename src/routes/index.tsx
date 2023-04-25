@@ -55,6 +55,8 @@ export const commonRoutes: TRoute[] = [
     label: "Скидання паролю",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
+  { path: "test", element: <><PasswordReset/></>, label: "tests" },
+
 ];
 
 export const patientRoutes: TRoute[] = [

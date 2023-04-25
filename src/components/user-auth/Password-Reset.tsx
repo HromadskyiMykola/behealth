@@ -41,8 +41,7 @@ export const PasswordReset = () => {
         <Stack
           m="auto"
           component="form"
-          width="448px"
-          p="32px"
+          p={isMobile ? 0 : "32px"}
           gap="24px"
           noValidate
           onSubmit={onSubmitPasswordReset}
