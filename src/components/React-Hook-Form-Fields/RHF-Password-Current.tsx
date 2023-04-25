@@ -1,4 +1,4 @@
-import { Controller, Control, FieldErrors } from "react-hook-form";
+import { Controller, Control, FieldErrors, FieldValues } from "react-hook-form";
 import { TextFieldProps } from "@mui/material";
 
 import { PasswordInput } from "../atomic";
@@ -11,7 +11,7 @@ type Props = TextFieldProps & {
   errors: FieldErrors<TAuthFormValues>;
 };
 
-export const RHFPasswordInput = ({
+export const RHFPasswordCurrent = ({
   defaultValue = "",
   control,
   errors,
@@ -19,18 +19,18 @@ export const RHFPasswordInput = ({
 }: Props) => {
   return (
     <Controller
-      name="password"
+      name="passwordCurrent"
       control={control}
       defaultValue={defaultValue}
-      rules={validationRules.password}
+      rules={validationRules.passwordCurrent}
       render={({ field }) => (
         <PasswordInput
           {...otherProps}
-          label="Новий пароль*"
-          placeholder="123qwe!@#QWE"
+          label="Поточний пароль*"
+          placeholder="Введіть пароль"
           {...field}
-          error={!!errors.password}
-          helperText={errors.password?.message || " "}
+          error={!!errors.passwordCurrent}
+          helperText={errors.passwordCurrent?.message || " "}
         />
       )}
     />

@@ -148,10 +148,10 @@ const useApiService = () => {
   );
 
   const resetPassword = useCallback(
-    ({ userType, token, password }: TResetPassData) =>
+    ({ userType, token, passwordNew }: TResetPassData) =>
       _requestWithErrorHandling(
         apiClient.post(`reset?token=${token}&user_type=${userType}`, {
-          password,
+          passwordNew,
         })
       ),
     []

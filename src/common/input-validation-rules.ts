@@ -61,9 +61,9 @@ const validationRules = {
     },
   },
 
-  loginPassword: passwordValidation,
+  passwordCurrent: passwordValidation,
 
-  password: {
+  passwordNew: {
     ...passwordValidation,
     pattern: {
       value:
@@ -73,7 +73,7 @@ const validationRules = {
     },
   },
 
-  confirmPassword: (password: string) => ({
+  passwordConfirm: (password: string) => ({
     required: "Будь ласка, введіть пароль ще раз.",
     validate: (value: string) => value === password || "Паролі не збігаються",
   }),

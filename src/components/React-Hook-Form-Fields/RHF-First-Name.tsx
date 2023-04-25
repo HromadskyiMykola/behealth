@@ -8,7 +8,7 @@ import { TAuthFormValues, validationRules } from "~/common";
 type Props = TextFieldProps & {
   defaultValue?: string;
   control: Control<TAuthFormValues>;
-  errors: FieldErrors<TAuthFormValues>;
+  errors: FieldErrors<TAuthFormValues>
 };
 
 export const RHFFirstName = ({

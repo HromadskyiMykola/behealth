@@ -11,7 +11,7 @@ type Props = TextFieldProps & {
   errors: FieldErrors<TAuthFormValues>;
 };
 
-export const RHFLoginPassword = ({
+export const RHFPasswordNew = ({
   defaultValue = "",
   control,
   errors,
@@ -19,18 +19,18 @@ export const RHFLoginPassword = ({
 }: Props) => {
   return (
     <Controller
-      name="loginPassword"
+      name="passwordNew"
       control={control}
       defaultValue={defaultValue}
-      rules={validationRules.loginPassword}
+      rules={validationRules.passwordNew}
       render={({ field }) => (
         <PasswordInput
           {...otherProps}
-          label="Поточний пароль*"
-          placeholder="Введіть пароль"
+          label="Новий пароль*"
+          placeholder="123qwe!@#QWE"
           {...field}
-          error={!!errors.loginPassword}
-          helperText={errors.loginPassword?.message || " "}
+          error={!!errors.passwordNew}
+          helperText={errors.passwordNew?.message || " "}
         />
       )}
     />

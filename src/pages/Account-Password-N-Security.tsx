@@ -4,9 +4,9 @@ import { Button, Stack, Typography } from "@mui/material";
 import { CustomizedPaper } from "~/components/atomic";
 import { TAuthFormValues } from "~/common";
 import {
-  RHFConfirmPassword,
-  RHFLoginPassword,
-  RHFPasswordInput,
+  RHFPasswordConfirm,
+  RHFPasswordCurrent,
+  RHFPasswordNew,
 } from "~/components/React-Hook-Form-Fields";
 
 export const AccountPasswordNSecurity = () => {
@@ -34,11 +34,11 @@ export const AccountPasswordNSecurity = () => {
           justifyContent="space-between"
           alignItems="stretch"
         >
-          <RHFLoginPassword control={control} errors={errors} />
+          <RHFPasswordCurrent control={control} errors={errors} />
 
-          <RHFPasswordInput control={control} errors={errors} />
+          <RHFPasswordNew control={control} errors={errors} />
 
-          <RHFConfirmPassword control={control} errors={errors} watch={watch} />
+          <RHFPasswordConfirm control={control} errors={errors} watch={watch} />
         </Stack>
       </Stack>
 

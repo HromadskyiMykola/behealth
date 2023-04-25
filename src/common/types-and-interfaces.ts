@@ -184,12 +184,12 @@ export interface ButtonsFilteringProps {
 // apiService types
 export type TSignUpData = {
   email: string;
-  password: string;
+  passwordNew: string;
 };
 
 export type TLoginData = {
   email: string;
-  password: string;
+  passwordCurrent: string;
   userType: EUserType;
   rememberMe?: boolean;
 };
@@ -202,7 +202,7 @@ export type TForgotPassData = {
 export type TResetPassData = {
   token: string;
   userType: EUserType;
-  password: string;
+  passwordNew: string;
 };
 
 export type TPatientAdditionalData = {
@@ -214,7 +214,7 @@ export type TPatientAdditionalData = {
   apartmentNum?: string;
   //
   employmentStatus?: string;
-  Workplace?: string;
+  workplace?: string;
   jobTitle?: string;
   //
   eligibleCat?: string;
@@ -239,15 +239,15 @@ export type TPatientPersonalData = {
   docNum?: string;
 };
 
-export type TAuthFormValues = {
+export type TAuthFormValues = TPatientPersonalData &{
   firstName: string;
   middleName: string;
   lastName: string;
   email: string;
   mobileNum: string;
-  password: string;
-  confirmPassword: string;
-  loginPassword: string;
+  passwordNew: string;
+  passwordConfirm: string;
+  passwordCurrent: string;
   rememberMe: boolean;
   userAgreement: boolean;
   userType: EUserType;
@@ -256,8 +256,8 @@ export type TAuthFormValues = {
   sex: "male" | "female" | "";
   chooseDoctor: string;
   time: string;
-  docType: string;
-  docSerialNum: string;
+  typeOfDoc: string;
+  docNum: string;
 };
 // apiService types
 

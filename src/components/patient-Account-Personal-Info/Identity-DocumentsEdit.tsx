@@ -3,8 +3,12 @@ import { Button, Grid, MenuItem, Stack } from "@mui/material";
 
 import { TAuthFormValues } from "~/common";
 
-import { CustomizedInput, DatePickerInput, SelectWithPlaceholder } from "../atomic";
-import {  RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
+import {
+  CustomizedInput,
+  DatePickerInput,
+  SelectWithPlaceholder,
+} from "../atomic";
+import { RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
 
 type IdentityDocumentsEditProps = {
   handleEditIdentityDocuments: () => void;
@@ -32,7 +36,7 @@ export const IdentityDocumentsEdit = ({
       >
         <Grid item laptop={4}>
           <Controller
-            name="docType"
+            name="typeOfDoc"
             control={control}
             defaultValue=""
             rules={{ required: true }}
@@ -55,7 +59,7 @@ export const IdentityDocumentsEdit = ({
 
         <Grid item laptop={8}>
           <Controller
-            name="docSerialNum"
+            name="docNum"
             control={control}
             defaultValue=""
             rules={{ required: true }}
@@ -78,7 +82,7 @@ export const IdentityDocumentsEdit = ({
 
         <Grid item laptop={4}>
           <Controller
-            name="time"
+            name="dateOfIssue"
             control={control}
             // defaultValue={defaultValue}
             rules={{ required: true }}

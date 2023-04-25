@@ -1,34 +1,5 @@
 // Unfortunately, back-end developers don't understand that the names of the parameters should be correct,
 // so i had to make the function to transform the output data.
-const transformRequestData = (data: any) => {
-  const {
-    userType,
-    firstName,
-    middleName,
-    lastName,
-    mobileNum,
-    docSerialNum,
-    issuedBy,
-    addressType,
-    birthDate,
-    workType,
-    ...rest
-  } = data;
-
-  return {
-    ...(userType ? { user_type: userType } : {}),
-    ...(firstName ? { name: firstName } : {}),
-    ...(middleName ? { second_name: middleName } : {}),
-    ...(lastName ? { surname: lastName } : {}),
-    ...(birthDate ? { birthday: birthDate } : {}),
-    ...(mobileNum ? { phone: mobileNum } : {}),
-    ...(addressType ? { address_type: addressType } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(docSerialNum ? { series: docSerialNum } : {}),
-    ...(issuedBy ? { issued_by: issuedBy } : {}),
-    ...rest,
-  };
-};
 
 // transform response data
 const _transformKey = (key: string): string => {
@@ -37,19 +8,41 @@ const _transformKey = (key: string): string => {
     name: "firstName",
     second_name: "middleName",
     surname: "lastName",
-    fullname: "fullName",
     phone: "mobileNum",
-    series: "docSerialNum",
+    series: "docSeries",
+    number: "docNum",
     issued_by: "issuedBy",
-    address_type: "addressType",
     birthday: "birthDate",
-    work_type: "workType",
     contact_info: "contactInfo",
     main_info: "personalData",
     document: "identityDocuments",
+    address_type: "settlementType",
+    settlement: "settlementAndStr",
+    house: "houseNum",
+    apartments: "apartmentNum",
+    work_type: "employmentStatus",
+    place: "workplace",
+    position: "jobTitle",
+    "eligible-cat": "eligibleCat",
   };
 
   return keyMap[key] || key;
+};
+
+const transformRequestData = (data: any) => {
+  const transformedData: { [key: string]: any } = {};
+
+  for (const key in data) {
+    const modKey = _transformKey(key);
+
+    if (key === "passwordNew" || key === "passwordCurrent") {
+      transformedData["password"] = data[key];
+    } else {
+      transformedData[modKey] = data[key];
+    }
+  }
+
+  return transformedData;
 };
 
 const transformResponseData = (data: any) => {

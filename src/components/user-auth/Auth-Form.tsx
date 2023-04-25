@@ -26,9 +26,9 @@ import {
 
 import { ERouteNames } from "~/routes/routeNames";
 import {
-  RHFConfirmPassword,
+  RHFPasswordConfirm,
   RHFEmail,
-  RHFPasswordInput,
+  RHFPasswordNew,
 } from "../React-Hook-Form-Fields";
 import { SimpleModal } from "../atomic";
 
@@ -57,9 +57,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
   const onSubmit = (data: TAuthFormValues) => {
     if (isRegisterMode) {
-      const { email, password } = data;
+      const { email, passwordNew } = data;
 
-      auth.signUp({ email, password }).then(() => {
+      auth.signUp({ email, passwordNew }).then(() => {
         reset();
         setOpenMainModal(false);
         setSimpleModalMessage(<ThanksSingUpMessage email={email} />);
@@ -67,9 +67,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     }
 
     if (isLoginMode) {
-      const { rememberMe, email, password } = data;
+      const { rememberMe, email, passwordCurrent } = data;
 
-      auth.signIn({ email, password, userType }).then((token) => {
+      auth.signIn({ email, passwordCurrent, userType }).then((token) => {
         singInProvider({ token, type: userType, rememberMe });
         setOpenMainModal(false);
         setSimpleModalMessage(false);
@@ -146,11 +146,11 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             />
 
             {(isLoginMode || isRegisterMode) && ( // PASSWORD
-              <RHFPasswordInput control={control} errors={errors} />
+              <RHFPasswordNew control={control} errors={errors} />
             )}
 
             {isRegisterMode && ( // CONFIRM PASS
-              <RHFConfirmPassword
+              <RHFPasswordConfirm
                 control={control}
                 errors={errors}
                 watch={watch}
