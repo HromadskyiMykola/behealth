@@ -7,6 +7,7 @@ import {
   Grid,
   IconButton,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -21,12 +22,14 @@ import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 export function FormModal() {
   const { openMainModal, setOpenMainModal } = useModalState();
+  const { palette, breakpoints } = useTheme();
+  const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
+  const isSmDown = useMediaQuery(breakpoints.down("sm"));
   const isMobile = useDeviceType();
 
   const [mode, setMode] = useState<TAuthMode>({ isLoginMode: true });
 
-  const theme = useTheme();
-  const { custom, primary } = theme.palette;
+  const { custom, primary } = palette;
 
   return (
     <Dialog
@@ -42,34 +45,46 @@ export function FormModal() {
     >
       <DialogContent
         sx={{
-          height: { xs: "100vh", sm: "auto" },
+          minWidth: "380px",
           maxWidth: "1000px",
-          p: "80px",
+          p: isMobile ? "0 16px" : "80px",
           backgroundColor: primary.main,
+          //
+          display: isMobile ? "flex" : "block",
+          justifyContent: "center",
+          height: "100%",
         }}
       >
         <IconButton
           sx={{
             position: "absolute",
             p: 0,
-            top: "28px",
-            right: "28px",
+            top: isMobile ? "22px" : "28px",
+            right: isMobile ? "22px" : "28px",
             color: custom.primary100,
           }}
           aria-label="close"
           onClick={() => setOpenMainModal(false)}
         >
-          <CloseIcon fontSize="large" />
+          <CloseIcon fontSize={isMobile ? "medium" :"large"} />
         </IconButton>
 
-        <Grid container spacing="32px" alignItems="center">
-          <Grid item md={5} sx={{ display: { xs: "none", md: "block" } }}>
+        <Grid container={!isSmDown} spacing="32px" alignItems="center">
+          <Grid
+            item
+            sm={5}
+            tablet={6}
+            // sx={{ display: { xs: "none", md: "block" } }}
+          >
             {!mode.isRecoveryMode && (
               <DialogTitle
                 sx={{
+                  maxWidth: "442px",
                   pl: 0,
                   typography: "h3",
                   color: custom.primary100,
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
                 }}
               >
                 {mode.isLoginMode ? "Авторизація" : "Реєстрація"}
@@ -77,7 +92,12 @@ export function FormModal() {
             )}
 
             {!mode.isRecoveryMode && (
-              <Typography variant="body2" sx={{ color: custom.primary100 }}>
+              <Typography
+                variant="body2"
+                maxWidth="442px"
+                sx={{ color: custom.primary100 }}
+                paragraph={isSmDown}
+              >
                 {mode.isLoginMode ? "Авторизуйтесь" : "Зареєструйтесь"}, щоб
                 отримати доступ до особистого кабінету beHealth.
               </Typography>
@@ -87,13 +107,13 @@ export function FormModal() {
               src={mode.isLoginMode ? logoSignIn : logoSignUp}
               style={{
                 maxWidth: "100%",
-                display: isMobile ? "none" : "block",
+                display: isSmDown ? "none" : "block",
               }}
               alt="logo sign in / sign up"
             />
           </Grid>
 
-          <Grid item xs md={7}>
+          <Grid item xs sm={7} tablet={6}>
             <AuthForm mode={mode} setMode={setMode} />
           </Grid>
         </Grid>

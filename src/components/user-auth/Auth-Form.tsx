@@ -10,6 +10,7 @@ import {
   FormControlLabel,
   Checkbox,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 
 import { useModalState, useAuthProvider } from "~/providers";
@@ -43,8 +44,9 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const { singInProvider } = useAuthProvider();
   const navigate = useNavigate();
   const { apiError, loading, auth } = useApiService();
-  const { palette } = useTheme();
+  const { palette, breakpoints } = useTheme();
   const isMobile = useDeviceType();
+  const isSmDown = useMediaQuery(breakpoints.down("sm"));
 
   const { isLoginMode, isRegisterMode, isRecoveryMode } = mode;
 
@@ -94,7 +96,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
     <>
       <SimpleModal apiError={apiError} loading={loading} />
 
-      <Box>
+      <Stack maxWidth="442px" mt={isRecoveryMode && isMobile ? "60px" : 0}>
         {!isRegisterMode && (
           <UserTypeSelector userType={userType} onChange={setUserType} />
         )}
@@ -116,6 +118,8 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             alignItems="center"
             justifyContent="center"
             mb="24px"
+            gap={1}
+            flexWrap="wrap"
           >
             <Typography
               variant="body2"
@@ -125,7 +129,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             </Typography>
 
             <Typography
-              sx={{ ml: "4px", cursor: "pointer" }}
+              sx={{ cursor: "pointer" }}
               variant="body2"
               color={palette.primary.main}
               onClick={() => {
@@ -148,20 +152,20 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
 
             {/* {(isLoginMode || isRegisterMode) && ( // PASSWORD
             )} */}
-            {(isLoginMode ) && ( // PASSWORD
+            {isLoginMode && ( // PASSWORD
               <RHFPasswordCurrent control={control} errors={errors} />
-              )}
+            )}
 
             {isRegisterMode && ( // CONFIRM PASS
               <>
-              <RHFPasswordNew control={control} errors={errors} />
-              
-              <RHFPasswordConfirm
-                control={control}
-                errors={errors}
-                watch={watch}
+                <RHFPasswordNew control={control} errors={errors} />
+
+                <RHFPasswordConfirm
+                  control={control}
+                  errors={errors}
+                  watch={watch}
                 />
-                </>
+              </>
             )}
 
             {isLoginMode && (
@@ -169,6 +173,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
                 direction={{ xs: "column", sm: "row" }}
                 alignItems="center"
                 justifyContent="space-between"
+                flexWrap={isSmDown ? "wrap-reverse" : "nowrap"}
               >
                 <Controller
                   name="rememberMe"
@@ -224,7 +229,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
             </Button>
           </form>
         </Stack>
-      </Box>
+      </Stack>
     </>
   );
 }
