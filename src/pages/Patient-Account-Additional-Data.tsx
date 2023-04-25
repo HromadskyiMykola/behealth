@@ -10,7 +10,7 @@ export function PatientAccountAdditionalData() {
   const [patientAdditionData, setPatientAdditionData] = useState(null);
  
   useEffect(() => {
-    patient.personalInfo.get().then(setPatientAdditionData);
+    patient.additionalInfo.get().then(setPatientAdditionData);
   console.log(patientAdditionData);
   
   }, []);
