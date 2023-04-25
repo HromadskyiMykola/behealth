@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import { useReactHookForm } from "~/common";
 
-import { RHFEmail, RHFMobileNumber } from "../ReactHookFormFields";
+import { RHFEmail, RHFmobileNum } from "../React-Hook-Form-Fields";
 import { useEffect } from "react";
 
 type ContactInfoEditProps = {
@@ -15,7 +15,7 @@ export const ContactInfoEdit = ({
 }: ContactInfoEditProps) => {
   const {
     control,
-    handleSubmitPatientPersonalInfo,
+    handleSubmitPatientContactInfo,
     isValid,
     errors,
     isSubmitSuccessful,
@@ -33,7 +33,7 @@ export const ContactInfoEdit = ({
     <Stack
       component="form"
       noValidate
-      onSubmit={handleSubmitPatientPersonalInfo}
+      onSubmit={handleSubmitPatientContactInfo}
     >
       <Stack
         spacing={{ md: 0, laptop: 1 }}
@@ -48,10 +48,10 @@ export const ContactInfoEdit = ({
           autoFocus
         />
 
-        <RHFMobileNumber
+        <RHFmobileNum
           control={control}
           errors={errors}
-          // defaultValue={contactInfo?.mobileNumber}
+          // defaultValue={contactInfo?.mobileNum}
         />
       </Stack>
 

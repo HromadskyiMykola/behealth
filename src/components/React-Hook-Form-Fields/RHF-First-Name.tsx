@@ -8,10 +8,10 @@ import { TAuthFormValues, validationRules } from "~/common";
 type Props = TextFieldProps & {
   defaultValue?: string;
   control: Control<TAuthFormValues>;
-  errors: FieldErrors<TAuthFormValues>;
+  errors: FieldErrors<TAuthFormValues>
 };
 
-export const RHFTin = ({
+export const RHFFirstName = ({
   defaultValue = "",
   control,
   errors,
@@ -19,18 +19,18 @@ export const RHFTin = ({
 }: Props) => {
   return (
     <Controller
-      name="tin" // TODO:
+      name="firstName"
       control={control}
       defaultValue={defaultValue}
-      // TODO:     rules={validationRules.middleName}
+      rules={validationRules.firstName}
       render={({ field }) => (
         <CustomizedInput
           {...otherProps}
-          label="Номер*"
-          placeholder="Номер запису ІПН"
+          label="Ім’я*"
+          placeholder="Олександр"
           {...field}
-          // TODO:       error={!!errors.middleName}
-          helperText={errors.middleName?.message || " "}
+          error={!!errors.firstName}
+          helperText={errors.firstName?.message || " "}
         />
       )}
     />

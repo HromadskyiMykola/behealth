@@ -11,7 +11,7 @@ type Props = TextFieldProps & {
   errors: FieldErrors<TAuthFormValues>;
 };
 
-export const RHFFirstName = ({
+export const RHFTin = ({
   defaultValue = "",
   control,
   errors,
@@ -19,18 +19,18 @@ export const RHFFirstName = ({
 }: Props) => {
   return (
     <Controller
-      name="firstName"
+      name="tin"
       control={control}
       defaultValue={defaultValue}
-      rules={validationRules.firstName}
+      rules={validationRules.tin}
       render={({ field }) => (
         <CustomizedInput
           {...otherProps}
-          label="Ім’я*"
-          placeholder="Олександр"
+          label="ІПН*"
+          placeholder="Номер запису ІПН"
           {...field}
-          error={!!errors.firstName}
-          helperText={errors.firstName?.message || " "}
+          error={!!errors.tin}
+          helperText={errors.tin?.message || " "}
         />
       )}
     />

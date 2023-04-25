@@ -3,7 +3,7 @@ import { AlertTriangleIcon } from "lucide-react";
 
 import { ButtonTimer } from "../atomic";
 
-export function ThanksSingUpMessage({ email }: { email: string }) {
+export function ThanksSingUpMessage({ email }: { email: string | undefined}) {
   const { custom } = useTheme().palette;
 
   return (

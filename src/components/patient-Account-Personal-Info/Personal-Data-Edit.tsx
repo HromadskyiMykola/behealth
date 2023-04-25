@@ -10,21 +10,21 @@ import {
   RHFLastName,
   RHFMiddleName,
   RHFTin,
-} from "../ReactHookFormFields";
+} from "../React-Hook-Form-Fields";
 
 type PersonalDataEditProps = {
   handleEditPersonalData: () => void;
   personalData: any;
   control: Control<TAuthFormValues>;
   errors: FieldErrors<TAuthFormValues>;
-  formState: FormState<TAuthFormValues>;
+  isValid: boolean;
 };
 
 export const PersonalDataEdit = ({
   handleEditPersonalData,
   control,
   errors,
-  formState,
+  isValid,
   personalData,
 }: PersonalDataEditProps) => {
   return (
@@ -81,7 +81,10 @@ export const PersonalDataEdit = ({
           <Controller
             name="sex"
             control={control}
-            defaultValue={personalData?.sex}
+            rules={{ required: true }}
+            defaultValue={
+              // personalData?.sex ||
+              "male"}
             render={({ field }) => (
               <SelectWithPlaceholder
                 fullWidth
@@ -111,7 +114,7 @@ export const PersonalDataEdit = ({
         </Button>
 
         <Button
-          disabled={!formState.isValid}
+          disabled={!isValid}
           type="submit"
           variant="contained"
           // sx={{ backgroundColor: primaryColor }}

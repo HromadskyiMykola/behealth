@@ -1,56 +1,49 @@
 // Unfortunately, back-end developers don't understand that the names of the parameters should be correct,
 // so i had to make the function to transform the output data.
+
+const keyMap: { [key: string]: string } = {
+  userType: "user_type",
+  firstName: "name",
+  middleName: "second_name",
+  lastName: "surname",
+  mobileNum: "phone",
+  docSeries: "series",
+  docNum: "number",
+  issuedBy: "issued_by",
+  birthDate: "birthday",
+  contactInfo: "contact_info",
+  personalData: "main_info",
+  settlementType: "address_type",
+  settlementAndStr: "settlement",
+  houseNum: "house",
+  apartmentNum: "apartments",
+  employmentStatus: "work_type",
+  workplace: "place",
+  jobTitle: "position",
+  eligibleCat: "eligible-cat",
+  passwordCurrent: "password",
+  passwordNew: "password",
+};
+
+const reverseKeyMap: { [key: string]: string } = {};
+for (const key in keyMap) {
+  reverseKeyMap[keyMap[key]] = key;
+}
+
+
 const transformRequestData = (data: any) => {
-  const {
-    userType,
-    firstName,
-    middleName,
-    lastName,
-    mobileNumber,
-    docSerialNum,
-    issuedBy,
-    addressType,
-    birthDate,
-    workType,
-    ...rest
-  } = data;
+  if (data === null || typeof data !== "object") return data;
 
-  return {
-    ...(userType ? { user_type: userType } : {}),
-    ...(firstName ? { name: firstName } : {}),
-    ...(middleName ? { second_name: middleName } : {}),
-    ...(lastName ? { surname: lastName } : {}),
-    ...(birthDate ? { birthday: birthDate } : {}),
-    ...(mobileNumber ? { phone: mobileNumber } : {}),
-    ...(addressType ? { address_type: addressType } : {}),
-    ...(workType ? { work_type: workType } : {}),
-    ...(docSerialNum ? { series: docSerialNum } : {}),
-    ...(issuedBy ? { issued_by: issuedBy } : {}),
-    ...rest,
-  };
+  const modData: { [key: string]: string } = {};
+
+  for (const key in data) {
+    const modKey = keyMap[key] || key;
+    modData[modKey] = data[key];
+  }
+
+  return modData;
 };
 
-// transform response data
-const _transformKey = (key: string): string => {
-  const keyMap: { [key: string]: string } = {
-    user_type: "userType",
-    name: "firstName",
-    second_name: "middleName",
-    surname: "lastName",
-    fullname: "fullName",
-    phone: "mobileNumber",
-    series: "docSerialNum",
-    issued_by: "issuedBy",
-    address_type: "addressType",
-    birthday: "birthDate",
-    work_type: "workType",
-    contact_info: "contactInfo",
-    main_info: "personalData",
-    document: "identityDocuments",
-  };
-
-  return keyMap[key] || key;
-};
 
 const transformResponseData = (data: any) => {
   if (data?.status) return data.status;
@@ -59,15 +52,14 @@ const transformResponseData = (data: any) => {
   const keyFinder = () => {
     if (data === null || typeof data !== "object") return data;
 
-    const modData: { [key: string]: any } = {};
+    const modData: { [key: string]: string | undefined } = {};
 
     for (const key in data) {
-      const modKey = _transformKey(key);
+      const modKey = reverseKeyMap[key] || key;
       modData[modKey] = transformResponseData(data[key]);
 
-      // if (modKey === "mobileNumber") {
-      //   modData[modKey] = _formatPhoneNumber(modData[modKey]);
-      // }
+      // assign undefined, since null is not a valid value as the defaultValue for <Input/>
+      if (modData[modKey] === null) modData[modKey] = undefined;
     }
 
     return modData;
@@ -76,7 +68,7 @@ const transformResponseData = (data: any) => {
   return keyFinder();
 };
 
-// error
+
 const errorHandler = (error: any): any => {
   const { name, response, request, message, code } = error;
 

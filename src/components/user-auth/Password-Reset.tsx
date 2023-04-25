@@ -3,9 +3,9 @@ import { Button, Typography, Stack, useTheme, Dialog } from "@mui/material";
 
 import { useReactHookForm, useDeviceType } from "~/common";
 
-import { RHFPasswordInput, RHFConfirmPassword } from "../ReactHookFormFields";
+import { RHFPasswordNew, RHFPasswordConfirm } from "../React-Hook-Form-Fields";
 
-export const ResetPassword = () => {
+export const PasswordReset = () => {
   const [openResetPasswordModal, setOpenResetPasswordModal] = useState(true);
   const { palette } = useTheme();
   const isMobile = useDeviceType();
@@ -53,9 +53,9 @@ export const ResetPassword = () => {
             Зміна паролю
           </Typography>
 
-          <RHFPasswordInput control={control} errors={errors} />
+          <RHFPasswordNew control={control} errors={errors} />
 
-          <RHFConfirmPassword control={control} errors={errors} watch={watch} />
+          <RHFPasswordConfirm control={control} errors={errors} watch={watch} />
 
           <Stack direction="row" justifyContent="space-between">
             <Button

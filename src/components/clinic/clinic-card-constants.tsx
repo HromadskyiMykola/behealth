@@ -222,8 +222,8 @@ export const CLINIC_APPOINTMENT_MODAL: IClinicAppointmentModal = {
       id: 2,
       label: "Телефон",
       placeholder: "Обов'язкове",
-      name: "mobileNumber",
-      rules: validationRules.mobileNumber,
+      name: "mobileNum",
+      rules: validationRules.mobileNum,
     },
     {
       id: 3,

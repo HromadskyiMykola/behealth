@@ -18,7 +18,7 @@ type Props = TextFieldProps & {
   watch: UseFormWatch<TAuthFormValues>;
 };
 
-export const RHFConfirmPassword = ({
+export const RHFPasswordConfirm = ({
   defaultValue = "",
   control,
   errors,
@@ -27,18 +27,18 @@ export const RHFConfirmPassword = ({
 }: Props) => {
   return (
     <Controller
-      name="confirmPassword"
+      name="passwordConfirm"
       control={control}
       defaultValue={defaultValue}
-      rules={validationRules.confirmPassword(watch("password"))}
+      rules={validationRules.passwordConfirm(watch("passwordNew"))}
       render={({ field }) => (
         <PasswordInput
           {...otherProps}
           label="Повторіть новий пароль*"
           placeholder="123qwe!@#QWE"
           {...field}
-          error={!!errors.confirmPassword}
-          helperText={errors.confirmPassword?.message || " "}
+          error={!!errors.passwordConfirm}
+          helperText={errors.passwordConfirm?.message || " "}
         />
       )}
     />

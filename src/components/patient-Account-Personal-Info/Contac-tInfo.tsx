@@ -42,7 +42,7 @@ export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
 
           <TableCell>
             <Typography variant="body2">
-              {phoneNumberFormatter(contactInfo?.mobileNumber) || "не вказано"}
+              {phoneNumberFormatter(contactInfo?.mobileNum) || "не вказано"}
             </Typography>
           </TableCell>
         </TableRow>

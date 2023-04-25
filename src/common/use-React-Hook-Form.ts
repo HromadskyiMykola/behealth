@@ -32,17 +32,22 @@ export const useReactHookForm = () => {
     console.log(formState);
   };
 
-  const handleSubmitPatientPersonalInfo = handleSubmit(onSubmit);
+  const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
+
+  const handleSubmitPatientPersonalInfo = (data: TAuthFormValues) => {
+    console.log(data);
+    // console.log(formState);
+  };
 
   // navigate("/patient-account");
 
   const onSubmitPasswordReset = handleSubmit(
-    ({ password }: { password: string }) => {
+    ({ passwordNew }: { passwordNew: string }) => {
       if (tokenFromParams && userTypeFromParams) {
         const userType = userTypeFromParams as EUserType;
 
         auth
-          .resetPassword({ userType, token: tokenFromParams, password })
+          .resetPassword({ userType, token: tokenFromParams, passwordNew })
           .then(setSimpleModalMessage);
       }
     }
@@ -50,8 +55,9 @@ export const useReactHookForm = () => {
 
   return {
     control,
-    // handleSubmit,
+    handleSubmit,
     handleSubmitPatientPersonalInfo,
+    handleSubmitPatientContactInfo,
     onSubmitPasswordReset,
     watch,
     reset,

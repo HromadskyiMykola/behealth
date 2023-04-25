@@ -28,4 +28,4 @@ function InputWithMask(props: any, ref: Ref<HTMLDivElement>) { // TODO choose pr
   );
 }
 
-export const InputMobileNumber = forwardRef(InputWithMask);
+export const InputMobileNum  = forwardRef(InputWithMask);
