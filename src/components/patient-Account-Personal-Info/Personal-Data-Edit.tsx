@@ -13,7 +13,7 @@ import {
 } from "../React-Hook-Form-Fields";
 
 type PersonalDataEditProps = {
-  handleEditPersonalData: () => void;
+  openCloseEditPersonalData: () => void;
   personalData: any;
   control: Control<TAuthFormValues>;
   errors: FieldErrors<TAuthFormValues>;
@@ -21,7 +21,7 @@ type PersonalDataEditProps = {
 };
 
 export const PersonalDataEdit = ({
-  handleEditPersonalData,
+  openCloseEditPersonalData,
   control,
   errors,
   isValid,
@@ -106,7 +106,7 @@ export const PersonalDataEdit = ({
         <Button
           variant="text"
           onClick={() => {
-            handleEditPersonalData();
+            openCloseEditPersonalData();
             // setMode("RECOVERY");
           }}
         >

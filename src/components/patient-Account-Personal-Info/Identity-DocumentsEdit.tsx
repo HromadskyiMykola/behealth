@@ -11,7 +11,7 @@ import {
 import { RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
 
 type IdentityDocumentsEditProps = {
-  handleEditIdentityDocuments: () => void;
+  openCloseEditIdentityDocuments: () => void;
   identityDocuments: any;
   control: Control<TAuthFormValues>;
   errors: FieldErrors<TAuthFormValues>;
@@ -19,7 +19,7 @@ type IdentityDocumentsEditProps = {
 };
 
 export const IdentityDocumentsEdit = ({
-  handleEditIdentityDocuments,
+  openCloseEditIdentityDocuments,
   identityDocuments,
   control,
   errors,
@@ -105,7 +105,7 @@ export const IdentityDocumentsEdit = ({
         <Button
           variant="text"
           onClick={() => {
-            handleEditIdentityDocuments();
+            openCloseEditIdentityDocuments();
           }}
         >
           Відмінити

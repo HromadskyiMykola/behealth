@@ -1,4 +1,4 @@
-export * from "./Contac-tInfo";
+export * from "./Contact-Info";
 export * from "./Contact-Info-Edit";
 export * from "./Personal-Data";
 export * from "./Personal-Data-Edit";

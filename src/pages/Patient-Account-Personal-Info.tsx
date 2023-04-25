@@ -2,7 +2,12 @@ import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-import { TAuthFormValues, useApiService, useReactHookForm } from "~/common";
+import {
+  TAuthFormValues,
+  TPatientPersonalData,
+  useApiService,
+  useReactHookForm,
+} from "~/common";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
@@ -18,26 +23,23 @@ import {
 
 export function PatientAccountPersonalInfo() {
   const { patient, loading } = useApiService();
-  const [patientPersonalData, setPatientPersonalData] = useState({
-    contactInfo: null,
-    identityDocuments: null,
-    personalData: null,
-  });
-  const { contactInfo, identityDocuments, personalData } = patientPersonalData;
+  const [patientPersonalData, setPatientPersonalData] = useState(
+    {} as TPatientPersonalData
+  );
 
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
   const [isEditIdentityDocuments, setIsEditIdentityDocuments] = useState(false);
 
-  const handleEditContactInfo = () => {
+  const openCloseEditContactInfo = () => {
     setIsEditContactInfo(!isEditContactInfo);
   };
 
-  const handleEditPersonalData = () => {
+  const openCloseEditPersonalData = () => {
     setIsEditPersonalData(!isEditPersonalData);
   };
 
-  const handleEditIdentityDocuments = () => {
+  const openCloseEditIdentityDocuments = () => {
     setIsEditIdentityDocuments(!isEditIdentityDocuments);
   };
 
@@ -60,15 +62,19 @@ export function PatientAccountPersonalInfo() {
     handleSubmitPatientPersonalInfo,
   } = useReactHookForm();
 
- const onSubmit = (data: TAuthFormValues) => {
-   
+  const onSubmit = (data: TPatientPersonalData) => {
+    //  setPatientPersonalData(data);
 
-  //  setPatientPersonalData(data);
-
-   handleSubmitPatientPersonalInfo(data);
- };
-
-
+    handleSubmitPatientPersonalInfo({
+      ...data,
+      type: "patient_info",
+    }).then((res) => {
+      if (!res.success) return;
+      
+      setIsEditPersonalData(false);
+      setPatientPersonalData(data);
+    });
+  };
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -80,7 +86,7 @@ export function PatientAccountPersonalInfo() {
           </Typography>
 
           <ButtonEditIcon
-            onClick={handleEditContactInfo}
+            onClick={openCloseEditContactInfo}
             disabled={!patientPersonalData || isEditContactInfo}
           />
         </Stack>
@@ -98,11 +104,11 @@ export function PatientAccountPersonalInfo() {
 
             {isEditContactInfo ? (
               <ContactInfoEdit
-                handleEditContactInfo={handleEditContactInfo}
-                contactInfo={contactInfo}
+                openCloseEditContactInfo={openCloseEditContactInfo}
+                contactInfo={patientPersonalData}
               />
             ) : (
-              <ContactInfo contactInfo={contactInfo} />
+              <ContactInfo patientPersonalData={patientPersonalData} />
             )}
           </Stack>
         )}
@@ -113,7 +119,7 @@ export function PatientAccountPersonalInfo() {
           <Typography variant="h5">Персональні дані</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditPersonalData}
+            onClick={openCloseEditPersonalData}
             disabled={!patientPersonalData || isEditPersonalData}
           />
         </Stack>
@@ -124,14 +130,14 @@ export function PatientAccountPersonalInfo() {
         {!loading &&
           (isEditPersonalData ? (
             <PersonalDataEdit
-              handleEditPersonalData={() => handleEditPersonalData()}
+              openCloseEditPersonalData={() => openCloseEditPersonalData()}
               control={control}
               errors={errors}
               isValid={isValid}
-              personalData={personalData}
+              personalData={patientPersonalData}
             />
           ) : (
-            <PersonalData personalData={personalData} />
+            <PersonalData personalData={patientPersonalData} />
           ))}
 
         <Stack
@@ -143,7 +149,7 @@ export function PatientAccountPersonalInfo() {
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditIdentityDocuments}
+            onClick={openCloseEditIdentityDocuments}
             disabled={!patientPersonalData || isEditIdentityDocuments}
           />
         </Stack>
@@ -155,11 +161,11 @@ export function PatientAccountPersonalInfo() {
         {!loading &&
           (isEditIdentityDocuments ? (
             <IdentityDocumentsEdit
-              handleEditIdentityDocuments={handleEditIdentityDocuments}
+              openCloseEditIdentityDocuments={openCloseEditIdentityDocuments}
               control={control}
               errors={errors}
               isValid={isValid}
-              identityDocuments={identityDocuments}
+              identityDocuments={patientPersonalData}
             />
           ) : (
             <IdentityDocuments />

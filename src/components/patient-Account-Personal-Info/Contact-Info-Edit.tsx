@@ -5,12 +5,12 @@ import { RHFEmail, RHFmobileNum } from "../React-Hook-Form-Fields";
 import { useEffect } from "react";
 
 type ContactInfoEditProps = {
-  handleEditContactInfo: () => void;
+  openCloseEditContactInfo: () => void;
   contactInfo: any;
 };
 
 export const ContactInfoEdit = ({
-  handleEditContactInfo,
+  openCloseEditContactInfo,
   contactInfo,
 }: ContactInfoEditProps) => {
   const {
@@ -23,7 +23,7 @@ export const ContactInfoEdit = ({
 
   useEffect(
     () => () => {
-      isSubmitSuccessful && handleEditContactInfo();
+      isSubmitSuccessful && openCloseEditContactInfo();
     },
 
     [isSubmitSuccessful]
@@ -56,7 +56,7 @@ export const ContactInfoEdit = ({
       </Stack>
 
       <Stack direction="row" spacing={2}>
-        <Button variant="text" onClick={() => handleEditContactInfo()}>
+        <Button variant="text" onClick={() => openCloseEditContactInfo()}>
           Відмінити
         </Button>
 

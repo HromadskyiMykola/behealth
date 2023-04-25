@@ -2,11 +2,16 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { EUserType, TAuthFormValues, useApiService } from ".";
+import {
+  EUserType,
+  TAuthFormValues,
+  TPatientPersonalData,
+  useApiService,
+} from ".";
 import { useModalState } from "~/providers";
 
 export const useReactHookForm = () => {
-  const { auth, apiError, loading } = useApiService();
+  const { auth, apiError, loading, patient } = useApiService();
   const [searchParams] = useSearchParams();
   const tokenFromParams = searchParams.get("token");
   const userTypeFromParams = searchParams.get("user_type");
@@ -34,11 +39,15 @@ export const useReactHookForm = () => {
 
   const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
 
-  const handleSubmitPatientPersonalInfo = (data: TAuthFormValues) => {
-    console.log(data);
-    // console.log(formState);
-  };
+  const handleSubmitPatientPersonalInfo = async (
+    data: TPatientPersonalData
+  ) => {
+    await patient.personalInfo.update(data);
 
+    setSimpleModalMessage(false);
+
+    return { success: true };
+  };
   // navigate("/patient-account");
 
   const onSubmitPasswordReset = handleSubmit(

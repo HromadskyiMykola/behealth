@@ -44,9 +44,14 @@ const useApiService = () => {
 
       // transform data in all requests
       if (config.method === "post" || config.method === "put") {
+        console.log("req orig DATA >>>", config.data);
         config.data = transformRequestData(config.data);
+        console.log("req mod DATA >>>", config.data);
+        
       } else if (config.method === "delete") {
+        console.log("req orig PARAMS >>>", config.params);
         config.params = transformRequestData(config.params);
+        console.log("req mod PARAMS >>>", config.params);
       }
 
       return config;
@@ -90,8 +95,8 @@ const useApiService = () => {
         const response = await request;
         const data = transformResponseData(response.data);
 
-        console.log("res DATA >>", response.data);
-        console.log("mod DATA >>", data);
+        console.log("res orig DATA >>", response.data);
+        console.log("res mod DATA >>", data);
 
         return data;
       } catch (error) {
