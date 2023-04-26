@@ -1,7 +1,7 @@
-import { Controller, Control, FieldErrors, FormState } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Button, Grid, MenuItem, Stack } from "@mui/material";
 
-import { TAuthFormValues } from "~/common";
+import { TPatientPersonalData, useReactHookForm } from "~/common";
 
 import { SelectWithPlaceholder } from "../atomic";
 import {
@@ -11,88 +11,91 @@ import {
   RHFMiddleName,
   RHFTin,
 } from "../React-Hook-Form-Fields";
+import { useEffect } from "react";
 
 type PersonalDataEditProps = {
+  onSubmitPersonalData: (
+    data: TPatientPersonalData,
+    type: "patient_info" | "document"
+  ) => Promise<void>;
   openCloseEditPersonalData: () => void;
-  personalData: any;
-  control: Control<TAuthFormValues>;
-  errors: FieldErrors<TAuthFormValues>;
-  isValid: boolean;
+  patientPersonalData: TPatientPersonalData | null;
 };
 
 export const PersonalDataEdit = ({
+  onSubmitPersonalData,
   openCloseEditPersonalData,
-  control,
-  errors,
-  isValid,
-  personalData,
+  patientPersonalData,
 }: PersonalDataEditProps) => {
+  const { control, handleSubmit, isValid, errors, isSubmitSuccessful } =
+    useReactHookForm();
+
+  const { lastName, firstName, middleName, birthDate, tin, sex } =
+    patientPersonalData || {};
+
+  useEffect(() => {
+    isSubmitSuccessful && openCloseEditPersonalData();
+  }, [isSubmitSuccessful]);
+
   return (
-    <>
-      <Grid
-        container
-        spacing={{ md: 0, laptop: 1 }}
-        // direction={{ md: "column", laptop: "row" }}
-        // justifyContent="space-between"
-        // alignItems="stretch"
-      >
-        <Grid item laptop={4}>
+    <form
+      noValidate
+      onSubmit={handleSubmit((data) =>
+        onSubmitPersonalData(data, "patient_info")
+      )}
+    >
+      <Grid container columnSpacing={3}>
+        <Grid item xs={12} md={6} laptop={4}>
           <RHFLastName
             control={control}
             errors={errors}
-            defaultValue={personalData?.lastName}
+            defaultValue={lastName}
             autoFocus
           />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item xs={12} md={6} laptop={4}>
           <RHFFirstName
             control={control}
             errors={errors}
-            defaultValue={personalData?.firsName}
+            defaultValue={firstName}
           />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item xs={12} md={6} laptop={4}>
           <RHFMiddleName
             control={control}
             errors={errors}
-            defaultValue={personalData?.middleName}
+            defaultValue={middleName}
           />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item xs={12} md={6} laptop={4}>
           <RHFBirthDate
             control={control}
             errors={errors}
-            defaultValue={personalData?.birthDate}
+            defaultValue={birthDate}
           />
         </Grid>
 
-        <Grid item laptop={4}>
-          <RHFTin
-            control={control}
-            errors={errors}
-            defaultValue={personalData?.tin}
-          />
+        <Grid item xs={12} md={6} laptop={4}>
+          <RHFTin control={control} errors={errors} defaultValue={tin} />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item xs={12} md={6} laptop={4}>
           <Controller
             name="sex"
             control={control}
             rules={{ required: true }}
-            defaultValue={
-              // personalData?.sex ||
-              "male"}
+            defaultValue={sex}
             render={({ field }) => (
               <SelectWithPlaceholder
                 fullWidth
                 label="Стать"
                 placeholder="Стать"
                 {...field}
-                // TODO       error={!!errors.middleName}
-                // helperText={errors.middleName?.message || " "}
+                error={!!errors.sex}
+                helperText={errors.sex?.message || " "}
               >
                 <MenuItem value="male">Чоловік</MenuItem>
                 <MenuItem value="female">Жінка</MenuItem>
@@ -103,13 +106,7 @@ export const PersonalDataEdit = ({
       </Grid>
 
       <Stack direction="row" spacing={2}>
-        <Button
-          variant="text"
-          onClick={() => {
-            openCloseEditPersonalData();
-            // setMode("RECOVERY");
-          }}
-        >
+        <Button variant="text" onClick={openCloseEditPersonalData}>
           Відмінити
         </Button>
 
@@ -122,6 +119,6 @@ export const PersonalDataEdit = ({
           Зберегти
         </Button>
       </Stack>
-    </>
+    </form>
   );
 };

@@ -1,50 +1,46 @@
 import { Button, Stack } from "@mui/material";
-import { useReactHookForm } from "~/common";
+import { TPatientPersonalData, useReactHookForm } from "~/common";
 
 import { RHFEmail, RHFmobileNum } from "../React-Hook-Form-Fields";
 import { useEffect } from "react";
 
 type ContactInfoEditProps = {
+  onSubmitPersonalData: (
+    data: TPatientPersonalData,
+    type: "patient_info" | "document"
+  ) => Promise<void>;
   openCloseEditContactInfo: () => void;
-  contactInfo: any;
+  patientPersonalData: TPatientPersonalData | null;
 };
 
 export const ContactInfoEdit = ({
+  onSubmitPersonalData,
   openCloseEditContactInfo,
-  contactInfo,
+  patientPersonalData,
 }: ContactInfoEditProps) => {
-  const {
-    control,
-    handleSubmitPatientContactInfo,
-    isValid,
-    errors,
-    isSubmitSuccessful,
-  } = useReactHookForm();
+  const { control, handleSubmit, isValid, errors, isSubmitSuccessful } =
+    useReactHookForm();
 
-  useEffect(
-    () => () => {
-      isSubmitSuccessful && openCloseEditContactInfo();
-    },
-
-    [isSubmitSuccessful]
-  );
+  useEffect(() => {
+    isSubmitSuccessful && openCloseEditContactInfo();
+  }, [isSubmitSuccessful]);
 
   return (
-    <Stack
-      component="form"
+    <form
       noValidate
-      onSubmit={handleSubmitPatientContactInfo}
+      onSubmit={handleSubmit((data) =>
+        onSubmitPersonalData(data, "patient_info")
+      )}
     >
       <Stack
-        spacing={{ md: 0, laptop: 1 }}
+        mb="16px"
+        spacing={{ md: 0, laptop: 3 }}
         direction={{ md: "column", laptop: "row" }}
-        justifyContent="space-between"
-        alignItems="stretch"
       >
         <RHFEmail
           control={control}
           errors={errors}
-          defaultValue={contactInfo?.email}
+          defaultValue={patientPersonalData?.email}
           autoFocus
         />
 
@@ -56,7 +52,7 @@ export const ContactInfoEdit = ({
       </Stack>
 
       <Stack direction="row" spacing={2}>
-        <Button variant="text" onClick={() => openCloseEditContactInfo()}>
+        <Button variant="text" onClick={openCloseEditContactInfo}>
           Відмінити
         </Button>
 
@@ -64,6 +60,6 @@ export const ContactInfoEdit = ({
           Зберегти
         </Button>
       </Stack>
-    </Stack>
+    </form>
   );
 };

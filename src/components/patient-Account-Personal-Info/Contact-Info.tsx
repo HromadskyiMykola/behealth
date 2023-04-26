@@ -11,7 +11,7 @@ import {
 import { AlertTriangleIcon } from "lucide-react";
 import { TPatientPersonalData, phoneNumberFormatter } from "~/common";
 
-export const ContactInfo = ({ patientPersonalData }: { patientPersonalData: TPatientPersonalData }) => (
+export const ContactInfo = ({ patientPersonalData }: { patientPersonalData: TPatientPersonalData | null}) => (
   <TableContainer
     sx={{
       width: "auto",

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 
 import {
@@ -16,15 +16,16 @@ import {
   transformRequestData,
   transformResponseData,
   errorHandler,
+  coloredLog,
 } from "./api-Helpers";
 
 // TODO: import { mockApi } from "./mockApi";
 
 // TODO: const USE_MOCK_API = false;
 
-const apiClient = axios.create({
-  baseURL: "https://www.behealth.pp.ua/api/v1/",
-});
+// const apiClient = axios.create({
+//   baseURL: "https://www.behealth.pp.ua/api/v1/",
+// });
 
 const useApiService = () => {
   const [loading, setLoading] = useState(false);
@@ -33,8 +34,12 @@ const useApiService = () => {
 
   const clearApiError = useCallback(() => setApiError(null), []);
 
-  useEffect(() => {
-    const interceptorId = apiClient.interceptors.request.use((config) => {
+  const apiClient = useMemo(() => {
+    const client = axios.create({
+      baseURL: "https://www.behealth.pp.ua/api/v1/",
+    });
+
+    client.interceptors.request.use((config) => {
       const token = authenticatedUser?.token
         ? `Bearer ${authenticatedUser.token}`
         : null;
@@ -44,23 +49,49 @@ const useApiService = () => {
 
       // transform data in all requests
       if (config.method === "post" || config.method === "put") {
-        console.log("req orig DATA >>>", config.data);
+        console.log("request orig DATA >>>", config.data);
         config.data = transformRequestData(config.data);
-        console.log("req mod DATA >>>", config.data);
-        
+        coloredLog("request mod DATA >>>", config.data);
       } else if (config.method === "delete") {
-        console.log("req orig PARAMS >>>", config.params);
+        console.log("request orig PARAMS >>>", config.params);
         config.params = transformRequestData(config.params);
-        console.log("req mod PARAMS >>>", config.params);
+        coloredLog("request mod PARAMS >>>", config.params);
       }
 
       return config;
     });
 
-    return () => {
-      apiClient.interceptors.request.eject(interceptorId);
-    };
+    return client;
   }, [authenticatedUser]);
+
+  // useEffect(() => {
+  //   const interceptorId = apiClient.interceptors.request.use((config) => {
+  //     const token = authenticatedUser?.token
+  //       ? `Bearer ${authenticatedUser.token}`
+  //       : null;
+
+  //     // add a token to all requests
+  //     if (config.headers && token) config.headers.Authorization = token;
+
+  //     // transform data in all requests
+  //     if (config.method === "post" || config.method === "put") {
+  //       console.log("req orig DATA >>>", config.data);
+  //       config.data = transformRequestData(config.data);
+  //       console.log("req mod DATA >>>", config.data);
+
+  //     } else if (config.method === "delete") {
+  //       console.log("req orig PARAMS >>>", config.params);
+  //       config.params = transformRequestData(config.params);
+  //       console.log("req mod PARAMS >>>", config.params);
+  //     }
+
+  //     return config;
+  //   });
+
+  //   return () => {
+  //     apiClient.interceptors.request.eject(interceptorId);
+  //   };
+  // }, [authenticatedUser]);
 
   // TODO: на випадок подальших тупняків від беків, реалізувати фіктивній АРІ
 
@@ -95,8 +126,8 @@ const useApiService = () => {
         const response = await request;
         const data = transformResponseData(response.data);
 
-        console.log("res orig DATA >>", response.data);
-        console.log("res mod DATA >>", data);
+        console.log("response orig DATA >>", response.data);
+        coloredLog("response mod DATA >>", data);
 
         return data;
       } catch (error) {

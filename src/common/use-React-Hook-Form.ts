@@ -32,22 +32,6 @@ export const useReactHookForm = () => {
     loading && console.log(loading);
   }, [apiError, loading]);
 
-  const onSubmit = (data: TAuthFormValues) => {
-    console.log(data);
-    console.log(formState);
-  };
-
-  const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
-
-  const handleSubmitPatientPersonalInfo = async (
-    data: TPatientPersonalData
-  ) => {
-    await patient.personalInfo.update(data);
-
-    setSimpleModalMessage(false);
-
-    return { success: true };
-  };
   // navigate("/patient-account");
 
   const onSubmitPasswordReset = handleSubmit(
@@ -62,11 +46,9 @@ export const useReactHookForm = () => {
     }
   );
 
-  return {
+  return Object.freeze({
     control,
     handleSubmit,
-    handleSubmitPatientPersonalInfo,
-    handleSubmitPatientContactInfo,
     onSubmitPasswordReset,
     watch,
     reset,
@@ -74,5 +56,5 @@ export const useReactHookForm = () => {
     isSubmitSuccessful,
     errors,
     formState,
-  };
+  });
 };

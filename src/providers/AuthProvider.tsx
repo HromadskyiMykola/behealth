@@ -34,7 +34,6 @@ const getCurrentUser = (): { token: string; type: string } | null => {
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authenticatedUser, setUser] = useState(getCurrentUser());
-
   const singInProvider = ({ token, type, rememberMe }: TSignInProvider) => {
     const user = { token, type };
     const storage = rememberMe ? localStorage : sessionStorage;

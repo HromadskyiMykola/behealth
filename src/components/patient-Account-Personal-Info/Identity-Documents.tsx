@@ -7,7 +7,13 @@ import {
   Typography,
 } from "@mui/material";
 
-export const IdentityDocuments = () => (
+import { TPatientPersonalData } from "~/common";
+
+export const IdentityDocuments = ({
+  patientPersonalData,
+}: {
+  patientPersonalData: TPatientPersonalData | null;
+}) => (
   <TableContainer
     sx={{
       display: "inline-block",
