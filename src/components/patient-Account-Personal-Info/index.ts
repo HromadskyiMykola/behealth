@@ -4,3 +4,4 @@ export * from "./Personal-Data";
 export * from "./Personal-Data-Edit";
 export * from "./Identity-Documents";
 export * from "./Identity-DocumentsEdit";
+export * from "./Nav-Tabs";

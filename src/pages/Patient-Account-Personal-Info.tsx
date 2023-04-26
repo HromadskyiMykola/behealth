@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 
-import { TPatientPersonalData, useApiService } from "~/common";
+import { usePatientFetchingData } from "~/common";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
@@ -17,9 +17,13 @@ import {
 } from "~/components/patient-Account-Personal-Info";
 
 export function PatientAccountPersonalInfo() {
-  const { patient } = useApiService();
-  const [patientPersonalData, setPatientPersonalData] =
-    useState<TPatientPersonalData | null>(null);
+  const { patientPersonalData, onSubmitPersonalData } =
+    usePatientFetchingData();
+
+  const props = {
+    onSubmitPersonalData,
+    patientPersonalData,
+  };
 
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
@@ -33,24 +37,6 @@ export function PatientAccountPersonalInfo() {
   };
   const openCloseEditIdentityDocuments = () => {
     setIsEditIdentityDocuments(!isEditIdentityDocuments);
-  };
-
-  useEffect(() => {
-    patient.personalInfo.get().then(setPatientPersonalData);
-  }, []);
-
-  const onSubmitPersonalData = async (
-    data: TPatientPersonalData,
-    type: "patient_info" | "document"
-  ) => {
-    await patient.personalInfo.update({ ...data, type });
-
-    setPatientPersonalData({ ...patientPersonalData, ...data });
-  };
-
-  const props = {
-    onSubmitPersonalData,
-    patientPersonalData,
   };
 
   return (
