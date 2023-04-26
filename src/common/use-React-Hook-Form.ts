@@ -2,11 +2,16 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { EUserType, TAuthFormValues, useApiService } from ".";
+import {
+  EUserType,
+  TAuthFormValues,
+  TPatientPersonalData,
+  useApiService,
+} from ".";
 import { useModalState } from "~/providers";
 
 export const useReactHookForm = () => {
-  const { auth, apiError, loading } = useApiService();
+  const { auth, apiError, loading, patient } = useApiService();
   const [searchParams] = useSearchParams();
   const tokenFromParams = searchParams.get("token");
   const userTypeFromParams = searchParams.get("user_type");
@@ -27,18 +32,6 @@ export const useReactHookForm = () => {
     loading && console.log(loading);
   }, [apiError, loading]);
 
-  const onSubmit = (data: TAuthFormValues) => {
-    console.log(data);
-    console.log(formState);
-  };
-
-  const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
-
-  const handleSubmitPatientPersonalInfo = (data: TAuthFormValues) => {
-    console.log(data);
-    // console.log(formState);
-  };
-
   // navigate("/patient-account");
 
   const onSubmitPasswordReset = handleSubmit(
@@ -53,11 +46,9 @@ export const useReactHookForm = () => {
     }
   );
 
-  return {
+  return Object.freeze({
     control,
     handleSubmit,
-    handleSubmitPatientPersonalInfo,
-    handleSubmitPatientContactInfo,
     onSubmitPasswordReset,
     watch,
     reset,
@@ -65,5 +56,5 @@ export const useReactHookForm = () => {
     isSubmitSuccessful,
     errors,
     formState,
-  };
+  });
 };

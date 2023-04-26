@@ -1,12 +1,12 @@
-import { FormEvent, FormEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
-import { useForm } from "react-hook-form";
 
-import { TAuthFormValues, useApiService, useReactHookForm } from "~/common";
+import { TPatientPersonalData, useApiService } from "~/common";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
 import avatar from "~/assets/images/avatar.png";
+
 import {
   ContactInfo,
   ContactInfoEdit,
@@ -17,27 +17,21 @@ import {
 } from "~/components/patient-Account-Personal-Info";
 
 export function PatientAccountPersonalInfo() {
-  const { patient, loading } = useApiService();
-  const [patientPersonalData, setPatientPersonalData] = useState({
-    contactInfo: null,
-    identityDocuments: null,
-    personalData: null,
-  });
-  const { contactInfo, identityDocuments, personalData } = patientPersonalData;
+  const { patient } = useApiService();
+  const [patientPersonalData, setPatientPersonalData] =
+    useState<TPatientPersonalData | null>(null);
 
   const [isEditContactInfo, setIsEditContactInfo] = useState(false);
   const [isEditPersonalData, setIsEditPersonalData] = useState(false);
   const [isEditIdentityDocuments, setIsEditIdentityDocuments] = useState(false);
 
-  const handleEditContactInfo = () => {
+  const openCloseEditContactInfo = () => {
     setIsEditContactInfo(!isEditContactInfo);
   };
-
-  const handleEditPersonalData = () => {
+  const openCloseEditPersonalData = () => {
     setIsEditPersonalData(!isEditPersonalData);
   };
-
-  const handleEditIdentityDocuments = () => {
+  const openCloseEditIdentityDocuments = () => {
     setIsEditIdentityDocuments(!isEditIdentityDocuments);
   };
 
@@ -45,33 +39,22 @@ export function PatientAccountPersonalInfo() {
     patient.personalInfo.get().then(setPatientPersonalData);
   }, []);
 
-  // const { control, handleSubmit, formState, watch, reset } =
-  //   useForm<TAuthFormValues>({ mode: "onChange", delayError: 1000 });
+  const onSubmitPersonalData = async (
+    data: TPatientPersonalData,
+    type: "patient_info" | "document"
+  ) => {
+    await patient.personalInfo.update({ ...data, type });
 
-  // const { errors } = formState;
+    setPatientPersonalData({ ...patientPersonalData, ...data });
+  };
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    isValid,
-    errors,
-    isSubmitSuccessful,
-    handleSubmitPatientPersonalInfo,
-  } = useReactHookForm();
-
- const onSubmit = (data: TAuthFormValues) => {
-   
-
-  //  setPatientPersonalData(data);
-
-   handleSubmitPatientPersonalInfo(data);
- };
-
-
+  const props = {
+    onSubmitPersonalData,
+    patientPersonalData,
+  };
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Contact info */}
       <CustomizedPaper>
         <Stack direction="row" justifyContent="space-between" mb="24px">
@@ -80,29 +63,29 @@ export function PatientAccountPersonalInfo() {
           </Typography>
 
           <ButtonEditIcon
-            onClick={handleEditContactInfo}
-            disabled={!patientPersonalData || isEditContactInfo}
+            onClick={openCloseEditContactInfo}
+            disabled={isEditContactInfo}
           />
         </Stack>
 
-        {loading && (
+        {!patientPersonalData && (
           <Stack direction="row" gap={2}>
             <Skeleton variant="rounded" sx={{ height: 168, width: 168 }} />
             <Skeleton variant="rounded" sx={{ height: 150, width: "100%" }} />
           </Stack>
         )}
 
-        {!loading && (
+        {patientPersonalData && (
           <Stack direction="row" gap={2}>
-            <img src={avatar} alt="avatar" />
+            <img src={avatar} alt="avatar" width="168px" height="168px" />
 
             {isEditContactInfo ? (
               <ContactInfoEdit
-                handleEditContactInfo={handleEditContactInfo}
-                contactInfo={contactInfo}
+                openCloseEditContactInfo={openCloseEditContactInfo}
+                {...props}
               />
             ) : (
-              <ContactInfo contactInfo={contactInfo} />
+              <ContactInfo patientPersonalData={patientPersonalData} />
             )}
           </Stack>
         )}
@@ -113,25 +96,24 @@ export function PatientAccountPersonalInfo() {
           <Typography variant="h5">Персональні дані</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditPersonalData}
-            disabled={!patientPersonalData || isEditPersonalData}
+            onClick={openCloseEditPersonalData}
+            disabled={isEditPersonalData}
           />
         </Stack>
 
         {/* Personal info */}
-        {loading && <Skeleton variant="text" sx={{ height: 150 }} />}
+        {!patientPersonalData && (
+          <Skeleton variant="text" sx={{ height: 150 }} />
+        )}
 
-        {!loading &&
+        {patientPersonalData &&
           (isEditPersonalData ? (
             <PersonalDataEdit
-              handleEditPersonalData={() => handleEditPersonalData()}
-              control={control}
-              errors={errors}
-              isValid={isValid}
-              personalData={personalData}
+              openCloseEditPersonalData={openCloseEditPersonalData}
+              {...props}
             />
           ) : (
-            <PersonalData personalData={personalData} />
+            <PersonalData patientPersonalData={patientPersonalData} />
           ))}
 
         <Stack
@@ -143,28 +125,26 @@ export function PatientAccountPersonalInfo() {
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
           <ButtonEditIcon
-            onClick={handleEditIdentityDocuments}
-            disabled={!patientPersonalData || isEditIdentityDocuments}
+            onClick={openCloseEditIdentityDocuments}
+            disabled={isEditIdentityDocuments}
           />
         </Stack>
 
         {/* Documents info */}
+        {!patientPersonalData && (
+          <Skeleton variant="text" sx={{ height: 150 }} />
+        )}
 
-        {loading && <Skeleton variant="text" sx={{ height: 150 }} />}
-
-        {!loading &&
+        {patientPersonalData &&
           (isEditIdentityDocuments ? (
             <IdentityDocumentsEdit
-              handleEditIdentityDocuments={handleEditIdentityDocuments}
-              control={control}
-              errors={errors}
-              isValid={isValid}
-              identityDocuments={identityDocuments}
+              openCloseEditIdentityDocuments={openCloseEditIdentityDocuments}
+              {...props}
             />
           ) : (
-            <IdentityDocuments />
+            <IdentityDocuments patientPersonalData={patientPersonalData} />
           ))}
       </CustomizedPaper>
-    </form>
+    </>
   );
 }

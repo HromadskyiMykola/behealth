@@ -221,25 +221,25 @@ export type TPatientAdditionalData = {
 };
 
 export type TPatientPersonalData = {
-  type?: "patient_info" | "document";
+  type?: "patient_info" | "document" ;
   mobileNum?: string;
   email?: string;
   //
   firstName?: string;
-  middleName?: string ;
+  middleName?: string;
   lastName?: string;
   birthDate?: string;
   tin?: string;
   sex?: "male" | "female" | "";
   //
-  typeOfDoc?: string;
+  typeOfDoc?: "Passport" | "IdCard" | "";
   docSeries?: string;
   issuedBy?: string;
   dateOfIssue?: string;
   docNum?: string;
 };
 
-export type TAuthFormValues = TPatientPersonalData &{
+export type TAuthFormValues = TPatientPersonalData & {
   firstName: string;
   middleName: string;
   lastName: string;
@@ -256,7 +256,7 @@ export type TAuthFormValues = TPatientPersonalData &{
   sex: "male" | "female" | "";
   chooseDoctor: string;
   time: string;
-  typeOfDoc: string;
+  // typeOfDoc: "Passport" | "IdCard";
   docNum: string;
 };
 // apiService types
