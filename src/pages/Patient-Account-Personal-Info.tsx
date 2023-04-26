@@ -92,7 +92,7 @@ export function PatientAccountPersonalInfo() {
       </CustomizedPaper>
 
       <CustomizedPaper>
-        <Stack direction="row" justifyContent="space-between">
+        <Stack mb="14px" direction="row" justifyContent="space-between">
           <Typography variant="h5">Персональні дані</Typography>
 
           <ButtonEditIcon
@@ -120,7 +120,7 @@ export function PatientAccountPersonalInfo() {
           direction="row"
           justifyContent="space-between"
           mt="24px"
-          // mb="24px"
+          mb="14px"
         >
           <Typography variant="h5">Документи, що засвідчують особу</Typography>
 
