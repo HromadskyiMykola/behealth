@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 import {
   Button,
@@ -15,7 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { CustomizedInput } from "../atomic";
 
-import { TAuthFormValues, useDeviceType } from "~/common";
+import { TAuthFormValues, useDeviceType, useReactHookForm } from "~/common";
 import {
   RHFBirthDate,
   RHFFirstName,
@@ -35,19 +34,13 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
   const isMobile = useDeviceType();
 
-  const { control, handleSubmit, formState } = useForm<TAuthFormValues>({
-    mode: "onChange",
-    delayError: 1000,
-  });
-
-  const { errors } = formState;
+  const { control, handleSubmit, errors, isValid } = useReactHookForm();
 
   return (
     <Dialog
       fullScreen={isWidth380px}
       scroll="body"
       open={openIdentificationModal}
-      // maxWidth="laptop"
       sx={{
         "& .MuiPaper-root": {
           borderRadius: isWidth380px
@@ -82,12 +75,11 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
         noValidate
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Grid item></Grid>
-
         <Grid item textAlign="center">
           <Typography variant="h5">
             Ідентифікація особи та реєстрація
           </Typography>
+
           <Typography
             variant="body2"
             sx={{ mt: "16px", color: palette.custom.neutral60 }}
@@ -124,20 +116,16 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
           </Grid>
         </Grid>
 
-        <Button
-          variant="text"
-          sx={{ pl: "16px", alignSelf: isMobile ? "center" : "flex-start" }}
+        <Typography
+          sx={{ cursor: "pointer" }}
+          variant="body2"
+          color={palette.primary.main}
           onClick={() => {}}
         >
           Чому це важливо?
-        </Button>
+        </Typography>
 
-        <Button
-          disabled={!formState.isValid}
-          type="submit"
-          variant="contained"
-          // sx={{ backgroundColor: primaryColor }}
-        >
+        <Button disabled={!isValid} type="submit" variant="contained">
           Завершити реєстрацію
         </Button>
       </Grid>
