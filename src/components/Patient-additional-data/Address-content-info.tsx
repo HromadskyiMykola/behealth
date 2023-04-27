@@ -1,12 +1,14 @@
-import React from "react";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
-import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/Patient-additional-data/const-additional-data";
+import { useTheme, styled, Typography, Stack, IconButton } from "@mui/material";
 import { Trash2 } from "lucide-react";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/system";
-import { IPatientAdditionData, useApiService } from "~/common";
+
+import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/Patient-additional-data/const-additional-data";
+
+import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+
+interface Props {
+  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  patientAdditionalData: TPatientAdditionalData | null;
+}
 
 const StackContentBox = styled(Stack)(({ theme }) => ({
   flexDirection: "row",
@@ -19,45 +21,52 @@ const StackContentBox = styled(Stack)(({ theme }) => ({
 }));
 
 export const AddressContentInfo = ({
-  patientAdditionData,
-  isChangeAddress,
-}: IPatientAdditionData) => {
-  const { custom } = useTheme().palette;
-  const { titleContent } = TEXT_ADDRESSES_EDIT_FORM.addresses;
-  const { patient } = useApiService();
+  patientAdditionalData,
+  onSubmitAdditionalData,
+}: Props) => {
+  const { secondary70, secondary20, error50 } = useTheme().palette.custom;
+  const { type, addresses } = TEXT_ADDRESSES_EDIT_FORM.addresses.titleContent;
+  const { settlementType, settlementAndStr, houseNum, apartmentNum } =
+    patientAdditionalData || {};
 
   const deleteInfoAddress = () => {
-    patient.additionalInfo.delete({ type: "address" }).then();
-    // isChangeAddress();
+    onSubmitAdditionalData({ type: "address" }, { isNeedDeleteData: true });
   };
+
   return (
     <StackContentBox>
       <Stack gap={1}>
-        <Typography variant="body2" color={custom.secondary70}>
-          {titleContent.type}
+        <Typography variant="body2" color={secondary70}>
+          {type}
         </Typography>
-        <Typography variant="subtitle2" color={custom.secondary20}>
-          {patientAdditionData?.settlementType}
+
+        <Typography variant="subtitle2" color={secondary20}>
+          {settlementType}
         </Typography>
       </Stack>
+
       <Stack gap={1}>
-        <Typography variant="body2" color={custom.secondary70}>
-          {titleContent.addresses}
+        <Typography variant="body2" color={secondary70}>
+          {addresses}
         </Typography>
-        <Typography variant="subtitle2" color={custom.secondary20}>
-          {`${patientAdditionData?.settlementAndStr} буд:${patientAdditionData?.houseNum}`}
+
+        <Typography variant="subtitle2" color={secondary20}>
+          {settlementAndStr} буд:{houseNum}
         </Typography>
       </Stack>
+
       <Stack gap={1}>
-        <Typography variant="body2" color={custom.secondary70}>
-          {titleContent.type}
+        <Typography variant="body2" color={secondary70}>
+          {type}
         </Typography>
-        <Typography variant="subtitle2" color={custom.secondary20}>
-          {patientAdditionData?.apartmentNum}
+
+        <Typography variant="subtitle2" color={secondary20}>
+          {apartmentNum}
         </Typography>
       </Stack>
+
       <IconButton onClick={deleteInfoAddress}>
-        <Trash2 size="24px" color={custom.error50} />
+        <Trash2 size="24px" color={error50} />
       </IconButton>
     </StackContentBox>
   );

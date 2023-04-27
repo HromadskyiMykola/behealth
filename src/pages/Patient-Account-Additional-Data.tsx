@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
-
-import { useApiService } from "~/common";
+import { TOnSubmitAdditionalData, usePatientFetchingData } from "~/common";
 
 import { CustomizedPaper } from "~/components/atomic";
 import AdditionDataContainer from "~/components/tads.additionalData/Addition-data-container";
-import PatientAdditionalDataAddress from "~/components/Patient-additional-data/Patient-additional-data-address";
+import { PatientAdditionalDataAddress } from "~/components/Patient-additional-data";
+import { Skeleton, Stack } from "@mui/material";
 
 export function PatientAccountAdditionalData() {
-  const { patient } = useApiService();
-  const [patientAdditionData, setPatientAdditionData] = useState(null);
-  const [isChangeAddress, setIsChangeAddress] = useState(0);
+  const { patientAdditionalData, onSubmitAdditionalData } =
+    usePatientFetchingData();
 
-  useEffect(() => {
-    patient.additionalInfo.get().then(setPatientAdditionData);
-    console.log(patientAdditionData);
-  }, [isChangeAddress]);
-
-  const changeAddress = () => {
-    setIsChangeAddress(isChangeAddress + 1);
-  };
   return (
     <CustomizedPaper>
       {/*<AdditionDataContainer patientAdditionData={patientAdditionData} />*/}
-      <PatientAdditionalDataAddress
-        patientAdditionData={patientAdditionData}
-        isChangeAddress={changeAddress}
-      />
+
+      {!patientAdditionalData && (
+        <Stack gap={2}>
+          <Skeleton variant="text" sx={{ height: 150 }} />
+          <Skeleton variant="rounded" sx={{ height: 150 }} />
+        </Stack>
+      )}
+
+      {patientAdditionalData && (
+        <PatientAdditionalDataAddress
+          patientAdditionalData={patientAdditionalData}
+          onSubmitAdditionalData={
+            onSubmitAdditionalData as TOnSubmitAdditionalData
+          }
+        />
+      )}
     </CustomizedPaper>
   );
 }

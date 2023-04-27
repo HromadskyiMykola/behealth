@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { useState } from "react";
+import { useTheme, Typography, Stack } from "@mui/material";
 import { Plus } from "lucide-react";
-import Button from "@mui/material/Button";
-import { useTheme } from "@mui/material";
+
+import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
 import { AddressInputForm } from "./Address-input-form";
 import { AddressContentInfo } from "~/components/Patient-additional-data/Address-content-info";
-import { IPatientAdditionData } from "~/common";
+import { ButtonEditIcon, ButtonM } from "../atomic";
 
-const PatientAdditionalDataAddress = ({
-  patientAdditionData,
-  isChangeAddress,
-}: IPatientAdditionData) => {
+interface Props {
+  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  patientAdditionalData: TPatientAdditionalData | null;
+}
+
+export const PatientAdditionalDataAddress = ({
+  patientAdditionalData,
+  onSubmitAdditionalData,
+}: Props) => {
   const { custom } = useTheme().palette;
-  console.log(patientAdditionData);
   const [isViewEdit, setIsViewEdit] = useState(false);
 
   const viewEditButton = () => {
@@ -22,6 +25,7 @@ const PatientAdditionalDataAddress = ({
   const closeEditFrom = () => {
     setIsViewEdit(false);
   };
+
   return (
     <Stack spacing={2}>
       <Stack
@@ -30,38 +34,45 @@ const PatientAdditionalDataAddress = ({
         alignItems="center"
       >
         <Typography variant="h5">Адреси</Typography>
-        <Button
-          startIcon={<Plus size="24px" />}
-          onClick={viewEditButton}
-          disabled={isViewEdit}
-        >
-          Змінити
-        </Button>
+
+        {patientAdditionalData?.settlementType ? (
+          <ButtonEditIcon onClick={viewEditButton} disabled={isViewEdit} />
+        ) : (
+          <ButtonM
+            startIcon={<Plus size="24px" />}
+            onClick={viewEditButton}
+            disabled={isViewEdit}
+          >
+            Додати
+          </ButtonM>
+        )}
       </Stack>
-      {!patientAdditionData?.settlementType && (
-        <Typography variant="body2" color={custom.secondary80}>
-          Ви ще не додали свої адреси.
-        </Typography>
-      )}
-      {patientAdditionData?.settlementType && (
+
+      {!patientAdditionalData?.settlementType &&
+        (isViewEdit ? null : (
+          <Typography variant="body2" color={custom.secondary80}>
+            Ви ще не додали свої адреси.
+          </Typography>
+        ))}
+
+      {patientAdditionalData?.settlementType && (
         <AddressContentInfo
-          patientAdditionData={patientAdditionData}
-          isChangeAddress={isChangeAddress}
+          patientAdditionalData={patientAdditionalData}
+          onSubmitAdditionalData={onSubmitAdditionalData}
         />
       )}
+
       {isViewEdit && (
         <AddressInputForm
           closeEditFrom={closeEditFrom}
-          patientAdditionData={patientAdditionData}
-          isChangeAddress={isChangeAddress}
-          setIsViewEdit={setIsViewEdit}
+          // setIsViewEdit={setIsViewEdit}   ?
+          patientAdditionalData={patientAdditionalData}
+          onSubmitAdditionalData={onSubmitAdditionalData}
         />
       )}
     </Stack>
   );
 };
-
-export default PatientAdditionalDataAddress;
 
 // <Box display="flex" flexDirection="column" gap="16px">
 //     <Box display="flex" justifyContent="space-between">

@@ -18,8 +18,6 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
     setSimpleModalLoading,
   } = useModalState();
 
-  console.log("loading!!!", simpleModalLoading);
-
   const handlerIsClose = () => {
     setSimpleModalMessage(false);
     setOpenModal(false);

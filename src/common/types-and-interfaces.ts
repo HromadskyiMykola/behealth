@@ -221,7 +221,7 @@ export type TPatientAdditionalData = {
 };
 
 export type TPatientPersonalData = {
-  type?: "patient_info" | "document" ;
+  type?: "patient_info" | "document";
   mobileNum?: string;
   email?: string;
   //
@@ -295,7 +295,10 @@ export interface IPatientAdditionDataProps {
   address?: undefined;
 }
 
-export interface IPatientAdditionData {
-  patientAdditionData: IPatientAdditionDataProps | null;
-  isChangeAddress?: () => void;
-}
+export type TOnSubmitAdditionalData = (
+  data: TPatientAdditionalData,
+  action?: {
+    isNeedCreateData?: boolean;
+    isNeedDeleteData?: boolean;
+  } 
+) => Promise<void>;
