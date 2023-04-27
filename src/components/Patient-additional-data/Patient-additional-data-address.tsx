@@ -13,7 +13,7 @@ const PatientAdditionalDataAddress = ({
   isChangeAddress,
 }: IPatientAdditionData) => {
   const { custom } = useTheme().palette;
-  console.log(patientAdditionData);
+
   const [isViewEdit, setIsViewEdit] = useState(false);
 
   const viewEditButton = () => {

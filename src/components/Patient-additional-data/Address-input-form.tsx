@@ -70,7 +70,6 @@ export const AddressInputForm = ({
     resolver: yupResolver(schema),
   });
   const { patient } = useApiService();
-  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
