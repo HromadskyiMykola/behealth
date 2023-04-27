@@ -206,7 +206,7 @@ export type TResetPassData = {
 };
 
 export type TPatientAdditionalData = {
-  type?: "address" | "work";
+  type: "address" | "work";
   //
   settlementType?: string;
   settlementAndStr?: string;

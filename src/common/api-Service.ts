@@ -194,8 +194,8 @@ const useApiService = () => {
   );
 
   const forgotPassword = useCallback(
-    ({ email, userType }: TForgotPassData) =>
-      _requestWithErrorHandling(apiClient.post("forgot", { email, userType })),
+    (data: TForgotPassData) =>
+      _requestWithErrorHandling(apiClient.post("forgot", data)),
     []
   );
 

@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+
+import { Typography } from "@mui/material";
 import { UserIcon } from "lucide-react";
 
 import { useAuthProvider, useModalState } from "~/providers";
@@ -7,7 +9,6 @@ import { ERouteNames } from "~/routes/routeNames";
 
 import { FormModal } from ".";
 import { ButtonM } from "../atomic";
-import { Typography } from "@mui/material";
 
 export const AuthButton = () => {
   const { setOpenMainModal } = useModalState();
