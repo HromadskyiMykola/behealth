@@ -68,6 +68,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const token = await auth.signIn({ email, passwordCurrent, userType });
 
+    setSimpleModalLoading(false);
+
     singInProvider({ token, type: userType, rememberMe });
 
     return { success: true };
