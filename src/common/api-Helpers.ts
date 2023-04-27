@@ -20,7 +20,7 @@ const keyMap: { [key: string]: string } = {
   employmentStatus: "work_type",
   workplace: "place",
   jobTitle: "position",
-  // eligibleCat: "eligible-cat",
+  eligibleCat: "preferenceCategories",
   passwordCurrent: "password",
   passwordNew: "password",
   documentType: "document_type",
