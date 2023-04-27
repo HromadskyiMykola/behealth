@@ -11,22 +11,32 @@ type TProps = {
 
 export function SimpleModal({ children, apiError, loading }: TProps) {
   const [openModal, setOpenModal] = useState(false);
-  const { simpleModalMessage, setSimpleModalMessage } = useModalState();
-  const { loading: simpleModalMessageLoading } = (simpleModalMessage || {}) as {
-    loading: boolean;
+  const {
+    simpleModalMessage,
+    simpleModalLoading,
+    setSimpleModalMessage,
+    setSimpleModalLoading,
+  } = useModalState();
+
+  console.log("loading!!!", simpleModalLoading);
+
+  const handlerIsClose = () => {
+    setSimpleModalMessage(false);
+    setOpenModal(false);
+    setSimpleModalLoading(false);
   };
 
   useEffect(() => {
     if (children || apiError || loading) {
       setOpenModal(true);
     } else {
-      setOpenModal(false);
+      handlerIsClose();
     }
   }, [children, apiError, loading]);
 
   return (
     <Dialog
-      open={!!simpleModalMessage || openModal}
+      open={!!simpleModalMessage || openModal || simpleModalLoading}
       fullWidth
       maxWidth="sm"
       sx={{
@@ -34,10 +44,7 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
           borderRadius: "12px",
         },
       }}
-      onClose={() => {
-        setSimpleModalMessage(false);
-        setOpenModal(false);
-      }}
+      onClose={handlerIsClose}
     >
       <Stack padding="32px" gap="16px" direction="column" alignItems="center">
         {children && <span>{children}</span>}
@@ -51,7 +58,7 @@ export function SimpleModal({ children, apiError, loading }: TProps) {
           <span>{simpleModalMessage}</span>
         )}
 
-        {(loading || simpleModalMessageLoading) && (
+        {(loading || simpleModalLoading) && (
           <LinearProgress color="success" sx={{ width: "100%" }} />
         )}
       </Stack>
