@@ -12,5 +12,5 @@ export * from "./ClinicsPage";
 export * from "./ProfilePage";
 export * from "./Not-Found";
 export * from "./Root";
-export * from './ClinicInfoPage'
+export * from "./ClinicInfoPage";
 export * from "./DoctorAccountPage";

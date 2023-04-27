@@ -1,17 +1,16 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { EUserType, TAuthFormValues, useApiService } from ".";
 import { useModalState } from "~/providers";
 
 export const useReactHookForm = () => {
-  const { auth, apiError, loading } = useApiService();
+  const { auth, apiError, loading, patient } = useApiService();
   const [searchParams] = useSearchParams();
   const tokenFromParams = searchParams.get("token");
   const userTypeFromParams = searchParams.get("user_type");
-  const navigate = useNavigate();
-  const { setSimpleModalMessage } = useModalState();
+  const { setSimpleModalMessage, setSimpleModalLoading } = useModalState();
 
   const { control, handleSubmit, formState, watch, reset } =
     useForm<TAuthFormValues>({
@@ -22,24 +21,31 @@ export const useReactHookForm = () => {
   const { errors, isValid, isSubmitSuccessful } = formState;
 
   useEffect(() => {
-    apiError && setSimpleModalMessage(apiError);
-    loading && setSimpleModalMessage({ loading });
-    loading && console.log(loading);
+    // since the global context is used, in order to avoid unnecessary re-rendering,
+    // perform an additional check
+    if (apiError) {
+      setSimpleModalLoading(false);
+      setSimpleModalMessage(apiError);
+    }
+    if (loading) setSimpleModalLoading(loading);
   }, [apiError, loading]);
 
-  const onSubmit = (data: TAuthFormValues) => {
-    console.log(data);
-    console.log(formState);
+  const onSubmitSingUp = async (data: TAuthFormValues) => {
+    const { email, passwordNew } = data;
+
+    await auth.signUp({ email, passwordNew });
+
+    reset();
+
+    return { success: true };
   };
 
-  const handleSubmitPatientContactInfo = handleSubmit(onSubmit);
-
-  const handleSubmitPatientPersonalInfo = (data: TAuthFormValues) => {
-    console.log(data);
-    // console.log(formState);
+  const onSubmitForgotPassword = (data: TAuthFormValues) => {
+    auth.forgotPassword(data).then((res) => {
+      setSimpleModalLoading(false);
+      setSimpleModalMessage(res);
+    });
   };
-
-  // navigate("/patient-account");
 
   const onSubmitPasswordReset = handleSubmit(
     ({ passwordNew }: { passwordNew: string }) => {
@@ -48,22 +54,25 @@ export const useReactHookForm = () => {
 
         auth
           .resetPassword({ userType, token: tokenFromParams, passwordNew })
-          .then(setSimpleModalMessage);
+          .then((res) => {
+            setSimpleModalLoading(false);
+            setSimpleModalMessage(res);
+          });
       }
     }
   );
 
-  return {
+  return Object.freeze({
     control,
     handleSubmit,
-    handleSubmitPatientPersonalInfo,
-    handleSubmitPatientContactInfo,
     onSubmitPasswordReset,
+    onSubmitForgotPassword,
     watch,
     reset,
     isValid,
     isSubmitSuccessful,
     errors,
     formState,
-  };
+    onSubmitSingUp,
+  });
 };

@@ -206,7 +206,7 @@ export type TResetPassData = {
 };
 
 export type TPatientAdditionalData = {
-  type?: "address" | "work";
+  type: "address" | "work";
   //
   settlementType?: string;
   settlementAndStr?: string;
@@ -221,7 +221,7 @@ export type TPatientAdditionalData = {
 };
 
 export type TPatientPersonalData = {
-  type?: "patient_info" | "document";
+  type?: "patient_info" | "document" ;
   mobileNum?: string;
   email?: string;
   //
@@ -232,7 +232,7 @@ export type TPatientPersonalData = {
   tin?: string;
   sex?: "male" | "female" | "";
   //
-  typeOfDoc?: string;
+  typeOfDoc?: "Passport" | "IdCard" | "";
   docSeries?: string;
   issuedBy?: string;
   dateOfIssue?: string;
@@ -256,7 +256,7 @@ export type TAuthFormValues = TPatientPersonalData & {
   sex: "male" | "female" | "";
   chooseDoctor: string;
   time: string;
-  typeOfDoc: string;
+  // typeOfDoc: "Passport" | "IdCard";
   docNum: string;
 };
 // apiService types

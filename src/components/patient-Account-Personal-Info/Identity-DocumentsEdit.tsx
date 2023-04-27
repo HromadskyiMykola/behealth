@@ -1,7 +1,7 @@
 import { Controller, Control, FieldErrors, FormState } from "react-hook-form";
-import { Button, Grid, MenuItem, Stack } from "@mui/material";
+import { Button, Grid, MenuItem, Stack, TextField } from "@mui/material";
 
-import { TAuthFormValues } from "~/common";
+import { TPatientPersonalData, useReactHookForm } from "~/common";
 
 import {
   CustomizedInput,
@@ -9,36 +9,43 @@ import {
   SelectWithPlaceholder,
 } from "../atomic";
 import { RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
+import { useEffect } from "react";
 
 type IdentityDocumentsEditProps = {
-  handleEditIdentityDocuments: () => void;
-  identityDocuments: any;
-  control: Control<TAuthFormValues>;
-  errors: FieldErrors<TAuthFormValues>;
-  isValid: boolean;
+  onSubmitPersonalData: (
+    data: TPatientPersonalData,
+    type: "patient_info" | "document"
+  ) => Promise<void>;
+  openCloseEditIdentityDocuments: () => void;
+  patientPersonalData: TPatientPersonalData | null;
 };
 
 export const IdentityDocumentsEdit = ({
-  handleEditIdentityDocuments,
-  identityDocuments,
-  control,
-  errors,
-  isValid,
+  onSubmitPersonalData,
+  openCloseEditIdentityDocuments,
+  patientPersonalData,
 }: IdentityDocumentsEditProps) => {
+  const { control, handleSubmit, isValid, errors, isSubmitSuccessful } =
+    useReactHookForm();
+
+  const { typeOfDoc, docSeries, issuedBy, dateOfIssue, docNum } =
+    patientPersonalData || {};
+
+  useEffect(() => {
+    isSubmitSuccessful && openCloseEditIdentityDocuments();
+  }, [isSubmitSuccessful]);
+
   return (
-    <>
-      <Grid
-        container
-        spacing={{ md: 0, laptop: 1 }}
-        // direction={{ md: "column", laptop: "row" }}
-        // justifyContent="space-between"
-        // alignItems="stretch"
-      >
-        <Grid item laptop={4}>
+    <form
+      noValidate
+      onSubmit={handleSubmit((data) => onSubmitPersonalData(data, "document"))}
+    >
+      <Grid container columnSpacing={3}>
+        <Grid item xs={12} md={6} laptop={4}>
           <Controller
             name="typeOfDoc"
             control={control}
-            defaultValue=""
+            defaultValue={typeOfDoc || ""}
             rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
@@ -46,58 +53,93 @@ export const IdentityDocumentsEdit = ({
                 placeholder="Оберіть тип"
                 label="Тип документа*"
                 {...field}
-                error={!!errors.lastName}
-                helperText={errors.lastName?.message || " "}
+                error={!!errors.typeOfDoc}
+                helperText={errors.typeOfDoc?.message || " "}
               >
-                <MenuItem value="var 1">Картка ID</MenuItem>
-                <MenuItem value="var 2">Паспорт громадянина України</MenuItem>
-                <MenuItem value="var 3">Водійське посвідчення</MenuItem>
+                <MenuItem value="IdCard">Картка ID</MenuItem>
+                <MenuItem value="Passport">
+                  Паспорт громадянина України
+                </MenuItem>
               </SelectWithPlaceholder>
             )}
           />
         </Grid>
 
-        <Grid item laptop={8}>
+        <Grid item xs={12} md={12} laptop={8} order={{ md: 1 }}>
           <Controller
-            name="docNum"
+            name="issuedBy"
             control={control}
-            defaultValue=""
+            defaultValue={issuedBy || ""}
             rules={{ required: true }}
             render={({ field }) => (
               <CustomizedInput
-                autoFocus
-                label="Серія*"
-                placeholder="Введіть серійний номер документу"
+                fullWidth
+                label="Ким видано*"
+                placeholder="Введіть назву установи"
                 {...field}
-                error={!!errors.firstName}
-                helperText={errors.firstName?.message || " "}
+                error={!!errors.issuedBy}
+                helperText={errors.issuedBy?.message || " "}
               />
             )}
           />
         </Grid>
 
-        <Grid item laptop={4}>
-          <RHFMiddleName control={control} errors={errors} />
+        <Grid item xs={12} md={6} laptop={4}>
+          <Controller
+            name="docSeries"
+            control={control}
+            defaultValue={docSeries || ""}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <CustomizedInput
+                fullWidth
+                label="Серія*"
+                placeholder="Введіть серію"
+                {...field}
+                error={!!errors.docSeries}
+                helperText={errors.docSeries?.message || " "}
+              />
+            )}
+          />
         </Grid>
 
-        <Grid item laptop={4}>
+        <Grid item xs={12} md={6} laptop={4}>
+          <Controller
+            name="docNum"
+            control={control}
+            defaultValue={docNum || ""}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <CustomizedInput
+                label="Номер*"
+                placeholder="Номер запису документу"
+                {...field}
+                fullWidth
+                error={!!errors.docNum}
+                helperText={errors.docNum?.message || " "}
+              />
+            )}
+          />
+          {/* <TextField      fullWidth/> */}
+        </Grid>
+
+        <Grid item xs={12} md={6} laptop={4}>
           <Controller
             name="dateOfIssue"
             control={control}
-            // defaultValue={defaultValue}
+            defaultValue={dateOfIssue || ""}
             rules={{ required: true }}
             render={({ field }) => (
               <DatePickerInput
+                fullWidth
                 label="Дата видачі*"
                 {...field}
                 onChange={field.onChange}
+                error={!!errors.dateOfIssue}
+                helperText={errors?.dateOfIssue || " "}
               />
             )}
           />
-        </Grid>
-
-        <Grid item laptop={4}>
-          <RHFTin control={control} errors={errors} />
         </Grid>
       </Grid>
 
@@ -105,7 +147,7 @@ export const IdentityDocumentsEdit = ({
         <Button
           variant="text"
           onClick={() => {
-            handleEditIdentityDocuments();
+            openCloseEditIdentityDocuments();
           }}
         >
           Відмінити
@@ -115,6 +157,6 @@ export const IdentityDocumentsEdit = ({
           Зберегти
         </Button>
       </Stack>
-    </>
+    </form>
   );
 };
