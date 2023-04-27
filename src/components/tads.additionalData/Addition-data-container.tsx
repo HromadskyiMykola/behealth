@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import AdditionData from "./content-components-addition-data/Addition-data";
 import Box from "@mui/material/Box/Box";
 import { titleCards } from "~/components/tads.additionalData/const-additional-data";
-import { IPatientAdditionData } from "~/common/types-and-interfaces";
+import { IPatientAdditionDataOld } from "~/common/types-and-interfaces";
 
 const AdditionDataContainer: React.FC<{
-  patientAdditionData: IPatientAdditionData | null;
+  patientAdditionData: IPatientAdditionDataOld | null;
 }> = ({ patientAdditionData }) => {
   const getValue = (index: number) => {
     switch (index) {

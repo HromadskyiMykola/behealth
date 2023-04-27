@@ -35,7 +35,7 @@ export const AdditionalDataContentCard = ({
 
   return (
     <>
-      {!!valuePatientAdditionData ? (
+      {valuePatientAdditionData ? (
         <ContentCardAdditionData
           index={index}
           isEditView={isEditView}

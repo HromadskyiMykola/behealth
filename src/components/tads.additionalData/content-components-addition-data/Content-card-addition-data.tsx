@@ -9,11 +9,6 @@ import { Trash2 } from "lucide-react";
 import { IconButton } from "@mui/material";
 import { useApiService } from "~/common";
 
-const textOverflowStyles = {
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-  textOverflow: "ellipsis",
-};
 const ContentCardAdditionData = ({
   index,
   isEditView,

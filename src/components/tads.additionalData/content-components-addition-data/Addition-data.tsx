@@ -5,7 +5,7 @@ import Button from "@mui/material/Button/Button";
 import { Edit, Plus } from "lucide-react";
 import { AdditionalDataContentCard } from "~/components/tads.additionalData/content-components-addition-data/Addition-data-content-card";
 import { titleCards } from "~/components/tads.additionalData/const-additional-data";
-import { IPatientAdditionData } from "~/common";
+import { IPatientAdditionDataOld } from "~/common";
 
 interface IMOCKdata {
   addresses: undefined;

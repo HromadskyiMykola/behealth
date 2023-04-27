@@ -226,7 +226,7 @@ export type TPatientPersonalData = {
   email?: string;
   //
   firstName?: string;
-  middleName?: string ;
+  middleName?: string;
   lastName?: string;
   birthDate?: string;
   tin?: string;
@@ -239,7 +239,7 @@ export type TPatientPersonalData = {
   docNum?: string;
 };
 
-export type TAuthFormValues = TPatientPersonalData &{
+export type TAuthFormValues = TPatientPersonalData & {
   firstName: string;
   middleName: string;
   lastName: string;
@@ -276,8 +276,26 @@ export interface ISelectItemHeaderValue {
   text: string;
 }
 
-export interface IPatientAdditionData {
+export interface IPatientAdditionDataOld {
   address: null | any;
   preferenceCategories: null | any;
   workPlace: null | any;
+}
+
+export interface IPatientAdditionDataProps {
+  apartmentNum?: string;
+  houseNum?: string;
+  id?: number;
+  preferenceCategories?: undefined;
+  settlementAndStr?: string;
+  settlementType?: string;
+  workPlace: undefined | string;
+  jobTitle?: string;
+  employmentStatus?: string;
+  address?: undefined;
+}
+
+export interface IPatientAdditionData {
+  patientAdditionData: IPatientAdditionDataProps | null;
+  isChangeAddress?: () => void;
 }
