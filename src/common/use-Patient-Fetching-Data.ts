@@ -8,7 +8,7 @@ import {
 import { useModalState } from "~/providers";
 
 export function usePatientFetchingData() {
-  const { patient, apiError } = useApiService();
+  const { patient, apiError, loading } = useApiService();
   const { setSimpleModalMessage } = useModalState();
 
   const [patientPersonalData, setPatientPersonalData] =
@@ -37,7 +37,7 @@ export function usePatientFetchingData() {
 
   const onSubmitAdditionalData = async (
     data: TPatientAdditionalData,
-    isNeedCreateData?: boolean
+    action: { isNeedCreateData?: boolean; isNeedDeleteData?: boolean }
   ) => {
     const {
       type,
@@ -55,14 +55,23 @@ export function usePatientFetchingData() {
         ? { type, settlementType, settlementAndStr, houseNum, apartmentNum }
         : { type, employmentStatus, workplace, jobTitle };
 
-    isNeedCreateData
+    if (action.isNeedDeleteData) {
+      await patient.additionalInfo.delete({ type });
+      setPatientAdditionalData({ ...patientAdditionalData, ...selectedData });
+      return;
+    }
+
+    action.isNeedCreateData
       ? await patient.additionalInfo.create(selectedData)
       : await patient.additionalInfo.update(selectedData);
 
-    setPatientAdditionalData({ ...patientAdditionalData, ...data });
+    setPatientAdditionalData(
+      action.isNeedDeleteData ? null : { ...patientAdditionalData, ...data }
+    );
   };
 
   return {
+    loading,
     patientPersonalData,
     patientAdditionalData,
     setPatientPersonalData,

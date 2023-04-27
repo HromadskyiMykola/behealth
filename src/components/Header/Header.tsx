@@ -21,7 +21,7 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useAuthProvider, useModalState } from "~/providers";
 import { EUserType, ISelectItemHeaderValue } from "~/common";
 import { ERouteNames } from "~/routes/routeNames";
-import { AuthButton } from "../user-auth";
+import { AuthButton } from "~/components/user-auth";
 import { Logo } from "~/assets/CustomIcon";
 import { ButtonM } from "../atomic";
 

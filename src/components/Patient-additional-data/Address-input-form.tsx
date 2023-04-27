@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import { CustomizedInput } from "~/components/atomic/Customized-Input";
-import Box from "@mui/material/Box/Box";
-import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
-import { SelectWithPlaceholder } from "~/components/atomic";
-import { useApiService } from "~/common";
-import { useAuthProvider } from "~/providers";
-import { useNavigate } from "react-router-dom";
-import { ERouteNames } from "~/routes/routeNames";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-interface IFormInput {
-  settlement: string;
-  address_type: string;
-  house: string;
-  apartments: string;
+import { Button, Grid, MenuItem, Typography, Stack } from "@mui/material";
+
+import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+
+import { CustomizedInput } from "~/components/atomic/Customized-Input";
+import { SelectWithPlaceholder } from "~/components/atomic";
+import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
+
+interface Props {
+  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  patientAdditionalData: TPatientAdditionalData | null;
+  closeEditFrom: () => void;
 }
 
 const schema = yup
   .object({
-    address_type: yup.string().required("Поле не може бути пустим"),
-    settlement: yup
+    settlementType: yup.string().required("Поле не може бути пустим"),
+    settlementAndStr: yup
       .string()
       .required("Поле не може бути пустим")
       .max(100, "Максимальна кількість символів 100")
@@ -34,12 +28,12 @@ const schema = yup
         "Дозволенна тільки кирилиця і спецсимволи -()"
       ),
     // todo Тільки цифри 0-9 Можна вживати /
-    house: yup
+    houseNum: yup
       .string()
       .required("Поле не може бути пустим")
       .max(5, "Має бути не більше 5 символів")
       .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
-    apartments: yup
+    apartmentNum: yup
       .string()
       .max(5, "Має бути не більше 5 символів")
       .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
@@ -49,68 +43,46 @@ const schema = yup
 const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.addresses;
 const TEXT_BUTTONS = TEXT_ADDRESSES_EDIT_FORM.button;
 
-// todo add type for props function
-export const AddressesForm = ({
-  closeEditForm,
-  valuePatientAdditionData,
-}: any) => {
-  function replaceNullWithUndefined(obj: { [key: string]: any }): void {
-    for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        if (obj[key] === null) {
-          obj[key] = undefined;
-        } else if (typeof obj[key] === "object") {
-          replaceNullWithUndefined(obj[key]);
-        }
-      }
-    }
-  }
-  const test = replaceNullWithUndefined(valuePatientAdditionData);
+export const AddressInputForm = ({
+  onSubmitAdditionalData,
+  patientAdditionalData,
+  closeEditFrom,
+}: Props) => {
   const {
     control,
     handleSubmit,
-    resetField,
-    setValue,
-    formState: { errors },
-  } = useForm({
+    reset,
+    formState: { errors, isValid },
+  } = useForm<TPatientAdditionalData>({
     defaultValues: {
-      //   //todo  "SomeText" change dataProps
-      address_type: "",
-      settlement: "",
-      house: "",
-      apartments: "",
+      settlementType: patientAdditionalData?.settlementType || "",
+      settlementAndStr: patientAdditionalData?.settlementAndStr || "",
+      houseNum: patientAdditionalData?.houseNum || "",
+      apartmentNum: patientAdditionalData?.apartmentNum || "",
     },
     resolver: yupResolver(schema),
   });
-  const { patient } = useApiService();
-  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    patient.additionalInfo.create({
-      type: "address",
-      ...data,
-    });
-    resetFieldValue();
-  };
-  const resetFieldValue = () => {
-    resetField("address_type");
-    resetField("settlement");
-    resetField("house");
-    resetField("apartments");
+  const onSubmit = (data: TPatientAdditionalData) => {
+    const isNeedCreateData = !patientAdditionalData?.settlementType;
+
+    onSubmitAdditionalData({ ...data, type: "address" }, { isNeedCreateData });
+
+    closeEditFrom();
+    reset();
   };
 
   const onClickCancel = () => {
-    resetFieldValue();
-    closeEditForm();
+    closeEditFrom();
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={2} mt="24px" pb="24px">
+    <form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <Grid container columnSpacing={3} m="24px 0">
         <Grid item xs={4}>
           <Controller
-            name="address_type"
+            name="settlementType"
             control={control}
             render={({ field }) => (
               <SelectWithPlaceholder
@@ -118,6 +90,8 @@ export const AddressesForm = ({
                 placeholder={TEXT_CHOICES.placeholder.select}
                 label={TEXT_CHOICES.title.select}
                 {...field}
+                error={!!errors.settlementType}
+                helperText={errors.settlementType?.message || " "}
               >
                 {TEXT_CHOICES.selectOptions.map((item: string) => {
                   return (
@@ -131,67 +105,80 @@ export const AddressesForm = ({
               </SelectWithPlaceholder>
             )}
           />
-          <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.address_type?.message}
-          </Typography>
+          {/*<Typography variant="body2" color="error" component="p" mt={1} pl={2}>*/}
+          {/*  {errors.address_type?.message}*/}
+          {/*</Typography>*/}
         </Grid>
+
         <Grid item xs={8}>
           <Controller
-            name="settlement"
+            name="settlementAndStr"
             control={control}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.settlement}
+                aria-invalid={errors.settlementAndStr ? "true" : "false"}
                 placeholder={TEXT_CHOICES.placeholder.settlement}
                 {...field}
+                error={!!errors.settlementAndStr}
+                helperText={errors.settlementAndStr?.message || " "}
               />
             )}
           />
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.settlement?.message}
+            {errors.settlementAndStr?.message}
           </Typography>
         </Grid>
+
         <Grid item xs={4}>
           <Controller
-            name="house"
+            name="houseNum"
             control={control}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.house}
                 placeholder={TEXT_CHOICES.placeholder.house}
                 {...field}
+                error={!!errors.houseNum}
+                helperText={errors.houseNum?.message || " "}
               />
             )}
           />
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.house?.message}
+            {/*{errors.house?.message}*/}
           </Typography>
         </Grid>
+
         <Grid item xs={4}>
           <Controller
-            name="apartments"
+            name="apartmentNum"
             control={control}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.apartments}
                 placeholder={TEXT_CHOICES.title.apartments}
                 {...field}
+                error={!!errors.apartmentNum}
+                helperText={errors.apartmentNum?.message || " "}
               />
             )}
           />
+
           <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.apartments?.message}
+            {/*{errors.apartments?.message}*/}
           </Typography>
         </Grid>
       </Grid>
-      <Box display="flex" flexDirection="row" gap="24px">
+
+      <Stack direction="row" gap="24px">
         <Button variant="text" onClick={onClickCancel}>
           {TEXT_BUTTONS.cancel}
         </Button>
-        <Button variant="contained" type="submit">
+
+        <Button variant="contained" type="submit" disabled={!isValid}>
           {TEXT_BUTTONS.submit}
         </Button>
-      </Box>
+      </Stack>
     </form>
   );
 };

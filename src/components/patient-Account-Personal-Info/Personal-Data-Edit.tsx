@@ -110,12 +110,7 @@ export const PersonalDataEdit = ({
           Відмінити
         </Button>
 
-        <Button
-          disabled={!isValid}
-          type="submit"
-          variant="contained"
-          // sx={{ backgroundColor: primaryColor }}
-        >
+        <Button disabled={!isValid} type="submit" variant="contained">
           Зберегти
         </Button>
       </Stack>

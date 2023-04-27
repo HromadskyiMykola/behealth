@@ -6,13 +6,16 @@ import {
   typeContentCars,
 } from "~/components/tads.additionalData/const-additional-data";
 import { Trash2 } from "lucide-react";
+import { IconButton } from "@mui/material";
+import { useApiService } from "~/common";
 
-const textOverflowStyles = {
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-  textOverflow: "ellipsis",
-};
-const ContentCardAdditionData = ({ index, isEditView, data }: any) => {
+const ContentCardAdditionData = ({
+  index,
+  isEditView,
+  data,
+  valuePatientAdditionData,
+}: any) => {
+  const { patient } = useApiService();
   let addresses = "";
   let other = "";
   let TITLE: any = "";
@@ -31,6 +34,18 @@ const ContentCardAdditionData = ({ index, isEditView, data }: any) => {
       TITLE = TEXT_ADDRESSES_EDIT_FORM.preferentialCategories.titleRestData;
       break;
   }
+  console.log(valuePatientAdditionData);
+  const deleteValue = () => {
+    console.log(valuePatientAdditionData);
+    // todo Основне місце проживання change address
+    if (valuePatientAdditionData?.address_type === "Основне місце проживання") {
+      console.log("delete address");
+      patient.additionalInfo.delete({
+        type: "address",
+      });
+      return;
+    }
+  };
   return (
     <Box
       marginTop="8px"
@@ -87,7 +102,9 @@ const ContentCardAdditionData = ({ index, isEditView, data }: any) => {
       </Box>
       {isEditView && (
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Trash2 color="#DE3730" size="22" />
+          <IconButton onClick={deleteValue}>
+            <Trash2 color="#DE3730" size="22" />
+          </IconButton>
         </Box>
       )}
     </Box>

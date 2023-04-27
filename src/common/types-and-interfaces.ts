@@ -221,7 +221,7 @@ export type TPatientAdditionalData = {
 };
 
 export type TPatientPersonalData = {
-  type?: "patient_info" | "document" ;
+  type?: "patient_info" | "document";
   mobileNum?: string;
   email?: string;
   //
@@ -275,3 +275,30 @@ export interface ISelectItemHeaderValue {
   value: string;
   text: string;
 }
+
+export interface IPatientAdditionDataOld {
+  address: null | any;
+  preferenceCategories: null | any;
+  workPlace: null | any;
+}
+
+export interface IPatientAdditionDataProps {
+  apartmentNum?: string;
+  houseNum?: string;
+  id?: number;
+  preferenceCategories?: undefined;
+  settlementAndStr?: string;
+  settlementType?: string;
+  workPlace: undefined | string;
+  jobTitle?: string;
+  employmentStatus?: string;
+  address?: undefined;
+}
+
+export type TOnSubmitAdditionalData = (
+  data: TPatientAdditionalData,
+  action?: {
+    isNeedCreateData?: boolean;
+    isNeedDeleteData?: boolean;
+  } 
+) => Promise<void>;
