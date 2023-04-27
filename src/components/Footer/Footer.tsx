@@ -19,8 +19,11 @@ import { ERouteNames } from "~/routes/routeNames";
 import { NavLink } from "react-router-dom";
 import LogoFooter from "../../assets/CustomIcon/Logo.footer";
 import { Stack } from "@mui/material";
+import { GoogleMapLink } from "~/components/atomic";
+import { useTheme } from "@mui/material";
 
 const Footer = () => {
+  const { custom } = useTheme().palette;
   return (
     <Box sx={{ background: "#B2CCC0" }}>
       <Container>
@@ -47,17 +50,20 @@ const Footer = () => {
         <Box
           sx={{
             display: "flex",
+            gap: { xs: "16px", md: 0 },
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
             pt: "64px",
           }}
         >
-          <Box>
-            <Box>
+          <Stack
+            flexDirection={{ xs: "column", sm: "row", md: "column" }}
+            gap={{ xs: "8px", sm: 0 }}
+            alignItems={{ xs: "flex-start", sm: "center", md: "flex-start" }}
+            justifyContent={{ xs: "space-between", md: "flex-start" }}
+          >
+            <Stack justifyContent="flex-start">
               <NavLink to={ERouteNames.HOME}>
-                {/*<Logo*/}
-                {/*    width="116"*/}
-                {/*    height="21"*/}
-                {/*/>*/}
                 <LogoFooter
                   width="116"
                   height="21"
@@ -66,7 +72,14 @@ const Footer = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 />
               </NavLink>
-              <Box sx={{ mt: "32px", display: "flex", gap: "12px" }}>
+            </Stack>
+            <Stack
+              flexDirection={{ xs: "row", md: "column" }}
+              gap={{ xs: "16px", md: 0 }}
+            >
+              <Box
+                sx={{ mt: { xs: 0, md: "32px" }, display: "flex", gap: "12px" }}
+              >
                 <Instagram
                   width="23"
                   height="23"
@@ -84,14 +97,23 @@ const Footer = () => {
               </Box>
               <Typography
                 variant="caption"
-                sx={{ display: "block", mt: "8px", color: "#647C72" }}
+                sx={{
+                  display: "block",
+                  mt: { xs: 0, md: "8px" },
+                  color: "#647C72",
+                }}
               >
                 support@behealth.ua
               </Typography>
-            </Box>
-          </Box>
+            </Stack>
+          </Stack>
 
-          <Stack direction={{ xs: "column", sm: "row" }} gap="80px" mb="40px">
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            justifyContent={{ sm: "space-between" }}
+            gap={{ xs: "32px", md: "80px" }}
+            mb="40px"
+          >
             <FooterColumNavigateLinks
               title="beHealth"
               links={BEHEALTH_FOOTER_LINK}
@@ -100,11 +122,45 @@ const Footer = () => {
               title="Пацієнтам"
               links={PATIENTS_LINK_FOOTER_LINK}
             />
-            <FooterColumNavigateLinks
-              title="Company"
-              links={FOOTER_COMPANY_INFO}
-              itIsLink={false}
-            />
+            {/*<FooterColumNavigateLinks*/}
+            {/*  title="Company"*/}
+            {/*  links={FOOTER_COMPANY_INFO}*/}
+            {/*  itIsLink={false}*/}
+            {/*/>*/}
+            <Box
+              sx={{
+                display: "flex",
+                gap: "8px",
+                flexDirection: "column",
+                color: "#4C635A",
+              }}
+            >
+              <Typography
+                variant="caption"
+                style={{
+                  display: "block",
+                  marginBottom: "8px",
+                  color: "#97B1A5",
+                }}
+              >
+                {FOOTER_COMPANY_INFO.title}
+              </Typography>
+              <GoogleMapLink address={FOOTER_COMPANY_INFO.path}>
+                <Stack
+                  flexDirection="column"
+                  gap="8px"
+                  color={custom.secondary40}
+                >
+                  {FOOTER_COMPANY_INFO.text.map((text_item) => {
+                    return (
+                      <Typography variant="caption" key={`${text_item}-label`}>
+                        {text_item}
+                      </Typography>
+                    );
+                  })}
+                </Stack>
+              </GoogleMapLink>
+            </Box>
           </Stack>
         </Box>
       </Container>

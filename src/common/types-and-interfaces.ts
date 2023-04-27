@@ -59,7 +59,7 @@ export interface FooterContactPhoneProps {
 }
 export interface FooterColumNavigateLinksProps {
   title: string;
-  links: { name: string; path?: string }[];
+  links: { name: string; path?: string | undefined }[];
   itIsLink?: boolean;
 }
 
@@ -226,7 +226,7 @@ export type TPatientPersonalData = {
   email?: string;
   //
   firstName?: string;
-  middleName?: string ;
+  middleName?: string;
   lastName?: string;
   birthDate?: string;
   tin?: string;
@@ -239,7 +239,7 @@ export type TPatientPersonalData = {
   docNum?: string;
 };
 
-export type TAuthFormValues = TPatientPersonalData &{
+export type TAuthFormValues = TPatientPersonalData & {
   firstName: string;
   middleName: string;
   lastName: string;

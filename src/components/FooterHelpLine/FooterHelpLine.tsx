@@ -13,7 +13,9 @@ const FooterHelpLine = () => {
     <Box
       sx={{
         display: "flex",
-        alignItems: "start",
+        alignItems: "center",
+        flexDirection: { xs: "column", sm: "row" },
+        gap: { xs: "16px", sm: 0 },
         justifyContent: "space-between",
         pt: "40px",
         pb: "26px",
@@ -26,8 +28,10 @@ const FooterHelpLine = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          flexDirection: { xs: "column", md: "row" },
+          marginRight: { xs: "24px", md: 0 },
           justifyContent: "center",
-          gap: "32px",
+          gap: { xs: "8px", sm: "16px", md: "32px" },
         }}
       >
         <FooterContactPhone

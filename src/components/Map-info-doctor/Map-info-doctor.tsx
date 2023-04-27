@@ -44,7 +44,11 @@ export const MapInfoDoctor = () => {
         <Typography variant="caption" component="span">
           м. Київ, вул. Попудренка, 7, каб. 2
         </Typography>
-        <GoogleMapLink address={"м. Київ, вул. Гмирі Бориса, 14 Б"} />
+        <GoogleMapLink address={"м. Київ, вул. Гмирі Бориса, 14 Б"}>
+          <Typography color="#3DBF9A" variant="captionS">
+            Вікрити на карті
+          </Typography>
+        </GoogleMapLink>
       </BoxInfo>
     </Box>
   );

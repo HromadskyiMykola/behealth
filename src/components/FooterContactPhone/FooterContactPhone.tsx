@@ -11,10 +11,15 @@ const FooterContactPhone = ({ icon, phone }: FooterContactPhoneProps) => {
         display: "flex",
         gap: "10px",
         alignItems: "center",
+        flexWrap: "nowrap",
       }}
     >
       {icon}
-      <Typography variant="subtitle2" color={"#4C635A"}>
+      <Typography
+        variant="subtitle2"
+        color={"#4C635A"}
+        sx={{ whiteSpace: "nowrap" }}
+      >
         {phone}
       </Typography>
     </Box>

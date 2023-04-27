@@ -147,6 +147,7 @@ const Header: FC = (props) => {
             <Link
               to={ERouteNames.HOME}
               style={{ flexGrow: 1, textAlign: "center" }}
+              onClick={() => setOpenMenu(false)}
             >
               <Logo />
             </Link>
