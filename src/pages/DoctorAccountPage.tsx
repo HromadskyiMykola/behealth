@@ -37,11 +37,11 @@ const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
 const NavTabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { singOutProvider } = useAuthProvider();
+  const { signOutProvider } = useAuthProvider();
 
   const handleLogout = useCallback(() => {
     navigate(ERouteNames.HOME);
-    singOutProvider();
+    signOutProvider();
   }, []);
 
   const matchPath = useMemo(() => {

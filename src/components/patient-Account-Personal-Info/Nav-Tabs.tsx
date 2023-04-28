@@ -8,7 +8,7 @@ import {
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Divider, Paper, Tabs } from "@mui/material";
+import { Divider, Tabs, useTheme, useMediaQuery } from "@mui/material";
 
 import {
   ClockIcon,
@@ -24,16 +24,24 @@ import { TabLink } from "~/components/atomic/index";
 import { ERouteNames } from "~/routes/routeNames";
 import { useAuthProvider } from "~/providers";
 
-const WrapperDivider = () => <Divider sx={{ mb: "16px" }} />;
+const iconStyle = { style: { flexShrink: 0 }, size: 22 };
+
+const LineMB = () => <Divider sx={{ mb: "16px" }} />;
+const Line = () => <Divider />;
 
 export const NavTabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { singOutProvider } = useAuthProvider();
+  const { signOutProvider } = useAuthProvider();
+  const {
+    breakpoints,
+    palette: { custom },
+  } = useTheme();
+  const isDownSm = useMediaQuery(breakpoints.down("md"));
 
   const handleLogout = useCallback(() => {
     navigate(ERouteNames.HOME);
-    singOutProvider();
+    signOutProvider();
   }, []);
 
   const matchPath = useMemo(() => {
@@ -64,55 +72,63 @@ export const NavTabs = () => {
   };
 
   return (
-    <Paper sx={{ borderRadius: "12px" }}>
-      <Tabs
-        sx={{
-          p: "24px 24px 8px 24px",
-          "& .MuiTab-root": { marginBottom: "16px" },
-          "& .MuiTabs-indicator": { display: "none" },
-        }}
-        value={value}
-        onChange={handleChange}
-        orientation="vertical"
-      >
-        <TabLink
-          icon={<ClockIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS}
-          label="Записи"
-        />
-        <TabLink
-          icon={<HelpCircleIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_HELP}
-          label="Допомога"
-        />
+    <Tabs
+      sx={{
+        p: isDownSm ? 0 : "24px 24px 8px 24px",
+        "& .MuiTab-root": { marginBottom: isDownSm ? 0 : "16px" },
+        "& .MuiTabs-indicator": { display: "none" },
+      }}
+      value={value}
+      onChange={handleChange}
+      orientation="vertical"
+    >
+      <TabLink
+        icon={<ClockIcon {...iconStyle} />}
+        value={ERouteNames.PATIENT_ACCOUNT_APPOINTMENTS}
+        label="Записи"
+      />
 
-        <WrapperDivider />
+      {isDownSm && <Line />}
 
-        <TabLink
-          icon={<UserCogIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
-          label="Особиста інформація"
-        />
-        <TabLink
-          icon={<FolderClosedIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
-          label="Додаткові дані"
-        />
-        <TabLink
-          icon={<LockIcon style={{ flexShrink: 0 }} size={22} />}
-          value={ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
-          label="Пароль та безпека"
-        />
+      <TabLink
+        icon={<HelpCircleIcon {...iconStyle} />}
+        value={ERouteNames.PATIENT_ACCOUNT_HELP}
+        label="Допомога"
+      />
 
-        <WrapperDivider />
+      {isDownSm ? <Line /> : <LineMB />}
 
-        <TabLink
-          icon={<LogOutIcon style={{ flexShrink: 0 }} size={22} />}
-          value=""
-          label="Вихід"
-          onClick={handleLogout}
-        />
-      </Tabs>
-    </Paper>
+      <TabLink
+        icon={<UserCogIcon {...iconStyle} />}
+        value={ERouteNames.PATIENT_ACCOUNT_PERSONAL_INFO}
+        label="Особиста інформація"
+      />
+
+      {isDownSm && <Line />}
+
+      <TabLink
+        icon={<FolderClosedIcon {...iconStyle} />}
+        value={ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA}
+        label="Додаткові дані"
+      />
+
+      {isDownSm && <Line />}
+
+      <TabLink
+        icon={<LockIcon {...iconStyle} />}
+        value={ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY}
+        label="Пароль та безпека"
+      />
+
+      {!isDownSm && <LineMB />}
+
+      <TabLink
+        sx={isDownSm ? { color: custom.error40, mt: "64px" } : undefined}
+        icon={<LogOutIcon {...iconStyle} />}
+        value=""
+        label="Вихід"
+        onClick={handleLogout}
+      />
+    </Tabs>
   );
 };

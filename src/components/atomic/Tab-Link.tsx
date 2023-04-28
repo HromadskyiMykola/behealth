@@ -6,12 +6,12 @@ const StyledTab = styled(Tab)(
   ({
     theme: {
       palette: { custom },
+      breakpoints,
     },
   }) => ({
     justifyContent: "flex-start",
     whiteSpace: "nowrap",
     padding: "18px 12px",
-    // maxWidth: "280px",
     minHeight: "60px !important",
     borderRadius: "8px",
     color: custom.primary20,
@@ -19,7 +19,7 @@ const StyledTab = styled(Tab)(
       background: custom.primary99,
     },
     "&.Mui-selected": {
-      background: "#DCF7EA",
+      background: [breakpoints.down("md")] ? "transparent" : "#DCF7EA",
       color: custom.primary20,
     },
   })
