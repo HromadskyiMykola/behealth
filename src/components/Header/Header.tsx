@@ -108,6 +108,7 @@ const Header: FC = (props) => {
                   key={`label-${name}`}
                   style={({ isActive }) => ({
                     textDecoration: "none",
+                    whiteSpace: "nowrap",
                     color: isActive
                       ? palette.custom.primary40
                       : palette.text.primary,

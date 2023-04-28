@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Typography, IconButton } from "@mui/material";
-import { UserIcon, MenuIcon } from "lucide-react";
+import { IconButton } from "@mui/material";
+import { UserIcon } from "lucide-react";
 
 import { useAuthProvider, useModalState } from "~/providers";
 import { EUserType } from "~/common";
@@ -44,7 +44,10 @@ export const AuthButton = () => {
         variant="outlined"
         onClick={handleButton}
         startIcon={<UserIcon style={{ flexShrink: 0 }} size={20} />}
-        sx={{ display: { xs: "none", md: "inline-flex" } }}
+        sx={{
+          display: { xs: "none", md: "inline-flex" },
+          whiteSpace: "nowrap",
+        }}
       >
         {text}
       </ButtonM>
