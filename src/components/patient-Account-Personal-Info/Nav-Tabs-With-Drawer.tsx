@@ -36,7 +36,7 @@ export const NavTabsWithDrawer = () => {
         onOpen={toggleDrawer}
       >
         <Stack
-            sx={{ width: "360px" }}
+          sx={{ width: "360px" }}
           role="presentation"
           onClick={toggleDrawer}
           onKeyDown={toggleDrawer}

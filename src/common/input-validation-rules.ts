@@ -93,6 +93,33 @@ const validationRules = {
       message: "ІПН складається з 10 цифр.",
     },
   },
+  //
+
+  settlementAndStr: {
+    required: "Поле не може бути пустим",
+    max: { value: 100, message: "Максимальна кількість символів 100" },
+    pattern: {
+      value: /^[А-Яа-я,.\-();\s]+$/,
+      message: "Дозволенна тільки кирилиця і спецсимволи -()",
+    },
+  },
+  houseNum: {
+    required: "Поле не може бути пустим",
+    max: { value: 5, message: "Має бути не більше 5 символів" },
+    pattern: {
+      value: /^\d+(\/\d+)?$/,
+      message: "Можуть бути використані тільки цифри і /",
+    },
+  },
+  apartmentNum: {
+    required: "Поле не може бути пустим",
+
+    max: { value: 5, message: "Має бути не більше 5 символів" },
+    pattern: {
+      value: /^\d+(\/\d+)?$/,
+      message: "Можуть бути використані тільки цифри і /",
+    },
+  },
 };
 
 export { validationRules };
