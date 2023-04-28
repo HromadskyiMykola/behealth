@@ -53,7 +53,7 @@ const selectStyle = {
   "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: 0,
   },
-  display: { xs: "none", lg: "block" },
+  display: { xs: "none", md: "inline-flex" },
 };
 
 const Header: FC = (props) => {
