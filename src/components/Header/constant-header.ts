@@ -26,3 +26,31 @@ export const LINKS = [
 ];
 export const SING_IN = "Увійти";
 export const PERSONAL_CABINET = "Персональний Кабінет";
+
+export const CITY = [
+  { title: "Вінниця" },
+  {
+    title: "Київ",
+  },
+  {
+    title: "Харків",
+  },
+  {
+    title: "Львів",
+  },
+  {
+    title: "Одесса",
+  },
+  {
+    title: "Дніпро",
+  },
+  {
+    title: "Запоріжжя",
+  },
+  {
+    title: "Черкаси",
+  },
+  {
+    title: "Херсон",
+  },
+];
