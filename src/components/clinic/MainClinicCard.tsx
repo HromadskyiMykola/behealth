@@ -129,7 +129,11 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
               <Typography sx={{ pr: "9px" }} variant="caption">
                 {address}
               </Typography>
-              <GoogleMapLink address={address} />
+              <GoogleMapLink address={address}>
+                <Typography color="#3DBF9A" variant="captionS">
+                  Відкрити на карті
+                </Typography>
+              </GoogleMapLink>
             </Box>
           </Box>
         </Box>
