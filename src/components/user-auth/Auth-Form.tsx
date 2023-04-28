@@ -25,6 +25,7 @@ import {
 } from "~/common";
 
 import { ERouteNames } from "~/routes/routeNames";
+
 import {
   RHFPasswordConfirm,
   RHFEmail,
@@ -36,6 +37,7 @@ type TAuthFormProps = {
   mode: TAuthMode;
   setMode: (mode: TAuthMode) => void;
 };
+
 export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const [userType, setUserType] = useState<EUserType>(EUserType.PATIENT);
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();

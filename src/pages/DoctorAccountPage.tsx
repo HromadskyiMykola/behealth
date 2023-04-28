@@ -5,7 +5,10 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 import {
   Divider,
   Grid,
@@ -130,21 +133,31 @@ const NavTabs = () => {
 
 export const DoctorAccountPage = () => {
   return (
-    <Container sx={{ mb: "30px", mt: "30px" }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <BreadcrumbsUkr />
+    <>
+      <Helmet>
+        <title>Особистий кабінет лікаря - BeHealth</title>
+        <meta
+          name="description"
+          content="Особистий кабінет лікаря порталу BeHealth."
+        />
+      </Helmet>
+
+      <Container sx={{ mb: "30px", mt: "30px" }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <BreadcrumbsUkr />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h4">Вітаємо, Ольга</Typography>
+          </Grid>
+          <Grid item xs={3}>
+            <NavTabs />
+          </Grid>
+          <Grid item xs>
+            <Outlet />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h4">{"Вітаємо, Ольга"}</Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <NavTabs />
-        </Grid>
-        <Grid item xs>
-          <Outlet />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 };
