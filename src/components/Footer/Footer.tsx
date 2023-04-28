@@ -122,11 +122,6 @@ const Footer = () => {
               title="Пацієнтам"
               links={PATIENTS_LINK_FOOTER_LINK}
             />
-            {/*<FooterColumNavigateLinks*/}
-            {/*  title="Company"*/}
-            {/*  links={FOOTER_COMPANY_INFO}*/}
-            {/*  itIsLink={false}*/}
-            {/*/>*/}
             <Box
               sx={{
                 display: "flex",
