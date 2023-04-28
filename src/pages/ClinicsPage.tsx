@@ -1,14 +1,6 @@
-import {
-  Box,
-  Container,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
-  Typography,
-  styled,
-  useTheme,
-} from "@mui/material";
+import { Helmet } from "react-helmet";
+
+import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   BreadcrumbsUkr,
@@ -26,36 +18,47 @@ const data = [
 ];
 
 export const ClinicsPage = () => {
-  const { palette } = useTheme();
+  const { primary20 } = useTheme().palette.custom;
+
   return (
-    <Container sx={{ mt: "30px", mb: "60px" }}>
-      <BreadcrumbsUkr />
+    <>
+      <Helmet>
+        <title>Клініки - BeHealth</title>
+        <meta
+          name="description"
+          content="Сторінка переліку клінік на сайті BeHealth."
+        />
+      </Helmet>
 
-      <Typography
-        variant="h4"
-        color={palette.custom.primary20}
-        sx={{ mt: "26px", mb: "32px" }}
-      >
-        Клініки
-      </Typography>
+      <Container sx={{ mt: "30px", mb: "60px" }}>
+        <BreadcrumbsUkr />
 
-      <SearchClinics />
+        <Typography
+          variant="h4"
+          color={primary20}
+          sx={{ mt: "26px", mb: "32px" }}
+        >
+          Клініки
+        </Typography>
 
-      <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
-        <Box sx={{ flex: "0 1 328px" }}>
-          <SelectedItemsBox data={data} />
+        <SearchClinics />
 
-          <FilterClinics />
-        </Box>
+        <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
+          <Box sx={{ flex: "0 1 328px" }}>
+            <SelectedItemsBox data={data} />
 
-        <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
-          <SelectTopBar />
+            <FilterClinics />
+          </Box>
 
-          <Clinics />
+          <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
+            <SelectTopBar />
 
-          <PaginationBottomBar />
-        </Box>
-      </Stack>
-    </Container>
+            <Clinics />
+
+            <PaginationBottomBar />
+          </Box>
+        </Stack>
+      </Container>
+    </>
   );
 };
