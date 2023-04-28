@@ -7,6 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+
 import { KeyboardArrowDown } from "@mui/icons-material";
 
 type SelectWithPlaceholderProps = SelectProps & { helperText?: string };
@@ -35,6 +36,7 @@ function CustomSelect(
   const { palette, typography } = useTheme();
 
   const styleSelect = {
+    mb: "18px",
     "& .MuiSelect-select .notranslate::after": placeholder
       ? {
           content: `"${placeholder}"`,

@@ -9,16 +9,16 @@ import {
 } from "@mui/material";
 
 import { AlertTriangleIcon } from "lucide-react";
-import { phoneNumberFormatter } from "~/common";
+import { TPatientPersonalData, phoneNumberFormatter } from "~/common";
 
-export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
+export const ContactInfo = ({ patientPersonalData }: { patientPersonalData: TPatientPersonalData | null}) => (
   <TableContainer
     sx={{
       width: "auto",
       "& td": { borderBottom: "none" },
     }}
   >
-    <Table>
+    {/* <Table>
       <TableBody>
         <TableRow>
           <TableCell>
@@ -31,7 +31,7 @@ export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
           </TableCell>
         </TableRow>
       </TableBody>
-    </Table>
+    </Table> */}
 
     <Table>
       <TableBody>
@@ -42,7 +42,7 @@ export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
 
           <TableCell>
             <Typography variant="body2">
-              {phoneNumberFormatter(contactInfo?.mobileNum) || "не вказано"}
+              {phoneNumberFormatter(patientPersonalData?.mobileNum) || "не вказано"}
             </Typography>
           </TableCell>
         </TableRow>
@@ -54,7 +54,7 @@ export const ContactInfo = ({ contactInfo }: { contactInfo: any }) => (
 
           <TableCell>
             <Typography variant="body2">
-              {contactInfo?.email || "не вказано"}
+              {patientPersonalData?.email || "не вказано"}
             </Typography>
           </TableCell>
         </TableRow>

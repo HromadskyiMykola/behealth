@@ -55,7 +55,7 @@ export const commonRoutes: TRoute[] = [
     label: "Скидання паролю",
   },
   { path: "*", element: <Pages.NotFound />, label: "Помилка" },
-  { path: "test", element: <><PasswordReset/></>, label: "tests" },
+  // { path: "test", element: <><PersistentDrawerLeft/></>, label: "tests" },
 
 ];
 
@@ -96,12 +96,12 @@ export const patientRoutes: TRoute[] = [
       {
         path: ERouteNames.PATIENT_ACCOUNT_ADDITIONAL_DATA,
         element: <Pages.PatientAccountAdditionalData />,
-        label: "Особиста інформація",
+        label: "Додаткові дані",
       },
       {
         path: ERouteNames.PATIENT_ACCOUNT_PASSWORD_N_SECURITY,
         element: <Pages.AccountPasswordNSecurity />,
-        label: "Додаткові дані",
+        label: "Пароль та безпека",
       },
     ],
   } as TRoute,

@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import { EUserType, TAuthFormValues, useApiService } from "~/common";
 import { useAuthProvider } from "~/providers";
@@ -24,6 +25,14 @@ export const EmailConfirmation = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Реєстрація користувача - BeHealth</title>
+        <meta
+          name="description"
+          content="Сторінка реєстрації користувача на сайті BeHealth."
+        />
+      </Helmet>
+
       <PatientPersonalIdentification email={email} onSubmit={onSubmit} />
       <SimpleModal apiError={apiError} loading={loading} />
     </>

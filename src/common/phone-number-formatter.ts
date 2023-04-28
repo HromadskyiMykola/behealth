@@ -1,7 +1,7 @@
 // this function takes a string with a phone number in the form +XXXXXXXXXXXX
 // and returns in the format +XX (XXX) XXX XX XX
 
-export const phoneNumberFormatter = (phoneNumber: string) => {
+export const phoneNumberFormatter = (phoneNumber: string | undefined) => {
   if (typeof phoneNumber !== "string") return phoneNumber;
 
   return phoneNumber.replace(

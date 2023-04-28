@@ -7,14 +7,17 @@ import {
   useState,
 } from "react";
 
-type TSimpleModalMessage = { loading: true } | ReactNode;
+// type TSimpleModalMessage = { loading: true } | ReactNode;
 
 interface IModalContext {
   openMainModal: boolean;
   setOpenMainModal: Dispatch<SetStateAction<boolean>>;
 
-  simpleModalMessage: TSimpleModalMessage;
-  setSimpleModalMessage: Dispatch<SetStateAction<TSimpleModalMessage>>;
+  simpleModalMessage: ReactNode;
+  setSimpleModalMessage: Dispatch<SetStateAction<ReactNode>>;
+
+  simpleModalLoading: boolean;
+  setSimpleModalLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ModalContext = createContext<IModalContext>({} as IModalContext);
@@ -24,8 +27,9 @@ export const useModalState = () => useContext(ModalContext);
 export const ModalStateProvider = ({ children }: { children: ReactNode }) => {
   const [openMainModal, setOpenMainModal] = useState(false);
 
-  const [simpleModalMessage, setSimpleModalMessage] =
-    useState<TSimpleModalMessage>(null);
+  const [simpleModalMessage, setSimpleModalMessage] = useState<ReactNode>(null);
+  
+  const [simpleModalLoading, setSimpleModalLoading] = useState<boolean>(false);
 
   const value = {
     openMainModal,
@@ -33,6 +37,9 @@ export const ModalStateProvider = ({ children }: { children: ReactNode }) => {
 
     simpleModalMessage,
     setSimpleModalMessage,
+
+    simpleModalLoading,
+    setSimpleModalLoading,
   };
 
   return (

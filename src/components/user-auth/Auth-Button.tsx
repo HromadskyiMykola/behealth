@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+
+import { IconButton } from "@mui/material";
 import { UserIcon } from "lucide-react";
 
 import { useAuthProvider, useModalState } from "~/providers";
@@ -7,7 +9,6 @@ import { ERouteNames } from "~/routes/routeNames";
 
 import { FormModal } from ".";
 import { ButtonM } from "../atomic";
-import { Typography } from "@mui/material";
 
 export const AuthButton = () => {
   const { setOpenMainModal } = useModalState();
@@ -28,19 +29,25 @@ export const AuthButton = () => {
 
   return (
     <>
-      <Typography
-        variant="body2"
+      <IconButton
+        aria-label="user-account"
         onClick={handleButton}
-        sx={{ cursor: "pointer", display: { xs: "block", md: "none" } }}
+        sx={{
+          width: "42px",
+          display: { xs: "flex", md: "none" },
+        }}
       >
-        {text}
-      </Typography>
+        <UserIcon size={20} color="#212121" />
+      </IconButton>
 
       <ButtonM
         variant="outlined"
         onClick={handleButton}
         startIcon={<UserIcon style={{ flexShrink: 0 }} size={20} />}
-        sx={{ display: { xs: "none", md: "inline-flex" } }}
+        sx={{
+          display: { xs: "none", md: "inline-flex" },
+          whiteSpace: "nowrap",
+        }}
       >
         {text}
       </ButtonM>

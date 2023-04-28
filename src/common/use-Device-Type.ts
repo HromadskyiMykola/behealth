@@ -12,7 +12,7 @@ export const useDeviceType = () => {
     setIsMobileAgent(mobile);
   }, []);
 
-  const isMobile = isMobileAgent || isWidth600;
+  const isMobileDevice = isMobileAgent || isWidth600;
 
-  return isMobile;
+  return isMobileDevice;
 };

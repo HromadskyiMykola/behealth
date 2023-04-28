@@ -206,7 +206,7 @@ export type TResetPassData = {
 };
 
 export type TPatientAdditionalData = {
-  type?: "address" | "work";
+  type: "address" | "work";
   //
   settlementType?: string;
   settlementAndStr?: string;
@@ -232,7 +232,7 @@ export type TPatientPersonalData = {
   tin?: string;
   sex?: "male" | "female" | "";
   //
-  typeOfDoc?: string;
+  typeOfDoc?: "Passport" | "IdCard" | "";
   docSeries?: string;
   issuedBy?: string;
   dateOfIssue?: string;
@@ -256,7 +256,7 @@ export type TAuthFormValues = TPatientPersonalData & {
   sex: "male" | "female" | "";
   chooseDoctor: string;
   time: string;
-  typeOfDoc: string;
+  // typeOfDoc: "Passport" | "IdCard";
   docNum: string;
 };
 // apiService types
@@ -275,3 +275,30 @@ export interface ISelectItemHeaderValue {
   value: string;
   text: string;
 }
+
+export interface IPatientAdditionDataOld {
+  address: null | any;
+  preferenceCategories: null | any;
+  workPlace: null | any;
+}
+
+export interface IPatientAdditionDataProps {
+  apartmentNum?: string;
+  houseNum?: string;
+  id?: number;
+  preferenceCategories?: undefined;
+  settlementAndStr?: string;
+  settlementType?: string;
+  workPlace: undefined | string;
+  jobTitle?: string;
+  employmentStatus?: string;
+  address?: undefined;
+}
+
+export type TOnSubmitAdditionalData = (
+  data: TPatientAdditionalData,
+  action?: {
+    isNeedCreateData?: boolean;
+    isNeedDeleteData?: boolean;
+  } 
+) => Promise<void>;

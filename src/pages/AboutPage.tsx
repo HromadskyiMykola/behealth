@@ -1,10 +1,18 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+
+import { Box, Container, Stack, Typography } from "@mui/material";
+
 import { CustomizedPaper } from "~/components/atomic";
 import geekHubLogo from "~/assets/images/geek-hub-logo.png";
 
-export function AboutPage() {
-  return (
+export const AboutPage = () => (
+  <>
+    <Helmet>
+      <title>Про beHealth</title>
+      <meta name="description" content="Сторінка про проект BeHealth." />
+    </Helmet>
+
     <Container maxWidth="md">
       <CustomizedPaper sx={{ m: 4 }}>
         <Stack gap={3}>
@@ -78,5 +86,5 @@ export function AboutPage() {
         </Stack>
       </CustomizedPaper>
     </Container>
-  );
-}
+  </>
+);

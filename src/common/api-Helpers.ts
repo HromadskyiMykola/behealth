@@ -20,9 +20,10 @@ const keyMap: { [key: string]: string } = {
   employmentStatus: "work_type",
   workplace: "place",
   jobTitle: "position",
-  // eligibleCat: "eligible-cat",
+  eligibleCat: "preferenceCategories",
   passwordCurrent: "password",
   passwordNew: "password",
+  documentType: "document_type",
 };
 
 const reverseKeyMap: { [key: string]: string } = {};
@@ -149,4 +150,17 @@ const errorHandler = (error: any): any => {
   );
 };
 
-export { errorHandler, transformResponseData, transformRequestData };
+ const coloredLog = (name: string, data: any) =>
+   console.log(
+     `%c${name}`,
+     "color: lightgrey; background-color: #00513E; padding: 4px",
+     data
+   );
+
+export {
+  errorHandler,
+  transformResponseData,
+  transformRequestData,
+  coloredLog,
+};
+
