@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconButton } from "@mui/material";
+import { IconButton, useTheme } from "@mui/material";
 import { UserIcon } from "lucide-react";
 
 import { useAuthProvider, useModalState } from "~/providers";
@@ -14,6 +14,7 @@ export const AuthButton = () => {
   const { setOpenMainModal } = useModalState();
   const { authenticatedUser } = useAuthProvider();
   const navigate = useNavigate();
+  const { palette } = useTheme();
 
   const text = !authenticatedUser ? "Увійти" : "Особистий кабінет";
 
@@ -33,11 +34,10 @@ export const AuthButton = () => {
         aria-label="user-account"
         onClick={handleButton}
         sx={{
-          width: "42px",
           display: { xs: "flex", md: "none" },
         }}
       >
-        <UserIcon size={20} color="#212121" />
+        <UserIcon size={24} color={palette.text.primary} />
       </IconButton>
 
       <ButtonM

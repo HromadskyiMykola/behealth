@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import {
@@ -14,9 +14,13 @@ import {
   Container,
   useTheme,
   Stack,
+  Autocomplete,
+  TextField,
+  Paper,
+  InputAdornment,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { MenuIcon, XIcon, UserIcon } from "lucide-react";
+import { MenuIcon, XIcon, UserIcon, Search as SearchIcon } from "lucide-react";
 
 import { useAuthProvider } from "~/providers";
 import { ISelectItemHeaderValue } from "~/common";
@@ -31,6 +35,7 @@ import {
   PERSONAL_CABINET,
   SING_IN,
   MAKE_TO_APPOINTMENT,
+  CITY,
 } from "~/components/Header/constant-header";
 
 const selectStyle = {
@@ -48,14 +53,16 @@ const selectStyle = {
   "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: 0,
   },
+  display: { xs: "none", lg: "block" },
 };
 
 const Header: FC = (props) => {
   const { palette } = useTheme();
-  const { authenticatedUser } = useAuthProvider();
+  const navigate = useNavigate();
 
   const [city, setCity] = useState(HEADER_SELECT_ITEM_VALUE[0].value);
   const [openMenu, setOpenMenu] = useState(false);
+  const [value, setValue] = useState<string | null>(CITY[0].title);
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
@@ -63,6 +70,9 @@ const Header: FC = (props) => {
   const setToggleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
+  // const onClickUserAccountButton = ()=> {
+  //   setOpenMenu(false)
+  // }
 
   return (
     <AppBar position="static">
@@ -145,48 +155,133 @@ const Header: FC = (props) => {
           <Stack
             flexDirection="row"
             justifyContent="space-between"
-            borderBottom={`1px solid ${palette.text.secondary}`}
+            borderBottom={`1px solid ${palette.custom.secondary90}`}
             p={2}
           >
             <Link
               to={ERouteNames.HOME}
-              style={{ flexGrow: 1, textAlign: "center" }}
+              style={{ flexGrow: 1, textAlign: "start" }}
               onClick={() => setOpenMenu(false)}
             >
               <Logo />
             </Link>
-
-            <IconButton aria-label="menu" onClick={() => setOpenMenu(false)}>
-              <XIcon color={palette.text.secondary} />
-            </IconButton>
-          </Stack>
-
-          {LINKS.map(({ name, path }) => (
-            <Box
-              key={`label-${name}`}
-              p="24px 18px"
-              borderBottom={`1px solid ${palette.text.secondary}`}
+            <Stack
+              direction="row"
+              gap="12px"
               onClick={() => setOpenMenu(false)}
             >
-              <Link to={path} style={{ textDecoration: "none" }}>
-                <Typography variant="body2" color={palette.text.primary}>
-                  {name}
-                </Typography>
-              </Link>
-            </Box>
-          ))}
+              <AuthButton />
 
-          <Box
-            p="24px 18px"
-            borderBottom={`1px solid ${palette.text.secondary}`}
-            onClick={() => setOpenMenu(false)}
-          >
-            <Link to={ERouteNames.DOCTORS} style={{ textDecoration: "none" }}>
-              <Typography variant="body2" color={palette.text.primary}>
-                {MAKE_TO_APPOINTMENT}
+              <IconButton aria-label="menu">
+                <XIcon color={palette.text.primary} />
+              </IconButton>
+            </Stack>
+          </Stack>
+          <Stack direction="column" m="24px 18px">
+            <Stack
+              direction="column"
+              borderBottom={`1px solid ${palette.custom.secondary90}`}
+              gap="16px"
+            >
+              <Autocomplete
+                freeSolo
+                sx={{
+                  "&.MuiAutocomplete-root .MuiOutlinedInput-root": {
+                    padding: 0,
+                  },
+                }}
+                options={CITY.map((option) => option.title)}
+                onChange={(event: any, newValue: string | null) => {
+                  setValue(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder="Search input"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: null,
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SearchIcon style={{ marginLeft: "12px" }} />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                )}
+                PaperComponent={({ children }) => (
+                  <Paper
+                    sx={{
+                      maxHeight: "130px",
+                      overflow: "auto",
+                      scrollbarColor: "#000",
+                      "&::-webkit-scrollbar": {
+                        width: "8px",
+                        height: "32px",
+                      },
+                      "&::-webkit-scrollbar-track": {
+                        backgroundColor: "#BFC9C3",
+                        padding: "16px 4px",
+                      },
+                      "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#3ABD98",
+                        borderRadius: "100px",
+                      },
+                      "&::-webkit-scrollbar-thumb:hover": {
+                        backgroundColor: "#5bbea3",
+                      },
+                      scrollbarWidth: "thin",
+                      "& *::-webkit-scrollbar": {
+                        width: "8px",
+                        height: "32px",
+                      },
+                      "& *::-webkit-scrollbar-track": {
+                        backgroundColor: "#BFC9C3",
+                      },
+                      "& *::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#3ABD98",
+                        borderRadius: "100px",
+                      },
+                      "& *::-webkit-scrollbar-thumb:hover": {
+                        backgroundColor: "#5bbea3",
+                      },
+                    }}
+                  >
+                    {children}
+                  </Paper>
+                )}
+              />
+              <Typography variant="body2" mb={2} pl={1}>
+                {value}
               </Typography>
-            </Link>
-          </Box>
+            </Stack>
+            <Stack direction="column" gap="24px" mt={3}>
+              {LINKS.map(({ name, path }) => (
+                <Link
+                  to={path}
+                  style={{ textDecoration: "none" }}
+                  key={`label-${name}`}
+                >
+                  <Typography
+                    variant="body2"
+                    color={palette.text.primary}
+                    onClick={() => setOpenMenu(false)}
+                  >
+                    {name}
+                  </Typography>
+                </Link>
+              ))}
+              <ButtonM
+                variant="contained"
+                onClick={() => {
+                  navigate(ERouteNames.DOCTORS);
+                  setOpenMenu(false);
+                }}
+              >
+                {MAKE_TO_APPOINTMENT}
+              </ButtonM>
+            </Stack>
+          </Stack>
         </DialogContent>
       </Dialog>
     </AppBar>
