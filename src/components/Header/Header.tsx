@@ -212,7 +212,7 @@ const Header: FC = (props) => {
                 PaperComponent={({ children }) => (
                   <Paper
                     sx={{
-                      maxHeight: "130px",
+                      maxHeight: "300px",
                       overflow: "auto",
                       scrollbarColor: "#000",
                       "&::-webkit-scrollbar": {
