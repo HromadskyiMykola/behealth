@@ -18,7 +18,7 @@ type TSignInProvider = {
 interface AuthContextData {
   authenticatedUser: { token: string; type: string } | null;
   singInProvider: (data: TSignInProvider) => void;
-  singOutProvider: () => void;
+  signOutProvider: () => void;
   onSubmitSignIn: (data: TAuthFormValues) => Promise<{ success: boolean }>;
 }
 
@@ -68,12 +68,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const token = await auth.signIn({ email, passwordCurrent, userType });
 
+    setSimpleModalLoading(false);
+
     singInProvider({ token, type: userType, rememberMe });
 
     return { success: true };
   };
 
-  const singOutProvider = () => {
+  const signOutProvider = () => {
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
     setUser(null);
@@ -84,7 +86,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{
         authenticatedUser,
         singInProvider,
-        singOutProvider,
+        signOutProvider,
         onSubmitSignIn,
       }}
     >

@@ -1,14 +1,7 @@
-import {
-  Box,
-  Container,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
-  Typography,
-  styled,
-  useTheme,
-} from "@mui/material";
+import { Helmet } from "react-helmet";
+
+import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+
 import {
   BreadcrumbsUkr,
   PaginationBottomBar,
@@ -30,35 +23,46 @@ const data = [
 
 export const DoctorsPage = () => {
   const { palette } = useTheme();
+
   return (
-    <Container sx={{ mt: "30px", mb: "60px" }}>
-      <BreadcrumbsUkr />
+    <>
+      <Helmet>
+        <title>Лікарі - BeHealth</title>
+        <meta
+          name="description"
+          content="Сторінка лікарів на сайті BeHealth."
+        />
+      </Helmet>
 
-      <Typography
-        variant="h4"
-        color={palette.custom.primary20}
-        sx={{ mt: "26px", mb: "32px" }}
-      >
-        Лікарі
-      </Typography>
+      <Container sx={{ mt: "30px", mb: "60px" }}>
+        <BreadcrumbsUkr />
 
-      <SearchBar />
+        <Typography
+          variant="h4"
+          color={palette.custom.primary20}
+          sx={{ mt: "26px", mb: "32px" }}
+        >
+          Лікарі
+        </Typography>
 
-      <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
-        <Box sx={{ flex: "0 1 328px" }}>
-          <SelectedItemsBox data={data} />
+        <SearchBar />
 
-          <FilterDoctors />
-        </Box>
+        <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
+          <Box sx={{ flex: "0 1 328px" }}>
+            <SelectedItemsBox data={data} />
 
-        <Box sx={{ flex: "1 0 auto" }}>
-          <SelectTopBar />
+            <FilterDoctors />
+          </Box>
 
-          <SmallCardDoctor />
+          <Box sx={{ flex: "1 0 auto" }}>
+            <SelectTopBar />
 
-          <PaginationBottomBar />
-        </Box>
-      </Stack>
-    </Container>
+            <SmallCardDoctor />
+
+            <PaginationBottomBar />
+          </Box>
+        </Stack>
+      </Container>
+    </>
   );
 };

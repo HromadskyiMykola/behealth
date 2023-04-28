@@ -16,10 +16,10 @@ import {
   Stack,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon, XIcon, UserIcon } from "lucide-react";
 
-import { useAuthProvider, useModalState } from "~/providers";
-import { EUserType, ISelectItemHeaderValue } from "~/common";
+import { useAuthProvider } from "~/providers";
+import { ISelectItemHeaderValue } from "~/common";
 import { ERouteNames } from "~/routes/routeNames";
 import { AuthButton } from "~/components/user-auth";
 import { Logo } from "~/assets/CustomIcon";
@@ -53,7 +53,6 @@ const selectStyle = {
 const Header: FC = (props) => {
   const { palette } = useTheme();
   const { authenticatedUser } = useAuthProvider();
-  const { setOpenMainModal } = useModalState();
 
   const [city, setCity] = useState(HEADER_SELECT_ITEM_VALUE[0].value);
   const [openMenu, setOpenMenu] = useState(false);
@@ -98,7 +97,7 @@ const Header: FC = (props) => {
           <Stack
             component="nav"
             direction="row"
-            gap="24px"
+            spacing="24px"
             alignItems="center"
             sx={{ display: { md: "flex", xs: "none" } }}
           >
@@ -109,6 +108,7 @@ const Header: FC = (props) => {
                   key={`label-${name}`}
                   style={({ isActive }) => ({
                     textDecoration: "none",
+                    whiteSpace: "nowrap",
                     color: isActive
                       ? palette.custom.primary40
                       : palette.text.primary,
@@ -126,13 +126,17 @@ const Header: FC = (props) => {
             <AuthButton />
           </Stack>
 
-          <IconButton
+          <Stack
+            direction="row"
+            gap="12px"
             sx={{ display: { xs: "flex", md: "none" } }}
-            aria-label="menu"
-            onClick={setToggleOpenMenu}
           >
-            <MenuIcon color={palette.text.secondary} />
-          </IconButton>
+            <AuthButton />
+
+            <IconButton aria-label="menu" onClick={setToggleOpenMenu}>
+              <MenuIcon size={26} color="#212121" />
+            </IconButton>
+          </Stack>
         </Stack>
       </Container>
 
@@ -181,14 +185,6 @@ const Header: FC = (props) => {
                 {MAKE_TO_APPOINTMENT}
               </Typography>
             </Link>
-          </Box>
-
-          <Box
-            p="24px 18px"
-            borderBottom={`1px solid ${palette.text.secondary}`}
-            onClick={() => setOpenMenu(false)}
-          >
-            <AuthButton />
           </Box>
         </DialogContent>
       </Dialog>
