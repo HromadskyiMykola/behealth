@@ -1,14 +1,15 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { FooterColumNavigateLinksProps } from "../../common/types-and-interfaces";
+import { GoogleMapLink } from "~/components/atomic";
 
 const FooterColumNavigateLinks = ({
   title,
   links,
-  itIsLink = true,
 }: FooterColumNavigateLinksProps) => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -29,7 +30,7 @@ const FooterColumNavigateLinks = ({
         {title}
       </Typography>
       {links.map(({ name, path }) => {
-        return itIsLink ? (
+        return (
           <Link
             key={name}
             to={path === undefined ? "/" : path}
@@ -39,10 +40,6 @@ const FooterColumNavigateLinks = ({
               {name}
             </Typography>
           </Link>
-        ) : (
-          <Typography variant="caption" color="#4C635A" key={name}>
-            {name}
-          </Typography>
         );
       })}
     </Box>

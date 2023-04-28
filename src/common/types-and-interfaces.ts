@@ -59,7 +59,7 @@ export interface FooterContactPhoneProps {
 }
 export interface FooterColumNavigateLinksProps {
   title: string;
-  links: { name: string; path?: string }[];
+  links: { name: string; path?: string | undefined }[];
   itIsLink?: boolean;
 }
 

@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Kyivstar from "../../assets/CustomIcon/Kyivstar";
 import Life from "../../assets/CustomIcon/Life";
 import Vodafon from "../../assets/CustomIcon/Vodafon";
+import { ERouteNames } from "~/routes/routeNames";
 
 export const ABOUT_FOOTER_TEXT = {
   title: "Коротко про beHealth",
@@ -83,7 +84,7 @@ export const CONTACT_PHONES_VODAFON: { icon: JSX.Element; phone: string } = {
 export const BEHEALTH_FOOTER_LINK: { name: string; path: string }[] = [
   {
     name: "Про Нас",
-    path: "/",
+    path: ERouteNames.ABOUT,
   },
   {
     name: "Партнерам",
@@ -109,11 +110,11 @@ export const PATIENTS_LINK_FOOTER_LINK: { name: string; path: string }[] = [
   },
   {
     name: "Лікарі",
-    path: "/",
+    path: ERouteNames.DOCTORS,
   },
   {
     name: "Медичні заклади",
-    path: "/",
+    path: ERouteNames.CLINICS,
   },
   {
     name: "Угода користувача",
@@ -124,17 +125,8 @@ export const PATIENTS_LINK_FOOTER_LINK: { name: string; path: string }[] = [
     path: "/",
   },
 ];
-export const FOOTER_COMPANY_INFO: { name: string; path: string }[] = [
-  {
-    name: "ТОВ «БІХЕЛС ЮА» бул.",
-    path: "/",
-  },
-  {
-    name: "Дружби Народів,",
-    path: "/",
-  },
-  {
-    name: "14 Київ 01103 Україна",
-    path: "/",
-  },
-];
+export const FOOTER_COMPANY_INFO = {
+  title: "Company",
+  path: "м. Київ, вул. Гмирі Бориса, 14 Б",
+  text: ["ТОВ «БІХЕЛС ЮА» бул.", "Дружби Народів,", "14 Київ 01103 Україна"],
+};

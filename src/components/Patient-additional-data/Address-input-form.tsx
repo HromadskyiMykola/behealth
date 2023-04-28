@@ -1,10 +1,12 @@
 import { useForm, Controller } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Button, Grid, MenuItem, Typography, Stack } from "@mui/material";
 
-import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+import {
+  TOnSubmitAdditionalData,
+  TPatientAdditionalData,
+  validationRules,
+} from "~/common";
 
 import { CustomizedInput } from "~/components/atomic/Customized-Input";
 import { SelectWithPlaceholder } from "~/components/atomic";
@@ -15,30 +17,6 @@ interface Props {
   patientAdditionalData: TPatientAdditionalData | null;
   closeEditFrom: () => void;
 }
-
-const schema = yup
-  .object({
-    settlementType: yup.string().required("Поле не може бути пустим"),
-    settlementAndStr: yup
-      .string()
-      .required("Поле не може бути пустим")
-      .max(100, "Максимальна кількість символів 100")
-      .matches(
-        /^[А-Яа-я,.\-();\s]+$/,
-        "Дозволенна тільки кирилиця і спецсимволи -()"
-      ),
-    // todo Тільки цифри 0-9 Можна вживати /
-    houseNum: yup
-      .string()
-      .required("Поле не може бути пустим")
-      .max(5, "Має бути не більше 5 символів")
-      .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
-    apartmentNum: yup
-      .string()
-      .max(5, "Має бути не більше 5 символів")
-      .matches(/^\d+(\/\d+)?$/, "Можуть бути використані тільки цифри і /"),
-  })
-  .required();
 
 const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.addresses;
 const TEXT_BUTTONS = TEXT_ADDRESSES_EDIT_FORM.button;
@@ -55,12 +33,11 @@ export const AddressInputForm = ({
     formState: { errors, isValid },
   } = useForm<TPatientAdditionalData>({
     defaultValues: {
-      settlementType: patientAdditionalData?.settlementType || "",
+      settlementType: patientAdditionalData?.settlementType || "Місце прописки",
       settlementAndStr: patientAdditionalData?.settlementAndStr || "",
       houseNum: patientAdditionalData?.houseNum || "",
       apartmentNum: patientAdditionalData?.apartmentNum || "",
     },
-    resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: TPatientAdditionalData) => {
@@ -84,6 +61,7 @@ export const AddressInputForm = ({
           <Controller
             name="settlementType"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
                 sx={{ width: "100%" }}
@@ -105,15 +83,13 @@ export const AddressInputForm = ({
               </SelectWithPlaceholder>
             )}
           />
-          {/*<Typography variant="body2" color="error" component="p" mt={1} pl={2}>*/}
-          {/*  {errors.address_type?.message}*/}
-          {/*</Typography>*/}
         </Grid>
 
         <Grid item xs={8}>
           <Controller
             name="settlementAndStr"
             control={control}
+            rules={validationRules.settlementAndStr}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.settlement}
@@ -125,15 +101,13 @@ export const AddressInputForm = ({
               />
             )}
           />
-          <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {errors.settlementAndStr?.message}
-          </Typography>
         </Grid>
 
         <Grid item xs={4}>
           <Controller
             name="houseNum"
             control={control}
+            rules={validationRules.houseNum}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.house}
@@ -144,15 +118,13 @@ export const AddressInputForm = ({
               />
             )}
           />
-          <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {/*{errors.house?.message}*/}
-          </Typography>
         </Grid>
 
         <Grid item xs={4}>
           <Controller
             name="apartmentNum"
             control={control}
+            rules={validationRules.apartmentNum}
             render={({ field }) => (
               <CustomizedInput
                 label={TEXT_CHOICES.title.apartments}
@@ -163,10 +135,6 @@ export const AddressInputForm = ({
               />
             )}
           />
-
-          <Typography variant="body2" color="error" component="p" mt={1} pl={2}>
-            {/*{errors.apartments?.message}*/}
-          </Typography>
         </Grid>
       </Grid>
 
