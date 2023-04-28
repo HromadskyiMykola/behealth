@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Typography } from "@mui/material";
-import { UserIcon } from "lucide-react";
+import { Typography, IconButton } from "@mui/material";
+import { UserIcon, MenuIcon } from "lucide-react";
 
 import { useAuthProvider, useModalState } from "~/providers";
 import { EUserType } from "~/common";
@@ -29,13 +29,16 @@ export const AuthButton = () => {
 
   return (
     <>
-      <Typography
-        variant="body2"
+      <IconButton
+        aria-label="user-account"
         onClick={handleButton}
-        sx={{ cursor: "pointer", display: { xs: "block", md: "none" } }}
+        sx={{
+          width: "42px",
+          display: { xs: "flex", md: "none" },
+        }}
       >
-        {text}
-      </Typography>
+        <UserIcon size={20} color="#212121" />
+      </IconButton>
 
       <ButtonM
         variant="outlined"

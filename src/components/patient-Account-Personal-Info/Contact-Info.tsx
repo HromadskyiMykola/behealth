@@ -18,7 +18,7 @@ export const ContactInfo = ({ patientPersonalData }: { patientPersonalData: TPat
       "& td": { borderBottom: "none" },
     }}
   >
-    <Table>
+    {/* <Table>
       <TableBody>
         <TableRow>
           <TableCell>
@@ -31,7 +31,7 @@ export const ContactInfo = ({ patientPersonalData }: { patientPersonalData: TPat
           </TableCell>
         </TableRow>
       </TableBody>
-    </Table>
+    </Table> */}
 
     <Table>
       <TableBody>
