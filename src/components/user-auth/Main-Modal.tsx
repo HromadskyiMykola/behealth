@@ -7,7 +7,6 @@ import {
   Grid,
   IconButton,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,10 +21,8 @@ import logoSignUp from "~/assets/images/logo_sign_up.png";
 
 export function FormModal() {
   const { openMainModal, setOpenMainModal } = useModalState();
-  const { palette, breakpoints } = useTheme();
-  // const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
-  const isSmDown = useMediaQuery(breakpoints.down("sm"));
-  const isMobile = useDeviceType();
+  const { palette } = useTheme();
+  const { isWidth600, isSmDown } = useDeviceType();
 
   const [mode, setMode] = useState<TAuthMode>({ isLoginMode: true });
 
@@ -34,10 +31,10 @@ export function FormModal() {
   return (
     <Dialog
       sx={{
-        "& .MuiPaper-root": { borderRadius: isMobile ? 0 : "26px" },
+        "& .MuiPaper-root": { borderRadius: isWidth600 ? 0 : "26px" },
       }}
       maxWidth="md"
-      fullScreen={isMobile}
+      fullScreen={isWidth600}
       scroll={"body"}
       open={openMainModal}
       onClose={() => setOpenMainModal(false)}
@@ -46,7 +43,7 @@ export function FormModal() {
         sx={{
           minWidth: "380px",
           maxWidth: "1000px",
-          p: isMobile ? "16px" : "80px",
+          p: isWidth600 ? "16px" : "80px",
           backgroundColor: primary.main,
 
           justifyContent: "center",
@@ -57,14 +54,14 @@ export function FormModal() {
           sx={{
             position: "absolute",
             p: 0,
-            top: isMobile ? "22px" : "28px",
-            right: isMobile ? "22px" : "28px",
+            top: isWidth600 ? "22px" : "28px",
+            right: isWidth600 ? "22px" : "28px",
             color: custom.primary100,
           }}
           aria-label="close"
           onClick={() => setOpenMainModal(false)}
         >
-          <CloseIcon fontSize={isMobile ? "medium" : "large"} />
+          <CloseIcon fontSize={isWidth600 ? "medium" : "large"} />
         </IconButton>
 
         <Grid

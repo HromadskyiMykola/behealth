@@ -60,7 +60,11 @@ export function usePatientFetchingData() {
             tin,
             sex,
           }
-        : { type, typeOfDoc, docSeries, issuedBy, dateOfIssue, docNum };
+        : {
+          type,
+          typeOfDoc,
+          docSeries, issuedBy, dateOfIssue, docNum
+        };
 
     if (action?.isNeedDeleteData) {
       await patient.personalInfo.delete({ type });

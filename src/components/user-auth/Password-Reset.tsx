@@ -8,7 +8,7 @@ import { RHFPasswordNew, RHFPasswordConfirm } from "../React-Hook-Form-Fields";
 export const PasswordReset = () => {
   const [openResetPasswordModal, setOpenResetPasswordModal] = useState(true);
   const { palette } = useTheme();
-  const isMobile = useDeviceType();
+  const { isWidth600 } = useDeviceType();
 
   const {
     control,
@@ -30,10 +30,10 @@ export const PasswordReset = () => {
     <>
       <Dialog
         open={openResetPasswordModal}
-        fullScreen={isMobile}
+        fullScreen={isWidth600}
         sx={{
           "& .MuiPaper-root": {
-            borderRadius: isMobile ? 0 : "12px",
+            borderRadius: isWidth600 ? 0 : "12px",
           },
         }}
         onClose={() => setOpenResetPasswordModal(false)}
@@ -41,7 +41,7 @@ export const PasswordReset = () => {
         <Stack
           m="auto"
           component="form"
-          p={isMobile ? 0 : "32px"}
+          p={isWidth600 ? 0 : "32px"}
           gap="24px"
           noValidate
           onSubmit={onSubmitPasswordReset}

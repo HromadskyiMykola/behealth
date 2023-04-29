@@ -36,7 +36,7 @@ function CustomSelect(
   const { palette, typography } = useTheme();
 
   const styleSelect = {
-    mb: "18px",
+    mb: helperText && "18px",
     "& .MuiSelect-select .notranslate::after": placeholder
       ? {
           content: `"${placeholder}"`,

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 
 import { Button, Grid, MenuItem, Stack } from "@mui/material";
@@ -32,8 +32,15 @@ export const IdentityDocumentsEdit = ({
   const { typeOfDoc, docSeries, issuedBy, dateOfIssue, docNum } =
     patientPersonalData || {};
 
-  const isIdCardSelected = watch("typeOfDoc") === "IdCard";
+  // const isIdCardSelected = watch("typeOfDoc") === "IdCard";
+  const [isIdCardSelected, setIsIdCardSelected] = useState(true);
+
+  const selectedTypeOfDoc = watch("typeOfDoc");
   const isSeriesValueExist = !!(watch("docSeries") || docSeries);
+
+  useEffect(() => {
+    setIsIdCardSelected(selectedTypeOfDoc === "IdCard");
+  }, [selectedTypeOfDoc]);
 
   useEffect(() => {
     isSubmitSuccessful && openCloseEditIdentityDocuments();
@@ -56,7 +63,7 @@ export const IdentityDocumentsEdit = ({
           <Controller
             name="typeOfDoc"
             control={control}
-            defaultValue={typeOfDoc || ""}
+            defaultValue={typeOfDoc || "IdCard"}
             rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
