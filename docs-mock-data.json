@@ -1,0 +1,1340 @@
+[
+  {
+    "id": 1,
+    "specialty": "Головний лікар",
+    "name": "Поліщук Олександр Іванович",
+    "experience": "66 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:00", "11:20", "14:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 92",
+    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1000 грн"
+      }
+    ],
+    "reviewsCount": 13,
+    "rating": 60,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "alex_crutoi666@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 337 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 337 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 337 27"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "specialty": "Сімейний лікар",
+    "name": "Коваленко Ірина Олександрівна",
+    "experience": "17 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": [
+        "10:20",
+        "11:50",
+        "14:00",
+        "15:00",
+        "16:20",
+        "16:50",
+        "17:30",
+        "18:40"
+      ]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Митниця",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 6",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація"],
+    "grade": "Добре",
+    "qualification": "Перша категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 7,
+    "rating": 34,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "ya_devushka_prosto_bomba@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 123 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 123 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 123 27"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "specialty": "Отоларинголог",
+    "name": "Лисенко Марина Петрівна",
+    "experience": "8 років",
+    "availableHours": {
+      "available": false,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 8",
+    "tags": ["Лікар працює з eHealth (ЕСОЗ)", "Онлайн консультація"],
+    "grade": "Нормально",
+    "qualification": "Перша категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 8,
+    "rating": 34,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "marinka_mandarinka@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 32 337 1"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 32 337 1"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 32 337 1"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "specialty": "Терапевт",
+    "name": "Бондаренко Олександр Ігорович",
+    "experience": "19 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:20", "11:20", "16:40", "18:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "ПЗР",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 5",
+    "tags": ["Онлайн консультація"],
+    "grade": "Добре",
+    "qualification": "Друга категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 10,
+    "rating": 50,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "oleksandr_bondarenko@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 67 778 33"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 67 778 33"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 67 778 33"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "specialty": "Лікар Педіатр",
+    "name": "Шевченко Ірина Миколаївна",
+    "experience": "18 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Д",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 29",
+    "tags": ["Лікар приймає декларацію", "Лікар працює з eHealth (ЕСОЗ)"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 18,
+    "rating": 78,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "irina_shevchenko1980@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 97 132 13"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 97 132 13"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 97 132 13"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "specialty": "Кардіолог",
+    "name": "Кравченко Андрій Сергійович",
+    "experience": "6 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 223",
+    "tags": ["Онлайн консультація", "Прийом дітей"],
+    "grade": "Добре",
+    "qualification": "Першв категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 20,
+    "rating": 71,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "andriy_krav2803@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 55 665 65"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 55 665 65"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 55 665 65"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "specialty": "Гастроентеролог",
+    "name": "Гончаренко Любов Ігорівна",
+    "experience": "7 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "ПЗР",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 78",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 26,
+    "rating": 82,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "goncharenko_l@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 88 458 92"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 88 458 92"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 88 458 92"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "specialty": "Гінеколог",
+    "name": "Костенко Анна Іванівна",
+    "experience": "4 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Д",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 9",
+    "tags": ["Лікар приймає декларацію"],
+    "grade": "Нормально",
+    "qualification": "Друга категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 10,
+    "rating": 54,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "annakost65@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 32 654 23"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 32 654 23"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 32 654 23"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "specialty": "Дерматовенеролог",
+    "name": "Герасименко Олена Миколаївна",
+    "experience": "11 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:40"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 10",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 15,
+    "rating": 76,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "olena_gera44@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 12 543 88"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 12 543 88"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 12 543 88"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "specialty": "Психіатр",
+    "name": "Лихачова Марія Вікторівна",
+    "experience": "5 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:00", "11:20", "14:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб.112",
+    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1000 грн"
+      }
+    ],
+    "reviewsCount": 13,
+    "rating": 60,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "alex_crutoi666@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 337 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 337 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 337 27"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "specialty": "Невропатолог",
+    "name": "Головко Оксана Олександрівна",
+    "experience": "14 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:00", "11:20", "14:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "м. Київ, вул. Попудренка, 7, каб. 42",
+    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1000 грн"
+      }
+    ],
+    "reviewsCount": 13,
+    "rating": 60,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "alex_crutoi666@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 337 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 337 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 337 27"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "specialty": "Головний лікар",
+    "name": "Михайленко Андрій Володимирович",
+    "experience": "54 років",
+    "availableHours": {
+      "available": false,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "ПЗР",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1300 грн"
+      }
+    ],
+    "reviewsCount": 14,
+    "rating": 40,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "the_best_doc@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 05 757 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 05 757 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 05 757 27"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "specialty": "Сімейний лікар",
+    "name": "Литвиненко Максим Олексійович",
+    "experience": "11 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": [
+        "10:20",
+        "11:50",
+        "14:00",
+        "15:00",
+        "16:20",
+        "16:50",
+        "17:30",
+        "18:40"
+      ]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Митниця",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація"],
+    "grade": "Нормально",
+    "qualification": "Перша категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "500 грн"
+      }
+    ],
+    "reviewsCount": 1,
+    "rating": 5,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "yellow_banana111@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 123 00"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 123 00"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 123 00"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "specialty": "Отоларинголог",
+    "name": "Кравець Марина Валеріївна",
+    "experience": "19 років",
+    "availableHours": {
+      "available": false,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар працює з eHealth (ЕСОЗ)", "Онлайн консультація"],
+    "grade": "Нормально",
+    "qualification": "Перша категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "600 грн"
+      }
+    ],
+    "reviewsCount": 5,
+    "rating": 38,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "snus@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 32 337 1"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 32 337 1"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 32 337 1"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "specialty": "Терапевт",
+    "name": "Богомолова Юлія Олександрівна",
+    "experience": "18 років",
+    "availableHours": {
+      "available": false,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:20", "10:40", "16:40", "18:00"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "ПЗР",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Онлайн консультація"],
+    "grade": "Добре",
+    "qualification": "Друга категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": false,
+        "price": null
+      }
+    ],
+    "reviewsCount": 10,
+    "rating": 50,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "oleksandr_bondarenko@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 67 778 33"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 67 778 33"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 67 778 33"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "specialty": "Лікар Педіатр",
+    "name": "Марченко Тетяна Ігорівна",
+    "experience": "35 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["9:00", "13:40", "15:20", "17:40", "18:20"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Д",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Лікар працює з eHealth (ЕСОЗ)"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1200 грн"
+      }
+    ],
+    "reviewsCount": 4,
+    "rating": 14,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "irina_shevchenko1980@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 97 132 13"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 97 132 13"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 97 132 13"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "specialty": "Кардіолог",
+    "name": "Гордієнко Олександр Ігорович",
+    "experience": "18 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Онлайн консультація", "Прийом дітей"],
+    "grade": "Добре",
+    "qualification": "Першв категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "900 грн"
+      }
+    ],
+    "reviewsCount": 20,
+    "rating": 71,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "andriy_krav2803@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 55 665 65"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 55 665 65"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 55 665 65"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "specialty": "Гастроентеролог",
+    "name": "Сідельник Валерія Михайлівна",
+    "experience": "20 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "ПЗР",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "2000 грн"
+      }
+    ],
+    "reviewsCount": 26,
+    "rating": 82,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "goncharenko_l@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 88 458 92"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 88 458 92"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 88 458 92"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "specialty": "Гінеколог",
+    "name": "Кравець Інна Миколаївна",
+    "experience": "5 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Д",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію"],
+    "grade": "Нормально",
+    "qualification": "Друга категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "500 грн"
+      }
+    ],
+    "reviewsCount": 10,
+    "rating": 54,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "annakost65@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 32 654 23"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 32 654 23"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 32 654 23"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "specialty": "Дерматовенеролог",
+    "name": "Денисенко Ірина Сергіївна",
+    "experience": "7 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:40"]
+    },
+    "sex": "Жінка",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1300 грн"
+      }
+    ],
+    "reviewsCount": 15,
+    "rating": 76,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "olena_gera44@gmail.com",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 12 543 88"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 12 543 88"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 12 543 88"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "specialty": "Психіатр",
+    "name": "Богданова Лариса Анатоліївна",
+    "experience": "11 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:00", "11:20", "14:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": true
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": false
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1200 грн"
+      }
+    ],
+    "reviewsCount": 13,
+    "rating": 60,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "alex_crutoi666@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 337 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 337 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 337 27"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "specialty": "Невропатолог",
+    "name": "Тимошенко Дмитро Сергійович",
+    "experience": "14 років",
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "available_time": ["10:00", "11:20", "14:00"]
+    },
+    "sex": "Чоловік",
+    "type": "Державна клініка",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
+    "grade": "Дуже добре",
+    "qualification": "Вища категорія",
+    "servicePayment": [
+      {
+        "title": "Безкоштовно за направленням",
+        "available": false
+      },
+      {
+        "title": "Безкоштовно за декларацією НСЗУ",
+        "available": true
+      },
+      {
+        "title": "Платний прийом",
+        "available": true,
+        "price": "1300 грн"
+      }
+    ],
+    "reviewsCount": 3,
+    "rating": 20,
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "alex_crutoi666@onmedu.ua",
+    "contacts": [
+      {
+        "type": "lifecell",
+        "phone": "(073) 35 337 27"
+      },
+      {
+        "type": "vodafone",
+        "phone": "(095) 35 337 27"
+      },
+      {
+        "type": "kyivstar",
+        "phone": "(067) 35 337 27"
+      }
+    ]
+  }
+]
