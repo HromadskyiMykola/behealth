@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, ReactElement, ReactFragment } from "react";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
+  Stack,
   Typography,
 } from "@mui/material";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
@@ -38,9 +39,22 @@ export const AccordionItem: FC<AccordionItemProps> = ({
           sx={{ pb: "24px!important" }}
           className="_containerAccordionDetails"
         >
-          <Typography sx={{ color: "#647C72" }} variant="body2">
-            {description}
-          </Typography>
+          <Stack spacing={2}>
+            {description.map((text: string, index: number) => {
+              if (text[0] === "•") {
+                console.log("do");
+              }
+              return (
+                <Typography
+                  color="#647C72"
+                  variant="body2"
+                  key={`text-item-by-id-${index}`}
+                >
+                  {text}
+                </Typography>
+              );
+            })}
+          </Stack>
         </AccordionDetails>
       </Accordion>
     </Box>
