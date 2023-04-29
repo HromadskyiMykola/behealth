@@ -32,7 +32,6 @@ export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
   const { breakpoints, palette } = useTheme();
   const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
-  const isMobile = useDeviceType();
 
   const { control, handleSubmit, errors, isValid } = useReactHookForm();
 

@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export const useDeviceType = () => {
-  const [isMobileAgent, setIsMobileAgent] = useState(false);
-  const isWidth600 = useMediaQuery("(max-width: 600px)");
+  const [isSmDown, setIsSmDown] = useState(false);
+  const [isMdDown, setIsMdDown] = useState(false);
+  const [isWidth600, setIsWidth600] = useState(false);
+
+  const { breakpoints } = useTheme();
+
+  const isSm = useMediaQuery(breakpoints.down("sm")); // 768
+  const isMd = useMediaQuery(breakpoints.down("md")); // 1024
+  const is600 = useMediaQuery("(max-width: 600px)");
 
   useEffect(() => {
-    const userAgent = navigator.userAgent;
-    const mobile = /Mobi|Android/i.test(userAgent);
+    setIsSmDown(isSm);
+    setIsMdDown(isMd);
+    setIsWidth600(is600);
+  }, [isSm, isMd, is600]);
 
-    setIsMobileAgent(mobile);
-  }, []);
-
-  const isMobileDevice = isMobileAgent || isWidth600;
-
-  return isMobileDevice;
+  return { isSmDown, isMdDown, isWidth600 };
 };

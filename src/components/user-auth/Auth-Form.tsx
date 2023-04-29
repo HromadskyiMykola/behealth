@@ -9,7 +9,6 @@ import {
   FormControlLabel,
   Checkbox,
   useTheme,
-  useMediaQuery,
 } from "@mui/material";
 
 import { useModalState, useAuthProvider } from "~/providers";
@@ -43,9 +42,8 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
   const { onSubmitSignIn } = useAuthProvider();
   const navigate = useNavigate();
-  const { palette, breakpoints } = useTheme();
-  const isMobile = useDeviceType();
-  const isSmDown = useMediaQuery(breakpoints.down("sm"));
+  const { palette } = useTheme();
+  const { isWidth600, isSmDown } = useDeviceType();
 
   const { isLoginMode, isRegisterMode, isRecoveryMode } = mode;
 
@@ -89,7 +87,7 @@ export function AuthForm({ mode, setMode }: TAuthFormProps) {
   };
 
   return (
-    <Stack maxWidth="442px" mt={isRecoveryMode && isMobile ? "60px" : 0}>
+    <Stack maxWidth="442px" mt={isRecoveryMode && isWidth600 ? "60px" : 0}>
       {!isRegisterMode && (
         <UserTypeSelector userType={userType} onChange={setUserType} />
       )}

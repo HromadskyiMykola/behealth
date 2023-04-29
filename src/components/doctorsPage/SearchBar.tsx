@@ -12,13 +12,22 @@ import {
   CustomizedPaper,
   SelectWithPlaceholder,
 } from "../atomic";
+import { useDeviceType } from "~/common";
 
 export const SearchBar = () => {
   const { custom } = useTheme().palette;
+  const { isSmDown } = useDeviceType();
 
   return (
-    <CustomizedPaper sx={{ p: "32px 32px 40px 32px" }}>
-      <Stack direction="row" gap="24px" alignItems="flex-end">
+    <CustomizedPaper
+      sx={{ p: isSmDown ? "24px 16px 28px 16px" : "32px 32px 40px 32px" }}
+    >
+      <Stack
+        direction={isSmDown ? "column" : "row"}
+        gap="24px"
+        alignItems={isSmDown ? "stretch" : "flex-end"}
+        justifyItems="center"
+      >
         <SelectWithPlaceholder
           sx={{ display: "flex", flexBasis: "40%", minWidth: "150px" }}
           label="Спеціальність"
@@ -42,7 +51,7 @@ export const SearchBar = () => {
           }}
         />
 
-        <Button sx={{ maxWidth: "175px", width: "100%" }} variant="contained">
+        <Button sx={{ minWidth: "175px" }} variant="contained">
           Знайти
         </Button>
       </Stack>
