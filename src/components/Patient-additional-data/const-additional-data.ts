@@ -51,7 +51,7 @@ export const TEXT_ADDRESSES_EDIT_FORM = {
       addresses: "Введіть місце роботи",
       position: "Введіть вашу посаду",
     },
-    selectOptions: ["Основне", "За сумісництвом)"],
+    selectOptions: ["Основне", "За сумісництвом"],
   },
   preferentialCategories: {
     titleRestData: {

@@ -1,8 +1,11 @@
 import { TOnSubmitAdditionalData, usePatientFetchingData } from "~/common";
 
 import { CustomizedPaper } from "~/components/atomic";
-import AdditionDataContainer from "~/components/tads.additionalData/Addition-data-container";
-import { PatientAdditionalDataAddress } from "~/components/Patient-additional-data";
+import {
+  PatientAdditionalDataAddress,
+  PatientAdditionalDataPrefCat,
+  PatientAdditionalDataWorkPlace,
+} from "~/components/Patient-additional-data";
 import { Skeleton, Stack } from "@mui/material";
 
 export function PatientAccountAdditionalData() {
@@ -11,23 +14,39 @@ export function PatientAccountAdditionalData() {
 
   return (
     <CustomizedPaper>
-      {/*<AdditionDataContainer patientAdditionData={patientAdditionData} />*/}
+      <Stack gap="48px">
+        {!patientAdditionalData && (
+          <Stack gap={2}>
+            <Skeleton variant="text" sx={{ height: 150 }} />
+            <Skeleton variant="rounded" sx={{ height: 150 }} />
+          </Stack>
+        )}
 
-      {!patientAdditionalData && (
-        <Stack gap={2}>
-          <Skeleton variant="text" sx={{ height: 150 }} />
-          <Skeleton variant="rounded" sx={{ height: 150 }} />
-        </Stack>
-      )}
+        {patientAdditionalData && (
+          <>
+            <PatientAdditionalDataAddress
+              patientAdditionalData={patientAdditionalData}
+              onSubmitAdditionalData={
+                onSubmitAdditionalData as TOnSubmitAdditionalData
+              }
+            />
 
-      {patientAdditionalData && (
-        <PatientAdditionalDataAddress
-          patientAdditionalData={patientAdditionalData}
-          onSubmitAdditionalData={
-            onSubmitAdditionalData as TOnSubmitAdditionalData
-          }
-        />
-      )}
+            <PatientAdditionalDataWorkPlace
+              patientAdditionalData={patientAdditionalData}
+              onSubmitAdditionalData={
+                onSubmitAdditionalData as TOnSubmitAdditionalData
+              }
+            />
+
+            <PatientAdditionalDataPrefCat
+              patientAdditionalData={patientAdditionalData}
+              onSubmitAdditionalData={
+                onSubmitAdditionalData as TOnSubmitAdditionalData
+              }
+            />
+          </>
+        )}
+      </Stack>
     </CustomizedPaper>
   );
 }
