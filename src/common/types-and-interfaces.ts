@@ -295,10 +295,12 @@ export interface IPatientAdditionDataProps {
   address?: undefined;
 }
 
-export type TOnSubmitAdditionalData = (
-  data: TPatientAdditionalData,
-  action?: {
-    isNeedCreateData?: boolean;
-    isNeedDeleteData?: boolean;
-  }
-) => Promise<void>;
+export interface IOnSubmitPatientData {
+  (
+    data: TPatientAdditionalData | TPatientPersonalData,
+    action?: {
+      isNeedCreateData?: boolean;
+      isNeedDeleteData?: boolean;
+    }
+  ): Promise<void>;
+}

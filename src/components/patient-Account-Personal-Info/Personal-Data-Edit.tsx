@@ -1,7 +1,11 @@
 import { Controller } from "react-hook-form";
 import { Button, Grid, MenuItem, Stack } from "@mui/material";
 
-import { TPatientPersonalData, useReactHookForm } from "~/common";
+import {
+  IOnSubmitPatientData,
+  TPatientPersonalData,
+  useReactHookForm,
+} from "~/common";
 
 import { SelectWithPlaceholder } from "../atomic";
 import {
@@ -14,10 +18,7 @@ import {
 import { useEffect } from "react";
 
 type PersonalDataEditProps = {
-  onSubmitPersonalData: (
-    data: TPatientPersonalData,
-    type: "patient_info" | "document"
-  ) => Promise<void>;
+  onSubmitPersonalData: IOnSubmitPatientData;
   openCloseEditPersonalData: () => void;
   patientPersonalData: TPatientPersonalData | null;
 };
@@ -41,7 +42,7 @@ export const PersonalDataEdit = ({
     <form
       noValidate
       onSubmit={handleSubmit((data) =>
-        onSubmitPersonalData(data, "patient_info")
+        onSubmitPersonalData({ ...data, type: "patient_info" })
       )}
     >
       <Grid container columnSpacing={3}>

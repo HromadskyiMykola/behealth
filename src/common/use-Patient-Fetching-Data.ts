@@ -28,11 +28,53 @@ export function usePatientFetchingData() {
 
   const onSubmitPersonalData = async (
     data: TPatientPersonalData,
-    type: "patient_info" | "document"
+    action?: { isNeedCreateData?: boolean; isNeedDeleteData?: boolean }
   ) => {
-    await patient.personalInfo.update({ ...data, type });
+    const {
+      type,
+      mobileNum,
+      email,
+      firstName,
+      middleName,
+      lastName,
+      birthDate,
+      tin,
+      sex,
+      typeOfDoc,
+      docSeries,
+      issuedBy,
+      dateOfIssue,
+      docNum,
+    } = data;
 
-    setPatientPersonalData({ ...patientPersonalData, ...data });
+    const selectedData =
+      type === "patient_info"
+        ? {
+            type,
+            mobileNum,
+            email,
+            firstName,
+            middleName,
+            lastName,
+            birthDate,
+            tin,
+            sex,
+          }
+        : { type, typeOfDoc, docSeries, issuedBy, dateOfIssue, docNum };
+
+    if (action?.isNeedDeleteData) {
+      await patient.personalInfo.delete({ type });
+      setPatientPersonalData({ ...patientPersonalData, ...selectedData });
+      return;
+    }
+
+    action?.isNeedCreateData
+      ? await patient.personalInfo.create(selectedData)
+      : await patient.personalInfo.update(selectedData);
+
+    setPatientPersonalData(
+      action?.isNeedDeleteData ? null : { ...patientPersonalData, ...data }
+    );
   };
 
   const onSubmitAdditionalData = async (

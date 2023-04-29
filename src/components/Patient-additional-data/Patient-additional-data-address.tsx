@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useTheme, Typography, Stack } from "@mui/material";
 import { Plus } from "lucide-react";
 
-import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+import { IOnSubmitPatientData, TPatientAdditionalData } from "~/common";
 import { AddressInputForm } from "./Address-input-form";
 import { AddressContentInfo } from "~/components/Patient-additional-data/Address-content-info";
 import { ButtonEditIcon, ButtonM } from "../atomic";
 
 interface Props {
-  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  onSubmitAdditionalData: IOnSubmitPatientData;
   patientAdditionalData: TPatientAdditionalData | null;
 }
 

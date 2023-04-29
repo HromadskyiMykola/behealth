@@ -1,14 +1,15 @@
 import { Button, Stack } from "@mui/material";
-import { TPatientPersonalData, useReactHookForm } from "~/common";
+import {
+  TPatientPersonalData,
+  IOnSubmitPatientData,
+  useReactHookForm,
+} from "~/common";
 
 import { RHFEmail, RHFmobileNum } from "../React-Hook-Form-Fields";
 import { useEffect } from "react";
 
 type ContactInfoEditProps = {
-  onSubmitPersonalData: (
-    data: TPatientPersonalData,
-    type: "patient_info" | "document"
-  ) => Promise<void>;
+  onSubmitPersonalData: IOnSubmitPatientData;
   openCloseEditContactInfo: () => void;
   patientPersonalData: TPatientPersonalData | null;
 };
@@ -28,9 +29,9 @@ export const ContactInfoEdit = ({
   return (
     <form
       noValidate
-      onSubmit={handleSubmit((data) =>
-        onSubmitPersonalData(data, "patient_info")
-      )}
+      onSubmit={handleSubmit((data: TPatientPersonalData) => {
+        onSubmitPersonalData({ ...data, type: "patient_info" });
+      })}
     >
       <Stack
         mb="16px"

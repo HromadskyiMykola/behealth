@@ -1,4 +1,4 @@
-import { TOnSubmitAdditionalData, usePatientFetchingData } from "~/common";
+import { IOnSubmitPatientData, usePatientFetchingData } from "~/common";
 
 import { CustomizedPaper } from "~/components/atomic";
 import {
@@ -27,21 +27,21 @@ export function PatientAccountAdditionalData() {
             <PatientAdditionalDataAddress
               patientAdditionalData={patientAdditionalData}
               onSubmitAdditionalData={
-                onSubmitAdditionalData as TOnSubmitAdditionalData
+                onSubmitAdditionalData as IOnSubmitPatientData
               }
             />
 
             <PatientAdditionalDataWorkPlace
               patientAdditionalData={patientAdditionalData}
               onSubmitAdditionalData={
-                onSubmitAdditionalData as TOnSubmitAdditionalData
+                onSubmitAdditionalData as IOnSubmitPatientData
               }
             />
 
             <PatientAdditionalDataPrefCat
               patientAdditionalData={patientAdditionalData}
               onSubmitAdditionalData={
-                onSubmitAdditionalData as TOnSubmitAdditionalData
+                onSubmitAdditionalData as IOnSubmitPatientData
               }
             />
           </>

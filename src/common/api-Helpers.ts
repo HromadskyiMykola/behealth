@@ -23,7 +23,8 @@ const keyMap: { [key: string]: string } = {
   eligibleCat: "preferenceCategories",
   passwordCurrent: "password",
   passwordNew: "password",
-  documentType: "document_type",
+  typeOfDoc: "document_type",
+  dateOfIssue: "date",
 };
 
 const reverseKeyMap: { [key: string]: string } = {};
@@ -37,6 +38,8 @@ const transformRequestData = (data: any) => {
   const modData: { [key: string]: string } = {};
 
   for (const key in data) {
+    if (!data[key]) continue;
+
     const modKey = keyMap[key] || key;
     modData[modKey] = data[key];
   }
@@ -150,12 +153,12 @@ const errorHandler = (error: any): any => {
   );
 };
 
- const coloredLog = (name: string, data: any) =>
-   console.log(
-     `%c${name}`,
-     "color: lightgrey; background-color: #00513E; padding: 4px",
-     data
-   );
+const coloredLog = (name: string, data: any) =>
+  console.log(
+    `%c${name}`,
+    "color: lightgrey; background-color: #00513E; padding: 4px",
+    data
+  );
 
 export {
   errorHandler,
@@ -163,4 +166,3 @@ export {
   transformRequestData,
   coloredLog,
 };
-

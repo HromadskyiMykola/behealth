@@ -3,10 +3,10 @@ import { Trash2 } from "lucide-react";
 
 import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/Patient-additional-data/const-additional-data";
 
-import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+import { IOnSubmitPatientData, TPatientAdditionalData } from "~/common";
 
 interface Props {
-  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  onSubmitAdditionalData: IOnSubmitPatientData;
   patientAdditionalData: TPatientAdditionalData | null;
 }
 

@@ -1,21 +1,22 @@
-import { Controller, Control, FieldErrors, FormState } from "react-hook-form";
-import { Button, Grid, MenuItem, Stack, TextField } from "@mui/material";
+import { useEffect } from "react";
+import { Controller } from "react-hook-form";
 
-import { TPatientPersonalData, useReactHookForm } from "~/common";
+import { Button, Grid, MenuItem, Stack } from "@mui/material";
+
+import {
+  IOnSubmitPatientData,
+  TPatientPersonalData,
+  useReactHookForm,
+} from "~/common";
 
 import {
   CustomizedInput,
   DatePickerInput,
   SelectWithPlaceholder,
 } from "../atomic";
-import { RHFMiddleName, RHFTin } from "../React-Hook-Form-Fields";
-import { useEffect } from "react";
 
 type IdentityDocumentsEditProps = {
-  onSubmitPersonalData: (
-    data: TPatientPersonalData,
-    type: "patient_info" | "document"
-  ) => Promise<void>;
+  onSubmitPersonalData: IOnSubmitPatientData;
   openCloseEditIdentityDocuments: () => void;
   patientPersonalData: TPatientPersonalData | null;
 };
@@ -25,11 +26,14 @@ export const IdentityDocumentsEdit = ({
   openCloseEditIdentityDocuments,
   patientPersonalData,
 }: IdentityDocumentsEditProps) => {
-  const { control, handleSubmit, isValid, errors, isSubmitSuccessful } =
+  const { control, handleSubmit, watch, isValid, errors, isSubmitSuccessful } =
     useReactHookForm();
 
   const { typeOfDoc, docSeries, issuedBy, dateOfIssue, docNum } =
     patientPersonalData || {};
+
+  const isIdCardSelected = watch("typeOfDoc") === "IdCard";
+  const isSeriesValueExist = !!(watch("docSeries") || docSeries);
 
   useEffect(() => {
     isSubmitSuccessful && openCloseEditIdentityDocuments();
@@ -38,7 +42,14 @@ export const IdentityDocumentsEdit = ({
   return (
     <form
       noValidate
-      onSubmit={handleSubmit((data) => onSubmitPersonalData(data, "document"))}
+      onSubmit={handleSubmit((data) => {
+        const isNeedCreateData = !patientPersonalData?.typeOfDoc;
+
+        onSubmitPersonalData(
+          { ...data, type: "document" },
+          { isNeedCreateData }
+        );
+      })}
     >
       <Grid container columnSpacing={3}>
         <Grid item xs={12} md={6} laptop={4}>
@@ -49,6 +60,7 @@ export const IdentityDocumentsEdit = ({
             rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
+                disabled={isSeriesValueExist}
                 fullWidth
                 placeholder="Оберіть тип"
                 label="Тип документа*"
@@ -89,9 +101,10 @@ export const IdentityDocumentsEdit = ({
             name="docSeries"
             control={control}
             defaultValue={docSeries || ""}
-            rules={{ required: true }}
+            rules={{ required: !isIdCardSelected }}
             render={({ field }) => (
               <CustomizedInput
+                disabled={isIdCardSelected}
                 fullWidth
                 label="Серія*"
                 placeholder="Введіть серію"
