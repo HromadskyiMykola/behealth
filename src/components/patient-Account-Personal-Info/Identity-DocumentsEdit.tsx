@@ -42,7 +42,6 @@ export const IdentityDocumentsEdit = ({
     setIsIdCardSelected(selectedTypeOfDoc === "IdCard");
   }, [selectedTypeOfDoc]);
 
-
   useEffect(() => {
     isSubmitSuccessful && openCloseEditIdentityDocuments();
   }, [isSubmitSuccessful]);
