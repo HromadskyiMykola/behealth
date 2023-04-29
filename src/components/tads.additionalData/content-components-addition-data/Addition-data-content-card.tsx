@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { emptyText } from "../const-additional-data";
 import ContentCardAdditionData from "./Content-card-addition-data";
 import { AddressesForm } from "./Addresses-form";
-import { WorkPlaceForm } from "~/components/tads.additionalData/content-components-addition-data/Work-place-form";
+import { WorkPlaceForm } from "~/components/Patient-additional-data/Workplace-form";
 
 export const AdditionalDataContentCard = ({
   valuePatientAdditionData,
@@ -20,14 +20,14 @@ export const AdditionalDataContentCard = ({
             valuePatientAdditionData={valuePatientAdditionData}
           />
         );
-      case 1:
-        return (
-          <WorkPlaceForm
-            closeEditForm={closeEditForm}
-            data={valuePatientAdditionData}
-            valuePatientAdditionData={valuePatientAdditionData}
-          />
-        );
+      // case 1:
+      //   return (
+      //     <WorkPlaceForm
+      //       // closeEditForm={closeEditForm}
+      //       // data={valuePatientAdditionData}
+      //       // valuePatientAdditionData={valuePatientAdditionData}
+      //     />
+      //   );
       case 2:
         return "Тут поки пусто)";
     }

@@ -1,16 +1,18 @@
 import { useForm, Controller } from "react-hook-form";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import { CustomizedInput } from "~/components/atomic/Customized-Input";
+import { TEXT_ADDRESSES_EDIT_FORM } from "./const-additional-data";
 
-import { Button, Grid, MenuItem, Typography, Stack } from "@mui/material";
-
+import { SelectWithPlaceholder } from "~/components/atomic";
 import {
   TOnSubmitAdditionalData,
   TPatientAdditionalData,
   validationRules,
 } from "~/common";
-
-import { CustomizedInput } from "~/components/atomic/Customized-Input";
-import { SelectWithPlaceholder } from "~/components/atomic";
-import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
+import { Stack } from "@mui/material";
 
 interface Props {
   onSubmitAdditionalData: TOnSubmitAdditionalData;
@@ -18,10 +20,11 @@ interface Props {
   closeEditFrom: () => void;
 }
 
-const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.addresses;
+
+const TEXT_CHOICES = TEXT_ADDRESSES_EDIT_FORM.workPlace;
 const TEXT_BUTTONS = TEXT_ADDRESSES_EDIT_FORM.button;
 
-export const AddressInputForm = ({
+export const WorkPlaceForm = ({
   onSubmitAdditionalData,
   patientAdditionalData,
   closeEditFrom,
@@ -33,10 +36,10 @@ export const AddressInputForm = ({
     formState: { errors, isValid },
   } = useForm<TPatientAdditionalData>({
     defaultValues: {
-      settlementType: patientAdditionalData?.settlementType || "Місце прописки",
-      settlementAndStr: patientAdditionalData?.settlementAndStr || "",
-      houseNum: patientAdditionalData?.houseNum || "",
-      apartmentNum: patientAdditionalData?.apartmentNum || "",
+      employmentStatus:
+        patientAdditionalData?.employmentStatus || "Основна робота",
+      workplace: patientAdditionalData?.workplace || "",
+      jobTitle: patientAdditionalData?.jobTitle || "",
     },
     mode: "onChange",
     delayError: 1000,
@@ -45,7 +48,7 @@ export const AddressInputForm = ({
   const onSubmit = (data: TPatientAdditionalData) => {
     const isNeedCreateData = !patientAdditionalData?.settlementType;
 
-    onSubmitAdditionalData({ ...data, type: "address" }, { isNeedCreateData });
+    onSubmitAdditionalData({ ...data, type: "work" }, { isNeedCreateData });
 
     closeEditFrom();
     reset();
@@ -57,11 +60,11 @@ export const AddressInputForm = ({
   };
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={3} m="24px 0">
         <Grid item xs={4}>
           <Controller
-            name="settlementType"
+            name="employmentStatus"
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -70,8 +73,8 @@ export const AddressInputForm = ({
                 placeholder={TEXT_CHOICES.placeholder.select}
                 label={TEXT_CHOICES.title.select}
                 {...field}
-                error={!!errors.settlementType}
-                helperText={errors.settlementType?.message || " "}
+                error={!!errors.employmentStatus}
+                helperText={errors.employmentStatus?.message || " "}
               >
                 {TEXT_CHOICES.selectOptions.map((item: string) => {
                   return (
@@ -87,19 +90,18 @@ export const AddressInputForm = ({
           />
         </Grid>
 
-        <Grid item xs={8}>
+        <Grid item xs={4}>
           <Controller
-            name="settlementAndStr"
+            name="workplace"
             control={control}
-            rules={validationRules.settlementAndStr}
+            rules={validationRules.workplace}
             render={({ field }) => (
               <CustomizedInput
-                label={TEXT_CHOICES.title.settlement}
-                aria-invalid={errors.settlementAndStr ? "true" : "false"}
-                placeholder={TEXT_CHOICES.placeholder.settlement}
+                label={TEXT_CHOICES.title.addresses}
+                placeholder={TEXT_CHOICES.placeholder.addresses}
                 {...field}
-                error={!!errors.settlementAndStr}
-                helperText={errors.settlementAndStr?.message || " "}
+                error={!!errors.workplace}
+                helperText={errors.workplace?.message || " "}
               />
             )}
           />
@@ -107,33 +109,16 @@ export const AddressInputForm = ({
 
         <Grid item xs={4}>
           <Controller
-            name="houseNum"
+            name="jobTitle"
             control={control}
-            rules={validationRules.houseNum}
+            rules={validationRules.jobTitle}
             render={({ field }) => (
               <CustomizedInput
-                label={TEXT_CHOICES.title.house}
-                placeholder={TEXT_CHOICES.placeholder.house}
+                label={TEXT_CHOICES.title.position}
+                placeholder={TEXT_CHOICES.placeholder.position}
                 {...field}
-                error={!!errors.houseNum}
-                helperText={errors.houseNum?.message || " "}
-              />
-            )}
-          />
-        </Grid>
-
-        <Grid item xs={4}>
-          <Controller
-            name="apartmentNum"
-            control={control}
-            rules={validationRules.apartmentNum}
-            render={({ field }) => (
-              <CustomizedInput
-                label={TEXT_CHOICES.title.apartments}
-                placeholder={TEXT_CHOICES.title.apartments}
-                {...field}
-                error={!!errors.apartmentNum}
-                helperText={errors.apartmentNum?.message || " "}
+                error={!!errors.jobTitle}
+                helperText={errors.jobTitle?.message || " "}
               />
             )}
           />
