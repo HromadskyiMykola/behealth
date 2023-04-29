@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 
-import { usePatientFetchingData } from "~/common";
+import { usePatientFetchingData, IOnSubmitPatientData } from "~/common";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
@@ -21,7 +21,7 @@ export function PatientAccountPersonalInfo() {
     usePatientFetchingData();
 
   const props = {
-    onSubmitPersonalData,
+    onSubmitPersonalData: onSubmitPersonalData as IOnSubmitPatientData,
     patientPersonalData,
   };
 
@@ -41,8 +41,8 @@ export function PatientAccountPersonalInfo() {
 
   return (
     <>
-      {/* Contact info */}
       <CustomizedPaper>
+        {/* Contact info */}
         <Stack direction="row" justifyContent="space-between" mb="24px">
           <Typography variant="h5">
             Контактна інформація та авторизація
@@ -69,6 +69,7 @@ export function PatientAccountPersonalInfo() {
               <ContactInfoEdit
                 openCloseEditContactInfo={openCloseEditContactInfo}
                 {...props}
+                patientPersonalData={patientPersonalData}
               />
             ) : (
               <ContactInfo patientPersonalData={patientPersonalData} />
@@ -78,6 +79,7 @@ export function PatientAccountPersonalInfo() {
       </CustomizedPaper>
 
       <CustomizedPaper>
+        {/* Personal info */}
         <Stack mb="14px" direction="row" justifyContent="space-between">
           <Typography variant="h5">Персональні дані</Typography>
 
@@ -87,7 +89,6 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
-        {/* Personal info */}
         {!patientPersonalData && (
           <Skeleton variant="text" sx={{ height: 150 }} />
         )}
@@ -102,6 +103,7 @@ export function PatientAccountPersonalInfo() {
             <PersonalData patientPersonalData={patientPersonalData} />
           ))}
 
+        {/* Documents info */}
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -116,7 +118,6 @@ export function PatientAccountPersonalInfo() {
           />
         </Stack>
 
-        {/* Documents info */}
         {!patientPersonalData && (
           <Skeleton variant="text" sx={{ height: 150 }} />
         )}

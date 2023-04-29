@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, Grid, MenuItem, Typography, Stack } from "@mui/material";
 
 import {
-  TOnSubmitAdditionalData,
+  IOnSubmitPatientData,
   TPatientAdditionalData,
   validationRules,
 } from "~/common";
@@ -13,7 +13,7 @@ import { SelectWithPlaceholder } from "~/components/atomic";
 import { TEXT_ADDRESSES_EDIT_FORM } from "~/components/tads.additionalData/const-additional-data";
 
 interface Props {
-  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  onSubmitAdditionalData: IOnSubmitPatientData;
   patientAdditionalData: TPatientAdditionalData | null;
   closeEditFrom: () => void;
 }

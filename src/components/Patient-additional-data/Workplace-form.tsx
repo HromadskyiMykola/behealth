@@ -8,14 +8,14 @@ import { TEXT_ADDRESSES_EDIT_FORM } from "./const-additional-data";
 
 import { SelectWithPlaceholder } from "~/components/atomic";
 import {
-  TOnSubmitAdditionalData,
+  IOnSubmitPatientData,
   TPatientAdditionalData,
   validationRules,
 } from "~/common";
 import { Stack } from "@mui/material";
 
 interface Props {
-  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  onSubmitAdditionalData: IOnSubmitPatientData;
   patientAdditionalData: TPatientAdditionalData | null;
   closeEditFrom: () => void;
 }

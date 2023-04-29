@@ -1,9 +1,9 @@
 import { useTheme, Typography, Stack } from "@mui/material";
 
-import { TOnSubmitAdditionalData, TPatientAdditionalData } from "~/common";
+import { IOnSubmitPatientData, TPatientAdditionalData } from "~/common";
 
 interface Props {
-  onSubmitAdditionalData: TOnSubmitAdditionalData;
+  onSubmitAdditionalData: IOnSubmitPatientData;
   patientAdditionalData: TPatientAdditionalData | null;
 }
 

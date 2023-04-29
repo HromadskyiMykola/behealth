@@ -1,4 +1,4 @@
-const maxLength = (num: number) => `Максимальна довжина поля ${num} символів`;
+const maxFieldLength = (num: number) => `Має бути не більше ${num} символів`;
 
 const passwordValidation = {
   required: "Будь ласка, введіть пароль",
@@ -8,7 +8,7 @@ const passwordValidation = {
   },
   maxLength: {
     value: 15,
-    message: maxLength(15),
+    message: maxFieldLength(15),
   },
 };
 
@@ -21,7 +21,7 @@ const validationRules = {
     },
     maxLength: {
       value: 80,
-      message: maxLength(80),
+      message: maxFieldLength(80),
     },
   },
 
@@ -32,7 +32,7 @@ const validationRules = {
     },
     maxLength: {
       value: 80,
-      message: maxLength(80),
+      message: maxFieldLength(80),
     },
   },
 
@@ -44,7 +44,7 @@ const validationRules = {
     },
     maxLength: {
       value: 80,
-      message: maxLength(80),
+      message: maxFieldLength(80),
     },
   },
 
@@ -52,7 +52,7 @@ const validationRules = {
     required: "Будь ласка, введіть e-mail адресу",
     maxLength: {
       value: 128,
-      message: maxLength(128),
+      message: maxFieldLength(128),
     },
     pattern: {
       value:
@@ -93,28 +93,28 @@ const validationRules = {
       message: "ІПН складається з 10 цифр.",
     },
   },
-  //
 
   settlementAndStr: {
     required: "Поле не може бути пустим",
-    max: { value: 100, message: "Максимальна кількість символів 100" },
+    maxLength: { value: 100, message: maxFieldLength(100) },
     pattern: {
-      value: /^[А-ЯІЇЄіїєа-я,.\-();\s]+$/,
+      value: /^[А-Яа-яЄєІіЇїҐґ,.\-();\s]+$/,
       message: "Дозволенна тільки кирилиця і спецсимволи -()",
     },
   },
+
   houseNum: {
     required: "Поле не може бути пустим",
-    max: { value: 5, message: "Має бути не більше 5 символів" },
+    maxLength: { value: 5, message: maxFieldLength(5) },
     pattern: {
       value: /^\d+(\/\d+)?$/,
       message: "Можуть бути використані тільки цифри і /",
     },
   },
+
   apartmentNum: {
     required: "Поле не може бути пустим",
-
-    max: { value: 5, message: "Має бути не більше 5 символів" },
+    maxLength: { value: 5, message: maxFieldLength(5) },
     pattern: {
       value: /^\d+(\/\d+)?$/,
       message: "Можуть бути використані тільки цифри і /",
@@ -123,18 +123,18 @@ const validationRules = {
 
   workplace: {
     required: "Поле не може бути пустим",
-    max: { value: 100, message: "Максимальна кількість символів 100" },
+    maxLength: { value: 100, message: maxFieldLength(100) },
     pattern: {
-      value: /^[А-ЯІЇЄіїєа-я,.\-();\s]+$/,
+      value: /^[А-Яа-яЄєІіЇїҐґ,.\-();\s]+$/,
       message: "Дозволенна тільки кирилиця і спецсимволи -()",
     },
   },
 
   jobTitle: {
     required: "Поле не може бути пустим",
-    max: { value: 15, message: "Максимальна кількість символів 15" },
+    maxLength: { value: 15, message: maxFieldLength(15) },
     pattern: {
-      value: /^[А-ЯІЇЄіїєа-я\s]+$/,
+      value: /^[А-Яа-яЄєІіЇїҐґ\s]+$/,
       message: "Дозволенна тільки кирилиця",
     },
   },
