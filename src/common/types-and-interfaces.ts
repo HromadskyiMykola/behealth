@@ -77,7 +77,7 @@ export type TRoute = RouteObject & {
 export interface IProfileHelpArrayItems {
   id: number;
   title: string;
-  description: string;
+  description: string[];
 }
 
 export interface IProfileHelp {
@@ -94,7 +94,7 @@ export interface AccordionListProps {
 export interface AccordionItemProps {
   id?: string;
   title: string;
-  description: string;
+  description: string[];
 }
 
 export interface ProfileAppointmentStatusProps {
@@ -300,5 +300,5 @@ export type TOnSubmitAdditionalData = (
   action?: {
     isNeedCreateData?: boolean;
     isNeedDeleteData?: boolean;
-  } 
+  }
 ) => Promise<void>;
