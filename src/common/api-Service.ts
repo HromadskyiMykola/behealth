@@ -65,9 +65,12 @@ const useApiService = () => {
 
       try {
         const response = await request;
+        console.log("response orig DATA >>", response.data);
+        // array check for mock data
+        if (Array.isArray(response.data)) return response.data;
+
         const data = transformResponseData(response.data);
 
-        console.log("response orig DATA >>", response.data);
         coloredLog("response mod DATA >>", data);
 
         return data;
