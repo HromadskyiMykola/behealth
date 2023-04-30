@@ -7,6 +7,12 @@ import { styled } from "@mui/system";
 import { useTheme } from "@mui/material";
 import { GoogleMapLink } from "~/components/atomic";
 
+type Props = {
+  city?: string;
+  district?: string;
+  address?: string;
+};
+
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
@@ -15,7 +21,8 @@ const BoxInfo = styled("div")(({ theme }) => ({
   alignItems: "center",
   whiteSpace: "nowrap",
 }));
-export const MapInfoDoctor = () => {
+
+export const MapInfoDoctor = ({ city, district, address }: Props) => {
   const { custom } = useTheme().palette;
   return (
     <Box display="flex" flexDirection="column" gap="16px">
@@ -29,7 +36,7 @@ export const MapInfoDoctor = () => {
           }}
         />
         <Typography variant="caption" component="p">
-          Дніпровський район
+          {district}
         </Typography>
       </BoxInfo>
       <BoxInfo sx={{ flexWrap: "wrap" }}>
@@ -42,11 +49,11 @@ export const MapInfoDoctor = () => {
           }}
         />
         <Typography variant="caption" component="span">
-          м. Київ, вул. Попудренка, 7, каб. 2
+          {city}, {address}
         </Typography>
         <GoogleMapLink address={"м. Київ, вул. Гмирі Бориса, 14 Б"}>
           <Typography color="#3DBF9A" variant="captionS">
-            Вікрити на карті
+            Відкрити на карті
           </Typography>
         </GoogleMapLink>
       </BoxInfo>

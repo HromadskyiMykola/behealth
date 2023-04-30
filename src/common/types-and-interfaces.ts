@@ -304,3 +304,61 @@ export interface IOnSubmitPatientData {
     }
   ): Promise<void>;
 }
+
+export type TDoctor = {
+  id: number;
+  dataType: "doctor" | "clinic";
+  specialty: string;
+  name: string;
+  city: string;
+  experience: number;
+  availableHours: {
+    available: boolean;
+    workHours: string[];
+    availableTime: string[];
+  };
+  sex: "male" | "female";
+  avatar: string;
+  clinicType: string;
+  district: string;
+  address: string;
+  tags: string[];
+  grade: string;
+  qualification: string;
+  servicePayment: {
+    title: string;
+    available: boolean;
+    price?: string;
+  }[];
+  reviewsCount: number;
+  rating: number;
+  socials: {
+    title: string;
+    link: string;
+  }[];
+  email: string;
+  contacts: {
+    type: string;
+    phone: string;
+  }[];
+};
+
+export type TClinic = {
+  id: number;
+  dataType: "doctor" | "clinic";
+  clinicType: "state" | "private";
+  city: string;
+  district: string;
+  name: string;
+  address: string;
+  phoneNumberRegistry: string;
+  phoneNumberAdministration: string;
+  tags?: {
+        title: string;
+      }[];
+  workingHours: {
+    day: string;
+    hours: string | null;
+  }[];
+  doctorsIds: number[];
+};

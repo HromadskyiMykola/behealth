@@ -26,6 +26,7 @@ import { MapInfoDoctor } from "~/components/Map-info-doctor";
 import { PopUpDocAppointment2 } from "~/components/Small-card-doctor/Pop-up-doc-appointment-2";
 import { CalendarSlick } from "~/components/Small-card-doctor/Calendar-slick/Calendar-slick";
 import { CustomizedPaper } from "~/components/atomic";
+import { TDoctor } from "~/common";
 
 const BoxCalendar = styled("div")(({ theme }) => ({
   background: "#F6F8F7",
@@ -64,13 +65,24 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
   },
 }));
 
-export const SmallCardDoctor = () => {
+export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const { custom } = useTheme().palette;
   const { authenticatedUser } = useAuthProvider();
   const { setOpenMainModal, setSimpleModalMessage } = useModalState();
 
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
+
+  const { city, availableHours, district, address } = doctor;
+
+  const headerItemValues = {
+    specialty: doctor.specialty,
+    experience: doctor.experience,
+    name: doctor.name,
+    reviewsCount: doctor.reviewsCount,
+    rating: doctor.rating,
+    avatar: doctor.avatar,
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -100,9 +112,9 @@ export const SmallCardDoctor = () => {
 
   return (
     <CustomizedPaper>
-      <Box display="flex" gap="32px">
-        <Box display="flex" flexDirection="column" gap="32px">
-          <HeaderItem />
+      <Stack gap="32px" direction="row">
+        <Stack gap="32px">
+          <HeaderItem {...headerItemValues} />
 
           <Stack
             maxWidth="620px"
@@ -112,17 +124,22 @@ export const SmallCardDoctor = () => {
             borderRadius="10px"
             sx={{ border: `1px solid ${custom.neutral90}` }}
           >
-            <MapInfoDoctor />
+            <MapInfoDoctor city={city} district={district} address={address} />
 
             <Typography
               variant="caption"
               component="p"
               color={custom.neutral70}
+              sx={{
+                wordBreak: "break-word",
+                overflowWrap: "break-word",
+                whiteSpace: "break-spaces",
+              }}
             >
               {AT_RECEPTION}
             </Typography>
           </Stack>
-        </Box>
+        </Stack>
 
         <Box
           display="flex"
@@ -206,7 +223,7 @@ export const SmallCardDoctor = () => {
             </ModalPaper>
           </Modal>
         </Box>
-      </Box>
+      </Stack>
     </CustomizedPaper>
   );
 };

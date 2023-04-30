@@ -21,10 +21,10 @@ const queryData = [
   ],
 ];
 
+console.log("req orig docs >>>", doctorsData);
 mock.onGet("/doctors").reply(200, doctorsData);
 mock.onGet("/clinics").reply(200, clinicsData);
 mock.onGet("/search").reply((config) => {
-  console.log("req orig PARAMS >>>", config.params);
   const { city, district, query } = config.params;
   if (city !== queryData[0] && district !== queryData[1]) {
   }

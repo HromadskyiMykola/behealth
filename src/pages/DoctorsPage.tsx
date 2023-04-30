@@ -1,9 +1,17 @@
 import { Helmet } from "react-helmet";
 
-import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Container,
+  Skeleton,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 
 import {
   BreadcrumbsUkr,
+  CustomizedPaper,
   PaginationBottomBar,
   SelectedItemsBox,
   SelectTopBar,
@@ -12,8 +20,8 @@ import {
 import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
 
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
-import { useApiService } from "~/common";
-import { useEffect } from "react";
+import { TDoctor, useApiService } from "~/common";
+import { useEffect, useState } from "react";
 
 const data = [
   { key: 0, label: "Приватна клініка" },
@@ -24,11 +32,12 @@ const data = [
 ];
 
 export const DoctorsPage = () => {
-  const { palette } = useTheme();
+  const [doctors, setDoctors] = useState([] as TDoctor[]);
   const { getDoctors } = useApiService();
+  const { palette } = useTheme();
 
   useEffect(() => {
-    getDoctors().then(console.log);
+    getDoctors().then(setDoctors);
   }, []);
 
   return (
@@ -64,7 +73,25 @@ export const DoctorsPage = () => {
           <Box sx={{ flex: "1 0 auto" }}>
             <SelectTopBar />
 
-            <SmallCardDoctor />
+            {doctors.length === 0 && (
+              <CustomizedPaper>
+                <Stack direction="row" gap={2}>
+                  <Skeleton
+                    variant="rounded"
+                    sx={{ height: 132, width: 168 }}
+                  />
+                  <Skeleton
+                    variant="rounded"
+                    sx={{ height: 300, width: "100%" }}
+                  />
+                </Stack>
+              </CustomizedPaper>
+            )}
+
+            {doctors.length > 0 &&
+              doctors.map((doctor, i) => (
+                <SmallCardDoctor key={`${doctor.id}-${i}`} doctor={doctor} />
+              ))}
 
             <PaginationBottomBar />
           </Box>
