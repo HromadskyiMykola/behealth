@@ -12,6 +12,8 @@ import {
 import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
 
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
+import { useApiService } from "~/common";
+import { useEffect } from "react";
 
 const data = [
   { key: 0, label: "Приватна клініка" },
@@ -23,6 +25,11 @@ const data = [
 
 export const DoctorsPage = () => {
   const { palette } = useTheme();
+  const { getDoctors } = useApiService();
+
+  useEffect(() => {
+    getDoctors().then(console.log);
+  }, []);
 
   return (
     <>

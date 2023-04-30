@@ -54,7 +54,9 @@ export const IdentityDocuments = ({
             </TableCell>
 
             <TableCell>
-              <Typography variant="body2">{docSeries}</Typography>
+              <Typography variant="body2">
+                {docSeries || "не вказано"}
+              </Typography>
             </TableCell>
           </TableRow>
 

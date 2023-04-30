@@ -1,5 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import axios, { AxiosResponse } from "axios";
+import { mockClient } from "./api-mock-client";
+
+import {
+  transformRequestData,
+  transformResponseData,
+  errorHandler,
+  coloredLog,
+} from "./api-Helpers";
+
+import { useAuthProvider } from "~/providers";
 
 import {
   TSignUpData,
@@ -10,22 +20,6 @@ import {
   TResetPassData,
   TPatientPersonalData,
 } from "./types-and-interfaces";
-
-import { useAuthProvider } from "~/providers";
-import {
-  transformRequestData,
-  transformResponseData,
-  errorHandler,
-  coloredLog,
-} from "./api-Helpers";
-
- import { mockApi } from "./mock-Api";
-
-// TODO: const USE_MOCK_API = false;
-
-// const apiClient = axios.create({
-//   baseURL: "https://www.behealth.pp.ua/api/v1/",
-// });
 
 const useApiService = () => {
   const [loading, setLoading] = useState(false);
@@ -63,59 +57,6 @@ const useApiService = () => {
 
     return client;
   }, [authenticatedUser]);
-
-  // useEffect(() => {
-  //   const interceptorId = apiClient.interceptors.request.use((config) => {
-  //     const token = authenticatedUser?.token
-  //       ? `Bearer ${authenticatedUser.token}`
-  //       : null;
-
-  //     // add a token to all requests
-  //     if (config.headers && token) config.headers.Authorization = token;
-
-  //     // transform data in all requests
-  //     if (config.method === "post" || config.method === "put") {
-  //       console.log("req orig DATA >>>", config.data);
-  //       config.data = transformRequestData(config.data);
-  //       console.log("req mod DATA >>>", config.data);
-
-  //     } else if (config.method === "delete") {
-  //       console.log("req orig PARAMS >>>", config.params);
-  //       config.params = transformRequestData(config.params);
-  //       console.log("req mod PARAMS >>>", config.params);
-  //     }
-
-  //     return config;
-  //   });
-
-  //   return () => {
-  //     apiClient.interceptors.request.eject(interceptorId);
-  //   };
-  // }, [authenticatedUser]);
-
-  // TODO: на випадок подальших тупняків від беків, реалізувати фіктивній АРІ
-
-  // if (USE_MOCK_API) {
-  //   apiClient.interceptors.request.use((config) => {
-  //     config.adapter = async () => {
-  //       switch (config.url) {
-  //         case "/doctors":
-  //           return {
-  //             data: mockApi.getDoctorsData(),
-  //             status: 200,
-  //             statusText: "OK",
-  //             config,
-  //             headers: {},
-  //           };
-  //         // TODO: додати ендпоінти
-  //         default:
-  //           throw new Error(`No mock data for ${config.url}`);
-  //       }
-  //     };
-
-  //     return config;
-  //   });
-  // }
 
   const _requestWithErrorHandling = useCallback(
     async <T>(request: Promise<AxiosResponse<T>>) => {
@@ -199,8 +140,26 @@ const useApiService = () => {
     []
   );
 
+  // uses mock data
   const getDoctors = useCallback(
-    () => _requestWithErrorHandling(apiClient.get("doctors")),
+    () => _requestWithErrorHandling(mockClient.get("doctors")),
+    []
+  );
+
+  // uses mock data
+  const getClinics = useCallback(
+    () => _requestWithErrorHandling(mockClient.get("clinics")),
+    []
+  );
+
+  // uses mock data
+  const searchClinicsDocs = useCallback(
+    (params: { city: string; district: string; query: string }) =>
+      _requestWithErrorHandling(
+        mockClient.get(
+          `search?city=${params.city}&district=${params.district}&doctor=${params.query}`
+        )
+      ),
     []
   );
 
@@ -307,6 +266,8 @@ const useApiService = () => {
     apiError,
     clearApiError,
     getDoctors,
+    getClinics,
+    searchClinicsDocs,
     auth,
     patient,
   });

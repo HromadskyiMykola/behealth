@@ -67,7 +67,9 @@ export const IdentityDocumentsEdit = ({
             rules={{ required: true }}
             render={({ field }) => (
               <SelectWithPlaceholder
-                disabled={isSeriesValueExist}
+                disabled={
+                  !!patientPersonalData?.typeOfDoc || isSeriesValueExist
+                }
                 fullWidth
                 placeholder="Оберіть тип"
                 label="Тип документа*"
