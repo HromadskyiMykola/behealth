@@ -3,22 +3,22 @@
     "id": 1,
     "specialty": "Головний лікар",
     "name": "Поліщук Олександр Іванович",
-    "experience": "66 років",
+    "experience": 66,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "city": "Київ",
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "dataType": "doctor",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 92",
+    "address": "вул. Попудренка, 7, каб. 92",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -49,15 +49,15 @@
     "email": "alex_crutoi666@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 337 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 337 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 337 27"
       }
     ]
@@ -68,7 +68,7 @@
     "specialty": "Сімейний лікар",
     "name": "Коваленко Ірина Олександрівна",
     "city": "Київ",
-    "experience": "17 років",
+    "experience": 17,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
@@ -83,14 +83,14 @@
         "18:40"
       ]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar6.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Митниця",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 6",
+    "address": "вул. Попудренка, 7, каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
-    "qualification": "Перша категорія",
+    "qualification": "The first category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -121,15 +121,15 @@
     "email": "ya_devushka_prosto_bomba@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 123 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 123 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 123 27"
       }
     ]
@@ -140,20 +140,20 @@
     "specialty": "Отоларинголог",
     "name": "Лисенко Марина Петрівна",
     "city": "Київ",
-    "experience": "8 років",
+    "experience": 8,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar7.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 8",
+    "address": "вул. Попудренка, 7, каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "Перша категорія",
+    "qualification": "The first category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -184,15 +184,15 @@
     "email": "marinka_mandarinka@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 32 337 1"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 32 337 1"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 32 337 1"
       }
     ]
@@ -203,20 +203,20 @@
     "specialty": "Терапевт",
     "name": "Бондаренко Олександр Ігорович",
     "city": "Київ",
-    "experience": "19 років",
+    "experience": 19,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:20", "11:20", "16:40", "18:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "ПЗР",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 5",
+    "address": "вул. Попудренка, 7, каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "Друга категорія",
+    "qualification": "The second category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -247,15 +247,15 @@
     "email": "oleksandr_bondarenko@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 67 778 33"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 67 778 33"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 67 778 33"
       }
     ]
@@ -266,23 +266,23 @@
     "specialty": "Лікар Педіатр",
     "name": "Шевченко Ірина Миколаївна",
     "city": "Київ",
-    "experience": "18 років",
+    "experience": 18,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Д",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 29",
+    "address": "вул. Попудренка, 7, каб. 29",
     "tags": [
       "The doctor accepts declarations",
       "The doctor works with eHealth (EHOZ)"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -313,15 +313,15 @@
     "email": "irina_shevchenko1980@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 97 132 13"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 97 132 13"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 97 132 13"
       }
     ]
@@ -332,17 +332,17 @@
     "specialty": "Кардіолог",
     "name": "Кравченко Андрій Сергійович",
     "city": "Харків",
-    "experience": "6 років",
+    "experience": 6,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-bald-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 223",
+    "address": "вул. Попудренка, 7, каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
@@ -376,15 +376,15 @@
     "email": "andriy_krav2803@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 55 665 65"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 55 665 65"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 55 665 65"
       }
     ]
@@ -395,24 +395,24 @@
     "specialty": "Гастроентеролог",
     "name": "Гончаренко Любов Ігорівна",
     "city": "Київ",
-    "experience": "7 років",
+    "experience": 7,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar1.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "ПЗР",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 78",
+    "address": "вул. Попудренка, 7, каб. 78",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
       "Reception of children"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -443,15 +443,15 @@
     "email": "goncharenko_l@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 88 458 92"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 88 458 92"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 88 458 92"
       }
     ]
@@ -462,20 +462,20 @@
     "specialty": "Гінеколог",
     "name": "Костенко Анна Іванівна",
     "city": "Київ",
-    "experience": "4 років",
+    "experience": 4,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar2.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Д",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 9",
+    "address": "вул. Попудренка, 7, каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "Друга категорія",
+    "qualification": "The second category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -506,15 +506,15 @@
     "email": "annakost65@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 32 654 23"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 32 654 23"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 32 654 23"
       }
     ]
@@ -525,24 +525,24 @@
     "specialty": "Дерматовенеролог",
     "name": "Герасименко Олена Миколаївна",
     "city": "Київ",
-    "experience": "11 років",
+    "experience": 11,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:40"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar3.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 10",
+    "address": "вул. Попудренка, 7, каб. 10",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
       "Reception of children"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -573,15 +573,15 @@
     "email": "olena_gera44@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 12 543 88"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 12 543 88"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 12 543 88"
       }
     ]
@@ -592,20 +592,20 @@
     "specialty": "Психіатр",
     "name": "Лихачова Марія Вікторівна",
     "city": "Київ",
-    "experience": "5 років",
+    "experience": 5,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-bald-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб.112",
+    "address": "вул. Попудренка, 7, каб.112",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -636,15 +636,15 @@
     "email": "alex_crutoi666@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 337 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 337 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 337 27"
       }
     ]
@@ -655,20 +655,20 @@
     "specialty": "Невропатолог",
     "name": "Головко Оксана Олександрівна",
     "city": "Київ",
-    "experience": "14 років",
+    "experience": 14,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-bald-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "м. Київ, вул. Попудренка, 7, каб. 42",
+    "address": "вул. Попудренка, 7, каб. 42",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -699,15 +699,15 @@
     "email": "alex_crutoi666@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 337 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 337 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 337 27"
       }
     ]
@@ -718,20 +718,20 @@
     "specialty": "Головний лікар",
     "name": "Михайленко Андрій Володимирович",
     "city": "Київ",
-    "experience": "54 років",
+    "experience": 54,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-bald-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "ПЗР",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -762,15 +762,15 @@
     "email": "the_best_doc@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 05 757 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 05 757 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 05 757 27"
       }
     ]
@@ -781,7 +781,7 @@
     "specialty": "Сімейний лікар",
     "name": "Литвиненко Максим Олексійович",
     "city": "Київ",
-    "experience": "11 років",
+    "experience": 11,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
@@ -796,14 +796,14 @@
         "18:40"
       ]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-bald-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Митниця",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
-    "qualification": "Перша категорія",
+    "qualification": "The first category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -834,15 +834,15 @@
     "email": "yellow_banana111@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 123 00"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 123 00"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 123 00"
       }
     ]
@@ -853,20 +853,20 @@
     "specialty": "Отоларинголог",
     "name": "Кравець Марина Валеріївна",
     "city": "Київ",
-    "experience": "19 років",
+    "experience": 19,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "Перша категорія",
+    "qualification": "The first category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -897,15 +897,15 @@
     "email": "snus@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 32 337 1"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 32 337 1"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 32 337 1"
       }
     ]
@@ -916,20 +916,20 @@
     "specialty": "Терапевт",
     "name": "Богомолова Юлія Олександрівна",
     "city": "Київ",
-    "experience": "18 років",
+    "experience": 18,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:20", "10:40", "16:40", "18:00"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar1.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "ПЗР",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "Друга категорія",
+    "qualification": "The second category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -960,15 +960,15 @@
     "email": "oleksandr_bondarenko@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 67 778 33"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 67 778 33"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 67 778 33"
       }
     ]
@@ -979,23 +979,23 @@
     "specialty": "Лікар Педіатр",
     "name": "Марченко Тетяна Ігорівна",
     "city": "Черкаси",
-    "experience": "35 років",
+    "experience": 35,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "13:40", "15:20", "17:40", "18:20"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar2.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Д",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": [
       "The doctor accepts declarations",
       "The doctor works with eHealth (EHOZ)"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1026,15 +1026,15 @@
     "email": "irina_shevchenko1980@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 97 132 13"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 97 132 13"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 97 132 13"
       }
     ]
@@ -1044,18 +1044,18 @@
     "dataType": "doctor",
     "specialty": "Кардіолог",
     "name": "Гордієнко Олександр Ігорович",
-    "experience": "18 років",
+    "experience": 18,
     "city": "Харків",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
@@ -1089,15 +1089,15 @@
     "email": "andriy_krav2803@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 55 665 65"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 55 665 65"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 55 665 65"
       }
     ]
@@ -1107,25 +1107,25 @@
     "dataType": "doctor",
     "specialty": "Гастроентеролог",
     "name": "Сідельник Валерія Михайлівна",
-    "experience": "20 років",
+    "experience": 20,
     "city": "Харків",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar3.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "ПЗР",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
       "Reception of children"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1156,15 +1156,15 @@
     "email": "goncharenko_l@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 88 458 92"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 88 458 92"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 88 458 92"
       }
     ]
@@ -1175,20 +1175,20 @@
     "specialty": "Гінеколог",
     "name": "Кравець Інна Миколаївна",
     "city": "Київ",
-    "experience": "5 років",
+    "experience": 5,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar4.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Д",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "Друга категорія",
+    "qualification": "The second category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1219,15 +1219,15 @@
     "email": "annakost65@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 32 654 23"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 32 654 23"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 32 654 23"
       }
     ]
@@ -1238,24 +1238,24 @@
     "specialty": "Дерматовенеролог",
     "name": "Денисенко Ірина Сергіївна",
     "city": "Черкаси",
-    "experience": "7 років",
+    "experience": 7,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:40"]
     },
-    "sex": "Жінка",
+    "sex": "Female",
     "avatar": "../assets/images/avatar5.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
       "Reception of children"
     ],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1286,15 +1286,15 @@
     "email": "olena_gera44@gmail.com",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 12 543 88"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 12 543 88"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 12 543 88"
       }
     ]
@@ -1305,20 +1305,20 @@
     "specialty": "Психіатр",
     "city": "Черкаси",
     "name": "Богданова Лариса Анатоліївна",
-    "experience": "11 років",
+    "experience": 1,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-man.png",
-    "type": "Державна клініка",
+    "clinicType": "Державна клініка",
     "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
+    "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1349,15 +1349,15 @@
     "email": "alex_crutoi666@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 337 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 337 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 337 27"
       }
     ]
@@ -1366,24 +1366,24 @@
     "id": 22,
     "city": "Черкаси",
     "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
-    "type": "Державна клініка",
+    "address": "вул. Симиренка, 10",
+    "clinicType": "Державна клініка",
     "specialty": "Невропатолог",
     "rating": 20,
     "reviewsCount": 3,
     "dataType": "doctor",
     "name": "Тимошенко Дмитро Сергійович",
-    "experience": "14 років",
+    "experience": 14,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
-    "sex": "Чоловік",
+    "sex": "Male",
     "avatar": "../assets/images/avatar-man.png",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
-    "qualification": "Вища категорія",
+    "qualification": "Higher category",
     "servicePayment": [
       {
         "title": "Free by referral",
@@ -1412,15 +1412,15 @@
     "email": "alex_crutoi666@onmedu.ua",
     "contacts": [
       {
-        "type": "lifecell",
+        "operator": "lifecell",
         "phone": "(073) 35 337 27"
       },
       {
-        "type": "vodafone",
+        "operator": "vodafone",
         "phone": "(095) 35 337 27"
       },
       {
-        "type": "kyivstar",
+        "operator": "kyivstar",
         "phone": "(067) 35 337 27"
       }
     ]
