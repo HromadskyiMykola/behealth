@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import background from "../../assets/images/hero-background.png";
 import image from "../../assets/images/hero-image.png";
 import {
@@ -18,6 +18,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { RoomOutlined } from "@mui/icons-material";
 import { FilterIcon, Search as SearchIcon } from "lucide-react";
 import { searchOptions } from "~/components/Main/main.constants";
+import { useApiService } from "~/common";
 
 const styledContainer = {
   display: "flex",
@@ -60,11 +61,25 @@ export const Hero = () => {
   const theme = useTheme();
   const laptopDevice = useMediaQuery(theme.breakpoints.down("laptop"));
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
-  const [city, setCity] = useState("Уся Україна");
+  const [city, setCity] = useState<string>("Уся Україна");
+  const [options, setOptions] = useState<any>([]);
+  const [value, setValue] = useState<string>("");
+  const { searchClinicsDocs, getClinics } = useApiService();
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
   };
+
+  const handleInputChange = (event: any) => {};
+
+  useEffect(() => {
+    searchClinicsDocs({
+      city: "",
+      district: "",
+      query: "",
+    });
+    // getClinics().then((data) => console.log(data));
+  }, []);
 
   return (
     <Box sx={styledBox}>
@@ -141,6 +156,7 @@ export const Hero = () => {
                 <TextField
                   {...params}
                   placeholder="Пошук лікарів та клінік"
+                  onChange={handleInputChange}
                   sx={{
                     "& fieldset": {
                       display: "none",

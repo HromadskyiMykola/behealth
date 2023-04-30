@@ -7,28 +7,31 @@
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:00", "11:20", "14:00"]
+      "availableTime": ["10:00", "11:20", "14:00"]
     },
+    "city": "Київ",
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-man.png",
     "type": "Державна клініка",
+    "dataType": "doctor",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб. 92",
-    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": ["The doctor accepts declarations", "Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1000 грн"
+        "price": "1000"
       }
     ],
     "reviewsCount": 13,
@@ -61,13 +64,15 @@
   },
   {
     "id": 2,
+    "dataType": "doctor",
     "specialty": "Сімейний лікар",
     "name": "Коваленко Ірина Олександрівна",
+    "city": "Київ",
     "experience": "17 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": [
+      "availableTime": [
         "10:20",
         "11:50",
         "14:00",
@@ -79,23 +84,24 @@
       ]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar6.png",
     "type": "Державна клініка",
     "district": "Митниця",
     "address": "м. Київ, вул. Попудренка, 7, каб. 6",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація"],
-    "grade": "Добре",
+    "tags": ["The doctor accepts declarations", "Online consultation"],
+    "grade": "Good",
     "qualification": "Перша категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -130,8 +136,10 @@
   },
   {
     "id": 3,
+    "dataType": "doctor",
     "specialty": "Отоларинголог",
     "name": "Лисенко Марина Петрівна",
+    "city": "Київ",
     "experience": "8 років",
     "availableHours": {
       "available": false,
@@ -139,23 +147,24 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar7.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб. 8",
-    "tags": ["Лікар працює з eHealth (ЕСОЗ)", "Онлайн консультація"],
-    "grade": "Нормально",
+    "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
+    "grade": "Normally",
     "qualification": "Перша категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -190,32 +199,35 @@
   },
   {
     "id": 4,
+    "dataType": "doctor",
     "specialty": "Терапевт",
     "name": "Бондаренко Олександр Ігорович",
+    "city": "Київ",
     "experience": "19 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:20", "11:20", "16:40", "18:00"]
+      "availableTime": ["10:20", "11:20", "16:40", "18:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-man.png",
     "type": "Державна клініка",
     "district": "ПЗР",
     "address": "м. Київ, вул. Попудренка, 7, каб. 5",
-    "tags": ["Онлайн консультація"],
-    "grade": "Добре",
+    "tags": ["Online consultation"],
+    "grade": "Good",
     "qualification": "Друга категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -250,32 +262,38 @@
   },
   {
     "id": 5,
+    "dataType": "doctor",
     "specialty": "Лікар Педіатр",
     "name": "Шевченко Ірина Миколаївна",
+    "city": "Київ",
     "experience": "18 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
+      "availableTime": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar.png",
     "type": "Державна клініка",
     "district": "Д",
     "address": "м. Київ, вул. Попудренка, 7, каб. 29",
-    "tags": ["Лікар приймає декларацію", "Лікар працює з eHealth (ЕСОЗ)"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "The doctor works with eHealth (EHOZ)"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -310,32 +328,35 @@
   },
   {
     "id": 6,
+    "dataType": "doctor",
     "specialty": "Кардіолог",
     "name": "Кравченко Андрій Сергійович",
+    "city": "Харків",
     "experience": "6 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
+      "availableTime": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-bald-man.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб. 223",
-    "tags": ["Онлайн консультація", "Прийом дітей"],
-    "grade": "Добре",
+    "tags": ["Online consultation", "Reception of children"],
+    "grade": "Good",
     "qualification": "Першв категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -370,32 +391,39 @@
   },
   {
     "id": 7,
+    "dataType": "doctor",
     "specialty": "Гастроентеролог",
     "name": "Гончаренко Любов Ігорівна",
+    "city": "Київ",
     "experience": "7 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
+      "availableTime": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar1.png",
     "type": "Державна клініка",
     "district": "ПЗР",
     "address": "м. Київ, вул. Попудренка, 7, каб. 78",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "Online consultation",
+      "Reception of children"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -430,32 +458,35 @@
   },
   {
     "id": 8,
+    "dataType": "doctor",
     "specialty": "Гінеколог",
     "name": "Костенко Анна Іванівна",
+    "city": "Київ",
     "experience": "4 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
+      "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar2.png",
     "type": "Державна клініка",
     "district": "Д",
     "address": "м. Київ, вул. Попудренка, 7, каб. 9",
-    "tags": ["Лікар приймає декларацію"],
-    "grade": "Нормально",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
     "qualification": "Друга категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -490,32 +521,39 @@
   },
   {
     "id": 9,
+    "dataType": "doctor",
     "specialty": "Дерматовенеролог",
     "name": "Герасименко Олена Миколаївна",
+    "city": "Київ",
     "experience": "11 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:40"]
+      "availableTime": ["10:40"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar3.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб. 10",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "Online consultation",
+      "Reception of children"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -550,34 +588,37 @@
   },
   {
     "id": 10,
+    "dataType": "doctor",
     "specialty": "Психіатр",
     "name": "Лихачова Марія Вікторівна",
+    "city": "Київ",
     "experience": "5 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:00", "11:20", "14:00"]
+      "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-bald-man.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб.112",
-    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": ["The doctor accepts declarations", "Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1000 грн"
+        "price": "1000"
       }
     ],
     "reviewsCount": 13,
@@ -610,34 +651,37 @@
   },
   {
     "id": 11,
+    "dataType": "doctor",
     "specialty": "Невропатолог",
     "name": "Головко Оксана Олександрівна",
+    "city": "Київ",
     "experience": "14 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:00", "11:20", "14:00"]
+      "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-bald-man.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "м. Київ, вул. Попудренка, 7, каб. 42",
-    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": ["The doctor accepts declarations", "Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1000 грн"
+        "price": "1000"
       }
     ],
     "reviewsCount": 13,
@@ -670,34 +714,37 @@
   },
   {
     "id": 12,
+    "dataType": "doctor",
     "specialty": "Головний лікар",
     "name": "Михайленко Андрій Володимирович",
+    "city": "Київ",
     "experience": "54 років",
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
+      "availableTime": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-bald-man.png",
     "type": "Державна клініка",
     "district": "ПЗР",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": ["Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1300 грн"
+        "price": "1300"
       }
     ],
     "reviewsCount": 14,
@@ -730,13 +777,15 @@
   },
   {
     "id": 13,
+    "dataType": "doctor",
     "specialty": "Сімейний лікар",
     "name": "Литвиненко Максим Олексійович",
+    "city": "Київ",
     "experience": "11 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": [
+      "availableTime": [
         "10:20",
         "11:50",
         "14:00",
@@ -748,25 +797,26 @@
       ]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-bald-man.png",
     "type": "Державна клініка",
     "district": "Митниця",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація"],
-    "grade": "Нормально",
+    "tags": ["The doctor accepts declarations", "Online consultation"],
+    "grade": "Normally",
     "qualification": "Перша категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "500 грн"
+        "price": "500"
       }
     ],
     "reviewsCount": 1,
@@ -799,8 +849,10 @@
   },
   {
     "id": 14,
+    "dataType": "doctor",
     "specialty": "Отоларинголог",
     "name": "Кравець Марина Валеріївна",
+    "city": "Київ",
     "experience": "19 років",
     "availableHours": {
       "available": false,
@@ -808,25 +860,26 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар працює з eHealth (ЕСОЗ)", "Онлайн консультація"],
-    "grade": "Нормально",
+    "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
+    "grade": "Normally",
     "qualification": "Перша категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "600 грн"
+        "price": "600"
       }
     ],
     "reviewsCount": 5,
@@ -859,32 +912,35 @@
   },
   {
     "id": 15,
+    "dataType": "doctor",
     "specialty": "Терапевт",
     "name": "Богомолова Юлія Олександрівна",
+    "city": "Київ",
     "experience": "18 років",
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:20", "10:40", "16:40", "18:00"]
+      "availableTime": ["10:20", "10:40", "16:40", "18:00"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar1.png",
     "type": "Державна клініка",
     "district": "ПЗР",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Онлайн консультація"],
-    "grade": "Добре",
+    "tags": ["Online consultation"],
+    "grade": "Good",
     "qualification": "Друга категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false,
         "price": null
       }
@@ -919,34 +975,40 @@
   },
   {
     "id": 16,
+    "dataType": "doctor",
     "specialty": "Лікар Педіатр",
     "name": "Марченко Тетяна Ігорівна",
+    "city": "Черкаси",
     "experience": "35 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["9:00", "13:40", "15:20", "17:40", "18:20"]
+      "availableTime": ["9:00", "13:40", "15:20", "17:40", "18:20"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar2.png",
     "type": "Державна клініка",
     "district": "Д",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Лікар працює з eHealth (ЕСОЗ)"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "The doctor works with eHealth (EHOZ)"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1200 грн"
+        "price": "1200"
       }
     ],
     "reviewsCount": 4,
@@ -979,34 +1041,37 @@
   },
   {
     "id": 17,
+    "dataType": "doctor",
     "specialty": "Кардіолог",
     "name": "Гордієнко Олександр Ігорович",
     "experience": "18 років",
+    "city": "Харків",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
+      "availableTime": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-man.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Онлайн консультація", "Прийом дітей"],
-    "grade": "Добре",
+    "tags": ["Online consultation", "Reception of children"],
+    "grade": "Good",
     "qualification": "Першв категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "900 грн"
+        "price": "900"
       }
     ],
     "reviewsCount": 20,
@@ -1039,34 +1104,41 @@
   },
   {
     "id": 18,
+    "dataType": "doctor",
     "specialty": "Гастроентеролог",
     "name": "Сідельник Валерія Михайлівна",
     "experience": "20 років",
+    "city": "Харків",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
+      "availableTime": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar3.png",
     "type": "Державна клініка",
     "district": "ПЗР",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "Online consultation",
+      "Reception of children"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "2000 грн"
+        "price": "2000"
       }
     ],
     "reviewsCount": 26,
@@ -1099,34 +1171,37 @@
   },
   {
     "id": 19,
+    "dataType": "doctor",
     "specialty": "Гінеколог",
     "name": "Кравець Інна Миколаївна",
+    "city": "Київ",
     "experience": "5 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
+      "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar4.png",
     "type": "Державна клініка",
     "district": "Д",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію"],
-    "grade": "Нормально",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
     "qualification": "Друга категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "500 грн"
+        "price": "500"
       }
     ],
     "reviewsCount": 10,
@@ -1159,34 +1234,41 @@
   },
   {
     "id": 20,
+    "dataType": "doctor",
     "specialty": "Дерматовенеролог",
     "name": "Денисенко Ірина Сергіївна",
+    "city": "Черкаси",
     "experience": "7 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:40"]
+      "availableTime": ["10:40"]
     },
     "sex": "Жінка",
+    "avatar": "../assets/images/avatar5.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Онлайн консультація", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": [
+      "The doctor accepts declarations",
+      "Online consultation",
+      "Reception of children"
+    ],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1300 грн"
+        "price": "1300"
       }
     ],
     "reviewsCount": 15,
@@ -1219,34 +1301,37 @@
   },
   {
     "id": 21,
+    "dataType": "doctor",
     "specialty": "Психіатр",
+    "city": "Черкаси",
     "name": "Богданова Лариса Анатоліївна",
     "experience": "11 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:00", "11:20", "14:00"]
+      "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "Чоловік",
+    "avatar": "../assets/images/avatar-man.png",
     "type": "Державна клініка",
     "district": "Центр",
     "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "tags": ["The doctor accepts declarations", "Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": true
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": false
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1200 грн"
+        "price": "1200"
       }
     ],
     "reviewsCount": 13,
@@ -1279,38 +1364,41 @@
   },
   {
     "id": 22,
+    "city": "Черкаси",
+    "district": "Центр",
+    "address": "місто Київ вул. Симиренка, 10",
+    "type": "Державна клініка",
     "specialty": "Невропатолог",
+    "rating": 20,
+    "reviewsCount": 3,
+    "dataType": "doctor",
     "name": "Тимошенко Дмитро Сергійович",
     "experience": "14 років",
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
-      "available_time": ["10:00", "11:20", "14:00"]
+      "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "Чоловік",
-    "type": "Державна клініка",
-    "district": "Центр",
-    "address": "місто Київ вул. Симиренка, 10",
-    "tags": ["Лікар приймає декларацію", "Прийом дітей"],
-    "grade": "Дуже добре",
+    "avatar": "../assets/images/avatar-man.png",
+    "tags": ["The doctor accepts declarations", "Reception of children"],
+    "grade": "Very good",
     "qualification": "Вища категорія",
     "servicePayment": [
       {
-        "title": "Безкоштовно за направленням",
+        "title": "Free by referral",
         "available": false
       },
       {
-        "title": "Безкоштовно за декларацією НСЗУ",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true
       },
       {
-        "title": "Платний прийом",
+        "title": "Free of charge according to the NSZU declaration",
         "available": true,
-        "price": "1300 грн"
+        "price": "1300"
       }
     ],
-    "reviewsCount": 3,
-    "rating": 20,
     "socials": [
       {
         "title": "Telegram",
