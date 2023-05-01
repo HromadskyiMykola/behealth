@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 import {
   Button,
   InputAdornment,
   MenuItem,
+  SelectChangeEvent,
   Stack,
   useTheme,
 } from "@mui/material";
@@ -15,8 +18,13 @@ import {
 import { useDeviceType } from "~/common";
 
 export const SearchBar = () => {
+  const [selectedValue, setSelectedValue] = useState("");
   const { custom } = useTheme().palette;
   const { isSmDown } = useDeviceType();
+
+  const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
+    setSelectedValue(event.target.value as string);
+  };
 
   return (
     <CustomizedPaper
@@ -32,6 +40,8 @@ export const SearchBar = () => {
           sx={{ display: "flex", flexBasis: "40%", minWidth: "150px" }}
           label="Спеціальність"
           placeholder="Обрати"
+          value={selectedValue}
+          onChange={handleSelectChange}
         >
           <MenuItem value={1}>Option 1</MenuItem>
           <MenuItem value={2}>Option 2</MenuItem>
