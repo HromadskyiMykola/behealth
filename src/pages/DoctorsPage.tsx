@@ -33,11 +33,15 @@ const data = [
 
 export const DoctorsPage = () => {
   const [doctors, setDoctors] = useState([] as TDoctor[]);
+  const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
   const { getDoctors } = useApiService();
   const { palette } = useTheme();
 
   useEffect(() => {
-    getDoctors().then(setDoctors);
+    getDoctors().then((res) => {
+      setDoctors(res);
+      setFilteredDoctors(res);
+    });
   }, []);
 
   return (
@@ -61,7 +65,7 @@ export const DoctorsPage = () => {
           Лікарі
         </Typography>
 
-        <SearchBar />
+        <SearchBar doctors={doctors} setFilteredDoctors={setFilteredDoctors} />
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
@@ -89,8 +93,8 @@ export const DoctorsPage = () => {
                 </CustomizedPaper>
               ))}
 
-            {doctors.length > 0 &&
-              doctors.map((doctor, i) => (
+            {filteredDoctors.length > 0 &&
+              filteredDoctors.map((doctor, i) => (
                 <SmallCardDoctor key={`${doctor.id}-${i}`} doctor={doctor} />
               ))}
 
