@@ -1,9 +1,16 @@
-import { SyntheticEvent, useEffect, useMemo, useState } from "react";
+import {
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import {
   Autocomplete,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
+  AutocompleteInputChangeReason,
   Button,
   IconButton,
   InputAdornment,
@@ -23,45 +30,68 @@ import { TDoctor, useDeviceType } from "~/common";
 
 interface ISearchBar {
   doctors: TDoctor[];
-  setFilteredDoctors: (value: React.SetStateAction<TDoctor[]>) => void;
+  setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
 }
 
-const specialties = (doctors: TDoctor[]) =>
+// don`t touch
+const specialtiesList = (doctors: TDoctor[]) =>
   doctors.reduce((acc: string[], doc) => {
     if (!acc.includes(doc.specialty)) {
       acc.push(doc.specialty);
     }
     return acc;
   }, []);
+// don`t touch
 
-const namesList = (selectedSpec: string, doctors: TDoctor[]) =>
-  doctors
-    .filter((doc) => selectedSpec === "" || doc.specialty === selectedSpec)
+// don`t touch
+const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
+  if (selectedSpec === "") return doctors.map((doc) => doc.name);
+
+  return doctors
+    .filter((doc) => doc.specialty === selectedSpec)
     .map((doc) => doc.name);
+};
+// don`t touch
+
+// don`t touch
+const filterDoctors = (doctors: TDoctor[], str: string) =>
+  // doctors.filter((doc) => doc.name === str);
+  doctors.filter(
+    (doc) => doc.name.toLowerCase().indexOf(str.toLowerCase()) !== -1
+  );
+// don`t touch
 
 export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
-  const [selectedSpec, setSelectedSpec] = useState("");
-  const [searchString, setSearchString] = useState("");
+  const [selectedSpec, setSelectedSpec] = useState(""); // don`t touch
+  const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
   const { isSmDown } = useDeviceType();
 
   // const [value, setValue] = useState(null);
 
-  const filteredDoctors = useMemo(
-    () => namesList(selectedSpec, doctors),
+  //   useEffect(() => {
+  //     if (selectedSpec) {
+
+  //   }
+  // },[selectedSpec])
+
+  // don`t touch
+  const filteredNamesBySpec = useMemo(
+    () => filterNamesBySpec(doctors, selectedSpec),
     [selectedSpec, doctors]
   );
+  // don`t touch
 
+  // don`t touch
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
     setSelectedSpec(e.target.value as string);
   };
+  // don`t touch
 
-  const onSubmitSearch = () => {
-    const filteredList = doctors.filter(
-      (doctor) =>
-        doctor.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1
-    );
-    console.log("!!!", searchString, "list >>", filteredList);
+  
+  const onSubmitSearch = (str: string = searchStr) => {
+    const filteredList = filterDoctors(doctors, str);
+    // console.log("!!!", searchString, "list >>", filteredList);
 
     setFilteredDoctors(filteredList);
   };
@@ -72,18 +102,78 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<string> | undefined
   ) => {
-    setSearchString(value || "");
-
-    // if (reason === "selectOption" || reason === "createOption") {
-    //   onSubmitSearch();
+    // if (!value) {
+    //   setFilteredDoctors(doctors);
+    //   return;
+    // }
+    // if (event. === 13) {
     // }
 
-    console.log(event.target, "val>>", value, "reas>>", reason, "det", details);
+    // setSearchString(value || "");
+
+    if (
+      reason === "selectOption"
+      || reason === "createOption"
+    ) {
+      onSubmitSearch(value || ""); // don`t touch
+    }
+
+    // const filteredList = doctors.filter(
+    //   (doc) => doc.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    // );
+    // // console.log("!!!", searchString, "list >>", filteredList);
+
+    // setFilteredDoctors(filteredList);
+
+    console.log(
+      "ev onCh>>",
+      event,
+      "val>>",
+      value,
+      "reas>>",
+      reason,
+      "det",
+      details
+    );
   };
 
-  useEffect(() => {
-    searchString && onSubmitSearch();
-  }, [searchString]);
+  // useEffect(() => {
+  //   searchString && onSubmitSearch();
+  // }, [searchString]);
+  const onInputChangeSearch = (
+    event: SyntheticEvent<Element, Event>,
+    value: string,
+    reason: AutocompleteInputChangeReason
+  ) => {
+    // don`t touch
+    if (reason === "clear") {
+      setFilteredDoctors(doctors);
+      setSelectedSpec("");
+    }
+    // don`t touch
+    
+    if (reason === "input") {
+      setSearchStr(value);
+    }
+
+
+
+    // if (!value) {
+    //   setFilteredDoctors(doctors);
+    //   return;
+    // }
+
+    // setSearchString(value || "");
+
+    // const filteredList = doctors.filter(
+    //   (doc) => doc.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    // );
+    // // console.log("!!!", searchString, "list >>", filteredList);
+
+    // setFilteredDoctors(filteredList);
+
+    console.log("ev onIn>>", event, "val>>", value, "reas>>", reason);
+  };
 
   return (
     <CustomizedPaper
@@ -102,7 +192,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
           value={selectedSpec}
           onChange={handleSelectChange}
         >
-          {specialties(doctors).map((spec) => (
+          {specialtiesList(doctors).map((spec) => (
             <MenuItem key={spec} value={spec}>
               {spec}
             </MenuItem>
@@ -110,12 +200,15 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
         </SelectWithPlaceholder>
 
         <Autocomplete
+          clearOnEscape
+          blurOnSelect
+          //
+          // autoSelect
           freeSolo
-          loading
-          loadingText="Завантаження..."
           fullWidth
-          options={filteredDoctors}
+          options={filteredNamesBySpec}
           onChange={onChangeSearch}
+          onInputChange={onInputChangeSearch}
           renderInput={(params) => (
             <CustomizedInput
               {...params}
@@ -125,19 +218,22 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
                 ref: params.InputProps.ref,
                 startAdornment: (
                   <InputAdornment position="start">
-                    <IconButton>
+                    <IconButton onClick={() => onSubmitSearch()}>
                       <SearchIcon color={custom.neutral70} />
                     </IconButton>
                   </InputAdornment>
                 ),
                 endAdornment: params.InputProps.endAdornment,
               }}
-              // onChange={onChangeSearch}
             />
           )}
         />
 
-        <Button sx={{ minWidth: "175px" }} variant="contained">
+        <Button
+          sx={{ minWidth: "175px" }}
+          variant="contained"
+          onClick={() => onSubmitSearch()}
+        >
           Знайти
         </Button>
       </Stack>
