@@ -1,4 +1,10 @@
-import { SetStateAction, SyntheticEvent, useMemo, useState } from "react";
+import {
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import {
   Autocomplete,
@@ -58,6 +64,10 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
   const { isSmDown } = useDeviceType();
+
+  useEffect(() => {
+    selectedSpec && setSearchStr("");
+  }, [selectedSpec]);
 
   // done !
   const filteredNamesBySpec = useMemo(
@@ -131,6 +141,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
           blurOnSelect
           freeSolo
           fullWidth
+          value={searchStr}
           options={filteredNamesBySpec}
           onChange={onChangeSearch}
           onInputChange={onInputChangeSearch}
