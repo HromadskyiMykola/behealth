@@ -27,11 +27,11 @@ export const SelectTopBar = () => {
         </MenuItem>
 
         <MenuItem value={2}>
-          <Typography variant="body2">Молоді</Typography>
+          <Typography variant="body2">За рейтингом</Typography>
         </MenuItem>
 
         <MenuItem value={3}>
-          <Typography variant="body2">Старі Ж)</Typography>
+          <Typography variant="body2">За стажем</Typography>
         </MenuItem>
       </StyledSelect>
     </Paper>

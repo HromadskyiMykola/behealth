@@ -35,6 +35,7 @@ export const useReactHookForm = () => {
 
     await auth.signUp({ email, passwordNew });
 
+    setSimpleModalLoading(false);
     reset();
 
     return { success: true };

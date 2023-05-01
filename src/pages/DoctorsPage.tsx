@@ -73,20 +73,21 @@ export const DoctorsPage = () => {
           <Box sx={{ flex: "1 0 auto" }}>
             <SelectTopBar />
 
-            {doctors.length === 0 && (
-              <CustomizedPaper>
-                <Stack direction="row" gap={2}>
-                  <Skeleton
-                    variant="rounded"
-                    sx={{ height: 132, width: 168 }}
-                  />
-                  <Skeleton
-                    variant="rounded"
-                    sx={{ height: 300, width: "100%" }}
-                  />
-                </Stack>
-              </CustomizedPaper>
-            )}
+            {doctors.length === 0 &&
+              [...Array(3)].map((_, i) => (
+                <CustomizedPaper key={"skeleton" + i}>
+                  <Stack direction="row" gap={2}>
+                    <Skeleton
+                      variant="rounded"
+                      sx={{ height: 132, width: 168 }}
+                    />
+                    <Skeleton
+                      variant="rounded"
+                      sx={{ height: 300, width: "100%" }}
+                    />
+                  </Stack>
+                </CustomizedPaper>
+              ))}
 
             {doctors.length > 0 &&
               doctors.map((doctor, i) => (
