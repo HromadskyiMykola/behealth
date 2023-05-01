@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "specialty": "Головний лікар",
+    "specialty": "Ревматолог",
     "name": "Поліщук Олександр Іванович",
     "experience": 66,
     "availableHours": {
@@ -263,7 +263,7 @@
   {
     "id": 5,
     "dataType": "doctor",
-    "specialty": "Лікар Педіатр",
+    "specialty": "Офтальмолог",
     "name": "Шевченко Ірина Миколаївна",
     "city": "Київ",
     "experience": 18,
@@ -715,7 +715,7 @@
   {
     "id": 12,
     "dataType": "doctor",
-    "specialty": "Головний лікар",
+    "specialty": "Ревматолог",
     "name": "Михайленко Андрій Володимирович",
     "city": "Київ",
     "experience": 54,
@@ -976,7 +976,7 @@
   {
     "id": 16,
     "dataType": "doctor",
-    "specialty": "Лікар Педіатр",
+    "specialty": "Офтальмолог",
     "name": "Марченко Тетяна Ігорівна",
     "city": "Черкаси",
     "experience": 35,
