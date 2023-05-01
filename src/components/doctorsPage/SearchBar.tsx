@@ -93,6 +93,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
     reason: AutocompleteChangeReason
   ) => {
     if (reason === "selectOption" || reason === "createOption") {
+      setSearchStr(value || "");
       onSubmitSearch(value || ""); // done !
     }
   };
