@@ -1,14 +1,7 @@
-import {
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { SetStateAction, SyntheticEvent, useMemo, useState } from "react";
 
 import {
   Autocomplete,
-  AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteInputChangeReason,
   Button,
@@ -33,7 +26,7 @@ interface ISearchBar {
   setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
 }
 
-// don`t touch
+// done !
 const specialtiesList = (doctors: TDoctor[]) =>
   doctors.reduce((acc: string[], doc) => {
     if (!acc.includes(doc.specialty)) {
@@ -41,9 +34,9 @@ const specialtiesList = (doctors: TDoctor[]) =>
     }
     return acc;
   }, []);
-// don`t touch
+// done !
 
-// don`t touch
+// done !
 const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
   if (selectedSpec === "") return doctors.map((doc) => doc.name);
 
@@ -51,128 +44,62 @@ const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
     .filter((doc) => doc.specialty === selectedSpec)
     .map((doc) => doc.name);
 };
-// don`t touch
+// done !
 
-// don`t touch
+// done !
 const filterDoctors = (doctors: TDoctor[], str: string) =>
-  // doctors.filter((doc) => doc.name === str);
   doctors.filter(
     (doc) => doc.name.toLowerCase().indexOf(str.toLowerCase()) !== -1
   );
-// don`t touch
+// done !
 
 export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
-  const [selectedSpec, setSelectedSpec] = useState(""); // don`t touch
+  const [selectedSpec, setSelectedSpec] = useState(""); // done !
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
   const { isSmDown } = useDeviceType();
 
-  // const [value, setValue] = useState(null);
-
-  //   useEffect(() => {
-  //     if (selectedSpec) {
-
-  //   }
-  // },[selectedSpec])
-
-  // don`t touch
+  // done !
   const filteredNamesBySpec = useMemo(
     () => filterNamesBySpec(doctors, selectedSpec),
     [selectedSpec, doctors]
   );
-  // don`t touch
+  // done !
 
-  // don`t touch
+  // done !
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
     setSelectedSpec(e.target.value as string);
   };
-  // don`t touch
+  // done !
 
-  
   const onSubmitSearch = (str: string = searchStr) => {
     const filteredList = filterDoctors(doctors, str);
-    // console.log("!!!", searchString, "list >>", filteredList);
-
     setFilteredDoctors(filteredList);
   };
 
   const onChangeSearch = (
     event: SyntheticEvent<Element, Event>,
     value: string | null,
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<string> | undefined
+    reason: AutocompleteChangeReason
   ) => {
-    // if (!value) {
-    //   setFilteredDoctors(doctors);
-    //   return;
-    // }
-    // if (event. === 13) {
-    // }
-
-    // setSearchString(value || "");
-
-    if (
-      reason === "selectOption"
-      || reason === "createOption"
-    ) {
-      onSubmitSearch(value || ""); // don`t touch
+    if (reason === "selectOption" || reason === "createOption") {
+      onSubmitSearch(value || ""); // done !
     }
-
-    // const filteredList = doctors.filter(
-    //   (doc) => doc.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    // );
-    // // console.log("!!!", searchString, "list >>", filteredList);
-
-    // setFilteredDoctors(filteredList);
-
-    console.log(
-      "ev onCh>>",
-      event,
-      "val>>",
-      value,
-      "reas>>",
-      reason,
-      "det",
-      details
-    );
   };
 
-  // useEffect(() => {
-  //   searchString && onSubmitSearch();
-  // }, [searchString]);
   const onInputChangeSearch = (
     event: SyntheticEvent<Element, Event>,
     value: string,
     reason: AutocompleteInputChangeReason
   ) => {
-    // don`t touch
-    if (reason === "clear") {
+    // done !
+    if (reason === "input") {
+      setSearchStr(value);
+    } else if (reason === "clear") {
       setFilteredDoctors(doctors);
       setSelectedSpec("");
     }
-    // don`t touch
-    
-    if (reason === "input") {
-      setSearchStr(value);
-    }
-
-
-
-    // if (!value) {
-    //   setFilteredDoctors(doctors);
-    //   return;
-    // }
-
-    // setSearchString(value || "");
-
-    // const filteredList = doctors.filter(
-    //   (doc) => doc.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    // );
-    // // console.log("!!!", searchString, "list >>", filteredList);
-
-    // setFilteredDoctors(filteredList);
-
-    console.log("ev onIn>>", event, "val>>", value, "reas>>", reason);
+    // done !
   };
 
   return (
@@ -202,8 +129,6 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
         <Autocomplete
           clearOnEscape
           blurOnSelect
-          //
-          // autoSelect
           freeSolo
           fullWidth
           options={filteredNamesBySpec}
