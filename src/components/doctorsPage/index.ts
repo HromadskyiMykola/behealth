@@ -1,2 +1,2 @@
 export * from "./SearchBar"
-export * from "./FilterDoctors"
+export * from "../AsideFilter/Aside-Filter"

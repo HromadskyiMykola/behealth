@@ -59,7 +59,7 @@ function CustomSelect(
       )}
 
       <Select
-        {...otherProps}
+          {...otherProps}
         MenuProps={{
           sx: {
             "& .MuiMenuItem-root": {

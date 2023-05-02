@@ -1,4 +1,4 @@
-import { Pagination,  useTheme } from "@mui/material";
+import { Pagination, useTheme } from "@mui/material";
 
 export const PaginationBottomBar = () => {
   const { custom, primary } = useTheme().palette;
