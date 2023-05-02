@@ -1,4 +1,9 @@
-import { MouseEventHandler, ReactElement, ReactNode } from "react";
+import {
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+  SetStateAction,
+} from "react";
 import { RouteObject } from "react-router-dom";
 
 export const enum EUserType {
@@ -354,11 +359,16 @@ export type TClinic = {
   phoneNumberRegistry: string;
   phoneNumberAdministration: string;
   tags?: {
-        title: string;
-      }[];
+    title: string;
+  }[];
   workingHours: {
     day: string;
     hours: string | null;
   }[];
   doctorsIds: number[];
 };
+
+export interface IDoctorsList {
+  doctors: TDoctor[];
+  setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
+}
