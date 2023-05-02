@@ -1,9 +1,4 @@
-import {
-  SyntheticEvent,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { SyntheticEvent, useEffect, useMemo, useState } from "react";
 
 import {
   Autocomplete,
@@ -24,7 +19,8 @@ import {
   CustomizedPaper,
   SelectWithPlaceholder,
 } from "../atomic";
-import { IDoctorsList, TDoctor, useDeviceType } from "~/common";
+import { IDoctorsList, TDoctor } from "~/common";
+import { useDeviceType } from "~/hooks";
 
 // done !
 const specialtiesList = (doctors: TDoctor[]) =>
@@ -134,6 +130,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: IDoctorsList) => {
         <Autocomplete
           clearOnEscape
           blurOnSelect
+          autoHighlight
           freeSolo
           fullWidth
           value={searchStr}

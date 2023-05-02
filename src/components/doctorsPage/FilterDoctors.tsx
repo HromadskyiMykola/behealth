@@ -18,7 +18,7 @@ import {
 import { MapIcon } from "lucide-react";
 import { KeyboardArrowDown } from "@mui/icons-material";
 
-import { CustomizedPaper, SelectWithPlaceholder } from "../atomic";
+import { SelectWithPlaceholder } from "../atomic";
 
 const minDistance = 10;
 
@@ -63,19 +63,12 @@ export const FilterDoctors = () => {
         setRangeExperience([clamped - minDistance, clamped]);
       }
     } else {
-      setRangeCost(newValue as number[]);
+      setRangeExperience(newValue as number[]);
     }
   };
 
   return (
-    <CustomizedPaper
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "12px",
-        p: "24px 24px 32px 24px",
-      }}
-    >
+    <Stack gap="12px">
       <Typography variant="h5" color={palette.custom.primary20}>
         Фільтр
       </Typography>
@@ -244,7 +237,7 @@ export const FilterDoctors = () => {
           valueLabelDisplay="auto"
           defaultValue={[20, 40]}
           sx={{ width: `calc(100% - 20px)`, alignSelf: "center" }}
-          value={rangeCost}
+          value={rangeExperience}
           onChange={handleRangeExperience}
           disableSwap
         />
@@ -300,6 +293,6 @@ export const FilterDoctors = () => {
         <MenuItem value="var 2">Не вища</MenuItem>
         <MenuItem value="var 3">Ніяка 😄</MenuItem>
       </SelectWithPlaceholder>
-    </CustomizedPaper>
+    </Stack>
   );
 };

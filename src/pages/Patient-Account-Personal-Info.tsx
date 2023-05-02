@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Skeleton, Stack, Typography } from "@mui/material";
 
-import { usePatientFetchingData, IOnSubmitPatientData } from "~/common";
+import { IOnSubmitPatientData } from "~/common";
+import { usePatientFetchingData } from "~/hooks";
 
 import { ButtonEditIcon, CustomizedPaper } from "~/components/atomic";
 
