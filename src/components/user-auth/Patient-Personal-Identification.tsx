@@ -14,7 +14,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { CustomizedInput } from "../atomic";
 
-import { TAuthFormValues, useDeviceType, useReactHookForm } from "~/common";
+import { useReactHookForm } from "~/hooks";
+import { TAuthFormValues } from "~/common";
 import {
   RHFBirthDate,
   RHFFirstName,

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import {
   Box,
   Container,
+  Paper,
   Skeleton,
   Stack,
   Typography,
@@ -18,33 +19,23 @@ import {
 } from "~/components/atomic";
 
 import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
-
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
-import { TDoctor, useApiService } from "~/common";
-import { useEffect, useState } from "react";
+
+import { useDoctorsData } from "~/hooks";
 
 const data: any = [
-  // { key: 0, label: "Приватна клініка" },
-  // { key: 1, label: "Добре" },
-  // { key: 2, label: "Дуже добре" },
-  // { key: 3, label: "Вища освіта" },
-  // { key: 4, label: "Бімба! :)" },
+  { key: 0, label: "Приватна клініка" },
+  { key: 1, label: "Добре" },
+  { key: 2, label: "Дуже добре" },
+  { key: 3, label: "Вища освіта" },
+  { key: 4, label: "Бімба! :)" },
 ];
 
 export const DoctorsPage = () => {
-  const [doctors, setDoctors] = useState([] as TDoctor[]);
-  const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
-  const { getDoctors } = useApiService();
   const { palette } = useTheme();
 
-  console.log("sort doc DP >>", filteredDoctors);
-
-  useEffect(() => {
-    getDoctors().then((res) => {
-      setDoctors(res);
-      setFilteredDoctors(res);
-    });
-  }, []);
+  const { doctors, filteredDoctors, setFilteredDoctors, filter, setFilter } =
+    useDoctorsData();
 
   return (
     <>
@@ -71,9 +62,13 @@ export const DoctorsPage = () => {
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
-            <SelectedItemsBox data={data} />
+            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+              <SelectedItemsBox data={data} />
+            </CustomizedPaper>
 
-            <FilterDoctors />
+            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+              <FilterDoctors />
+            </CustomizedPaper>
           </Box>
 
           <Box sx={{ flex: "1 0 auto" }}>
@@ -100,7 +95,16 @@ export const DoctorsPage = () => {
                 <SmallCardDoctor key={`${doctor.id}-${i}`} doctor={doctor} />
               ))}
 
-            <PaginationBottomBar />
+            <CustomizedPaper
+              sx={{
+                mt: "24px",
+                p: "16px 32px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <PaginationBottomBar />
+            </CustomizedPaper>
           </Box>
         </Stack>
       </Container>
