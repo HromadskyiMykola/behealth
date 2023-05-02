@@ -1,24 +1,17 @@
 import { Helmet } from "react-helmet";
 
-import {
-  Box,
-  Container,
-  Paper,
-  Skeleton,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   BreadcrumbsUkr,
   CustomizedPaper,
   PaginationBottomBar,
-  SelectedItemsBox,
   SelectTopBar,
+  SkeletonInfoCards,
 } from "~/components/atomic";
+import { SelectedItemsBox } from "~/components/AsideFilter";
 
-import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
+import { AsideFilter, SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDoctorsData } from "~/hooks";
@@ -67,28 +60,14 @@ export const DoctorsPage = () => {
             </CustomizedPaper>
 
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <FilterDoctors />
+              <AsideFilter />
             </CustomizedPaper>
           </Box>
 
           <Box sx={{ flex: "1 0 auto" }}>
             <SelectTopBar setFilteredData={setFilteredDoctors} />
 
-            {doctors.length === 0 &&
-              [...Array(3)].map((_, i) => (
-                <CustomizedPaper key={"skeleton" + i}>
-                  <Stack direction="row" gap={2}>
-                    <Skeleton
-                      variant="rounded"
-                      sx={{ height: 132, width: 168 }}
-                    />
-                    <Skeleton
-                      variant="rounded"
-                      sx={{ height: 300, width: "100%" }}
-                    />
-                  </Stack>
-                </CustomizedPaper>
-              ))}
+            {doctors.length === 0 && <SkeletonInfoCards />}
 
             {filteredDoctors.length > 0 &&
               filteredDoctors.map((doctor, i) => (
