@@ -51,7 +51,7 @@ export const ClinicsPage = () => {
           </Box>
 
           <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
-            <SelectTopBar />
+            {/* <SelectTopBar />   TODO:   */}
 
             <Clinics />
 

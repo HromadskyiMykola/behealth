@@ -1,5 +1,4 @@
 import {
-  SetStateAction,
   SyntheticEvent,
   useEffect,
   useMemo,
@@ -25,12 +24,7 @@ import {
   CustomizedPaper,
   SelectWithPlaceholder,
 } from "../atomic";
-import { TDoctor, useDeviceType } from "~/common";
-
-interface ISearchBar {
-  doctors: TDoctor[];
-  setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
-}
+import { IDoctorsList, TDoctor, useDeviceType } from "~/common";
 
 // done !
 const specialtiesList = (doctors: TDoctor[]) =>
@@ -59,7 +53,7 @@ const filterDoctors = (doctors: TDoctor[], str: string) =>
   );
 // done !
 
-export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
+export const SearchBar = ({ doctors, setFilteredDoctors }: IDoctorsList) => {
   const [selectedSpec, setSelectedSpec] = useState(""); // done !
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;

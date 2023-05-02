@@ -23,12 +23,12 @@ import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-docto
 import { TDoctor, useApiService } from "~/common";
 import { useEffect, useState } from "react";
 
-const data = [
-  { key: 0, label: "Приватна клініка" },
-  { key: 1, label: "Добре" },
-  { key: 2, label: "Дуже добре" },
-  { key: 3, label: "Вища освіта" },
-  { key: 4, label: "Бімба! :)" },
+const data: any = [
+  // { key: 0, label: "Приватна клініка" },
+  // { key: 1, label: "Добре" },
+  // { key: 2, label: "Дуже добре" },
+  // { key: 3, label: "Вища освіта" },
+  // { key: 4, label: "Бімба! :)" },
 ];
 
 export const DoctorsPage = () => {
@@ -36,6 +36,8 @@ export const DoctorsPage = () => {
   const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
   const { getDoctors } = useApiService();
   const { palette } = useTheme();
+
+  console.log("sort doc DP >>", filteredDoctors);
 
   useEffect(() => {
     getDoctors().then((res) => {
@@ -75,7 +77,7 @@ export const DoctorsPage = () => {
           </Box>
 
           <Box sx={{ flex: "1 0 auto" }}>
-            <SelectTopBar />
+            <SelectTopBar setFilteredData={setFilteredDoctors} />
 
             {doctors.length === 0 &&
               [...Array(3)].map((_, i) => (

@@ -1,6 +1,6 @@
 import { Box, Rating, Typography } from "@mui/material";
 
-import avatarNeedChange from "~/assets/images/doctor-avatar.png";
+import noAvatar from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 
@@ -19,14 +19,13 @@ export const HeaderItem = ({
   name,
   reviewsCount,
   rating,
-  avatar, // !!
+  avatar,
 }: Props) => {
   return (
     <Box display="flex" gap="24px">
       <Box>
-        <img //todo add photo with rest api
-          src={avatarNeedChange}
-          //todo add description with rest api
+        <img
+          src={avatar || noAvatar}
           alt="doctor"
           width="132px"
           height="132px"
