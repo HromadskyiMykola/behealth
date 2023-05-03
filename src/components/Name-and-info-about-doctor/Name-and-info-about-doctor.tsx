@@ -5,13 +5,13 @@ import { useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-  specialty: string;
+  speciality: string;
   experience: number;
   name: string;
 };
 
 export const NameAndInfoAboutDoctor = ({
-  specialty,
+  speciality,
   experience,
   name,
 }: Props) => {
@@ -22,7 +22,7 @@ export const NameAndInfoAboutDoctor = ({
     <Box display="flex" gap="4px" flexDirection="column">
       {/*//todo add rest data*/}
       <Typography variant="body2" component="p" color={custom.primary80}>
-        {specialty}
+        {speciality}
       </Typography>
 
       <Typography

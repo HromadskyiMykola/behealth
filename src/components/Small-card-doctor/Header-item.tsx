@@ -5,7 +5,7 @@ import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doc
 import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 
 type Props = {
-  specialty: string;
+  speciality: string;
   experience: number;
   name: string;
   reviewsCount: number;
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const HeaderItem = ({
-  specialty,
+  speciality,
   experience,
   name,
   reviewsCount,
@@ -35,7 +35,7 @@ export const HeaderItem = ({
 
       <Box>
         <NameAndInfoAboutDoctor
-          specialty={specialty}
+          speciality={speciality}
           experience={experience}
           name={name}
         />

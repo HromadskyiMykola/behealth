@@ -314,7 +314,7 @@ export interface IOnSubmitPatientData {
 export type TDoctor = {
   id: number;
   dataType: "doctor" | "clinic";
-  specialty: string;
+  speciality: string;
   name: string;
   city: string;
   experience: number;

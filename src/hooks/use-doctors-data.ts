@@ -22,7 +22,7 @@ const filterOptionsTemplate = {
   //
   qualification: "",
   district: "",
-  specialty: "",
+  speciality: "",
   // unnecessary
   medicalFacilityType: "",
   additionalOptions: "",
@@ -63,7 +63,7 @@ export const useDoctorsData = () => {
   //   useEffect(() => {
   //   // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
   //   const filteredDoctors = doctors.filter((doctor) => {
-  //     if (filter.specialty && doctor.specialty !== filter.specialty) return false;
+  //     if (filter.speciality && doctor.speciality !== filter.speciality) return false;
   //     if (filter.district && doctor.district !== filter.district) return false;
   //     if (filter.medicalFacilityType && doctor.medicalFacilityType !== filter.medicalFacilityType) return false;
   //     if (filter.additionalOptions && doctor.additionalOptions !== filter.additionalOptions) return false;

@@ -37,6 +37,7 @@ import {
   MAKE_TO_APPOINTMENT,
   CITY,
 } from "~/components/Header/constant-header";
+import { useLocationContext } from "~/providers/LocationProvider";
 
 const selectStyle = {
   padding: 0,
@@ -60,9 +61,9 @@ const Header: FC = (props) => {
   const { palette } = useTheme();
   const navigate = useNavigate();
 
-  const [city, setCity] = useState(HEADER_SELECT_ITEM_VALUE[0].value);
   const [openMenu, setOpenMenu] = useState(false);
   const [value, setValue] = useState<string | null>(CITY[0].title);
+  const { city, setCity } = useLocationContext();
 
   const handleChange = (event: SelectChangeEvent) => {
     setCity(event.target.value as string);
@@ -94,13 +95,11 @@ const Header: FC = (props) => {
               IconComponent={KeyboardArrowDownIcon}
               sx={selectStyle}
             >
-              {HEADER_SELECT_ITEM_VALUE.map(
-                ({ value, text }: ISelectItemHeaderValue) => (
-                  <MenuItem value={value} key={`Select-item-${value}`}>
-                    <Typography variant="caption">{text}</Typography>
-                  </MenuItem>
-                )
-              )}
+              {HEADER_SELECT_ITEM_VALUE.map((city: string) => (
+                <MenuItem value={city} key={`Select-item-${city}`}>
+                  <Typography variant="caption">{city}</Typography>
+                </MenuItem>
+              ))}
             </Select>
           </Stack>
 
