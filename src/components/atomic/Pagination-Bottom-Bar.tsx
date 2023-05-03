@@ -24,9 +24,9 @@ export const PaginationBottomBar = () => {
           border: "none",
         },
         "& .Mui-selected": {
+          border: "none",
           backgroundColor: primary.main,
           color: `${custom.primary100} !important`,
-          border: "none",
           opacity: 1,
           "&:hover": {
             backgroundColor: primary.main,
