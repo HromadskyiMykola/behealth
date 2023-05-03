@@ -27,10 +27,15 @@ import {
   RangeExperience,
 } from "./";
 
-import { TOptionsData } from "~/common";
+import { TAsideFilterComps } from "~/common";
 
-export const AsideFilter = ({ optionsData }: { optionsData: TOptionsData }) => {
+export const AsideFilter = ({
+  optionsData,
+  handleFilterChange,
+}: TAsideFilterComps) => {
   const { palette, typography } = useTheme();
+
+  const props = { optionsData, handleFilterChange };
 
   return (
     <Stack gap="32px">
@@ -38,14 +43,14 @@ export const AsideFilter = ({ optionsData }: { optionsData: TOptionsData }) => {
         Фільтр
       </Typography>
 
-      <SelectDistrict optionsData={optionsData} />
+      <SelectDistrict {...props} />
 
       <Stack gap="24px">
-        <ClinicType />
+        <ClinicType {...props} />
 
         <Divider />
 
-        <DoctorAdditionalOptions />
+        <DoctorAdditionalOptions {...props} />
 
         <Divider />
 
@@ -66,7 +71,7 @@ export const AsideFilter = ({ optionsData }: { optionsData: TOptionsData }) => {
         <PatientEvaluation />
       </Stack>
 
-      <DoctorQualifications optionsData={optionsData} />
+      <DoctorQualifications {...props} />
     </Stack>
   );
 };

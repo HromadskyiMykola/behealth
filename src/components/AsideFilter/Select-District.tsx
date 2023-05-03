@@ -11,19 +11,19 @@ import { MapIcon } from "lucide-react";
 import { OptionsWrapper } from "./";
 import { SelectWithPlaceholder } from "../atomic";
 
-import { TOptionsData } from "~/common";
+import { TAsideFilterComps } from "~/common";
 import { useState } from "react";
 
 export const SelectDistrict = ({
   optionsData,
-}: {
-  optionsData: TOptionsData;
-}) => {
+  handleFilterChange,
+}: TAsideFilterComps) => {
   const { custom } = useTheme().palette;
 
-  const [selectedValue, setSelectedValue] = useState(""); 
- 
+  const [selectedValue, setSelectedValue] = useState("");
+
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
+    handleFilterChange("district", e.target.value);
     setSelectedValue(e.target.value as string);
   };
 
@@ -36,7 +36,6 @@ export const SelectDistrict = ({
             <MapIcon color={custom.neutral70} />
           </InputAdornment>
         }
-        // displayEmpty
         IconComponent={KeyboardArrowDown}
         onChange={handleSelectChange}
         value={selectedValue}
