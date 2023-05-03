@@ -5,7 +5,6 @@ import { SelectWithPlaceholder } from "../atomic";
 import { TOptionsData } from "~/common";
 import { useState } from "react";
 
-
 export const DoctorQualifications = ({
   optionsData,
 }: {
@@ -19,7 +18,9 @@ export const DoctorQualifications = ({
 
   return (
     <OptionsWrapper label="Кваліфікація лікаря" variant="subtitle1">
-      <SelectWithPlaceholder>
+      <SelectWithPlaceholder
+        value={selectedValue}
+        onChange={handleSelectChange}
         {optionsData.qualifications.map((qualification, i) => (
           <MenuItem key={qualification + i} value={qualification}>
             {qualification}

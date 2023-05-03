@@ -22,17 +22,6 @@ import {
 import { IDoctorsList, TDoctor } from "~/common";
 import { useDeviceType } from "~/hooks";
 
-// done !
-const specialtiesList = (doctors: TDoctor[]) =>
-  doctors.reduce((acc: string[], doc) => {
-    if (!acc.includes(doc.speciality)) {
-      acc.push(doc.speciality);
-    }
-    return acc;
-  }, []);
-// done !
-
-// done !
 const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
   if (selectedSpec === "") return doctors.map((doc) => doc.name);
 

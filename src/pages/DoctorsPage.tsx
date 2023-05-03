@@ -12,6 +12,8 @@ import {
 
 import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
 
+// import { SearchBar } from "~/components/doctorsPage";
+
 import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
