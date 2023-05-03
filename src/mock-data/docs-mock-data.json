@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "specialty": "Ревматолог",
+    "speciality": "Ревматолог",
     "name": "Поліщук Олександр Іванович",
     "experience": 66,
     "availableHours": {
@@ -65,7 +65,7 @@
   {
     "id": 2,
     "dataType": "doctor",
-    "specialty": "Сімейний лікар",
+    "speciality": "Сімейний лікар",
     "name": "Коваленко Ірина Олександрівна",
     "city": "Київ",
     "experience": 17,
@@ -137,7 +137,7 @@
   {
     "id": 3,
     "dataType": "doctor",
-    "specialty": "Отоларинголог",
+    "speciality": "Отоларинголог",
     "name": "Лисенко Марина Петрівна",
     "city": "Київ",
     "experience": 8,
@@ -200,7 +200,7 @@
   {
     "id": 4,
     "dataType": "doctor",
-    "specialty": "Терапевт",
+    "speciality": "Терапевт",
     "name": "Бондаренко Олександр Ігорович",
     "city": "Київ",
     "experience": 19,
@@ -263,7 +263,7 @@
   {
     "id": 5,
     "dataType": "doctor",
-    "specialty": "Офтальмолог",
+    "speciality": "Офтальмолог",
     "name": "Шевченко Ірина Миколаївна",
     "city": "Київ",
     "experience": 18,
@@ -329,7 +329,7 @@
   {
     "id": 6,
     "dataType": "doctor",
-    "specialty": "Кардіолог",
+    "speciality": "Кардіолог",
     "name": "Кравченко Андрій Сергійович",
     "city": "Харків",
     "experience": 6,
@@ -392,7 +392,7 @@
   {
     "id": 7,
     "dataType": "doctor",
-    "specialty": "Гастроентеролог",
+    "speciality": "Гастроентеролог",
     "name": "Гончаренко Любов Ігорівна",
     "city": "Київ",
     "experience": 7,
@@ -459,7 +459,7 @@
   {
     "id": 8,
     "dataType": "doctor",
-    "specialty": "Гінеколог",
+    "speciality": "Гінеколог",
     "name": "Костенко Анна Іванівна",
     "city": "Київ",
     "experience": 4,
@@ -522,7 +522,7 @@
   {
     "id": 9,
     "dataType": "doctor",
-    "specialty": "Дерматовенеролог",
+    "speciality": "Дерматовенеролог",
     "name": "Герасименко Олена Миколаївна",
     "city": "Київ",
     "experience": 11,
@@ -589,7 +589,7 @@
   {
     "id": 10,
     "dataType": "doctor",
-    "specialty": "Психіатр",
+    "speciality": "Психіатр",
     "name": "Лихачова Марія Вікторівна",
     "city": "Київ",
     "experience": 5,
@@ -652,7 +652,7 @@
   {
     "id": 11,
     "dataType": "doctor",
-    "specialty": "Невропатолог",
+    "speciality": "Невропатолог",
     "name": "Головко Оксана Олександрівна",
     "city": "Київ",
     "experience": 14,
@@ -715,7 +715,7 @@
   {
     "id": 12,
     "dataType": "doctor",
-    "specialty": "Ревматолог",
+    "speciality": "Ревматолог",
     "name": "Михайленко Андрій Володимирович",
     "city": "Київ",
     "experience": 54,
@@ -778,7 +778,7 @@
   {
     "id": 13,
     "dataType": "doctor",
-    "specialty": "Сімейний лікар",
+    "speciality": "Сімейний лікар",
     "name": "Литвиненко Максим Олексійович",
     "city": "Київ",
     "experience": 11,
@@ -850,7 +850,7 @@
   {
     "id": 14,
     "dataType": "doctor",
-    "specialty": "Отоларинголог",
+    "speciality": "Отоларинголог",
     "name": "Кравець Марина Валеріївна",
     "city": "Київ",
     "experience": 19,
@@ -913,7 +913,7 @@
   {
     "id": 15,
     "dataType": "doctor",
-    "specialty": "Терапевт",
+    "speciality": "Терапевт",
     "name": "Богомолова Юлія Олександрівна",
     "city": "Київ",
     "experience": 18,
@@ -976,7 +976,7 @@
   {
     "id": 16,
     "dataType": "doctor",
-    "specialty": "Офтальмолог",
+    "speciality": "Офтальмолог",
     "name": "Марченко Тетяна Ігорівна",
     "city": "Черкаси",
     "experience": 35,
@@ -1042,7 +1042,7 @@
   {
     "id": 17,
     "dataType": "doctor",
-    "specialty": "Кардіолог",
+    "speciality": "Кардіолог",
     "name": "Гордієнко Олександр Ігорович",
     "experience": 18,
     "city": "Харків",
@@ -1105,7 +1105,7 @@
   {
     "id": 18,
     "dataType": "doctor",
-    "specialty": "Гастроентеролог",
+    "speciality": "Гастроентеролог",
     "name": "Сідельник Валерія Михайлівна",
     "experience": 20,
     "city": "Харків",
@@ -1172,7 +1172,7 @@
   {
     "id": 19,
     "dataType": "doctor",
-    "specialty": "Гінеколог",
+    "speciality": "Гінеколог",
     "name": "Кравець Інна Миколаївна",
     "city": "Київ",
     "experience": 5,
@@ -1235,7 +1235,7 @@
   {
     "id": 20,
     "dataType": "doctor",
-    "specialty": "Дерматовенеролог",
+    "speciality": "Дерматовенеролог",
     "name": "Денисенко Ірина Сергіївна",
     "city": "Черкаси",
     "experience": 7,
@@ -1302,7 +1302,7 @@
   {
     "id": 21,
     "dataType": "doctor",
-    "specialty": "Психіатр",
+    "speciality": "Психіатр",
     "city": "Черкаси",
     "name": "Богданова Лариса Анатоліївна",
     "experience": 1,
@@ -1368,7 +1368,7 @@
     "district": "Центр",
     "address": "вул. Симиренка, 10",
     "clinicType": "Державна клініка",
-    "specialty": "Невропатолог",
+    "speciality": "Невропатолог",
     "rating": 20,
     "reviewsCount": 3,
     "dataType": "doctor",
