@@ -159,9 +159,13 @@ const useApiService = () => {
   const searchClinicsDocs = useCallback(
     (params: { city: string; district: string; query: string }) =>
       _requestWithErrorHandling(
-        mockClient.get(
-          `search?city=${params.city}&district=${params.district}&doctor=${params.query}`
-        )
+        mockClient.get("search", {
+          params: {
+            city: params.city,
+            district: params.district,
+            query: params.query,
+          },
+        })
       ),
     []
   );

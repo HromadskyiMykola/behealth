@@ -8,7 +8,6 @@ import clinicsData from "../mock-data/clinics-mock-data.json";
 const mockClient = axios.create();
 
 const mock = new MockAdapter(mockClient, { delayResponse: 1000 });
-
 const queryData: [
   string,
   string,
@@ -16,6 +15,8 @@ const queryData: [
 ] = ["city", "district", []];
 
 const selectorData = (city: string, district: string, query: string) => {
+
+  console.log(city, district, query)
   if (queryData[0] !== city && queryData[1] !== district) {
     queryData[0] = city;
     queryData[1] = district;

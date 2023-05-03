@@ -13,8 +13,8 @@ export const optionsExtractor = (
   optionsData: TOptionsData
 ): TOptionsData => {
   doctors.forEach((doc) => {
-    if (!optionsData.specs.includes(doc.specialty)) {
-      optionsData.specs.push(doc.specialty);
+    if (!optionsData.specs.includes(doc.speciality)) {
+      optionsData.specs.push(doc.speciality);
     }
     if (!optionsData.districts.includes(doc.district)) {
       optionsData.districts.push(doc.district);
