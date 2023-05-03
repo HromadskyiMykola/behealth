@@ -6,6 +6,7 @@ import {
 } from "react";
 import { RouteObject } from "react-router-dom";
 import { optionsTemplate } from "~/helper-function";
+import { filterOptionsTemplate } from "~/hooks";
 
 export const enum EUserType {
   PATIENT = "patient",
@@ -371,8 +372,15 @@ export type TClinic = {
 
 export type TOptionsData = typeof optionsTemplate;
 
+export type TFilterOptions = typeof filterOptionsTemplate;
+
 export interface IDoctorsList {
   doctors: TDoctor[];
   optionsData: TOptionsData;
   setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
 }
+
+export type IHandleFilterChange = (
+  key: keyof TFilterOptions,
+  value: any
+) => void;

@@ -19,7 +19,6 @@ export const RangeExperience = ({
   const { primary20 } = useTheme().palette.custom;
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    
     setRange(newValue as number);
   };
 

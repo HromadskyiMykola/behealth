@@ -1,6 +1,7 @@
 import { TDoctor, TOptionsData } from "~/common";
 
 export const optionsTemplate = {
+  city: [] as string[],
   districts: [] as string[],
   specs: [] as string[],
   qualifications: [] as string[],
@@ -15,6 +16,9 @@ export const optionsExtractor = (
   doctors.forEach((doc) => {
     if (!optionsData.specs.includes(doc.specialty)) {
       optionsData.specs.push(doc.specialty);
+    }
+    if (!optionsData.city.includes(doc.city)) {
+      optionsData.city.push(doc.city);
     }
     if (!optionsData.districts.includes(doc.district)) {
       optionsData.districts.push(doc.district);

@@ -1,27 +1,11 @@
-import {
-  Box,
-  Checkbox,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  InputAdornment,
-  MenuItem,
-  Select,
-  Slider,
-  Stack,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 
 export const OptionsWrapper = ({
   children,
   label,
   variant = "subtitle2",
 }: any) => {
-  const {
-    palette: { custom },
-  } = useTheme();
+  const { custom } = useTheme().palette;
 
   return (
     <Stack gap="20px">
