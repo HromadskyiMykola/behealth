@@ -1,40 +1,64 @@
 import { TDoctor, useApiService } from "~/common";
 import { useEffect, useState } from "react";
+import { optionsExtractor, optionsTemplate } from "~/helper-function";
 
-// TODO: is it necessary??
+const filterOptionsTemplate = {
+  stateClinic: false,
+  privateClinic: false,
+  doctorAcceptsDeclarations: false,
+  doctorWorksWithEHR: false,
+  onlineConsultation: false,
+  admissionOfChildren: false,
+  admissionByReferral: false,
+  admissionByNHSU: false,
+  rangePrice: [0, 0],
+  male: false,
+  female: false,
+  rangeExperience: 0,
+  evaluationNo: false,
+  evaluationNormally: false,
+  evaluationGood: false,
+  evaluationVeryGood: false,
+  //
+  qualification: "",
+  district: "",
+  specialty: "",
+  // unnecessary
+  medicalFacilityType: "",
+  additionalOptions: "",
+  servicePayment: "",
+  priceRangeFrom: "",
+  priceRangeTo: "",
+  gender: "",
+  experience: 0,
+  patientRating: "",
+};
+type TFilterOptions = typeof filterOptionsTemplate;
 
 export const useDoctorsData = () => {
   const { getDoctors } = useApiService();
   const [doctors, setDoctors] = useState([] as TDoctor[]);
   const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
+  const [optionsData, setOptionsData] = useState(optionsTemplate);
 
   useEffect(() => {
     getDoctors().then((res) => {
       setDoctors(res);
       setFilteredDoctors(res);
+      setOptionsData((prev) => optionsExtractor(res, prev));
     });
   }, []);
 
-  const [filter, setFilter] = useState({
-    specialty: "",
-    district: "",
-    medicalFacilityType: "",
-    additionalOptions: "",
-    servicePayment: "",
-    priceRangeFrom: "",
-    priceRangeTo: "",
-    gender: "",
-    experience: "",
-    patientRating: "",
-    qualification: "",
-  });
+  // filter
+  const [selectedFilters, setSelectedFilters] = useState(filterOptionsTemplate);
 
- const handleFilterChange = (key: any, value: any) => {
-   setFilter((prevFilter) => ({
-     ...prevFilter,
-     [key]: value,
-   }));
- };
+  type IHandleFilterChange = (key: keyof TFilterOptions, value: any) => void;
+  const handleFilterChange = (key: keyof TFilterOptions, value: any) => {
+    setSelectedFilters((prevOptions) => ({
+      ...prevOptions,
+      [key]: value,
+    }));
+  };
 
   //   useEffect(() => {
   //   // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
@@ -54,12 +78,13 @@ export const useDoctorsData = () => {
   //   });
   //   onChange(filteredDoctors);
   // }, [doctors, filter, onChange]);
-  
+
   return {
+    optionsData,
     doctors,
     filteredDoctors,
     setFilteredDoctors,
-    filter,
-    setFilter,
+    selectedFilters,
+    setSelectedFilters,
   };
 };

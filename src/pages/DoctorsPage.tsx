@@ -9,9 +9,10 @@ import {
   SelectTopBar,
   SkeletonInfoCards,
 } from "~/components/atomic";
-import { SelectedItemsBox } from "~/components/AsideFilter";
 
-import { AsideFilter, SearchBar } from "~/components/doctorsPage";
+import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
+
+import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDoctorsData } from "~/hooks";
@@ -27,8 +28,14 @@ const data: any = [
 export const DoctorsPage = () => {
   const { palette } = useTheme();
 
-  const { doctors, filteredDoctors, setFilteredDoctors, filter, setFilter } =
-    useDoctorsData();
+  const {
+    doctors,
+    filteredDoctors,
+    optionsData,
+    setFilteredDoctors,
+    selectedFilters,
+    setSelectedFilters,
+  } = useDoctorsData();
 
   return (
     <>
@@ -51,7 +58,11 @@ export const DoctorsPage = () => {
           Лікарі
         </Typography>
 
-        <SearchBar doctors={doctors} setFilteredDoctors={setFilteredDoctors} />
+        <SearchBar
+          doctors={doctors}
+          optionsData={optionsData}
+          setFilteredDoctors={setFilteredDoctors}
+        />
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
@@ -60,7 +71,7 @@ export const DoctorsPage = () => {
             </CustomizedPaper>
 
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <AsideFilter />
+              <AsideFilter optionsData={optionsData} />
             </CustomizedPaper>
           </Box>
 

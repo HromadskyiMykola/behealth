@@ -49,7 +49,7 @@ const filterDoctors = (doctors: TDoctor[], str: string) =>
   );
 // done !
 
-export const SearchBar = ({ doctors, setFilteredDoctors }: IDoctorsList) => {
+export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctorsList) => {
   const [selectedSpec, setSelectedSpec] = useState(""); // done !
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
@@ -120,8 +120,8 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: IDoctorsList) => {
           value={selectedSpec}
           onChange={handleSelectChange}
         >
-          {specialtiesList(doctors).map((spec) => (
-            <MenuItem key={spec} value={spec}>
+          {optionsData.specs.map((spec,i) => (
+            <MenuItem key={spec+i} value={spec}>
               {spec}
             </MenuItem>
           ))}

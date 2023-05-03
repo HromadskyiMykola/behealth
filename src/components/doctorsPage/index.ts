@@ -1,2 +1,1 @@
-export * from "./SearchBar"
-export * from "../AsideFilter/Aside-Filter"
+export * from "./Search-Bar"
