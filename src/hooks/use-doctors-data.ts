@@ -22,7 +22,7 @@ export const filterOptionsTemplate = {
   //
   qualification: "",
   district: "",
-  specialty: "",
+  speciality: "",
   // unnecessary
   medicalFacilityType: "",
   additionalOptions: "",
@@ -63,8 +63,8 @@ export const useDoctorsData = () => {
       // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
       const filteredDoctors = doctors.filter((doctor) => {
         if (
-          selectedFilters.specialty &&
-          doctor.specialty !== selectedFilters.specialty
+          selectedFilters.speciality &&
+          doctor.speciality !== selectedFilters.speciality
         )
           return false;
         if (

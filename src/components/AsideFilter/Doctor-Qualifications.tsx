@@ -21,6 +21,7 @@ export const DoctorQualifications = ({
       <SelectWithPlaceholder
         value={selectedValue}
         onChange={handleSelectChange}
+      >
         {optionsData.qualifications.map((qualification, i) => (
           <MenuItem key={qualification + i} value={qualification}>
             {qualification}
