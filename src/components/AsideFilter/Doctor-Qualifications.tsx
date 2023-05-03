@@ -1,20 +1,30 @@
-import { MenuItem, useTheme } from "@mui/material";
+import { MenuItem, SelectChangeEvent } from "@mui/material";
 
 import { OptionsWrapper } from "./";
 import { SelectWithPlaceholder } from "../atomic";
+import { TOptionsData } from "~/common";
+import { useState } from "react";
 
-export const DoctorQualifications = () => {
-  const {
-    palette: { custom },
-    typography,
-  } = useTheme();
+
+export const DoctorQualifications = ({
+  optionsData,
+}: {
+  optionsData: TOptionsData;
+}) => {
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSelectChange = (e: SelectChangeEvent<any>) => {
+    setSelectedValue(e.target.value as string);
+  };
 
   return (
     <OptionsWrapper label="Кваліфікація лікаря" variant="subtitle1">
       <SelectWithPlaceholder>
-        <MenuItem value="var 1">Вища</MenuItem>
-        <MenuItem value="var 2">Не вища</MenuItem>
-        <MenuItem value="var 3">Ніяка 😄</MenuItem>
+        {optionsData.qualifications.map((qualification, i) => (
+          <MenuItem key={qualification + i} value={qualification}>
+            {qualification}
+          </MenuItem>
+        ))}
       </SelectWithPlaceholder>
     </OptionsWrapper>
   );

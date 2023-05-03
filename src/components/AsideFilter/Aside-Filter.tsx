@@ -27,9 +27,9 @@ import {
   RangeExperience,
 } from "./";
 
+import { TOptionsData } from "~/common";
 
-
-export const AsideFilter = () => {
+export const AsideFilter = ({ optionsData }: { optionsData: TOptionsData }) => {
   const { palette, typography } = useTheme();
 
   return (
@@ -38,7 +38,7 @@ export const AsideFilter = () => {
         Фільтр
       </Typography>
 
-      <SelectDistrict />
+      <SelectDistrict optionsData={optionsData} />
 
       <Stack gap="24px">
         <ClinicType />
@@ -51,7 +51,7 @@ export const AsideFilter = () => {
 
         <PaymentForServices />
 
-        <RangeCost />
+        <RangeCost optionsData={optionsData} />
 
         <Divider />
 
@@ -59,14 +59,14 @@ export const AsideFilter = () => {
 
         <Divider />
 
-        <RangeExperience />
+        <RangeExperience optionsData={optionsData} />
 
         <Divider />
 
         <PatientEvaluation />
       </Stack>
 
-      <DoctorQualifications />
+      <DoctorQualifications optionsData={optionsData} />
     </Stack>
   );
 };

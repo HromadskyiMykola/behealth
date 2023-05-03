@@ -11,8 +11,6 @@ export const DoctorAdditionalOptions = () => {
       <CheckBoxOption label="Онлайн консультація" />
 
       <CheckBoxOption label="Прийом дітей" />
-
-      <CheckBoxOption label="Приватна клініка" />
     </OptionsWrapper>
   );
 };
