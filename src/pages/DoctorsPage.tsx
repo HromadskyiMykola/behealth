@@ -37,6 +37,7 @@ export const DoctorsPage = () => {
     setFilteredDoctors,
     selectedFilters,
     setSelectedFilters,
+    handleFilterChange,
   } = useDoctorsData();
 
   return (
@@ -73,7 +74,10 @@ export const DoctorsPage = () => {
             </CustomizedPaper>
 
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <AsideFilter optionsData={optionsData} />
+              <AsideFilter
+                optionsData={optionsData}
+                handleFilterChange={handleFilterChange}
+              />
             </CustomizedPaper>
           </Box>
 

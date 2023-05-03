@@ -40,7 +40,7 @@ const selectorData = (city: string, district: string, query: string) => {
   // return filteredQueryData;
 };
 
-console.log("req orig docs >>>", doctorsData);
+// console.log("req orig docs >>>", doctorsData);
 mock.onGet("/doctors").reply(200, doctorsData);
 mock.onGet("/clinics").reply(200, clinicsData);
 mock.onGet("/search").reply((config) => {

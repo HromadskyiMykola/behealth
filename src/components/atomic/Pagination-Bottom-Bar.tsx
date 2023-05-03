@@ -23,11 +23,10 @@ export const PaginationBottomBar = () => {
           color: primary.main,
           border: "none",
         },
-        "& .Mui-selected": {
+        "& .MuiButtonBase-root.Mui-selected": {
           border: "none",
           backgroundColor: primary.main,
-          color: `${custom.primary100} !important`,
-          opacity: 1,
+          color: custom.primary100,
           "&:hover": {
             backgroundColor: primary.main,
           },

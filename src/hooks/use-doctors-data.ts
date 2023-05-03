@@ -1,8 +1,14 @@
-import { TDoctor, TFilterOptions, useApiService } from "~/common";
+import {
+  TDoctor,
+  TFilterOptions,
+  THandleFilterChange,
+  useApiService,
+} from "~/common";
 import { useEffect, useState } from "react";
 import { optionsExtractor, optionsTemplate } from "~/helper-function";
 
 export const filterOptionsTemplate = {
+  district: "",
   stateClinic: false,
   privateClinic: false,
   doctorAcceptsDeclarations: false,
@@ -21,7 +27,6 @@ export const filterOptionsTemplate = {
   evaluationVeryGood: false,
   //
   qualification: "",
-  district: "",
   speciality: "",
   // unnecessary
   medicalFacilityType: "",
@@ -33,7 +38,6 @@ export const filterOptionsTemplate = {
   experience: 0,
   patientRating: "",
 };
-
 
 export const useDoctorsData = () => {
   const { getDoctors } = useApiService();
@@ -52,72 +56,125 @@ export const useDoctorsData = () => {
   // filter
   const [selectedFilters, setSelectedFilters] = useState(filterOptionsTemplate);
 
-  const handleFilterChange = (key: keyof TFilterOptions, value: any) => {
+  const handleFilterChange: THandleFilterChange = (key, value, chipName) => {
+    if (key === "resetFilter") {
+      setFilteredDoctors(doctors);
+      setSelectedFilters(filterOptionsTemplate);
+      return;
+    }
+
+    // console.log("val>>", value);
     setSelectedFilters((prevOptions) => ({
       ...prevOptions,
       [key]: value,
     }));
   };
 
-    useEffect(() => {
-      // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
-      const filteredDoctors = doctors.filter((doctor) => {
-        if (
-          selectedFilters.speciality &&
-          doctor.speciality !== selectedFilters.speciality
-        )
-          return false;
-        if (
-          selectedFilters.district &&
-          doctor.district !== selectedFilters.district
-        )
-          return false;
-        // if (
-        //   selectedFilters.medicalFacilityType &&
-        //   doctor.medicalFacilityType !== selectedFilters.medicalFacilityType
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.additionalOptions &&
-        //   doctor.additionalOptions !== selectedFilters.additionalOptions
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.servicePayment &&
-        //   doctor.servicePayment !== selectedFilters.servicePayment
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.priceRangeFrom &&
-        //   doctor.price < selectedFilters.priceRangeFrom
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.priceRangeTo &&
-        //   doctor.price > selectedFilters.priceRangeTo
-        // )
-        //   return false;
-        // if (selectedFilters.gender && doctor.gender !== selectedFilters.gender)
-        //   return false;
-        // if (
-        //   selectedFilters.experience &&
-        //   doctor.experience !== selectedFilters.experience
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.patientRating &&
-        //   doctor.patientRating !== selectedFilters.patientRating
-        // )
-        //   return false;
-        // if (
-        //   selectedFilters.qualification &&
-        //   doctor.qualification !== selectedFilters.qualification
-        // )
-        //   return false;
-        return true;
-      });
-      // handleFilterChange(filteredDoctors);
-    }, [selectedFilters]);
+  useEffect(() => {
+    // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
+    const newFilteredDoctors = doctors.filter((doctor) => {
+      if (
+        selectedFilters.district &&
+        doctor.district !== selectedFilters.district
+      )
+        return false;
+
+      if (
+        selectedFilters.qualification &&
+        doctor.qualification !== selectedFilters.qualification
+      )
+        return false;
+
+      //  console.log("doc>>", doctor.qualification , "filt>>", selectedFilters.qualification);
+      if (
+        selectedFilters.stateClinic &&
+        doctor.clinicType !== "Державна клініка"
+      )
+        return false;
+
+      if (
+        selectedFilters.privateClinic &&
+        doctor.clinicType !== "Приватна клініка"
+      )
+        return false;
+
+      if (
+        selectedFilters.doctorAcceptsDeclarations &&
+        doctor.doctorAcceptsDeclarations !==
+          selectedFilters.doctorAcceptsDeclarations
+      )
+        return false;
+
+      if (
+        selectedFilters.doctorWorksWithEHR &&
+        doctor.doctorWorksWithEHR !== selectedFilters.doctorWorksWithEHR
+      )
+        return false;
+
+      if (
+        selectedFilters.onlineConsultation &&
+        doctor.onlineConsultation !== selectedFilters.onlineConsultation
+      )
+        return false;
+
+      if (
+        selectedFilters.admissionOfChildren &&
+        doctor.admissionOfChildren !== selectedFilters.admissionOfChildren
+      )
+        return false;
+
+      //
+
+      //
+
+      // else if ( )
+
+      // if (
+      //   selectedFilters.medicalFacilityType &&
+      //   doctor.medicalFacilityType !== selectedFilters.medicalFacilityType
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.additionalOptions &&
+      //   doctor.additionalOptions !== selectedFilters.additionalOptions
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.servicePayment &&
+      //   doctor.servicePayment !== selectedFilters.servicePayment
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.priceRangeFrom &&
+      //   doctor.price < selectedFilters.priceRangeFrom
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.priceRangeTo &&
+      //   doctor.price > selectedFilters.priceRangeTo
+      // )
+      //   return false;
+      // if (selectedFilters.gender && doctor.gender !== selectedFilters.gender)
+      //   return false;
+      // if (
+      //   selectedFilters.experience &&
+      //   doctor.experience !== selectedFilters.experience
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.patientRating &&
+      //   doctor.patientRating !== selectedFilters.patientRating
+      // )
+      //   return false;
+      // if (
+      //   selectedFilters.qualification &&
+      //   doctor.qualification !== selectedFilters.qualification
+      // )
+      //   return false;
+      return true;
+    });
+    setFilteredDoctors(newFilteredDoctors);
+  }, [selectedFilters]);
 
   return {
     optionsData,
@@ -126,5 +183,6 @@ export const useDoctorsData = () => {
     setFilteredDoctors,
     selectedFilters,
     setSelectedFilters,
+    handleFilterChange,
   };
 };

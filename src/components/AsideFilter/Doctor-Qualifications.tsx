@@ -2,18 +2,18 @@ import { MenuItem, SelectChangeEvent } from "@mui/material";
 
 import { OptionsWrapper } from "./";
 import { SelectWithPlaceholder } from "../atomic";
-import { TOptionsData } from "~/common";
+import { TAsideFilterComps } from "~/common";
 import { useState } from "react";
 
 export const DoctorQualifications = ({
   optionsData,
-}: {
-  optionsData: TOptionsData;
-}) => {
+  handleFilterChange,
+}: TAsideFilterComps) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
     setSelectedValue(e.target.value as string);
+    handleFilterChange("qualification", e.target.value);
   };
 
   return (

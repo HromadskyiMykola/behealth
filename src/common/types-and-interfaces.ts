@@ -314,6 +314,12 @@ export interface IOnSubmitPatientData {
 }
 
 export type TDoctor = {
+  doctorAcceptsDeclarations: boolean;
+  doctorWorksWithEHR: boolean;
+  onlineConsultation: boolean;
+  admissionOfChildren: boolean;
+  admissionByReferral: boolean;
+  admissionByNHSU: boolean;
   id: number;
   dataType: "doctor" | "clinic";
   speciality: string;
@@ -381,7 +387,13 @@ export interface IDoctorsList {
   setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
 }
 
-export type IHandleFilterChange = (
-  key: keyof TFilterOptions,
-  value: any
+export type THandleFilterChange = (
+  key: keyof TFilterOptions | "resetFilter",
+  value: string | boolean,
+  chipName?: string
 ) => void;
+
+export type TAsideFilterComps = {
+  optionsData: TOptionsData;
+  handleFilterChange: THandleFilterChange;
+};

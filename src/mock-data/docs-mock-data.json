@@ -10,6 +10,12 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "city": "Київ",
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": true,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "sex": "male",
     "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
@@ -53,6 +59,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": false,
+    "onlineConsultation": true,
+    "admissionOfChildren": false,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "id": 2,
     "dataType": "doctor",
     "speciality": "Сімейний лікар",
@@ -115,6 +127,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": false,
     "id": 3,
     "dataType": "doctor",
     "speciality": "Отоларинголог",
@@ -168,6 +186,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": false,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "id": 4,
     "dataType": "doctor",
     "speciality": "Терапевт",
@@ -221,6 +245,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 5,
     "dataType": "doctor",
     "speciality": "Офтальмолог",
@@ -277,6 +307,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 6,
     "dataType": "doctor",
     "speciality": "Кардіолог",
@@ -330,6 +366,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": true,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 7,
     "dataType": "doctor",
     "speciality": "Гастроентеролог",
@@ -387,6 +429,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 8,
     "dataType": "doctor",
     "speciality": "Гінеколог",
@@ -440,6 +488,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 9,
     "dataType": "doctor",
     "speciality": "Дерматовенеролог",
@@ -497,6 +551,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 10,
     "dataType": "doctor",
     "speciality": "Психіатр",
@@ -550,6 +610,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 11,
     "dataType": "doctor",
     "speciality": "Невропатолог",
@@ -563,7 +629,7 @@
     },
     "sex": "male",
     "avatar": "http://mua.ua/img/avatar-bald-man.png",
-    "clinicType": "Державна клініка",
+    "clinicType": "Приватна клініка",
     "district": "Припортовий",
     "address": "вул. Попудренка, 7, каб. 42",
     "tags": ["The doctor accepts declarations", "Reception of children"],
@@ -603,6 +669,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 12,
     "dataType": "doctor",
     "speciality": "Ревматолог",
@@ -656,6 +728,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 13,
     "dataType": "doctor",
     "speciality": "Сімейний лікар",
@@ -718,6 +796,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 14,
     "dataType": "doctor",
     "speciality": "Отоларинголог",
@@ -771,6 +855,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 15,
     "dataType": "doctor",
     "speciality": "Терапевт",
@@ -824,6 +914,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 16,
     "dataType": "doctor",
     "speciality": "Офтальмолог",
@@ -880,6 +976,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 17,
     "dataType": "doctor",
     "speciality": "Кардіолог",
@@ -933,6 +1035,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 18,
     "dataType": "doctor",
     "speciality": "Гастроентеролог",
@@ -990,6 +1098,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 19,
     "dataType": "doctor",
     "speciality": "Гінеколог",
@@ -1043,6 +1157,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": false,
     "id": 20,
     "dataType": "doctor",
     "speciality": "Дерматовенеролог",
@@ -1100,6 +1220,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 21,
     "dataType": "doctor",
     "speciality": "Психіатр",
@@ -1113,7 +1239,7 @@
     },
     "sex": "male",
     "avatar": "http://mua.ua/img/avatar-man.png",
-    "clinicType": "Державна клініка",
+    "clinicType": "Приватна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Reception of children"],
@@ -1153,6 +1279,12 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 22,
     "city": "Черкаси",
     "district": "Центр",
