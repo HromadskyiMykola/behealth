@@ -1,12 +1,5 @@
-import { FC } from "react";
-
-interface LogoProps {
-  width?: number | string;
-  height?: number | string;
-}
-
-export const Logo: FC<LogoProps> = ({ width = 180, height = 33 }) => (
-  <svg width={width} height={height}>
+export const Logo = () => (
+  <svg width={180} height={33}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

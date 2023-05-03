@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Instagram from "../../assets/CustomIcon/Instagram";
 import Facebook from "../../assets/CustomIcon/Facebook";
-import { Logo } from "~/assets/CustomIcon";
 import FooterInfoBlock from "../FooterInfoBlock/FooterInfoBlock";
 import {
   ABOUT_FOOTER_TEXT,
@@ -17,7 +16,7 @@ import FooterHelpLine from "../FooterHelpLine/FooterHelpLine";
 import FooterColumNavigateLinks from "../FooterColumNavigateLinks/FooterColumNavigateLinks";
 import { ERouteNames } from "~/routes/routeNames";
 import { NavLink } from "react-router-dom";
-import LogoFooter from "../../assets/CustomIcon/Logo.footer";
+import { LogoFooter } from "~/assets/CustomIcon";
 import { Stack } from "@mui/material";
 import { GoogleMapLink } from "~/components/atomic";
 import { useTheme } from "@mui/material";
@@ -64,13 +63,7 @@ const Footer = () => {
           >
             <Stack justifyContent="flex-start">
               <NavLink to={ERouteNames.HOME}>
-                <LogoFooter
-                  width="116"
-                  height="21"
-                  viewBox="0 0 116 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
+                <LogoFooter />
               </NavLink>
             </Stack>
             <Stack
