@@ -22,12 +22,11 @@ import {
 import { IDoctorsList, TDoctor } from "~/common";
 import { useDeviceType } from "~/hooks";
 
-// done !
 const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
   if (selectedSpec === "") return doctors.map((doc) => doc.name);
 
   return doctors
-    .filter((doc) => doc.specialty === selectedSpec)
+    .filter((doc) => doc.speciality === selectedSpec)
     .map((doc) => doc.name);
 };
 // done !

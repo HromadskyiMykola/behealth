@@ -52,7 +52,6 @@ export const useDoctorsData = () => {
   // filter
   const [selectedFilters, setSelectedFilters] = useState(filterOptionsTemplate);
 
-
   const handleFilterChange = (key: keyof TFilterOptions, value: any) => {
     setSelectedFilters((prevOptions) => ({
       ...prevOptions,
@@ -120,11 +119,6 @@ export const useDoctorsData = () => {
       // handleFilterChange(filteredDoctors);
     }, [selectedFilters]);
 
-  
-  
-  
-  
-  
   return {
     optionsData,
     doctors,

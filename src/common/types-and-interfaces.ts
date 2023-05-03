@@ -8,6 +8,7 @@ import { RouteObject } from "react-router-dom";
 import { optionsTemplate } from "~/helper-function";
 import { filterOptionsTemplate } from "~/hooks";
 
+
 export const enum EUserType {
   PATIENT = "patient",
   DOCTOR = "doctor",
@@ -315,7 +316,7 @@ export interface IOnSubmitPatientData {
 export type TDoctor = {
   id: number;
   dataType: "doctor" | "clinic";
-  specialty: string;
+  speciality: string;
   name: string;
   city: string;
   experience: number;
