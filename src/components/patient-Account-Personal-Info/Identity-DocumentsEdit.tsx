@@ -3,11 +3,8 @@ import { Controller } from "react-hook-form";
 
 import { Button, Grid, MenuItem, Stack } from "@mui/material";
 
-import {
-  IOnSubmitPatientData,
-  TPatientPersonalData,
-  useReactHookForm,
-} from "~/common";
+import { IOnSubmitPatientData, TPatientPersonalData } from "~/common";
+import { useReactHookForm } from "~/hooks";
 
 import {
   CustomizedInput,

@@ -1,37 +1,38 @@
-import { Paper, useTheme } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import { Pagination, useTheme } from "@mui/material";
 
 export const PaginationBottomBar = () => {
-  const { palette } = useTheme();
+  const { custom, primary } = useTheme().palette;
 
   return (
-    <Paper
+    <Pagination
+      count={10}
+      variant="outlined"
+      shape="rounded"
+      color="primary"
+      size="large"
       sx={{
-        mt: "24px",
-        p: "16px 32px",
-        display: "flex",
-        justifyContent: "center",
+        "& .MuiPagination-ul": {
+          gap: "16px",
+        },
+        "& .MuiButtonBase-root": {
+          color: custom.secondary20,
+          borderRadius: "6px",
+          border: "1px solid #B2CCC0",
+        },
+        "& .MuiPaginationItem-previousNext": {
+          color: primary.main,
+          border: "none",
+        },
+        "& .Mui-selected": {
+          border: "none",
+          backgroundColor: primary.main,
+          color: `${custom.primary100} !important`,
+          opacity: 1,
+          "&:hover": {
+            backgroundColor: primary.main,
+          },
+        },
       }}
-    >
-      <Pagination
-        count={10}
-        variant="outlined"
-        shape="rounded"
-        color="primary"
-        size="large"
-        sx={{
-          "& .Mui-selected": {
-            backgroundColor: palette.primary.main,
-            color: `${palette.custom.primary100} !important`,
-            opacity: 0.8,
-          },
-          "& .MuiPaginationItem-root": {
-            color: palette.custom.secondary20,
-            //   fontFamily: "Montserrat",
-          },
-        }}
-      />
-    </Paper>
+    />
   );
 };

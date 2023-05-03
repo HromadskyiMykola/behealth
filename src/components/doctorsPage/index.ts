@@ -1,2 +1,1 @@
-export * from "./SearchBar"
-export * from "./FilterDoctors"
+export * from "./Search-Bar"

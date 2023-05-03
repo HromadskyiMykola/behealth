@@ -16,7 +16,7 @@ import {
   NavTabs,
   NavTabsWithDrawer,
 } from "~/components/patient-Account-Personal-Info";
-import { usePatientFetchingData } from "~/common";
+import { usePatientFetchingData } from "~/hooks";
 
 export const PatientAccountPage = () => {
   const { patientPersonalData } = usePatientFetchingData();

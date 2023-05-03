@@ -1,5 +1,11 @@
-import { MouseEventHandler, ReactElement, ReactNode } from "react";
+import {
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+  SetStateAction,
+} from "react";
 import { RouteObject } from "react-router-dom";
+import { optionsTemplate } from "~/helper-function";
 
 export const enum EUserType {
   PATIENT = "patient",
@@ -326,10 +332,10 @@ export type TDoctor = {
   grade: string;
   qualification: string;
   servicePayment: {
-    title: string;
-    available: boolean;
-    price?: string;
-  }[];
+    freeByReferral: boolean;
+    declarationNSZU: boolean;
+    paidAppointment: false | number;
+  };
   reviewsCount: number;
   rating: number;
   socials: {
@@ -354,11 +360,19 @@ export type TClinic = {
   phoneNumberRegistry: string;
   phoneNumberAdministration: string;
   tags?: {
-        title: string;
-      }[];
+    title: string;
+  }[];
   workingHours: {
     day: string;
     hours: string | null;
   }[];
   doctorsIds: number[];
 };
+
+export type TOptionsData = typeof optionsTemplate;
+
+export interface IDoctorsList {
+  doctors: TDoctor[];
+  optionsData: TOptionsData;
+  setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
+}

@@ -3,7 +3,7 @@
     "id": 1,
     "speciality": "Ревматолог",
     "name": "Поліщук Олександр Іванович",
-    "experience": 66,
+    "experience": 2,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
@@ -11,7 +11,7 @@
     },
     "city": "Київ",
     "sex": "male",
-    "avatar": "../../assets/images/avatar-man.png",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "dataType": "doctor",
     "district": "Центр",
@@ -19,21 +19,11 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 950
+    },
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -84,28 +74,18 @@
       ]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar6.png",
+    "avatar": "http://mua.ua/img/avatar6.png",
     "clinicType": "Державна клініка",
     "district": "Митниця",
     "address": "вул. Попудренка, 7, каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
     "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 500
+    },
     "reviewsCount": 7,
     "rating": 34,
     "socials": [
@@ -147,28 +127,18 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar7.png",
+    "avatar": "http://mua.ua/img/avatar7.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Попудренка, 7, каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 8,
     "rating": 34,
     "socials": [
@@ -210,28 +180,18 @@
       "availableTime": ["10:20", "11:20", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-man.png",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Попудренка, 7, каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
     "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -273,9 +233,9 @@
       "availableTime": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar.png",
+    "avatar": "http://mua.ua/img/avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Попудренка, 7, каб. 29",
     "tags": [
       "The doctor accepts declarations",
@@ -283,21 +243,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 18,
     "rating": 78,
     "socials": [
@@ -339,28 +289,18 @@
       "availableTime": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-bald-man.png",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Попудренка, 7, каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -402,7 +342,7 @@
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar1.png",
+    "avatar": "http://mua.ua/img/avatar1.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Попудренка, 7, каб. 78",
@@ -413,21 +353,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -469,28 +399,18 @@
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar2.png",
+    "avatar": "http://mua.ua/img/doctor-avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Попудренка, 7, каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
     "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -532,9 +452,9 @@
       "availableTime": ["10:40"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar3.png",
+    "avatar": "http://mua.ua/img/avatar3.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Казбет",
     "address": "вул. Попудренка, 7, каб. 10",
     "tags": [
       "The doctor accepts declarations",
@@ -543,21 +463,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 600
+    },
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -599,28 +509,18 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-bald-man.png",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Квітковий",
     "address": "вул. Попудренка, 7, каб.112",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 550
+    },
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -662,28 +562,18 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-bald-man.png",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Припортовий",
     "address": "вул. Попудренка, 7, каб. 42",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 600
+    },
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -718,35 +608,25 @@
     "speciality": "Ревматолог",
     "name": "Михайленко Андрій Володимирович",
     "city": "Київ",
-    "experience": 54,
+    "experience": 34,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-bald-man.png",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
     "tags": ["Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 450
+    },
     "reviewsCount": 14,
     "rating": 40,
     "socials": [
@@ -797,28 +677,18 @@
       ]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-bald-man.png",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "Митниця",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "500"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 200
+    },
     "reviewsCount": 1,
     "rating": 5,
     "socials": [
@@ -860,28 +730,18 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar.png",
+    "avatar": "http://mua.ua/img/avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "600"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 600
+    },
     "reviewsCount": 5,
     "rating": 38,
     "socials": [
@@ -923,28 +783,18 @@
       "availableTime": ["10:20", "10:40", "16:40", "18:00"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar1.png",
+    "avatar": "http://mua.ua/img/avatar1.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
     "grade": "Good",
     "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -979,16 +829,16 @@
     "speciality": "Офтальмолог",
     "name": "Марченко Тетяна Ігорівна",
     "city": "Черкаси",
-    "experience": 35,
+    "experience": 30,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "13:40", "15:20", "17:40", "18:20"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar2.png",
+    "avatar": "http://mua.ua/img/avatar2.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
     "tags": [
       "The doctor accepts declarations",
@@ -996,21 +846,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1200"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
     "reviewsCount": 4,
     "rating": 14,
     "socials": [
@@ -1052,28 +892,18 @@
       "availableTime": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-man.png",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "900"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 500
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -1115,7 +945,7 @@
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar3.png",
+    "avatar": "http://mua.ua/img/avatar3.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
@@ -1126,21 +956,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "2000"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 700
+    },
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -1182,28 +1002,18 @@
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar4.png",
+    "avatar": "http://mua.ua/img/avatar4.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
     "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "500"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 400
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -1245,7 +1055,7 @@
       "availableTime": ["10:40"]
     },
     "sex": "female",
-    "avatar": "../../assets/images/avatar5.png",
+    "avatar": "http://mua.ua/img/avatar5.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
@@ -1256,21 +1066,11 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 400
+    },
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -1312,28 +1112,18 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-man.png",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1200"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 800
+    },
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -1380,25 +1170,15 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "../../assets/images/avatar-man.png",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 500
+    },
     "socials": [
       {
         "title": "Telegram",

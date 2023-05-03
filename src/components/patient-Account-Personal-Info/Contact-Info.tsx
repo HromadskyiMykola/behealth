@@ -1,5 +1,4 @@
 import {
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -8,8 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 
-import { AlertTriangleIcon } from "lucide-react";
-import { TPatientPersonalData, phoneNumberFormatter } from "~/common";
+import { TPatientPersonalData } from "~/common";
+import { phoneNumberFormatter } from "~/helper-function";
 
 export const ContactInfo = ({
   patientPersonalData,

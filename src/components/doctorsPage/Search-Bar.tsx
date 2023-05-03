@@ -1,10 +1,4 @@
-import {
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { SyntheticEvent, useEffect, useMemo, useState } from "react";
 
 import {
   Autocomplete,
@@ -25,12 +19,8 @@ import {
   CustomizedPaper,
   SelectWithPlaceholder,
 } from "../atomic";
-import { TDoctor, useDeviceType } from "~/common";
-
-interface ISearchBar {
-  doctors: TDoctor[];
-  setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
-}
+import { IDoctorsList, TDoctor } from "~/common";
+import { useDeviceType } from "~/hooks";
 
 // done !
 const specialtiesList = (doctors: TDoctor[]) =>
@@ -59,7 +49,7 @@ const filterDoctors = (doctors: TDoctor[], str: string) =>
   );
 // done !
 
-export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
+export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctorsList) => {
   const [selectedSpec, setSelectedSpec] = useState(""); // done !
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
@@ -130,8 +120,8 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
           value={selectedSpec}
           onChange={handleSelectChange}
         >
-          {specialtiesList(doctors).map((spec) => (
-            <MenuItem key={spec} value={spec}>
+          {optionsData.specs.map((spec,i) => (
+            <MenuItem key={spec+i} value={spec}>
               {spec}
             </MenuItem>
           ))}
@@ -140,6 +130,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors }: ISearchBar) => {
         <Autocomplete
           clearOnEscape
           blurOnSelect
+          autoHighlight
           freeSolo
           fullWidth
           value={searchStr}

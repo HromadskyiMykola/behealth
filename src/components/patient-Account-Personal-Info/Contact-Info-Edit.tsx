@@ -1,9 +1,6 @@
 import { Button, Stack } from "@mui/material";
-import {
-  TPatientPersonalData,
-  IOnSubmitPatientData,
-  useReactHookForm,
-} from "~/common";
+import { TPatientPersonalData, IOnSubmitPatientData } from "~/common";
+import { useReactHookForm } from "~/hooks";
 
 import { RHFEmail, RHFmobileNum } from "../React-Hook-Form-Fields";
 import { useEffect } from "react";

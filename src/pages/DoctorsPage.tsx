@@ -1,29 +1,23 @@
 import { Helmet } from "react-helmet";
 
-import {
-  Box,
-  Container,
-  Skeleton,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   BreadcrumbsUkr,
   CustomizedPaper,
   PaginationBottomBar,
-  SelectedItemsBox,
   SelectTopBar,
+  SkeletonInfoCards,
 } from "~/components/atomic";
 
-import { FilterDoctors, SearchBar } from "~/components/doctorsPage";
+import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
 
+import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
-import { TDoctor, useApiService } from "~/common";
-import { useEffect, useState } from "react";
 
-const data = [
+import { useDoctorsData } from "~/hooks";
+
+const data: any = [
   { key: 0, label: "Приватна клініка" },
   { key: 1, label: "Добре" },
   { key: 2, label: "Дуже добре" },
@@ -32,17 +26,16 @@ const data = [
 ];
 
 export const DoctorsPage = () => {
-  const [doctors, setDoctors] = useState([] as TDoctor[]);
-  const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
-  const { getDoctors } = useApiService();
   const { palette } = useTheme();
 
-  useEffect(() => {
-    getDoctors().then((res) => {
-      setDoctors(res);
-      setFilteredDoctors(res);
-    });
-  }, []);
+  const {
+    doctors,
+    filteredDoctors,
+    optionsData,
+    setFilteredDoctors,
+    selectedFilters,
+    setSelectedFilters,
+  } = useDoctorsData();
 
   return (
     <>
@@ -65,40 +58,43 @@ export const DoctorsPage = () => {
           Лікарі
         </Typography>
 
-        <SearchBar doctors={doctors} setFilteredDoctors={setFilteredDoctors} />
+        <SearchBar
+          doctors={doctors}
+          optionsData={optionsData}
+          setFilteredDoctors={setFilteredDoctors}
+        />
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
-            <SelectedItemsBox data={data} />
+            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+              <SelectedItemsBox data={data} />
+            </CustomizedPaper>
 
-            <FilterDoctors />
+            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+              <AsideFilter optionsData={optionsData} />
+            </CustomizedPaper>
           </Box>
 
           <Box sx={{ flex: "1 0 auto" }}>
-            <SelectTopBar />
+            <SelectTopBar setFilteredData={setFilteredDoctors} />
 
-            {doctors.length === 0 &&
-              [...Array(3)].map((_, i) => (
-                <CustomizedPaper key={"skeleton" + i}>
-                  <Stack direction="row" gap={2}>
-                    <Skeleton
-                      variant="rounded"
-                      sx={{ height: 132, width: 168 }}
-                    />
-                    <Skeleton
-                      variant="rounded"
-                      sx={{ height: 300, width: "100%" }}
-                    />
-                  </Stack>
-                </CustomizedPaper>
-              ))}
+            {doctors.length === 0 && <SkeletonInfoCards />}
 
             {filteredDoctors.length > 0 &&
               filteredDoctors.map((doctor, i) => (
                 <SmallCardDoctor key={`${doctor.id}-${i}`} doctor={doctor} />
               ))}
 
-            <PaginationBottomBar />
+            <CustomizedPaper
+              sx={{
+                mt: "24px",
+                p: "16px 32px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <PaginationBottomBar />
+            </CustomizedPaper>
           </Box>
         </Stack>
       </Container>

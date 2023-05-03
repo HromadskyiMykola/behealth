@@ -18,10 +18,9 @@ import { UserTypeSelector, UserAgreement, ThanksSingUpMessage } from ".";
 import {
   TAuthFormValues,
   EUserType,
-  useDeviceType,
   TAuthMode,
-  useReactHookForm,
 } from "~/common";
+import { useDeviceType, useReactHookForm } from "~/hooks";
 
 import { ERouteNames } from "~/routes/routeNames";
 
