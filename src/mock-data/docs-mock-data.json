@@ -92,7 +92,7 @@
     "address": "вул. Попудренка, 7, каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
-    "qualification": "The first category",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": false,
@@ -151,7 +151,7 @@
     "address": "вул. Попудренка, 7, каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -210,7 +210,7 @@
     "address": "вул. Попудренка, 7, каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "The second category",
+    "qualification": "Second category",
     "servicePayment": {
       "freeByReferral": false,
       "declarationNSZU": true,
@@ -331,7 +331,7 @@
     "address": "вул. Попудренка, 7, каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -453,7 +453,7 @@
     "address": "вул. Попудренка, 7, каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
+    "qualification": "Second category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -761,7 +761,7 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -820,7 +820,7 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -879,7 +879,7 @@
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "The second category",
+    "qualification": "Second category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -1000,7 +1000,7 @@
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -1122,7 +1122,7 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
+    "qualification": "Second category",
     "servicePayment": {
       "freeByReferral": true,
       "declarationNSZU": true,
@@ -1361,7 +1361,7 @@
       "Прийом дітей"
     ],
     "grade": "Good",
-    "qualification": "Перша категорія",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": false,
       "declarationNSZU": false,
