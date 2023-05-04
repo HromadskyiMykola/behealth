@@ -90,12 +90,8 @@
     "cabinet": "каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": false,
-      "paidAppointment": 500
-    },
+    "qualification": "The first category",
+    "paidAppointment": 500,
     "reviewsCount": 7,
     "rating": 34,
     "socials": [
@@ -150,12 +146,8 @@
     "cabinet": "каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "qualification": "The first category",
+    "paidAppointment": false,
     "reviewsCount": 8,
     "rating": 34,
     "socials": [
@@ -210,12 +202,8 @@
     "cabinet": "каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "Second category",
-    "servicePayment": {
-      "freeByReferral": false,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "qualification": "The second category",
+    "paidAppointment": false,
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -329,12 +317,8 @@
     "cabinet": "каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "qualification": "Першв категорія",
+    "paidAppointment": false,
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -449,12 +433,8 @@
     "cabinet": "каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "Second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 350
-    },
+    "qualification": "The second category",
+    "paidAppointment": 350,
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -745,12 +725,8 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 200
-    },
+    "qualification": "The first category",
+    "paidAppointment": 200,
     "reviewsCount": 1,
     "rating": 5,
     "socials": [
@@ -805,12 +781,8 @@
     "cabinet": "каб. 132",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 600
-    },
+    "qualification": "The first category",
+    "paidAppointment": 400,
     "reviewsCount": 5,
     "rating": 38,
     "socials": [
@@ -864,13 +836,9 @@
     "address": "вул. Симиренка, 10",
     "cabinet": "каб. 65",
     "tags": ["Online consultation"],
-    "grade": "Good",
-    "qualification": "Second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "grade": "",
+    "qualification": "The second category",
+    "paidAppointment": false,
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -982,12 +950,8 @@
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "First category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 500
-    },
+    "qualification": "Першв категорія",
+    "paidAppointment": 500,
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -1101,12 +1065,8 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "Second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 400
-    },
+    "qualification": "The second category",
+    "paidAppointment": 400,
     "reviewsCount": 10,
     "rating": 54,
     "socials": [

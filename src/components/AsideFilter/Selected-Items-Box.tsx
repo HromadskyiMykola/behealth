@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Chip, Stack, Typography, useTheme } from "@mui/material";
 import { useDataContext } from "~/providers";
+import { yearsFormatter } from "~/helper-function";
 
 type ChipData = {
   key: string;
@@ -13,11 +14,10 @@ export const SelectedItemsBox = () => {
   const { palette } = useTheme();
 
   const {
-    filterOptions,
+    selectedFilters,
     filteredDoctors,
     optionsData,
     setFilteredDoctors,
-    // selectedFilters,
     setSelectedFilters,
     handleFilterChange,
   } = useDataContext();
@@ -55,8 +55,9 @@ export const SelectedItemsBox = () => {
       evaluationGood,
       evaluationVeryGood,
       qualification,
-    } = filterOptions;
+    } = selectedFilters;
 
+    // console.log("eff>>", );
     setChipData((state) => {
       if (admissionPaid.val) {
         state.push({
@@ -164,13 +165,9 @@ export const SelectedItemsBox = () => {
       }
 
       if (rangeExperience.val) {
-        const { val } = rangeExperience;
-
         state.push({
           key: genKey(),
-          label: `Від ${val} ${
-            val % 10 === 1 && val !== 11 ? "року" : "років"
-          }`,
+          label: yearsFormatter(rangeExperience.val),
         });
       }
 
@@ -183,8 +180,9 @@ export const SelectedItemsBox = () => {
 
       return state;
     });
-
-  }, [filterOptions]);
+  }, [selectedFilters]);
+  // console.log("comp>>", isMounted);
+  // console.log("comp>>", selectedFilters);
 
   return (
     <Stack gap="32px">
