@@ -289,19 +289,6 @@ export interface IPatientAdditionDataOld {
   workPlace: null | any;
 }
 
-export interface IPatientAdditionDataProps {
-  apartmentNum?: string;
-  houseNum?: string;
-  id?: number;
-  preferenceCategories?: undefined;
-  settlementAndStr?: string;
-  settlementType?: string;
-  workPlace: undefined | string;
-  jobTitle?: string;
-  employmentStatus?: string;
-  address?: undefined;
-}
-
 export interface IOnSubmitPatientData {
   (
     data: TPatientAdditionalData | TPatientPersonalData,
@@ -310,6 +297,13 @@ export interface IOnSubmitPatientData {
       isNeedDeleteData?: boolean;
     }
   ): Promise<void>;
+}
+
+export interface IPropsMapInfoDoctor {
+  city?: string;
+  district?: string;
+  address?: string;
+  cabinet?: string;
 }
 
 export type TDoctor = {
@@ -378,9 +372,7 @@ export type TOptionsData = typeof optionsTemplate;
 
 export type TFilterOptions = typeof filterOptions;
 
-
-
 export type THandleFilterChange = (
   key: keyof TFilterOptions | "resetFilter",
-  value: string | boolean | number | number[],
+  value: string | boolean | number | number[]
 ) => void;

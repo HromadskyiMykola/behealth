@@ -75,11 +75,11 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const [selectedTime, setSelectedTime] = useState<any | null>(null);
   console.log(selectedTime);
 
-  const { city, availableHours, district, address, name, specialty, cabinet } =
+  const { city, availableHours, district, address, name, speciality, cabinet } =
     doctor;
   const valueBookDoctor = {
     doctor: name,
-    specialty: specialty,
+    speciality: speciality,
     data: selectedTime?.date,
     time: selectedTime?.time,
     address: `${city} ${address}`,
