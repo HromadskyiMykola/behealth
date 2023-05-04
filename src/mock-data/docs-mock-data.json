@@ -88,8 +88,12 @@
     "address": "вул. Попудренка, 7, каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
-    "qualification": "The first category",
-    "paidAppointment": 500,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 500
+    },
     "reviewsCount": 7,
     "rating": 34,
     "socials": [
@@ -143,8 +147,12 @@
     "address": "вул. Попудренка, 7, каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "paidAppointment": false,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 8,
     "rating": 34,
     "socials": [
@@ -198,8 +206,12 @@
     "address": "вул. Попудренка, 7, каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "The second category",
-    "paidAppointment": false,
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -311,8 +323,12 @@
     "address": "вул. Попудренка, 7, каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
-    "paidAppointment": false,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -425,8 +441,12 @@
     "address": "вул. Попудренка, 7, каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
-    "paidAppointment": 350,
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -713,8 +733,12 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "paidAppointment": 200,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 200
+    },
     "reviewsCount": 1,
     "rating": 5,
     "socials": [
@@ -768,8 +792,12 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "paidAppointment": 400,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 600
+    },
     "reviewsCount": 5,
     "rating": 38,
     "socials": [
@@ -822,9 +850,13 @@
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
-    "grade": "",
-    "qualification": "The second category",
-    "paidAppointment": false,
+    "grade": "Good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -936,8 +968,12 @@
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
-    "paidAppointment": 500,
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 500
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -1050,8 +1086,12 @@
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
-    "paidAppointment": 400,
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 400
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -1273,7 +1313,7 @@
       "Прийом дітей"
     ],
     "grade": "Good",
-    "qualification": "Перша категорія",
+    "qualification": "First category",
     "servicePayment": {
       "freeByReferral": false,
       "declarationNSZU": false,
