@@ -12,7 +12,6 @@ export default function App() {
         <AuthProvider>
           <AppRouter />
         </AuthProvider>
-
         <SimpleModal />
       </ModalStateProvider>
     </ThemeProvider>

@@ -1,5 +1,12 @@
-import { MouseEventHandler, ReactElement, ReactNode } from "react";
+import {
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+  SetStateAction,
+} from "react";
 import { RouteObject } from "react-router-dom";
+import { optionsTemplate } from "~/helper-function";
+import { filterOptions } from "~/hooks";
 
 export const enum EUserType {
   PATIENT = "patient",
@@ -306,9 +313,15 @@ export interface IOnSubmitPatientData {
 }
 
 export type TDoctor = {
+  doctorAcceptsDeclarations: boolean;
+  doctorWorksWithEHR: boolean;
+  onlineConsultation: boolean;
+  admissionOfChildren: boolean;
+  admissionByReferral: boolean;
+  admissionByNHSU: boolean;
   id: number;
   dataType: "doctor" | "clinic";
-  specialty: string;
+  speciality: string;
   name: string;
   city: string;
   cabinet: string;
@@ -326,11 +339,7 @@ export type TDoctor = {
   tags: string[];
   grade: string;
   qualification: string;
-  servicePayment: {
-    title: string;
-    available: boolean;
-    price?: string;
-  }[];
+  paidAppointment: false | number;
   reviewsCount: number;
   rating: number;
   socials: {
@@ -352,10 +361,11 @@ export type TClinic = {
   district: string;
   name: string;
   address: string;
-  phoneNumberRegistry: string;
-  phoneNumberAdministration: string;
+  phoneNumber: string;
+  img: string;
+  medicine?: string[];
   tags?: {
-    title: string;
+    name: string;
   }[];
   workingHours: {
     day: string;
@@ -364,9 +374,13 @@ export type TClinic = {
   doctorsIds: number[];
 };
 
-export type IPropsMapInfoDoctor = {
-  city?: string;
-  district?: string;
-  address?: string;
-  cabinet?: string;
-};
+export type TOptionsData = typeof optionsTemplate;
+
+export type TFilterOptions = typeof filterOptions;
+
+
+
+export type THandleFilterChange = (
+  key: keyof TFilterOptions | "resetFilter",
+  value: string | boolean | number | number[],
+) => void;

@@ -1,10 +1,11 @@
 import { Box, Rating, Stack, Typography, useTheme } from "@mui/material";
 
+import noAvatar from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 
 type Props = {
-  specialty: string;
+  speciality: string;
   experience: number;
   name: string;
   reviewsCount: number;
@@ -13,20 +14,18 @@ type Props = {
 };
 
 export const HeaderItem = ({
-  specialty,
+  speciality,
   experience,
   name,
   reviewsCount,
   rating,
   avatar,
 }: Props) => {
-  const { palette } = useTheme();
-
   return (
     <Box display="flex" gap="24px">
       <Box>
         <img
-          src={avatar}
+          src={avatar || noAvatar}
           alt={`avatar-${name}`}
           width="132px"
           height="132px"
@@ -36,18 +35,15 @@ export const HeaderItem = ({
 
       <Box>
         <NameAndInfoAboutDoctor
-          specialty={specialty}
+          speciality={speciality}
           experience={experience}
           name={name}
         />
 
-        <Stack gap="8px" pt={1} direction="row">
+        <Box display="flex" gap="8px" pt={1}>
           <Rating name="rating" value={rating} precision={0.25} readOnly />
-          <Typography
-            variant="body2"
-            color={palette.custom.neutral70}
-          >{`${REVIEWS} (${reviewsCount})`}</Typography>
-        </Stack>
+          <Typography variant="body2">{`${REVIEWS} (${reviewsCount})`}</Typography>
+        </Box>
       </Box>
     </Box>
   );

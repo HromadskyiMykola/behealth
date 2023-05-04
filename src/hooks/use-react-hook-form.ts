@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { EUserType, TAuthFormValues, useApiService } from ".";
+import { EUserType, TAuthFormValues, useApiService } from "../common";
 import { useModalState } from "~/providers";
 
 export const useReactHookForm = () => {

@@ -1,17 +1,23 @@
 [
   {
     "id": 1,
-    "specialty": "Ревматолог",
+    "speciality": "Ревматолог",
     "name": "Поліщук Олександр Іванович",
-    "experience": 66,
+    "experience": 2,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "city": "Київ",
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": true,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "sex": "male",
-    "avatar": "https://i.postimg.cc/SswmcF4R/1.jpg",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "dataType": "doctor",
     "district": "Центр",
@@ -20,21 +26,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "paidAppointment": 950,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -64,9 +56,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": false,
+    "onlineConsultation": true,
+    "admissionOfChildren": false,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "id": 2,
     "dataType": "doctor",
-    "specialty": "Сімейний лікар",
+    "speciality": "Сімейний лікар",
     "name": "Коваленко Ірина Олександрівна",
     "city": "Київ",
     "experience": 17,
@@ -85,29 +83,19 @@
       ]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/xdhw4v4F/2.jpg",
+    "avatar": "http://mua.ua/img/avatar6.png",
     "clinicType": "Державна клініка",
     "district": "Митниця",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 6",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
-    "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 500
+    },
     "reviewsCount": 7,
     "rating": 34,
     "socials": [
@@ -137,9 +125,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": false,
     "id": 3,
     "dataType": "doctor",
-    "specialty": "Отоларинголог",
+    "speciality": "Отоларинголог",
     "name": "Лисенко Марина Петрівна",
     "city": "Київ",
     "experience": 8,
@@ -149,29 +143,19 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/MTJsBd4x/3.jpg",
+    "avatar": "http://mua.ua/img/avatar7.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 8",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 8,
     "rating": 34,
     "socials": [
@@ -201,9 +185,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": false,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": false,
+    "admissionByNHSU": true,
     "id": 4,
     "dataType": "doctor",
-    "specialty": "Терапевт",
+    "speciality": "Терапевт",
     "name": "Бондаренко Олександр Ігорович",
     "city": "Київ",
     "experience": 19,
@@ -213,29 +203,19 @@
       "availableTime": ["10:20", "11:20", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/SswmcF4R/1.jpg",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 5",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -265,9 +245,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 5,
     "dataType": "doctor",
-    "specialty": "Офтальмолог",
+    "speciality": "Офтальмолог",
     "name": "Шевченко Ірина Миколаївна",
     "city": "Київ",
     "experience": 18,
@@ -277,9 +263,9 @@
       "availableTime": ["11:00", "12:40", "14:20", "15:20", "17:40", "18:20"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/zBpnf7Yx/Avatar.jpg",
+    "avatar": "http://mua.ua/img/avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 29",
     "tags": [
@@ -288,21 +274,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "paidAppointment": false,
     "reviewsCount": 18,
     "rating": 78,
     "socials": [
@@ -332,9 +304,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 6,
     "dataType": "doctor",
-    "specialty": "Кардіолог",
+    "speciality": "Кардіолог",
     "name": "Кравченко Андрій Сергійович",
     "city": "Харків",
     "experience": 6,
@@ -344,29 +322,19 @@
       "availableTime": ["9:00", "9:40", "10:20", "14:00", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/L5YnM39Y/Avatar-1.jpg",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 223",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -396,9 +364,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": true,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 7,
     "dataType": "doctor",
-    "specialty": "Гастроентеролог",
+    "speciality": "Гастроентеролог",
     "name": "Гончаренко Любов Ігорівна",
     "city": "Київ",
     "experience": 7,
@@ -408,7 +382,7 @@
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "15:20", "17:40"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/Jhr0hL7W/Avatar-2.jpg",
+    "avatar": "http://mua.ua/img/avatar1.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Попудренка, 7",
@@ -420,21 +394,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "paidAppointment": 450,
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -464,9 +424,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 8,
     "dataType": "doctor",
-    "specialty": "Гінеколог",
+    "speciality": "Гінеколог",
     "name": "Костенко Анна Іванівна",
     "city": "Київ",
     "experience": 4,
@@ -476,29 +442,19 @@
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/bJXy4DCL/Avatar-3.jpg",
+    "avatar": "http://mua.ua/img/doctor-avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 9",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -528,9 +484,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 9,
     "dataType": "doctor",
-    "specialty": "Дерматовенеролог",
+    "speciality": "Дерматовенеролог",
     "name": "Герасименко Олена Миколаївна",
     "city": "Київ",
     "experience": 11,
@@ -540,9 +502,9 @@
       "availableTime": ["10:40"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/c4zVDq5B/Avatar-4.jpg",
+    "avatar": "http://mua.ua/img/avatar3.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Казбет",
     "address": "вул. Попудренка, 7",
     "cabinet": "каб. 10",
     "tags": [
@@ -552,21 +514,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "paidAppointment": 600,
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -596,9 +544,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 10,
     "dataType": "doctor",
-    "specialty": "Психіатр",
+    "speciality": "Психіатр",
     "name": "Лихачова Марія Вікторівна",
     "city": "Київ",
     "experience": 5,
@@ -608,29 +562,15 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/zBpnf7Yx/Avatar.jpg",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
-    "address": "вул. Попудренка, 7",
+    "district": "Квітковий",
+    "address": "вул. Попудренка, 7, каб.112",
     "cabinet": "каб. 112",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "paidAppointment": 550,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -660,9 +600,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 11,
     "dataType": "doctor",
-    "specialty": "Невропатолог",
+    "speciality": "Невропатолог",
     "name": "Головко Оксана Олександрівна",
     "city": "Київ",
     "experience": 14,
@@ -672,29 +618,15 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/bJXy4DCL/Avatar-3.jpg",
-    "clinicType": "Державна клініка",
-    "district": "Центр",
-    "address": "вул. Попудренка, 7",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
+    "clinicType": "Приватна клініка",
+    "district": "Припортовий",
+    "address": "вул. Попудренка, 7, каб. 42",
     "cabinet": "каб. 42",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1000"
-      }
-    ],
+    "paidAppointment": 600,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -724,19 +656,25 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 12,
     "dataType": "doctor",
-    "specialty": "Ревматолог",
+    "speciality": "Ревматолог",
     "name": "Михайленко Андрій Володимирович",
     "city": "Київ",
-    "experience": 54,
+    "experience": 34,
     "availableHours": {
       "available": false,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["12:40", "13:40", "18:00", "15:00", "15:20", "15:40"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/L5YnM39Y/Avatar-1.jpg",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
@@ -744,21 +682,7 @@
     "tags": ["Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "paidAppointment": 450,
     "reviewsCount": 14,
     "rating": 40,
     "socials": [
@@ -788,9 +712,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 13,
     "dataType": "doctor",
-    "specialty": "Сімейний лікар",
+    "speciality": "Сімейний лікар",
     "name": "Литвиненко Максим Олексійович",
     "city": "Київ",
     "experience": 11,
@@ -809,28 +739,18 @@
       ]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/L5YnM39Y/Avatar-1.jpg",
+    "avatar": "http://mua.ua/img/avatar-bald-man.png",
     "clinicType": "Державна клініка",
     "district": "Митниця",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "500"
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 200
+    },
     "reviewsCount": 1,
     "rating": 5,
     "socials": [
@@ -860,9 +780,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 14,
     "dataType": "doctor",
-    "specialty": "Отоларинголог",
+    "speciality": "Отоларинголог",
     "name": "Кравець Марина Валеріївна",
     "city": "Київ",
     "experience": 19,
@@ -872,28 +798,19 @@
       "availableTime": ["9:20", "11:00", "13:20", "15:00", "16:20", "18:00"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/zBpnf7Yx/Avatar.jpg",
+    "avatar": "http://mua.ua/img/avatar.png",
     "clinicType": "Державна клініка",
-    "district": "Центр",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 132",
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
-    "qualification": "The first category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "600"
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 600
+    },
     "reviewsCount": 5,
     "rating": 38,
     "socials": [
@@ -923,9 +840,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 15,
     "dataType": "doctor",
-    "specialty": "Терапевт",
+    "speciality": "Терапевт",
     "name": "Богомолова Юлія Олександрівна",
     "city": "Київ",
     "experience": 18,
@@ -935,28 +858,19 @@
       "availableTime": ["10:20", "10:40", "16:40", "18:00"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/Jhr0hL7W/Avatar-2.jpg",
+    "avatar": "http://mua.ua/img/avatar1.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 65",
     "tags": ["Online consultation"],
     "grade": "Good",
-    "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false,
-        "price": null
-      }
-    ],
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -986,21 +900,27 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 16,
     "dataType": "doctor",
-    "specialty": "Офтальмолог",
+    "speciality": "Офтальмолог",
     "name": "Марченко Тетяна Ігорівна",
     "city": "Черкаси",
-    "experience": 35,
+    "experience": 30,
     "availableHours": {
       "available": true,
       "workHours": ["09:00", "20:00"],
       "availableTime": ["9:00", "13:40", "15:20", "17:40", "18:20"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/bJXy4DCL/Avatar-3.jpg",
+    "avatar": "http://mua.ua/img/avatar2.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
     "tags": [
       "The doctor accepts declarations",
@@ -1008,21 +928,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1200"
-      }
-    ],
+    "paidAppointment": 350,
     "reviewsCount": 4,
     "rating": 14,
     "socials": [
@@ -1052,9 +958,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 17,
     "dataType": "doctor",
-    "specialty": "Кардіолог",
+    "speciality": "Кардіолог",
     "name": "Гордієнко Олександр Ігорович",
     "experience": 18,
     "city": "Харків",
@@ -1064,28 +976,18 @@
       "availableTime": ["9:20", "9:40", "11:20", "14:00", "16:40", "18:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/SswmcF4R/1.jpg",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
-    "qualification": "Першв категорія",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "900"
-      }
-    ],
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 500
+    },
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -1115,9 +1017,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 18,
     "dataType": "doctor",
-    "specialty": "Гастроентеролог",
+    "speciality": "Гастроентеролог",
     "name": "Сідельник Валерія Михайлівна",
     "experience": 20,
     "city": "Харків",
@@ -1127,32 +1035,19 @@
       "availableTime": ["10:20", "11:00", "11:40", "13:40", "16:20", "17:40"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/c4zVDq5B/Avatar-4.jpg",
+    "avatar": "http://mua.ua/img/avatar3.png",
     "clinicType": "Державна клініка",
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 32",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
       "Reception of children"
     ],
-    "grade": "Very good",
+    "grade": "",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "2000"
-      }
-    ],
+    "paidAppointment": 700,
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -1182,9 +1077,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 19,
     "dataType": "doctor",
-    "specialty": "Гінеколог",
+    "speciality": "Гінеколог",
     "name": "Кравець Інна Миколаївна",
     "city": "Київ",
     "experience": 5,
@@ -1194,28 +1095,18 @@
       "availableTime": ["9:00", "9:40", "11:00", "14:00", "15:00", "18:20"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/02vfPVK1/Avatar-5.jpg",
+    "avatar": "http://mua.ua/img/avatar4.png",
     "clinicType": "Державна клініка",
-    "district": "Д",
+    "district": "Мирний",
     "address": "вул. Симиренка, 10",
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
-    "qualification": "The second category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "500"
-      }
-    ],
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": 400
+    },
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -1245,9 +1136,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": true,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": false,
     "id": 20,
     "dataType": "doctor",
-    "specialty": "Дерматовенеролог",
+    "speciality": "Дерматовенеролог",
     "name": "Денисенко Ірина Сергіївна",
     "city": "Черкаси",
     "experience": 7,
@@ -1257,10 +1154,11 @@
       "availableTime": ["10:40"]
     },
     "sex": "female",
-    "avatar": "https://i.postimg.cc/PxZWkDtq/Avatar-6.jpg",
+    "avatar": "http://mua.ua/img/avatar5.png",
     "clinicType": "Державна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 89",
     "tags": [
       "The doctor accepts declarations",
       "Online consultation",
@@ -1268,21 +1166,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "paidAppointment": 450,
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -1312,9 +1196,15 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 21,
     "dataType": "doctor",
-    "specialty": "Психіатр",
+    "speciality": "Психіатр",
     "city": "Черкаси",
     "name": "Богданова Лариса Анатоліївна",
     "experience": 1,
@@ -1324,29 +1214,15 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "",
-    "clinicType": "Державна клініка",
-    "avatar": "https://i.postimg.cc/02vfPVK1/Avatar-3.jpg",
+    "avatar": "http://mua.ua/img/avatar-man.png",
+    "clinicType": "Приватна клініка",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 43",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1200"
-      }
-    ],
+    "paidAppointment": 800,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -1376,12 +1252,19 @@
     ]
   },
   {
+    "doctorAcceptsDeclarations": false,
+    "doctorWorksWithEHR": true,
+    "onlineConsultation": false,
+    "admissionOfChildren": false,
+    "admissionByReferral": true,
+    "admissionByNHSU": true,
     "id": 22,
     "city": "Черкаси",
     "district": "Центр",
     "address": "вул. Симиренка, 10",
+    "cabinet": "каб. 28",
     "clinicType": "Державна клініка",
-    "specialty": "Невропатолог",
+    "speciality": "Невропатолог",
     "rating": 20,
     "reviewsCount": 3,
     "dataType": "doctor",
@@ -1393,25 +1276,11 @@
       "availableTime": ["10:00", "11:20", "14:00"]
     },
     "sex": "male",
-    "avatar": "https://i.postimg.cc/L5YnM39Y/Avatar-1.jpg",
+    "avatar": "http://mua.ua/img/avatar-man.png",
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": [
-      {
-        "title": "Free by referral",
-        "available": false
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true
-      },
-      {
-        "title": "Free of charge according to the NSZU declaration",
-        "available": true,
-        "price": "1300"
-      }
-    ],
+    "paidAppointment": 500,
     "socials": [
       {
         "title": "Telegram",
@@ -1435,6 +1304,541 @@
       {
         "operator": "kyivstar",
         "phone": "(067) 35 337 27"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "city": "Львів",
+    "district": "Галицький",
+    "address": "вул. Січових Стрільців, 35",
+    "cabinet": "каб. 78",
+    "clinicType": "Приватна клініка",
+    "speciality": "Хірург",
+    "rating": 15,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Іван Миколайович",
+    "experience": 8,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["08:00", "10:00", "12:00"]
+    },
+    "sex": "male",
+    "avatar": "http://mua.ua/img/avatar-man.png",
+    "tags": [
+      "Можливість оплати за допомогою медичного страхування",
+      "Прийом дітей"
+    ],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": false,
+      "paidAppointment": 750
+    },
+    "socials": [
+      {
+        "title": "Facebook",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.instagram.com/"
+      }
+    ],
+    "email": "ivan_petr@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 22 222 22"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(066) 22 222 22"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 22 222 22"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "city": "Львів",
+    "district": "Залізничний",
+    "address": "вул. Княгині Ольги, 120",
+    "clinicType": "Приватна клініка",
+    "speciality": "Окуліст",
+    "rating": 15,
+    "reviewsCount": 5,
+    "dataType": "doctor",
+    "name": "Кравчук Ольга Іванівна",
+    "experience": 10,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["09:00", "11:00", "15:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
+    "socials": [
+      {
+        "title": "Facebook",
+        "link": "https://www.facebook.com"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.instagram.com/"
+      }
+    ],
+    "email": "kravchuk.olga@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 12 345 67"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 12 345 67"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "city": "Харків",
+    "district": "Холодногірський",
+    "address": "вул. Клочківська, 135",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["11:00", "13:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Very good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 200
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "city": "Херсон",
+    "district": "Суворовський",
+    "address": "вул.Чорноморська 159",
+    "cabinet": "каб. 3",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 5,
+    "reviewsCount": 3,
+    "dataType": "doctor",
+    "name": "Петренко Вікторія Олександрівна",
+    "experience": 2,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar3.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "city": "Херсон",
+    "district": "Дніпровський",
+    "address": "вул.Чорноморська 43",
+    "cabinet": "каб. 59",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 5,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "pochta999@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 001 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 001 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 001 27"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "city": "Запоріжжя",
+    "district": "Дніпровський",
+    "address": "вул.Вітряна 1",
+    "cabinet": "каб. 89",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 4,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Притула Олег Олегович",
+    "experience": 2,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20"]
+    },
+    "sex": "male",
+    "avatar": "http://mua.ua/img/avatar-man.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "ne_prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 09 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 09 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 09 434 27"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "city": "Запоріжжя",
+    "district": "Суворовський",
+    "address": "вул.Білогорська 9",
+    "cabinet": "каб. 90",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 14,
+    "reviewsCount": 9,
+    "dataType": "doctor",
+    "name": "Івана Оксана Іванівна",
+    "experience": 3,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "ice_creame_12312@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "city": "Запоріжжя",
+    "district": "Вознесенівський",
+    "address": "вул.Берегова 15",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Кусюмова Богдана Петрівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar4.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "bogdana_bomba@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "city": "Херсон",
+    "district": "Суворовський",
+    "address": "вул.Чорноморська 10",
+    "cabinet": "каб. 63",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 20,
+    "reviewsCount": 6,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 3,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["19:00", "19:20"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar5.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "queen910@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "city": "Херсон",
+    "district": "Дніпровський",
+    "address": "вул.Чорноморська 159",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Very good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "blablabla111@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
       }
     ]
   }

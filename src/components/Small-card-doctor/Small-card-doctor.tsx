@@ -92,7 +92,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   };
 
   const headerItemValues = {
-    specialty: doctor.specialty,
+    speciality: doctor.speciality,
     experience: doctor.experience,
     name: doctor.name,
     reviewsCount: doctor.reviewsCount,

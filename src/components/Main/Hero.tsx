@@ -1,54 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import background from "../../assets/images/hero-background.png";
 import image from "../../assets/images/hero-image.png";
 import {
   Container,
   Box,
   Typography,
-  styled,
   Autocomplete,
   TextField,
   InputAdornment,
   Paper,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { RoomOutlined } from "@mui/icons-material";
 import { FilterIcon, Search as SearchIcon } from "lucide-react";
-import { searchOptions } from "~/components/Main/main.constants";
-import { useApiService } from "~/common";
-
-const styledContainer = {
-  display: "flex",
-  justifyContent: {
-    xs: "center",
-    laptop: "space-between",
-  },
-};
-
-const styledBox = {
-  backgroundImage: `url(${background})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  paddingBottom: "58px",
-  borderBottom: "1px solid #CEE9DC;",
-  display: "flex",
-};
-
-const Search = styled("div")(({ theme }) => ({
-  width: "100%",
-  background: "#fff",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  boxShadow: "0px 1px 20px 1px rgba(255, 255, 255, 0.2)",
-  borderRadius: "12px",
-  padding: "8px 0",
-}));
+import { TClinic, TDoctor, useApiService } from "~/common";
+import { useNavigate } from "react-router-dom";
+import { useDataContext } from "~/providers/DataProvider";
 
 const searchOptionsSpreading = {
   overflow: "hidden",
@@ -58,32 +28,85 @@ const searchOptionsSpreading = {
 };
 
 export const Hero = () => {
+  const [district, setDistrict] = useState<string>("");
+  const [doctors, setDoctors] = useState<TDoctor[]>([] as TDoctor[]);
+  const [clinics, setClinics] = useState<TClinic[]>([] as TClinic[]);
+  const [search, setSearch] = useState<any>([]);
+  const [searchStr, setSearchStr] = useState<TDoctor | TClinic | null>(null);
+  const { getClinics, getDoctors } = useApiService();
+  const { selectedCity, setSelectedCity } = useDataContext();
+  const navigate = useNavigate();
   const theme = useTheme();
   const laptopDevice = useMediaQuery(theme.breakpoints.down("laptop"));
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
-  const [city, setCity] = useState<string>("Уся Україна");
-  const [options, setOptions] = useState<any>([]);
-  const [value, setValue] = useState<string>("");
-  const { searchClinicsDocs, getClinics } = useApiService();
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCity(event.target.value as string);
-  };
-
-  const handleInputChange = (event: any) => {};
 
   useEffect(() => {
-    searchClinicsDocs({
-      city: "",
-      district: "",
-      query: "",
-    });
-    // getClinics().then((data) => console.log(data));
+    (async function fetchData() {
+      const doctors = await getDoctors();
+      const clinics = await getClinics();
+      setSearch([...doctors, ...clinics]);
+    })();
   }, []);
 
+  useEffect(() => {
+    console.log(selectedCity);
+  }, [selectedCity]);
+
+  const onChangeSearch = (
+    event: SyntheticEvent<Element, Event>,
+    value: any,
+    reason: any
+  ) => {
+    if (reason === "selectOption" || reason === "createOption") {
+      setSearchStr(value || "");
+      console.log("onChange", value);
+    }
+  };
+
+  const onInputChangeSearch = (
+    event: SyntheticEvent<Element, Event>,
+    value: any,
+    reason: any
+  ) => {
+    console.log("onInput", value);
+    // const filteredSearch = search.filter((item: any) => {
+    //   return item.name.toLowerCase().includes(value.toLowerCase());
+    // });
+    // console.log(filteredSearch);
+    // setSearch(filteredSearch);
+  };
+
+  const onSubmitSearch = () => {
+    if (searchStr) {
+      if (searchStr.dataType === "doctor") {
+        navigate(`/doctors/${searchStr.id}`);
+      } else {
+        navigate(`/clinics/${searchStr.id}`);
+      }
+    }
+  };
+
   return (
-    <Box sx={styledBox}>
-      <Container sx={styledContainer}>
+    <Box
+      sx={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        paddingBottom: "58px",
+        borderBottom: "1px solid #CEE9DC;",
+        display: "flex",
+      }}
+    >
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: {
+            xs: "center",
+            laptop: "space-between",
+          },
+        }}
+      >
         <Box
           sx={{
             maxWidth: "807px",
@@ -130,7 +153,19 @@ export const Hero = () => {
             Завдяки інноваційній медичній реформі та системі eHealth, у вас є
             можливість зручно планувати свої походи до лікарні онлайн
           </Typography>
-          <Search>
+          <Box
+            sx={{
+              width: "100%",
+              background: "#fff",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              boxShadow: "0px 1px 20px 1px rgba(255, 255, 255, 0.2)",
+              borderRadius: "12px",
+              padding: "8px 0",
+            }}
+          >
             <Autocomplete
               sx={{
                 pl: "24px",
@@ -139,35 +174,55 @@ export const Hero = () => {
                   padding: 0,
                 },
               }}
-              options={searchOptions}
-              getOptionLabel={(option) => option.name + " " + option.speciality}
+              clearOnEscape
+              blurOnSelect
+              // freeSolo
+              // value={searchStr}
+              onChange={onChangeSearch}
+              onInputChange={onInputChangeSearch}
+              options={search}
+              getOptionLabel={(option) => option.name}
               filterOptions={(options, state) =>
                 options.filter(
                   (option) =>
                     option.name
                       .toLowerCase()
-                      .indexOf(state.inputValue.toLowerCase()) !== -1 ||
-                    option.speciality
-                      .toLowerCase()
-                      .indexOf(state.inputValue.toLowerCase()) !== -1
+                      .indexOf(state.inputValue.toLowerCase()) !== -1 &&
+                    (selectedCity === "Вся Україна" ||
+                      option.city.toLowerCase().indexOf(selectedCity.toLowerCase()) !==
+                        -1) &&
+                    (district === "" ||
+                      option.district
+                        .toLowerCase()
+                        .indexOf(district.toLowerCase()) !== -1)
                 )
               }
               renderInput={(params) => (
                 <TextField
                   {...params}
                   placeholder="Пошук лікарів та клінік"
-                  onChange={handleInputChange}
                   sx={{
+                    "& input": {
+                      fontSize: "16px",
+                      weight: 500,
+                    },
                     "& fieldset": {
                       display: "none",
                     },
                   }}
+                  onKeyDown={(e) => e.key === "Enter" && onSubmitSearch()}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: null,
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon style={{ marginRight: "16px" }} />
+                        <IconButton>
+                          <SearchIcon
+                            aria-disabled={true}
+                            onClick={onSubmitSearch}
+                            color="#A4ADA8"
+                          />
+                        </IconButton>
                       </InputAdornment>
                     ),
                   }}
@@ -242,7 +297,7 @@ export const Hero = () => {
                       color="#8E918F"
                       variant="caption"
                     >
-                      {option.speciality}
+                      {option.speciality || "Медичний заклад"}
                     </Typography>
                   </Box>
                 </MenuItem>
@@ -262,78 +317,31 @@ export const Hero = () => {
                 </Box>
               </>
             ) : (
-              <Select
-                labelId="select-city"
-                id="select-city"
-                value={city}
-                label="City"
-                onChange={handleChange}
-                IconComponent={() => <RoomOutlined sx={{ color: "#999" }} />}
+              <TextField
+                onChange={(e) => setDistrict(e.target.value)}
+                placeholder="Введіть район"
                 sx={{
-                  fontSize: "16px",
-                  p: sm ? "0" : "0 112px 0 16px",
-                  borderLeft: "1px solid #999",
-                  borderRadius: 0,
-                  fontWeight: "500",
-                  fontFamily: "Inter",
-                  color: "#999",
-                  "& .MuiOutlinedInput-input": { p: 0 },
-                  boxShadow: "none",
-                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                  "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                    {
-                      border: 0,
-                    },
-                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                    {
-                      border: 0,
-                    },
-                  "&.MuiInputBase-root": {
-                    display: "flex!important",
-                    flexDirection: "row-reverse!important",
-                    gap: "16px",
+                  pr: "23px",
+                  "& input": {
+                    fontSize: "16px",
+                    weight: 500,
                   },
+                  borderLeft: "1px solid #A4ADA8",
+                  "& fieldset": { display: "none" },
                 }}
-              >
-                <MenuItem value={"Уся Україна"}>
-                  <Typography
-                    fontSize={"16px"}
-                    sx={{ color: "#999" }}
-                    variant="caption"
-                  >
-                    Уся Україна
-                  </Typography>
-                </MenuItem>
-                <MenuItem value={"Cherkasy"}>
-                  <Typography
-                    fontSize={"16px"}
-                    sx={{ color: "#999" }}
-                    variant="caption"
-                  >
-                    Черкаси
-                  </Typography>
-                </MenuItem>
-                <MenuItem value={"Kyiv"}>
-                  <Typography
-                    fontSize={"16px"}
-                    sx={{ color: "#999" }}
-                    variant="caption"
-                  >
-                    Київ
-                  </Typography>
-                </MenuItem>
-                <MenuItem value={"Termopil"}>
-                  <Typography
-                    fontSize={"16px"}
-                    sx={{ color: "#999" }}
-                    variant="caption"
-                  >
-                    Тернопіль
-                  </Typography>
-                </MenuItem>
-              </Select>
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <RoomOutlined
+                        sx={{ color: "#A4ADA8" }}
+                        fontSize="medium"
+                      />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             )}
-          </Search>
+          </Box>
         </Box>
         {!laptopDevice && (
           <Box sx={{ mt: "82px" }}>

@@ -4,10 +4,18 @@ import { Button, CircularProgress, ButtonProps } from "@mui/material";
 type Props = ButtonProps & {
   onClick: () => void;
   timer?: number;
+  children: string;
 };
 
-export const ButtonTimer = ({ onClick, timer = 60, ...otherProps }: Props) => {
+export const ButtonTimer = ({
+  onClick,
+  timer = 60,
+  children,
+  ...otherProps
+}: Props) => {
   const [remainingTime, setRemainingTime] = useState(timer);
+
+  const text = remainingTime ? `${children} через ${remainingTime}с` : children;
 
   const handleClick = () => {
     setRemainingTime(timer);
@@ -36,6 +44,8 @@ export const ButtonTimer = ({ onClick, timer = 60, ...otherProps }: Props) => {
           size={22}
         />
       }
-    />
+    >
+      {text}
+    </Button>
   );
 };

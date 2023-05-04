@@ -1,6 +1,6 @@
 import Kyivstar from "../../assets/CustomIcon/Kyivstar";
 import Life from "../../assets/CustomIcon/Life";
-import Vodafon from "../../assets/CustomIcon/Vodafon";
+import { Vodafone } from "../../assets/CustomIcon/Vodafone";
 import React from "react";
 
 export const CONTACT_PHONES_KYIVSTAR: { icon: JSX.Element; phone: string } = {
@@ -30,14 +30,6 @@ export const CONTACT_PHONES_LIFE: { icon: JSX.Element; phone: string } = {
 };
 
 export const CONTACT_PHONES_VODAFON: { icon: JSX.Element; phone: string } = {
-  icon: (
-    <Vodafon
-      width="29"
-      height="29"
-      viewBox="0 0 29 29"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    />
-  ),
+  icon: <Vodafone />,
   phone: "(095) 35 337 27",
 };

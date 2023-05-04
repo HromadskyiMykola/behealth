@@ -5,9 +5,10 @@ import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import {
   BreadcrumbsUkr,
   PaginationBottomBar,
-  SelectedItemsBox,
   SelectTopBar,
+  SkeletonInfoCards,
 } from "~/components/atomic";
+import { SelectedItemsBox } from "~/components/AsideFilter";
 
 import { FilterClinics, SearchClinics, Clinics } from "~/components/clinic";
 
@@ -45,13 +46,15 @@ export const ClinicsPage = () => {
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
-            <SelectedItemsBox data={data} />
+            <SelectedItemsBox />
 
             <FilterClinics />
           </Box>
 
           <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
-            <SelectTopBar />
+            {/* <SelectTopBar />   TODO:   */}
+
+            {/* {clinics.length === 0 && <SkeletonInfoCards />} */}
 
             <Clinics />
 

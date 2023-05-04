@@ -1,4 +1,5 @@
-import { IOnSubmitPatientData, usePatientFetchingData } from "~/common";
+import { IOnSubmitPatientData,  } from "~/common";
+import { usePatientFetchingData } from "~/hooks";
 
 import { CustomizedPaper } from "~/components/atomic";
 import {

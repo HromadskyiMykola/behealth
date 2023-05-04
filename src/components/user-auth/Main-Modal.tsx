@@ -11,7 +11,8 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { TAuthMode, useDeviceType } from "~/common";
+import { TAuthMode } from "~/common";
+import { useDeviceType } from "~/hooks";
 import { useModalState } from "~/providers";
 
 import { AuthForm } from ".";

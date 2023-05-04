@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Typography, Stack, useTheme, Dialog } from "@mui/material";
 
-import { useReactHookForm, useDeviceType } from "~/common";
+import { useReactHookForm, useDeviceType } from "~/hooks";
 
 import { RHFPasswordNew, RHFPasswordConfirm } from "../React-Hook-Form-Fields";
 
