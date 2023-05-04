@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   InputAdornment,
   MenuItem,
@@ -11,16 +12,12 @@ import { MapIcon } from "lucide-react";
 import { OptionsWrapper } from "./";
 import { SelectWithPlaceholder } from "../atomic";
 
-import { TAsideFilterComps } from "~/common";
-import { useState } from "react";
+import { useDataContext } from "~/providers";
 
-export const SelectDistrict = ({
-  optionsData,
-  handleFilterChange,
-}: TAsideFilterComps) => {
-  const { custom } = useTheme().palette;
-
+export const SelectDistrict = () => {
   const [selectedValue, setSelectedValue] = useState("");
+  const { optionsData, handleFilterChange } = useDataContext();
+  const { custom } = useTheme().palette;
 
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
     handleFilterChange("district", e.target.value);

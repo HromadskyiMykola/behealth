@@ -22,7 +22,7 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { MenuIcon, XIcon, UserIcon, Search as SearchIcon } from "lucide-react";
 
-import { useAuthProvider } from "~/providers";
+import { DataProvider, useAuthProvider, useDataContext } from "~/providers";
 import { ISelectItemHeaderValue } from "~/common";
 import { ERouteNames } from "~/routes/routeNames";
 import { AuthButton } from "~/components/user-auth";
@@ -37,7 +37,6 @@ import {
   MAKE_TO_APPOINTMENT,
   CITY,
 } from "~/components/Header/constant-header";
-import { useLocationContext } from "~/providers/LocationProvider";
 
 const selectStyle = {
   padding: 0,
@@ -63,11 +62,14 @@ const Header: FC = (props) => {
 
   const [openMenu, setOpenMenu] = useState(false);
   const [value, setValue] = useState<string | null>(CITY[0].title);
-  const { city, setCity } = useLocationContext();
+  const { optionsData, selectedCity, setSelectedCity, handleFilterChange } =
+    useDataContext();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCity(event.target.value as string);
+    handleFilterChange("city", event.target.value);
+    setSelectedCity(event.target.value as string);
   };
+
   const setToggleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
@@ -90,16 +92,17 @@ const Header: FC = (props) => {
             </Link>
 
             <Select
-              value={city}
+              value={selectedCity}
               onChange={handleChange}
               IconComponent={KeyboardArrowDownIcon}
               sx={selectStyle}
             >
-              {HEADER_SELECT_ITEM_VALUE.map((city: string) => (
-                <MenuItem value={city} key={`Select-item-${city}`}>
-                  <Typography variant="caption">{city}</Typography>
-                </MenuItem>
-              ))}
+              {optionsData.city?.length > 0 &&
+                optionsData.city.map((city: string) => (
+                  <MenuItem value={city} key={`Select-item-${city}`}>
+                    <Typography variant="caption">{city}</Typography>
+                  </MenuItem>
+                ))}
             </Select>
           </Stack>
 

@@ -8,7 +8,6 @@ import { RouteObject } from "react-router-dom";
 import { optionsTemplate } from "~/helper-function";
 import { filterOptionsTemplate } from "~/hooks";
 
-
 export const enum EUserType {
   PATIENT = "patient",
   DOCTOR = "doctor",
@@ -339,11 +338,7 @@ export type TDoctor = {
   tags: string[];
   grade: string;
   qualification: string;
-  servicePayment: {
-    freeByReferral: boolean;
-    declarationNSZU: boolean;
-    paidAppointment: false | number;
-  };
+  paidAppointment: false | number;
   reviewsCount: number;
   rating: number;
   socials: {
@@ -389,11 +384,11 @@ export interface IDoctorsList {
 
 export type THandleFilterChange = (
   key: keyof TFilterOptions | "resetFilter",
-  value: string | boolean,
+  value: string | boolean | number[],
   chipName?: string
 ) => void;
 
-export type TAsideFilterComps = {
-  optionsData: TOptionsData;
-  handleFilterChange: THandleFilterChange;
-};
+// export type TAsideFilterComps = {
+//   optionsData: TOptionsData;
+//   handleFilterChange: THandleFilterChange;
+// };

@@ -17,7 +17,8 @@ import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
 import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
-import { useDoctorsData } from "~/hooks";
+// import { useDoctorsData } from "~/hooks";
+import { useDataContext } from "~/providers";
 
 const data: any = [
   { key: 0, label: "Приватна клініка" },
@@ -38,7 +39,7 @@ export const DoctorsPage = () => {
     selectedFilters,
     setSelectedFilters,
     handleFilterChange,
-  } = useDoctorsData();
+  } = useDataContext();
 
   return (
     <>
@@ -74,10 +75,7 @@ export const DoctorsPage = () => {
             </CustomizedPaper>
 
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <AsideFilter
-                optionsData={optionsData}
-                handleFilterChange={handleFilterChange}
-              />
+              <AsideFilter />
             </CustomizedPaper>
           </Box>
 
@@ -88,7 +86,7 @@ export const DoctorsPage = () => {
 
             {filteredDoctors.length > 0 &&
               filteredDoctors.map((doctor, i) => (
-                <SmallCardDoctor key={`${doctor.id}-${i}`} doctor={doctor} />
+                <SmallCardDoctor key={`doc${doctor.id}-${i}`} doctor={doctor} />
               ))}
 
             <CustomizedPaper

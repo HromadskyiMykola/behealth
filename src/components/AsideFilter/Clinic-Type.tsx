@@ -1,13 +1,13 @@
 import { SyntheticEvent } from "react";
 
-import { TAsideFilterComps } from "~/common";
+import { useDataContext } from "~/providers";
+
 import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
-export const ClinicType = ({
-  optionsData,
-  handleFilterChange,
-}: TAsideFilterComps) => {
+export const ClinicType = () => {
+  const { handleFilterChange } = useDataContext();
+
   const handleCheck = (e: SyntheticEvent<Element, Event>, checked: boolean) => {
     const input = e.target as HTMLInputElement;
     const { name } = input;

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { optionsExtractor, optionsTemplate } from "~/helper-function";
 
 export const filterOptionsTemplate = {
+  city: "",
   district: "",
   stateClinic: false,
   privateClinic: false,
@@ -17,7 +18,8 @@ export const filterOptionsTemplate = {
   admissionOfChildren: false,
   admissionByReferral: false,
   admissionByNHSU: false,
-  rangePrice: [0, 0],
+  admissionPaid: false,
+  rangePrice: [0, 5000],
   male: false,
   female: false,
   rangeExperience: 0,
@@ -74,6 +76,13 @@ export const useDoctorsData = () => {
     // Вызываем onChange с массивом отфильтрованных докторов каждый раз, когда фильтр меняется
     const newFilteredDoctors = doctors.filter((doctor) => {
       if (
+        selectedFilters.city !== "Вся Україна" &&
+        selectedFilters.city &&
+        doctor.city !== selectedFilters.city
+      )
+        return false;
+
+      if (
         selectedFilters.district &&
         doctor.district !== selectedFilters.district
       )
@@ -123,6 +132,34 @@ export const useDoctorsData = () => {
       )
         return false;
 
+      if (
+        selectedFilters.admissionByReferral &&
+        doctor.admissionByReferral !== selectedFilters.admissionByReferral
+      )
+        return false;
+
+      if (
+        selectedFilters.admissionByNHSU &&
+        doctor.admissionByNHSU !== selectedFilters.admissionByNHSU
+      )
+        return false;
+
+ 
+
+      if (
+        selectedFilters.admissionPaid &&
+        (!doctor.paidAppointment ||
+          doctor.paidAppointment < selectedFilters.rangePrice[0] ||
+          doctor.paidAppointment > selectedFilters.rangePrice[1])
+      )
+        return false;
+
+      
+            if (
+              selectedFilters.admissionByNHSU &&
+              doctor.admissionByNHSU !== selectedFilters.admissionByNHSU
+            )
+              return false;
       //
 
       //

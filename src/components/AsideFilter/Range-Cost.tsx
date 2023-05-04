@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FormControl, Slider, Stack, TextField } from "@mui/material";
-import { TOptionsData } from "~/common";
 
-export const RangeCost = ({
-  optionsData: { rangePrice },
-}: {
-  optionsData: TOptionsData;
-}) => {
+import { useDataContext } from "~/providers";
+
+export const RangeCost = () => {
+  const {
+    optionsData: { rangePrice },
+    handleFilterChange,
+  } = useDataContext();
+
+  const [isMounted, setIsMounted] = useState(false);
   const [range, setRange] = useState<number[]>(rangePrice);
 
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      console.log("ok");
+
+      handleFilterChange("rangePrice", range, `${range.join("-")}грн`);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [range]);
+
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setRange(newValue as number[]);
+    if (Array.isArray(newValue)) {
+      setRange(newValue);
+    }
   };
 
   return (

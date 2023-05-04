@@ -1,19 +1,4 @@
-import { useState } from "react";
-import {
-  Box,
-  Checkbox,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  InputAdornment,
-  MenuItem,
-  Select,
-  Slider,
-  Stack,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Divider, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   SelectDistrict,
@@ -27,15 +12,22 @@ import {
   RangeExperience,
 } from "./";
 
-import { TAsideFilterComps } from "~/common";
+import { useDataContext } from "~/providers";
 
-export const AsideFilter = ({
-  optionsData,
-  handleFilterChange,
-}: TAsideFilterComps) => {
+export const AsideFilter = () => {
   const { palette, typography } = useTheme();
 
-  const props = { optionsData, handleFilterChange };
+    const {
+      doctors,
+      filteredDoctors,
+      optionsData,
+      setFilteredDoctors,
+      selectedFilters,
+      setSelectedFilters,
+      handleFilterChange,
+    } = useDataContext();
+
+
 
   return (
     <Stack gap="32px">
@@ -43,20 +35,20 @@ export const AsideFilter = ({
         Фільтр
       </Typography>
 
-      <SelectDistrict {...props} />
+      <SelectDistrict  />
 
       <Stack gap="24px">
-        <ClinicType {...props} />
+        <ClinicType  />
 
         <Divider />
 
-        <DoctorAdditionalOptions {...props} />
+        <DoctorAdditionalOptions  />
 
         <Divider />
 
         <PaymentForServices />
 
-        <RangeCost optionsData={optionsData} />
+        <RangeCost />
 
         <Divider />
 
@@ -71,7 +63,7 @@ export const AsideFilter = ({
         <PatientEvaluation />
       </Stack>
 
-      <DoctorQualifications {...props} />
+      <DoctorQualifications  />
     </Stack>
   );
 };
