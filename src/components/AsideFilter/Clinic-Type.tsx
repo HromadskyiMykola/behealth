@@ -1,30 +1,24 @@
-import { SyntheticEvent } from "react";
+import { useDataContext } from "~/providers";
 
-import { TAsideFilterComps } from "~/common";
 import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
-export const ClinicType = ({
-  optionsData,
-  handleFilterChange,
-}: TAsideFilterComps) => {
-  const handleCheck = (e: SyntheticEvent<Element, Event>, checked: boolean) => {
-    const input = e.target as HTMLInputElement;
-    const { name } = input;
-
-    if (name === "Державна клініка") {
-      handleFilterChange("stateClinic", checked, name);
-    }
-    if (name === "Приватна клініка") {
-      handleFilterChange("privateClinic", checked, name);
-    }
-  };
+export const ClinicType = () => {
+  const { filterOptions, handleCheck } = useDataContext();
 
   return (
     <OptionsWrapper label="Тип медичного закладу">
-      <CheckBoxOption label="Державна клініка" onChange={handleCheck} />
+      <CheckBoxOption
+        name="stateClinic"
+        label={filterOptions.stateClinic.title}
+        onChange={handleCheck}
+      />
 
-      <CheckBoxOption label="Приватна клініка" onChange={handleCheck} />
+      <CheckBoxOption
+        name="privateClinic"
+        label={filterOptions.privateClinic.title}
+        onChange={handleCheck}
+      />
     </OptionsWrapper>
   );
 };

@@ -19,8 +19,10 @@ import {
   CustomizedPaper,
   SelectWithPlaceholder,
 } from "../atomic";
-import { IDoctorsList, TDoctor } from "~/common";
+
+import { TDoctor } from "~/common";
 import { useDeviceType } from "~/hooks";
+import { useDataContext } from "~/providers";
 
 const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
   if (selectedSpec === "") return doctors.map((doc) => doc.name);
@@ -29,17 +31,15 @@ const filterNamesBySpec = (doctors: TDoctor[], selectedSpec: string) => {
     .filter((doc) => doc.speciality === selectedSpec)
     .map((doc) => doc.name);
 };
-// done !
 
-// done !
 const filterDoctors = (doctors: TDoctor[], str: string) =>
   doctors.filter(
     (doc) => doc.name.toLowerCase().indexOf(str.toLowerCase()) !== -1
   );
-// done !
 
-export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctorsList) => {
-  const [selectedSpec, setSelectedSpec] = useState(""); // done !
+export const SearchBar = () => {
+  const { doctors, optionsData, setFilteredDoctors } = useDataContext();
+  const [selectedSpec, setSelectedSpec] = useState("");
   const [searchStr, setSearchStr] = useState("");
   const { custom } = useTheme().palette;
   const { isSmDown } = useDeviceType();
@@ -48,18 +48,14 @@ export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctors
     selectedSpec && setSearchStr("");
   }, [selectedSpec]);
 
-  // done !
   const filteredNamesBySpec = useMemo(
     () => filterNamesBySpec(doctors, selectedSpec),
     [selectedSpec, doctors]
   );
-  // done !
 
-  // done !
   const handleSelectChange = (e: SelectChangeEvent<any>) => {
     setSelectedSpec(e.target.value as string);
   };
-  // done !
 
   const onSubmitSearch = (str: string = searchStr) => {
     const filteredList = filterDoctors(doctors, str);
@@ -73,7 +69,7 @@ export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctors
   ) => {
     if (reason === "selectOption" || reason === "createOption") {
       setSearchStr(value || "");
-      onSubmitSearch(value || ""); // done !
+      onSubmitSearch(value || "");
     }
   };
 
@@ -82,14 +78,12 @@ export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctors
     value: string,
     reason: AutocompleteInputChangeReason
   ) => {
-    // done !
     if (reason === "input") {
       setSearchStr(value);
     } else if (reason === "clear") {
       setFilteredDoctors(doctors);
       setSelectedSpec("");
     }
-    // done !
   };
 
   return (
@@ -109,8 +103,8 @@ export const SearchBar = ({ doctors, setFilteredDoctors, optionsData }: IDoctors
           value={selectedSpec}
           onChange={handleSelectChange}
         >
-          {optionsData.specs.map((spec,i) => (
-            <MenuItem key={spec+i} value={spec}>
+          {optionsData.specs.map((spec, i) => (
+            <MenuItem key={spec + i} value={spec}>
               {spec}
             </MenuItem>
           ))}

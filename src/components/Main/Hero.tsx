@@ -18,7 +18,7 @@ import { RoomOutlined } from "@mui/icons-material";
 import { FilterIcon, Search as SearchIcon } from "lucide-react";
 import { TClinic, TDoctor, useApiService } from "~/common";
 import { useNavigate } from "react-router-dom";
-import { useLocationContext } from "~/providers/LocationProvider";
+import { useDataContext } from "~/providers/DataProvider";
 
 const searchOptionsSpreading = {
   overflow: "hidden",
@@ -34,7 +34,7 @@ export const Hero = () => {
   const [search, setSearch] = useState<any>([]);
   const [searchStr, setSearchStr] = useState<TDoctor | TClinic | null>(null);
   const { getClinics, getDoctors } = useApiService();
-  const { city, setCity } = useLocationContext();
+  const { selectedCity, setSelectedCity } = useDataContext();
   const navigate = useNavigate();
   const theme = useTheme();
   const laptopDevice = useMediaQuery(theme.breakpoints.down("laptop"));
@@ -49,8 +49,8 @@ export const Hero = () => {
   }, []);
 
   useEffect(() => {
-    console.log(city);
-  }, [city]);
+    console.log(selectedCity);
+  }, [selectedCity]);
 
   const onChangeSearch = (
     event: SyntheticEvent<Element, Event>,
@@ -188,8 +188,8 @@ export const Hero = () => {
                     option.name
                       .toLowerCase()
                       .indexOf(state.inputValue.toLowerCase()) !== -1 &&
-                    (city === "Вся Україна" ||
-                      option.city.toLowerCase().indexOf(city.toLowerCase()) !==
+                    (selectedCity === "Вся Україна" ||
+                      option.city.toLowerCase().indexOf(selectedCity.toLowerCase()) !==
                         -1) &&
                     (district === "" ||
                       option.district

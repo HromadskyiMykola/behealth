@@ -25,11 +25,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 950
-    },
+    "paidAppointment": 950,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -93,11 +89,7 @@
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Good",
     "qualification": "The first category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": false,
-      "paidAppointment": 500
-    },
+    "paidAppointment": 500,
     "reviewsCount": 7,
     "rating": 34,
     "socials": [
@@ -152,11 +144,7 @@
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": false,
     "reviewsCount": 8,
     "rating": 34,
     "socials": [
@@ -211,11 +199,7 @@
     "tags": ["Online consultation"],
     "grade": "Good",
     "qualification": "The second category",
-    "servicePayment": {
-      "freeByReferral": false,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": false,
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -273,11 +257,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": false,
     "reviewsCount": 18,
     "rating": 78,
     "socials": [
@@ -332,11 +312,7 @@
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": false,
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -395,11 +371,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": 450,
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -454,11 +426,7 @@
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
     "qualification": "The second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 350
-    },
+    "paidAppointment": 350,
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -517,11 +485,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 600
-    },
+    "paidAppointment": 600,
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -576,11 +540,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 550
-    },
+    "paidAppointment": 550,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -635,11 +595,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": false,
-      "paidAppointment": 600
-    },
+    "paidAppointment": 600,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -694,11 +650,7 @@
     "tags": ["Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 450
-    },
+    "paidAppointment": 450,
     "reviewsCount": 14,
     "rating": 40,
     "socials": [
@@ -762,11 +714,7 @@
     "tags": ["The doctor accepts declarations", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 200
-    },
+    "paidAppointment": 200,
     "reviewsCount": 1,
     "rating": 5,
     "socials": [
@@ -821,11 +769,7 @@
     "tags": ["The doctor works with eHealth (EHOZ)", "Online consultation"],
     "grade": "Normally",
     "qualification": "The first category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 600
-    },
+    "paidAppointment": 400,
     "reviewsCount": 5,
     "rating": 38,
     "socials": [
@@ -878,13 +822,9 @@
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
-    "grade": "Good",
+    "grade": "",
     "qualification": "The second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": false
-    },
+    "paidAppointment": false,
     "reviewsCount": 10,
     "rating": 50,
     "socials": [
@@ -942,11 +882,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 350
-    },
+    "paidAppointment": 350,
     "reviewsCount": 4,
     "rating": 14,
     "socials": [
@@ -1001,11 +937,7 @@
     "tags": ["Online consultation", "Reception of children"],
     "grade": "Good",
     "qualification": "Першв категорія",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 500
-    },
+    "paidAppointment": 500,
     "reviewsCount": 20,
     "rating": 71,
     "socials": [
@@ -1062,13 +994,9 @@
       "Online consultation",
       "Reception of children"
     ],
-    "grade": "Very good",
+    "grade": "",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 700
-    },
+    "paidAppointment": 700,
     "reviewsCount": 26,
     "rating": 82,
     "socials": [
@@ -1123,11 +1051,7 @@
     "tags": ["The doctor accepts declarations"],
     "grade": "Normally",
     "qualification": "The second category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 400
-    },
+    "paidAppointment": 400,
     "reviewsCount": 10,
     "rating": 54,
     "socials": [
@@ -1186,11 +1110,7 @@
     ],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 400
-    },
+    "paidAppointment": 450,
     "reviewsCount": 15,
     "rating": 76,
     "socials": [
@@ -1245,11 +1165,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 800
-    },
+    "paidAppointment": 800,
     "reviewsCount": 13,
     "rating": 60,
     "socials": [
@@ -1306,11 +1222,7 @@
     "tags": ["The doctor accepts declarations", "Reception of children"],
     "grade": "Very good",
     "qualification": "Higher category",
-    "servicePayment": {
-      "freeByReferral": true,
-      "declarationNSZU": true,
-      "paidAppointment": 500
-    },
+    "paidAppointment": 500,
     "socials": [
       {
         "title": "Telegram",
