@@ -11,6 +11,7 @@ import {
   Paper,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import { RoomOutlined } from "@mui/icons-material";
@@ -209,17 +210,19 @@ export const Hero = () => {
                       display: "none",
                     },
                   }}
+                  onKeyDown={(e) => e.key === "Enter" && onSubmitSearch()}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: null,
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon
-                          aria-disabled={true}
-                          onClick={onSubmitSearch}
-                          color="#A4ADA8"
-                          style={{ marginRight: "16px", cursor: "pointer" }}
-                        />
+                        <IconButton>
+                          <SearchIcon
+                            aria-disabled={true}
+                            onClick={onSubmitSearch}
+                            color="#A4ADA8"
+                          />
+                        </IconButton>
                       </InputAdornment>
                     ),
                   }}

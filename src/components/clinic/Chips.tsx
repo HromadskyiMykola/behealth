@@ -31,8 +31,8 @@ export const Chips = ({ chips }: any) => {
 
   return (
     <Grid container spacing={2}>
-      {chips.map((item: any) => (
-        <Grid item key={item}>
+      {chips.map(({ name }: { name: string }) => (
+        <Grid item key={name}>
           <Box
             sx={{
               bgcolor: "#FBFCFF",
@@ -44,9 +44,9 @@ export const Chips = ({ chips }: any) => {
               alignItems: "center",
             }}
           >
-            {chooseCard(item)}
+            {chooseCard(name)}
             <Typography color="#406375" variant="caption">
-              {item}
+              {name}
             </Typography>
           </Box>
         </Grid>

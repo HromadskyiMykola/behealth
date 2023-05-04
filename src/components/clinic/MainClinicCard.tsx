@@ -2,14 +2,33 @@ import React, { FC } from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Chips } from "~/components/clinic/Chips";
 import { ClockIcon, MapPinIcon, Share2Icon } from "lucide-react";
-import { ClinicCardProps } from "~/components/clinic";
 import FooterContactPhone from "~/components/FooterContactPhone/FooterContactPhone";
 import Life from "~/assets/CustomIcon/Life";
 import { ClinicMedicine } from "~/components/clinic/ClinicMedicine";
 import { GoogleMapLink } from "~/components/atomic";
+import { IClinicCard } from "~/components/clinic/clinic-card-constants";
+import { TClinic } from "~/common";
 
-export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
-  const { working, address, medicine, name, img, type, chips, phone } = card;
+interface ClinicCardProps {
+  clinic: TClinic;
+}
+
+export const MainClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
+  const {
+    address,
+    name,
+    clinicType,
+    img,
+    dataType,
+    id,
+    district,
+    phoneNumber,
+    tags,
+    city,
+    workingHours,
+    medicine,
+    doctorsIds,
+  } = clinic;
 
   const theme = useTheme();
   const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
@@ -51,7 +70,7 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
                 xmlns="http://www.w3.org/2000/svg"
               />
             }
-            phone={phone}
+            phone={phoneNumber}
           />
         </Box>
       </Box>
@@ -72,7 +91,7 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
               }}
             >
               <Typography color="212121" variant="body2">
-                {type}
+                {clinicType}
               </Typography>
               <Share2Icon
                 size={24}
@@ -84,7 +103,7 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
               {name}
             </Typography>
           </Box>
-          <Chips chips={chips} />
+          <Chips chips={tags} />
         </Box>
         <Box
           sx={{
@@ -96,7 +115,7 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
             gap: "33px",
           }}
         >
-          <ClinicMedicine medicine={medicine} />
+          {medicine && <ClinicMedicine medicine={medicine} />}
           <Box
             sx={{
               display: "flex",
@@ -114,7 +133,7 @@ export const MainClinicCard: FC<ClinicCardProps> = ({ card }) => {
                 color="#444845"
                 size={24}
               />
-              <Typography variant="caption">{working}</Typography>
+              <Typography variant="caption">{workingHours[0].hours}</Typography>
             </Box>
             <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
               <MapPinIcon
