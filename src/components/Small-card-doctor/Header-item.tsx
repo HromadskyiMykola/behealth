@@ -1,6 +1,5 @@
-import { Box, Rating, Typography } from "@mui/material";
+import { Box, Rating, Stack, Typography, useTheme } from "@mui/material";
 
-import avatarNeedChange from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
 
@@ -19,15 +18,16 @@ export const HeaderItem = ({
   name,
   reviewsCount,
   rating,
-  avatar, // !!
+  avatar,
 }: Props) => {
+  const { palette } = useTheme();
+
   return (
     <Box display="flex" gap="24px">
       <Box>
-        <img //todo add photo with rest api
-          src={avatarNeedChange}
-          //todo add description with rest api
-          alt="doctor"
+        <img
+          src={avatar}
+          alt={`avatar-${name}`}
           width="132px"
           height="132px"
           style={{ borderRadius: "19px" }}
@@ -41,10 +41,13 @@ export const HeaderItem = ({
           name={name}
         />
 
-        <Box display="flex" gap="8px" pt={1}>
+        <Stack gap="8px" pt={1} direction="row">
           <Rating name="rating" value={rating} precision={0.25} readOnly />
-          <Typography variant="body2">{`${REVIEWS} (${reviewsCount})`}</Typography>
-        </Box>
+          <Typography
+            variant="body2"
+            color={palette.custom.neutral70}
+          >{`${REVIEWS} (${reviewsCount})`}</Typography>
+        </Stack>
       </Box>
     </Box>
   );

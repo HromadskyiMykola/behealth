@@ -73,8 +73,8 @@ export const DoctorsPage = () => {
 
             <FilterDoctors />
           </Box>
-
-          <Box sx={{ flex: "1 0 auto" }}>
+          {/*sx={{ flex: "1 0 auto" }}*/}
+          <Box sx={{ width: "100%" }}>
             <SelectTopBar />
 
             {doctors.length === 0 &&

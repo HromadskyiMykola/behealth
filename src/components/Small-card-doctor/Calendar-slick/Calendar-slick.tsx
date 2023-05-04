@@ -9,10 +9,10 @@ import {
 } from "lucide-react";
 import "./slick.css";
 import "./slick-theme.css";
-import { Button, useTheme } from "@mui/material";
+import Button from "@mui/material/Button";
 import { GetDateNextWeek } from "~/helper-function";
 import Typography from "@mui/material/Typography";
-import { getHourIntervals } from "~/helper-function/get-hourses-work-doctor";
+import { getIntervals } from "~/helper-function/get-hourses-work-doctor";
 import {
   BUTTON_SHOW_LESS,
   BUTTON_SHOW_MORE,
@@ -55,9 +55,19 @@ const settings = {
   nextArrow: <SlickArrowRight />,
 };
 
-export const CalendarSlick = () => {
-  const { palette } = useTheme();
-  const [activeButton, setActiveButton] = useState<boolean | null>(null);
+interface IPropsCalendarSlick {
+  workTime: string[];
+  setValueDateAndTime: any;
+  availableTime: string[];
+}
+export const CalendarSlick = ({
+  workTime,
+  setValueDateAndTime,
+  availableTime,
+}: IPropsCalendarSlick) => {
+  const [selectedDateAndTime, setSelectedDateAndTime] = useState<string | null>(
+    null
+  );
   const [showMore, setShowMore] = useState(false);
 
   const toggleShowMore = () => {
@@ -93,18 +103,34 @@ export const CalendarSlick = () => {
                 >{`${dayOfMonth} ${month}`}</Typography>
               </Box>
               <Box maxHeight={showMore ? "" : "148px"} overflow="hidden">
-                {getHourIntervals("9:00").map((time: any, index: number) => {
-                  return (
-                    <Button
-                      variant="text"
-                      key={`time-record-${time}`}
-                      sx={{ p: 0, color: palette.text.primary }}
-                      onClick={() => setActiveButton(true)}
-                    >
-                      {time}
-                    </Button>
-                  );
-                })}
+                {getIntervals(workTime[0], workTime[1]).map(
+                  (time: any, index: number) => {
+                    const date = `${formattedDate} ${time}`;
+                    return (
+                      <Button
+                        key={`time-record-${time}`}
+                        variant={
+                          date === selectedDateAndTime ? "contained" : "text"
+                        }
+                        color={
+                          date === selectedDateAndTime ? "primary" : "inherit"
+                        }
+                        onClick={() => {
+                          setSelectedDateAndTime(date);
+                          setValueDateAndTime({ time, date: formattedDate });
+                        }}
+                        disabled={
+                          !!availableTime.find(
+                            (timeDisable: string) => timeDisable === time
+                          )
+                        }
+                        sx={{ p: "11px 14px" }}
+                      >
+                        {time}
+                      </Button>
+                    );
+                  }
+                )}
               </Box>
             </Box>
           );

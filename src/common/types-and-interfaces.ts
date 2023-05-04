@@ -311,6 +311,7 @@ export type TDoctor = {
   specialty: string;
   name: string;
   city: string;
+  cabinet: string;
   experience: number;
   availableHours: {
     available: boolean;
@@ -354,11 +355,18 @@ export type TClinic = {
   phoneNumberRegistry: string;
   phoneNumberAdministration: string;
   tags?: {
-        title: string;
-      }[];
+    title: string;
+  }[];
   workingHours: {
     day: string;
     hours: string | null;
   }[];
   doctorsIds: number[];
+};
+
+export type IPropsMapInfoDoctor = {
+  city?: string;
+  district?: string;
+  address?: string;
+  cabinet?: string;
 };

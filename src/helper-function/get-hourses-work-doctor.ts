@@ -1,15 +1,22 @@
-export const getHourIntervals = (time: string) => {
-  const [hours, minutes] = time.split(":").map(Number);
+export const getIntervals = (startTime: string, endTime: string) => {
+  const [startHour, startMinute] = startTime.split(":").map(Number);
+  const [endHour, endMinute] = endTime.split(":").map(Number);
   const hourIntervals = [];
-  let workHours = 0;
 
-  for (let i = hours; i < 24; i++) {
-    if (workHours >= 9) break; //
+  for (let hour = startHour; hour < endHour; hour++) {
+    for (let minute = 0; minute < 60; minute += 20) {
+      const interval = `${hour.toString().padStart(2, "0")}:${minute
+        .toString()
+        .padStart(2, "0")}`;
+      hourIntervals.push(interval);
+    }
+  }
 
-    const hour = i.toString().padStart(2, "0");
-    const interval = `${hour}:${minutes.toString().padStart(2, "0")}`;
+  for (let minute = 0; minute < endMinute; minute += 20) {
+    const interval = `${endHour.toString().padStart(2, "0")}:${minute
+      .toString()
+      .padStart(2, "0")}`;
     hourIntervals.push(interval);
-    workHours++;
   }
 
   return hourIntervals;
