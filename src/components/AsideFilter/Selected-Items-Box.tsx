@@ -18,7 +18,6 @@ export const SelectedItemsBox = () => {
     filteredDoctors,
     optionsData,
     setFilteredDoctors,
-    // selectedFilters,
     setSelectedFilters,
     handleFilterChange,
   } = useDataContext();
@@ -58,7 +57,7 @@ export const SelectedItemsBox = () => {
       qualification,
     } = selectedFilters;
 
-    console.log("eff>>", );
+    // console.log("eff>>", );
     setChipData((state) => {
       if (admissionPaid.val) {
         state.push({
@@ -179,12 +178,11 @@ export const SelectedItemsBox = () => {
         });
       }
 
-
-return state;
-});
-}, [selectedFilters]);
-console.log("comp>>",isMounted);
-console.log("comp>>", selectedFilters);
+      return state;
+    });
+  }, [selectedFilters]);
+  // console.log("comp>>", isMounted);
+  // console.log("comp>>", selectedFilters);
 
   return (
     <Stack gap="32px">

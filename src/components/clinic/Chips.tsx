@@ -16,7 +16,7 @@ export const Chips = ({ chips }: any) => {
     };
 
     switch (text) {
-      case "Паркинг":
+      case "Паркінг":
         return <ParkingSquareIcon {...iconProps} />;
       case "Дитяча кімната":
         return <PuzzleIcon {...iconProps} />;
