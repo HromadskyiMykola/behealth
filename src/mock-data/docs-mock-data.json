@@ -1336,5 +1336,534 @@
         "phone": "(067) 35 337 27"
       }
     ]
+  },
+  {
+    "id": 23,
+    "city": "Львів",
+    "district": "Галицький",
+    "address": "вул. Січових Стрільців, 35",
+    "clinicType": "Приватна клініка",
+    "speciality": "Хірург",
+    "rating": 15,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Іван Миколайович",
+    "experience": 8,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["08:00", "10:00", "12:00"]
+    },
+    "sex": "male",
+    "avatar": "http://mua.ua/img/avatar-man.png",
+    "tags": [
+      "Можливість оплати за допомогою медичного страхування",
+      "Прийом дітей"
+    ],
+    "grade": "Good",
+    "qualification": "Перша категорія",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": false,
+      "paidAppointment": 750
+    },
+    "socials": [
+      {
+        "title": "Facebook",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.instagram.com/"
+      }
+    ],
+    "email": "ivan_petr@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 22 222 22"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(066) 22 222 22"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 22 222 22"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "city": "Львів",
+    "district": "Залізничний",
+    "address": "вул. Княгині Ольги, 120",
+    "clinicType": "Приватна клініка",
+    "speciality": "Окуліст",
+    "rating": 15,
+    "reviewsCount": 5,
+    "dataType": "doctor",
+    "name": "Кравчук Ольга Іванівна",
+    "experience": 10,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["09:00", "11:00", "15:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": false,
+      "declarationNSZU": true,
+      "paidAppointment": 350
+    },
+    "socials": [
+      {
+        "title": "Facebook",
+        "link": "https://www.facebook.com"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.instagram.com/"
+      }
+    ],
+    "email": "kravchuk.olga@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 12 345 67"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 12 345 67"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "city": "Харків",
+    "district": "Холодногірський",
+    "address": "вул. Клочківська, 135",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["11:00", "13:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Very good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": false,
+      "paidAppointment": 200
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "city": "Херсон",
+    "district": "Суворовський",
+    "address": "вул.Чорноморська 159",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 5,
+    "reviewsCount": 3,
+    "dataType": "doctor",
+    "name": "Петренко Вікторія Олександрівна",
+    "experience": 2,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar3.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "city": "Херсон",
+    "district": "Дніпровський",
+    "address": "вул.Чорноморська 43",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 5,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "pochta999@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 001 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 001 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 001 27"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "city": "Запоріжжя",
+    "district": "Дніпровський",
+    "address": "вул.Вітряна 1",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 4,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Притула Олег Олегович",
+    "experience": 2,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20"]
+    },
+    "sex": "male",
+    "avatar": "http://mua.ua/img/avatar-man.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "ne_prodam_pochku@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 09 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 09 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 09 434 27"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "city": "Запоріжжя",
+    "district": "Суворовський",
+    "address": "вул.Білогорська 9",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 14,
+    "reviewsCount": 9,
+    "dataType": "doctor",
+    "name": "Івана Оксана Іванівна",
+    "experience": 3,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Normally",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "ice_creame_12312@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "city": "Запоріжжя",
+    "district": "Вознесенівський",
+    "address": "вул.Берегова 15",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Кусюмова Богдана Петрівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar4.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "bogdana_bomba@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "city": "Херсон",
+    "district": "Суворовський",
+    "address": "вул.Чорноморська 10",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 20,
+    "reviewsCount": 6,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 3,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["19:00", "19:20"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar5.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Good",
+    "qualification": "First category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "queen910@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "city": "Херсон",
+    "district": "Дніпровський",
+    "address": "вул.Чорноморська 159",
+    "clinicType": "Державна клініка",
+    "speciality": "Стоматолог",
+    "rating": 10,
+    "reviewsCount": 2,
+    "dataType": "doctor",
+    "name": "Петренко Оксана Іванівна",
+    "experience": 5,
+    "availableHours": {
+      "available": true,
+      "workHours": ["09:00", "20:00"],
+      "availableTime": ["12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "16:00"]
+    },
+    "sex": "female",
+    "avatar": "http://mua.ua/img/avatar1.png",
+    "tags": ["The doctor accepts declarations"],
+    "grade": "Very good",
+    "qualification": "Second category",
+    "servicePayment": {
+      "freeByReferral": true,
+      "declarationNSZU": true,
+      "paidAppointment": false
+    },
+    "socials": [
+      {
+        "title": "Telegram",
+        "link": "https://web.telegram.org"
+      },
+      {
+        "title": "Instagram",
+        "link": "https://www.viber.com/ru/"
+      }
+    ],
+    "email": "blablabla111@gmail.com",
+    "contacts": [
+      {
+        "operator": "lifecell",
+        "phone": "(073) 32 434 27"
+      },
+      {
+        "operator": "vodafone",
+        "phone": "(095) 32 434 27"
+      },
+      {
+        "operator": "kyivstar",
+        "phone": "(067) 32 434 27"
+      }
+    ]
   }
 ]

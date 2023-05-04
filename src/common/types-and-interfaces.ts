@@ -365,10 +365,11 @@ export type TClinic = {
   district: string;
   name: string;
   address: string;
-  phoneNumberRegistry: string;
-  phoneNumberAdministration: string;
+  phoneNumber: string;
+  img: string;
+  medicine?: string[];
   tags?: {
-    title: string;
+    name: string;
   }[];
   workingHours: {
     day: string;
