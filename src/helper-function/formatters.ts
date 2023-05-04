@@ -9,3 +9,6 @@ export const phoneNumberFormatter = (phoneNumber: string | undefined) => {
     "$1 ($2) $3 $4 $5"
   );
 };
+
+export const yearsFormatter = (val: number): string =>
+  `Від ${val} ${val % 10 === 1 && val !== 11 ? "року" : "років"}`;

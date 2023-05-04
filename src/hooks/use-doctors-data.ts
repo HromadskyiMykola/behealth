@@ -54,8 +54,6 @@ export const useDoctorsData = () => {
 
   // chip labels
 
-
-
   type ChipData = {
     key: number;
     label: string;
@@ -69,8 +67,6 @@ export const useDoctorsData = () => {
   };
 
   // filter
-
-  // `${range.join("-")}грн`;
 
   const [selectedFilters, setSelectedFilters] = useState(filterOptions);
 
@@ -112,6 +108,7 @@ export const useDoctorsData = () => {
     filteredDoctors,
     setFilteredDoctors,
     filterOptions,
+    selectedFilters,
     setSelectedFilters,
     handleFilterChange,
   };

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 import { useDataContext } from "~/providers";
+import { yearsFormatter } from "~/helper-function";
 
 export const RangeExperience = () => {
   const {
@@ -45,7 +46,7 @@ export const RangeExperience = () => {
           Стаж лікаря від:
         </Typography>
         <Typography variant="body2" color={primary20}>
-          {range} {range % 10 === 1 && range !== 11 ? "року" : "років"}
+          {range} {yearsFormatter(range)}
         </Typography>
       </Stack>
 
