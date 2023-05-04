@@ -72,8 +72,24 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
 
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [selectedTime, setSelectedTime] = useState<any | null>(null);
+  console.log(selectedTime);
 
-  const { city, availableHours, district, address } = doctor;
+  const { city, availableHours, district, address, name, speciality, cabinet } =
+    doctor;
+  const valueBookDoctor = {
+    doctor: name,
+    speciality: speciality,
+    data: selectedTime?.date,
+    time: selectedTime?.time,
+    address: `${city} ${address}`,
+    office: cabinet ?? "Уточнюйте на реєстратурі",
+  };
+
+  const calendarSlick = {
+    workTime: availableHours.workHours,
+    availableTime: availableHours.availableTime,
+  };
 
   const headerItemValues = {
     speciality: doctor.speciality,
@@ -82,6 +98,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
     reviewsCount: doctor.reviewsCount,
     rating: doctor.rating,
     avatar: doctor.avatar,
+    cabinet: doctor.cabinet,
   };
 
   const handleOpen = () => {
@@ -109,7 +126,9 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
     setOpen(false);
     setConfirm(false);
   };
-
+  const setValueDateAndTime = (value: any) => {
+    setSelectedTime(value);
+  };
   return (
     <CustomizedPaper>
       <Stack gap="32px" direction="row">
@@ -124,7 +143,12 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
             borderRadius="10px"
             sx={{ border: `1px solid ${custom.neutral90}` }}
           >
-            <MapInfoDoctor city={city} district={district} address={address} />
+            <MapInfoDoctor
+              city={city}
+              district={district}
+              address={address}
+              cabinet={cabinet}
+            />
 
             <Typography
               variant="caption"
@@ -148,9 +172,13 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
           gap="16px"
         >
           <BoxCalendar>
-            <CalendarSlick />
+            <CalendarSlick
+              {...calendarSlick}
+              setValueDateAndTime={setValueDateAndTime}
+            />
           </BoxCalendar>
           <Button
+            disabled={!selectedTime}
             variant="contained"
             sx={{ width: "100%", height: "40px" }}
             onClick={handleOpen}
@@ -188,11 +216,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
                             {item}
                           </Typography>
                           <Typography variant="body2" component="span">
-                            {` ${
-                              Object.values(POP_UP_DOC_APPOINTMENT_1_VALUE)[
-                                index
-                              ]
-                            }`}
+                            {` ${Object.values(valueBookDoctor)[index]}`}
                           </Typography>
                         </CustomListItem>
                       );

@@ -2,16 +2,10 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { Map, MapPin } from "lucide-react";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material";
 import { GoogleMapLink } from "~/components/atomic";
-
-type Props = {
-  city?: string;
-  district?: string;
-  address?: string;
-};
+import { IPropsMapInfoDoctor } from "~/common";
 
 const BoxInfo = styled("div")(({ theme }) => ({
   display: "flex",
@@ -22,7 +16,12 @@ const BoxInfo = styled("div")(({ theme }) => ({
   whiteSpace: "nowrap",
 }));
 
-export const MapInfoDoctor = ({ city, district, address }: Props) => {
+export const MapInfoDoctor = ({
+  city,
+  district,
+  address,
+  cabinet,
+}: IPropsMapInfoDoctor) => {
   const { custom } = useTheme().palette;
   return (
     <Box display="flex" flexDirection="column" gap="16px">
@@ -49,7 +48,7 @@ export const MapInfoDoctor = ({ city, district, address }: Props) => {
           }}
         />
         <Typography variant="caption" component="span">
-          {city}, {address}
+          {`${city}, ${address}, ${cabinet}`}
         </Typography>
         <GoogleMapLink address={"м. Київ, вул. Гмирі Бориса, 14 Б"}>
           <Typography color="#3DBF9A" variant="captionS">

@@ -1,4 +1,4 @@
-import { Box, Rating, Typography } from "@mui/material";
+import { Box, Rating, Stack, Typography, useTheme } from "@mui/material";
 
 import noAvatar from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
@@ -26,7 +26,7 @@ export const HeaderItem = ({
       <Box>
         <img
           src={avatar || noAvatar}
-          alt="doctor"
+          alt={`avatar-${name}`}
           width="132px"
           height="132px"
           style={{ borderRadius: "19px" }}
