@@ -15,21 +15,31 @@ import { ClinicAppointmentModal } from "~/components/clinic/ClinicAppointmentMod
 import { Chips } from "~/components/clinic/Chips";
 import { CustomizedPaper, GoogleMapLink } from "~/components/atomic";
 import { useNavigate } from "react-router-dom";
+import { TClinic } from "~/common";
 
 const maxGridsToShow = 4;
 
 export interface ClinicCardProps {
-  card: IClinicCard;
+  clinic: TClinic;
 }
 
-export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
+export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
   const [showAll, setShowAll] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const theme = useTheme();
   const navigate = useNavigate();
   const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { working, address, medicine, name, img, type, chips, phone } = card;
+  const {
+    address,
+    name,
+    clinicType,
+    img,
+    medicine,
+    phoneNumber,
+    tags,
+    workingHours,
+  } = clinic;
 
   const closeModal = () => setIsOpen(false);
 
@@ -64,10 +74,10 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
             }}
           >
             <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <Typography variant="body2">{type}</Typography>
+              <Typography variant="body2">{clinicType}</Typography>
               <Typography variant="h5">{name}</Typography>
             </Box>
-            <Chips chips={chips} />
+            {tags && <Chips chips={tags} />}
           </Box>
         </Box>
         <Box
@@ -80,42 +90,48 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
             gap: "33px",
           }}
         >
-          <Grid container spacing={4}>
-            {medicine
-              .slice(0, showAll ? medicine.length : maxGridsToShow)
-              .map((item) => (
-                <Grid key={item} item>
+          {tags && (
+            <Grid container spacing={4}>
+              {tags
+                ?.slice(0, showAll ? tags?.length : maxGridsToShow)
+                .map(({ name }) => (
+                  <Grid key={name} item>
+                    <Box
+                      sx={{ display: "flex", alignItems: "center", gap: "9px" }}
+                    >
+                      <VerifiedIcon color="#5C5F5D" size={16} />
+                      <Typography color="#444845" variant="caption">
+                        {name}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              {tags?.length > maxGridsToShow && (
+                <Grid item>
                   <Box
-                    sx={{ display: "flex", alignItems: "center", gap: "9px" }}
+                    onClick={() =>
+                      showAll ? setShowAll(false) : setShowAll(true)
+                    }
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      cursor: "pointer",
+                    }}
                   >
-                    <VerifiedIcon color="#5C5F5D" size={16} />
-                    <Typography color="#444845" variant="caption">
-                      {item}
+                    {showAll ? (
+                      <MinusIcon color="#3DBF9A" size={16} />
+                    ) : (
+                      <PlusIcon color="#3DBF9A" size={16} />
+                    )}
+                    <Typography color="#3DBF9A" variant="captionS">
+                      {showAll ? "Менше" : "Більше"}
                     </Typography>
                   </Box>
                 </Grid>
-              ))}
-            <Grid item>
-              <Box
-                onClick={() => (showAll ? setShowAll(false) : setShowAll(true))}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  cursor: "pointer",
-                }}
-              >
-                {showAll ? (
-                  <MinusIcon color="#3DBF9A" size={16} />
-                ) : (
-                  <PlusIcon color="#3DBF9A" size={16} />
-                )}
-                <Typography color="#3DBF9A" variant="captionS">
-                  {showAll ? "Менше" : "Більше"}
-                </Typography>
-              </Box>
+              )}
             </Grid>
-          </Grid>
+          )}
           <Box
             sx={{
               display: "flex",
@@ -133,7 +149,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
                 color="#444845"
                 size={24}
               />
-              <Typography variant="caption">{working}</Typography>
+              <Typography variant="caption">{workingHours[0].hours}</Typography>
             </Box>
             <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
               <MapPinIcon
@@ -183,7 +199,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ card }) => {
                   xmlns="http://www.w3.org/2000/svg"
                 />
               }
-              phone={phone}
+              phone={phoneNumber}
             />
           </Grid>
           <Grid item sx={{ display: "flex", gap: "16px" }}>

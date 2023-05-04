@@ -360,10 +360,11 @@ export type TClinic = {
   district: string;
   name: string;
   address: string;
-  phoneNumberRegistry: string;
-  phoneNumberAdministration: string;
+  phoneNumber: string;
+  img: string;
+  medicine?: string[];
   tags?: {
-    title: string;
+    name: string;
   }[];
   workingHours: {
     day: string;
@@ -382,8 +383,3 @@ export type THandleFilterChange = (
   key: keyof TFilterOptions | "resetFilter",
   value: string | boolean | number | number[],
 ) => void;
-
-// export type TAsideFilterComps = {
-//   optionsData: TOptionsData;
-//   handleFilterChange: THandleFilterChange;
-// };
