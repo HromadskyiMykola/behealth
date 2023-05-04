@@ -1,44 +1,36 @@
-import { SyntheticEvent } from "react";
+import { useDataContext } from "~/providers";
 
-import { TAsideFilterComps } from "~/common";
 import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
-export const DoctorAdditionalOptions = ({
-  optionsData,
-  handleFilterChange,
-}: TAsideFilterComps) => {
-  const handleCheck = (e: SyntheticEvent<Element, Event>, checked: boolean) => {
-    const input = e.target as HTMLInputElement;
-    const { name } = input;
-
-    if (name === "Лікар приймає декларації") {
-      handleFilterChange("doctorAcceptsDeclarations", checked, name);
-    }
-    if (name === "Лікар працює з eHealth (ЕСОЗ)") {
-      handleFilterChange("doctorWorksWithEHR", checked, name);
-    }
-
-    if (input.name === "Онлайн консультація") {
-      handleFilterChange("onlineConsultation", checked, name);
-    }
-    if (name === "Прийом дітей") {
-      handleFilterChange("admissionOfChildren", checked, name);
-    }
-  };
+export const DoctorAdditionalOptions = () => {
+  const { filterOptions, handleCheck } = useDataContext();
 
   return (
     <OptionsWrapper label="Додаткові опції">
-      <CheckBoxOption label="Лікар приймає декларації" onChange={handleCheck} />
-
       <CheckBoxOption
-        label="Лікар працює з eHealth (ЕСОЗ)"
+        name="doctorAcceptsDeclarations"
+        label={filterOptions.doctorAcceptsDeclarations.title}
         onChange={handleCheck}
       />
 
-      <CheckBoxOption label="Онлайн консультація" onChange={handleCheck} />
+      <CheckBoxOption
+        name="doctorWorksWithEHR"
+        label={filterOptions.doctorWorksWithEHR.title}
+        onChange={handleCheck}
+      />
 
-      <CheckBoxOption label="Прийом дітей" onChange={handleCheck} />
+      <CheckBoxOption
+        name="onlineConsultation"
+        label={filterOptions.onlineConsultation.title}
+        onChange={handleCheck}
+      />
+
+      <CheckBoxOption
+        name="admissionOfChildren"
+        label={filterOptions.admissionOfChildren.title}
+        onChange={handleCheck}
+      />
     </OptionsWrapper>
   );
 };

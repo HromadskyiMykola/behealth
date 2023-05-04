@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 
+import { DataProvider } from "~/providers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -13,9 +14,11 @@ dayjs.locale(uk);
 export function Root() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Header />
-      <Outlet />
-      <Footer />
+      <DataProvider>
+        <Header />
+        <Outlet />
+        <Footer />
+      </DataProvider>
     </LocalizationProvider>
   );
 }

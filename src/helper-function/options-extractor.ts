@@ -1,7 +1,7 @@
 import { TDoctor, TOptionsData } from "~/common";
 
 export const optionsTemplate = {
-  city: [] as string[],
+  city: ["Вся Україна"] as string[],
   districts: [] as string[],
   specs: [] as string[],
   qualifications: [] as string[],
@@ -26,8 +26,8 @@ export const optionsExtractor = (
     if (!optionsData.qualifications.includes(doc.qualification)) {
       optionsData.qualifications.push(doc.qualification);
     }
-    if (doc.servicePayment.paidAppointment) {
-      const price = doc.servicePayment.paidAppointment;
+    if (doc.paidAppointment) {
+      const price = doc.paidAppointment;
       const [min, max] = optionsData.rangePrice;
 
       (min === 0 || price < min) && (optionsData.rangePrice[0] = price);

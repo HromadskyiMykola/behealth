@@ -46,7 +46,7 @@ export const ClinicsPage = () => {
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
-            <SelectedItemsBox data={data} />
+            <SelectedItemsBox />
 
             <FilterClinics />
           </Box>
