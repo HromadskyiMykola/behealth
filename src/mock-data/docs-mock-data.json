@@ -822,7 +822,7 @@
     "district": "ПЗР",
     "address": "вул. Симиренка, 10",
     "tags": ["Online consultation"],
-    "grade": "Good",
+    "grade": "",
     "qualification": "The second category",
     "paidAppointment": false,
     "reviewsCount": 10,
@@ -994,7 +994,7 @@
       "Online consultation",
       "Reception of children"
     ],
-    "grade": "Very good",
+    "grade": "",
     "qualification": "Higher category",
     "paidAppointment": 700,
     "reviewsCount": 26,

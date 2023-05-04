@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   FormControl,
@@ -7,19 +7,35 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { TOptionsData } from "~/common";
 
-export const RangeExperience = ({
-  optionsData: { maxExperience },
-}: {
-  optionsData: TOptionsData;
-}) => {
+import { useDataContext } from "~/providers";
+
+export const RangeExperience = () => {
+  const {
+    optionsData: { maxExperience },
+    handleFilterChange,
+  } = useDataContext();
+
+  const [isMounted, setIsMounted] = useState(false);
   const [range, setRange] = useState<number>(0);
 
   const { primary20 } = useTheme().palette.custom;
 
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      handleFilterChange("rangeExperience", range);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [range]);
+
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setRange(newValue as number);
+    typeof newValue === "number" && setRange(newValue);
   };
 
   return (

@@ -13,7 +13,6 @@ export const CheckBoxOption = (
   return (
     <FormControlLabel
       {...props}
-      name={props.label as string}
       componentsProps={{
         typography: { variant: "caption", color: secondary40 },
       }}

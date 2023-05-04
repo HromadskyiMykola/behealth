@@ -12,34 +12,15 @@ import {
 
 import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
 
-// import { SearchBar } from "~/components/doctorsPage";
-
 import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
-// import { useDoctorsData } from "~/hooks";
 import { useDataContext } from "~/providers";
-
-const data: any = [
-  { key: 0, label: "Приватна клініка" },
-  { key: 1, label: "Добре" },
-  { key: 2, label: "Дуже добре" },
-  { key: 3, label: "Вища освіта" },
-  { key: 4, label: "Бімба! :)" },
-];
 
 export const DoctorsPage = () => {
   const { palette } = useTheme();
 
-  const {
-    doctors,
-    filteredDoctors,
-    optionsData,
-    setFilteredDoctors,
-    selectedFilters,
-    setSelectedFilters,
-    handleFilterChange,
-  } = useDataContext();
+  const { doctors, filteredDoctors, setFilteredDoctors } = useDataContext();
 
   return (
     <>
@@ -62,16 +43,12 @@ export const DoctorsPage = () => {
           Лікарі
         </Typography>
 
-        <SearchBar
-          doctors={doctors}
-          optionsData={optionsData}
-          setFilteredDoctors={setFilteredDoctors}
-        />
+        <SearchBar />
 
         <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
           <Box sx={{ flex: "0 1 328px" }}>
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <SelectedItemsBox data={data} />
+              <SelectedItemsBox />
             </CustomizedPaper>
 
             <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>

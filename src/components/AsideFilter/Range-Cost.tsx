@@ -20,29 +20,28 @@ export const RangeCost = () => {
     }
 
     const timer = setTimeout(() => {
-      console.log("ok");
-
-      handleFilterChange("rangePrice", range, `${range.join("-")}грн`);
+      handleFilterChange("rangePrice", range);
     }, 500);
+
     return () => clearTimeout(timer);
   }, [range]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    if (Array.isArray(newValue)) {
-      setRange(newValue);
-    }
+    Array.isArray(newValue) && setRange(newValue);
   };
 
   return (
     <FormControl>
       <Stack direction="row" alignItems="center" gap="14.5px">
         <TextField value={range[0]} sx={{ width: "112px", height: "48px" }} />
+
         <hr
           style={{
             width: "28px",
             border: "1.5px solid #212121",
           }}
         />
+
         <TextField value={range[1]} sx={{ width: "112px", height: "48px" }} />
       </Stack>
 

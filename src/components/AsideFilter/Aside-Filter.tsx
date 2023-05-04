@@ -12,22 +12,8 @@ import {
   RangeExperience,
 } from "./";
 
-import { useDataContext } from "~/providers";
-
 export const AsideFilter = () => {
-  const { palette, typography } = useTheme();
-
-    const {
-      doctors,
-      filteredDoctors,
-      optionsData,
-      setFilteredDoctors,
-      selectedFilters,
-      setSelectedFilters,
-      handleFilterChange,
-    } = useDataContext();
-
-
+  const { palette } = useTheme();
 
   return (
     <Stack gap="32px">
@@ -35,14 +21,14 @@ export const AsideFilter = () => {
         Фільтр
       </Typography>
 
-      <SelectDistrict  />
+      <SelectDistrict />
 
       <Stack gap="24px">
-        <ClinicType  />
+        <ClinicType />
 
         <Divider />
 
-        <DoctorAdditionalOptions  />
+        <DoctorAdditionalOptions />
 
         <Divider />
 
@@ -56,14 +42,14 @@ export const AsideFilter = () => {
 
         <Divider />
 
-        <RangeExperience optionsData={optionsData} />
+        <RangeExperience />
 
         <Divider />
 
         <PatientEvaluation />
       </Stack>
 
-      <DoctorQualifications  />
+      <DoctorQualifications />
     </Stack>
   );
 };
