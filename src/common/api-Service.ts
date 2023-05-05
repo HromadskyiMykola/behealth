@@ -106,7 +106,7 @@ const useApiService = () => {
 
   const emailConfirmation = useCallback(
     (
-      { firstName, lastName, birthDate, mobileNum }: TAuthFormValues,
+      { firstName,middleName, lastName, birthDate, mobileNum }: TAuthFormValues,
       token: string | null
     ) =>
       _requestWithErrorHandling(
@@ -114,6 +114,7 @@ const useApiService = () => {
           .post(`confirmation?token=${token}`, {
             firstName,
             lastName,
+            middleName,
             birthDate,
             mobileNum,
           })

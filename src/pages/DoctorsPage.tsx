@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
@@ -10,30 +11,24 @@ import {
   SkeletonInfoCards,
 } from "~/components/atomic";
 
-import {
-  AsideFilter,
-  FilterViewMode,
-  SelectedItemsBox,
-} from "~/components/AsideFilter";
-
+import { FilterViewMode } from "~/components/AsideFilter";
 import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDataContext } from "~/providers";
 import { useDeviceType } from "~/hooks";
-import { useMemo, useState } from "react";
 
 const QTY = 5;
 
 export const DoctorsPage = () => {
-  const { palette } = useTheme();
-  const { isWidth600, isSmDown, isMdDown } = useDeviceType();
+  const { custom } = useTheme().palette;
+  const { isWidth600, isMdDown } = useDeviceType();
 
   const { doctors, filteredDoctors, setFilteredDoctors } = useDataContext();
   const [page, setPage] = useState(1);
 
   const count = useMemo(
-    () => Math.ceil(filteredDoctors.length / QTY) ,
+    () => Math.ceil(filteredDoctors.length / QTY),
     [filteredDoctors]
   );
 
@@ -52,7 +47,7 @@ export const DoctorsPage = () => {
 
         <Typography
           variant="h4"
-          color={palette.custom.primary20}
+          color={custom.primary20}
           sx={{
             mt: { xs: "16px", sm: "26px" },
             mb: { xs: "16px", sm: "32px" },
@@ -90,7 +85,7 @@ export const DoctorsPage = () => {
             <CustomizedPaper
               sx={{
                 mt: { xs: "16px", sm: "24px" },
-                p: "16px 32px",
+                p: { xs: "14px 16px", sm: "16px 32px" },
                 display: "flex",
                 justifyContent: "center",
               }}

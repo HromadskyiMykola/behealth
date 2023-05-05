@@ -4,26 +4,33 @@ import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
 export const PaymentForServices = () => {
-  const { filterOptions, handleCheck } = useDataContext();
+  const { selectedFilters, handleFilterChange } = useDataContext();
+
+  const { admissionByReferral, admissionByNHSU, admissionPaid } =
+    selectedFilters;
 
   return (
     <OptionsWrapper label="Оплата послуг">
       <CheckBoxOption
-        name="admissionByReferral"
-        label={filterOptions.admissionByReferral.title}
-        onChange={handleCheck}
+        label={admissionByReferral.title}
+        checked={admissionByReferral.val}
+        onChange={(e, checked) =>
+          handleFilterChange("admissionByReferral", checked)
+        }
       />
 
       <CheckBoxOption
-        name="admissionByNHSU"
-        label={filterOptions.admissionByNHSU.title}
-        onChange={handleCheck}
+        label={admissionByNHSU.title}
+        checked={admissionByNHSU.val}
+        onChange={(e, checked) =>
+          handleFilterChange("admissionByNHSU", checked)
+        }
       />
 
       <CheckBoxOption
-        name="admissionPaid"
-        label={filterOptions.admissionPaid.title}
-        onChange={handleCheck}
+        label={admissionPaid.title}
+        checked={admissionPaid.val}
+        onChange={(e, checked) => handleFilterChange("admissionPaid", checked)}
       />
     </OptionsWrapper>
   );

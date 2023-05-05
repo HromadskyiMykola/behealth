@@ -1,6 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 import { Pagination, useTheme } from "@mui/material";
+import { useDeviceType } from "~/hooks";
 
 type TProps = {
   count: number;
@@ -9,6 +10,7 @@ type TProps = {
 
 export const PaginationBottomBar = ({ count, setPage }: TProps) => {
   const { custom, primary } = useTheme().palette;
+  const { isWidth600 } = useDeviceType();
 
   const handleChangePage = (event: ChangeEvent<unknown>, page: number) => {
     setPage(page);
@@ -16,6 +18,8 @@ export const PaginationBottomBar = ({ count, setPage }: TProps) => {
 
   return (
     <Pagination
+      siblingCount={0}
+      boundaryCount={isWidth600 ? 0 : 1}
       count={count || 1}
       variant="outlined"
       shape="rounded"

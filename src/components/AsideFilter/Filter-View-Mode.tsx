@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   Box,
   Button,
-  Container,
   Dialog,
   DialogContent,
   IconButton,
@@ -15,38 +14,16 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { FilterIcon } from "lucide-react";
 
-import {
-  BreadcrumbsUkr,
-  CustomizedPaper,
-  PaginationBottomBar,
-  SelectTopBar,
-  SkeletonInfoCards,
-} from "~/components/atomic";
+import { CustomizedPaper } from "~/components/atomic";
 
 import { AsideFilter, SelectedItemsBox } from "./";
 
 import { useDeviceType } from "~/hooks";
 
-const DesktopMode = () => {
-  const { isWidth600, isSmDown, isMdDown } = useDeviceType();
-
-  return (
-    <Box sx={{ flex: "0 1 328px" }}>
-      <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-        <SelectedItemsBox />
-      </CustomizedPaper>
-
-      <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-        <AsideFilter />
-      </CustomizedPaper>
-    </Box>
-  );
-};
-
 const MobileMode = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { isWidth600, isSmDown, isMdDown } = useDeviceType();
-  const { primary, custom } = useTheme().palette;
+  const { isWidth600, isSmDown } = useDeviceType();
+  const { custom } = useTheme().palette;
 
   return (
     <>
@@ -120,8 +97,22 @@ const MobileMode = () => {
   );
 };
 
+const DesktopMode = () => {
+  return (
+    <Box sx={{ flex: "0 1 328px" }}>
+      <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+        <SelectedItemsBox />
+      </CustomizedPaper>
+
+      <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
+        <AsideFilter />
+      </CustomizedPaper>
+    </Box>
+  );
+};
+
 export const FilterViewMode = () => {
-  const { isWidth600, isSmDown, isMdDown } = useDeviceType();
+  const { isMdDown } = useDeviceType();
 
   return isMdDown ? <MobileMode /> : <DesktopMode />;
 };

@@ -373,6 +373,6 @@ export type TOptionsData = typeof optionsTemplate;
 export type TFilterOptions = typeof filterOptions;
 
 export type THandleFilterChange = (
-  key: keyof TFilterOptions | "resetFilter",
+  key: keyof TFilterOptions,
   value: string | boolean | number | number[]
 ) => void;
