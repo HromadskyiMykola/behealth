@@ -72,10 +72,10 @@ export const ClinicsPage = () => {
         >
           {!isMdDown && <FilterViewMode modeType="clinic" />}
 
-          <Box sx={{ flex: "1 0 auto" }}>
-            {/* <SelectTopBar /> TODO: */}
+          <Box>
+            {/* <SelectTopBar setFilteredData={setFilteredClinics} /> */}
 
-            {isMdDown && <FilterViewMode modeType="doctor" />}
+            {isMdDown && <FilterViewMode modeType="clinic" />}
 
             {clinics.length === 0 && <SkeletonInfoCards />}
 

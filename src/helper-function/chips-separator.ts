@@ -1,7 +1,7 @@
 import { ChipData, TFilterOptions } from "~/common";
 import { yearsFormatter } from "./formatters";
 
-const updateState = (
+const addStateKey = (
   state: ChipData,
   key: keyof TFilterOptions,
   label: string
@@ -12,7 +12,7 @@ const updateState = (
   };
 };
 
-const deleteStateKey = (state: ChipData, key: string) => {
+const delStateKey = (state: ChipData, key: string) => {
   delete state[key];
 };
 
@@ -47,99 +47,99 @@ export const chipsSeparator = (
   } = selectedFilters;
 
   admissionPaid.val
-    ? updateState(state, "admissionPaid", `${rangePrice.val.join("-")}грн`)
-    : deleteStateKey(state, "admissionPaid");
+    ? addStateKey(state, "admissionPaid", `${rangePrice.val.join("-")}грн`)
+    : delStateKey(state, "admissionPaid");
 
   stateClinic.val
-    ? updateState(state, "stateClinic", stateClinic.title)
-    : deleteStateKey(state, "stateClinic");
+    ? addStateKey(state, "stateClinic", stateClinic.title)
+    : delStateKey(state, "stateClinic");
 
   privateClinic.val
-    ? updateState(state, "privateClinic", privateClinic.title)
-    : deleteStateKey(state, "privateClinic");
+    ? addStateKey(state, "privateClinic", privateClinic.title)
+    : delStateKey(state, "privateClinic");
 
   doctorAcceptsDeclarations.val
-    ? updateState(
+    ? addStateKey(
         state,
         "doctorAcceptsDeclarations",
         doctorAcceptsDeclarations.title
       )
-    : deleteStateKey(state, "doctorAcceptsDeclarations");
+    : delStateKey(state, "doctorAcceptsDeclarations");
 
   doctorWorksWithEHR.val
-    ? updateState(state, "doctorWorksWithEHR", doctorWorksWithEHR.title)
-    : deleteStateKey(state, "doctorWorksWithEHR");
+    ? addStateKey(state, "doctorWorksWithEHR", doctorWorksWithEHR.title)
+    : delStateKey(state, "doctorWorksWithEHR");
 
   onlineConsultation.val
-    ? updateState(state, "onlineConsultation", onlineConsultation.title)
-    : deleteStateKey(state, "onlineConsultation");
+    ? addStateKey(state, "onlineConsultation", onlineConsultation.title)
+    : delStateKey(state, "onlineConsultation");
 
   admissionOfChildren.val
-    ? updateState(state, "admissionOfChildren", admissionOfChildren.title)
-    : deleteStateKey(state, "admissionOfChildren");
+    ? addStateKey(state, "admissionOfChildren", admissionOfChildren.title)
+    : delStateKey(state, "admissionOfChildren");
 
   admissionByNHSU.val
-    ? updateState(state, "admissionByNHSU", admissionByNHSU.title)
-    : deleteStateKey(state, "admissionByNHSU");
+    ? addStateKey(state, "admissionByNHSU", admissionByNHSU.title)
+    : delStateKey(state, "admissionByNHSU");
 
   admissionByReferral.val
-    ? updateState(state, "admissionByReferral", admissionByReferral.title)
-    : deleteStateKey(state, "admissionByReferral");
+    ? addStateKey(state, "admissionByReferral", admissionByReferral.title)
+    : delStateKey(state, "admissionByReferral");
 
   female.val
-    ? updateState(state, "female", female.title)
-    : deleteStateKey(state, "female");
+    ? addStateKey(state, "female", female.title)
+    : delStateKey(state, "female");
 
   male.val
-    ? updateState(state, "male", male.title)
-    : deleteStateKey(state, "male");
+    ? addStateKey(state, "male", male.title)
+    : delStateKey(state, "male");
 
   evaluationNo.val
-    ? updateState(state, "evaluationNo", evaluationNo.title)
-    : deleteStateKey(state, "evaluationNo");
+    ? addStateKey(state, "evaluationNo", evaluationNo.title)
+    : delStateKey(state, "evaluationNo");
 
   evaluationNormally.val
-    ? updateState(state, "evaluationNormally", evaluationNormally.title)
-    : deleteStateKey(state, "evaluationNormally");
+    ? addStateKey(state, "evaluationNormally", evaluationNormally.title)
+    : delStateKey(state, "evaluationNormally");
 
   evaluationGood.val
-    ? updateState(state, "evaluationGood", evaluationGood.title)
-    : deleteStateKey(state, "evaluationGood");
+    ? addStateKey(state, "evaluationGood", evaluationGood.title)
+    : delStateKey(state, "evaluationGood");
 
   evaluationVeryGood.val
-    ? updateState(state, "evaluationVeryGood", evaluationVeryGood.title)
-    : deleteStateKey(state, "evaluationVeryGood");
+    ? addStateKey(state, "evaluationVeryGood", evaluationVeryGood.title)
+    : delStateKey(state, "evaluationVeryGood");
 
   if (rangeExperience.val) {
     const { val } = rangeExperience;
-    updateState(state, "rangeExperience", `Від ${val} ${yearsFormatter(val)}`);
+    addStateKey(state, "rangeExperience", `Від ${val} ${yearsFormatter(val)}`);
   } else {
-    deleteStateKey(state, "rangeExperience");
+    delStateKey(state, "rangeExperience");
   }
 
   qualification.val
-    ? updateState(state, "qualification", qualification.val)
-    : deleteStateKey(state, "qualification");
+    ? addStateKey(state, "qualification", qualification.val)
+    : delStateKey(state, "qualification");
 
   parking.val
-    ? updateState(state, "parking", parking.title)
-    : deleteStateKey(state, "parking");
+    ? addStateKey(state, "parking", parking.title)
+    : delStateKey(state, "parking");
 
   kidsRoom.val
-    ? updateState(state, "kidsRoom", kidsRoom.title)
-    : deleteStateKey(state, "kidsRoom");
+    ? addStateKey(state, "kidsRoom", kidsRoom.title)
+    : delStateKey(state, "kidsRoom");
 
   paymentByCard.val
-    ? updateState(state, "paymentByCard", paymentByCard.title)
-    : deleteStateKey(state, "paymentByCard");
+    ? addStateKey(state, "paymentByCard", paymentByCard.title)
+    : delStateKey(state, "paymentByCard");
 
   zoneWiFi.val
-    ? updateState(state, "zoneWiFi", zoneWiFi.title)
-    : deleteStateKey(state, "zoneWiFi");
+    ? addStateKey(state, "zoneWiFi", zoneWiFi.title)
+    : delStateKey(state, "zoneWiFi");
 
   pharmacy.val
-    ? updateState(state, "pharmacy", pharmacy.title)
-    : deleteStateKey(state, "pharmacy");
+    ? addStateKey(state, "pharmacy", pharmacy.title)
+    : delStateKey(state, "pharmacy");
 
   return state;
 };
