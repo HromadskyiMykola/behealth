@@ -10,17 +10,32 @@ import {
   SkeletonInfoCards,
 } from "~/components/atomic";
 
-import { AsideFilter, SelectedItemsBox } from "~/components/AsideFilter";
+import {
+  AsideFilter,
+  FilterViewMode,
+  SelectedItemsBox,
+} from "~/components/AsideFilter";
 
 import { SearchBar } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDataContext } from "~/providers";
+import { useDeviceType } from "~/hooks";
+import { useMemo, useState } from "react";
+
+const QTY = 5;
 
 export const DoctorsPage = () => {
   const { palette } = useTheme();
+  const { isWidth600, isSmDown, isMdDown } = useDeviceType();
 
   const { doctors, filteredDoctors, setFilteredDoctors } = useDataContext();
+  const [page, setPage] = useState(1);
+
+  const count = useMemo(
+    () => Math.ceil(filteredDoctors.length / QTY) ,
+    [filteredDoctors]
+  );
 
   return (
     <>
@@ -38,43 +53,49 @@ export const DoctorsPage = () => {
         <Typography
           variant="h4"
           color={palette.custom.primary20}
-          sx={{ mt: "26px", mb: "32px" }}
+          sx={{
+            mt: { xs: "16px", sm: "26px" },
+            mb: { xs: "16px", sm: "32px" },
+          }}
         >
           Лікарі
         </Typography>
 
         <SearchBar />
 
-        <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
-          <Box sx={{ flex: "0 1 328px" }}>
-            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <SelectedItemsBox />
-            </CustomizedPaper>
-
-            <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-              <AsideFilter />
-            </CustomizedPaper>
-          </Box>
+        <Stack
+          direction="row"
+          gap="32px"
+          sx={{ mt: { xs: "16px", sm: "32px" } }}
+        >
+          {!isMdDown && <FilterViewMode />}
 
           <Box sx={{ flex: "1 0 auto" }}>
             <SelectTopBar setFilteredData={setFilteredDoctors} />
 
+            {isMdDown && <FilterViewMode />}
+
             {doctors.length === 0 && <SkeletonInfoCards />}
 
             {filteredDoctors.length > 0 &&
-              filteredDoctors.map((doctor, i) => (
-                <SmallCardDoctor key={`doc${doctor.id}-${i}`} doctor={doctor} />
-              ))}
+              filteredDoctors
+                .slice(page - 1, page - 1 + QTY)
+                .map((doctor, i) => (
+                  <SmallCardDoctor
+                    key={`doc${doctor.id}-${i}`}
+                    doctor={doctor}
+                  />
+                ))}
 
             <CustomizedPaper
               sx={{
-                mt: "24px",
+                mt: { xs: "16px", sm: "24px" },
                 p: "16px 32px",
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              <PaginationBottomBar />
+              <PaginationBottomBar count={count} setPage={setPage} />
             </CustomizedPaper>
           </Box>
         </Stack>

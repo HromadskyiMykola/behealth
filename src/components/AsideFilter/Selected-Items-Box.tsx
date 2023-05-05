@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { Chip, Stack, Typography, useTheme } from "@mui/material";
 import { useDataContext } from "~/providers";
-import { yearsFormatter } from "~/helper-function";
+import { genKey, yearsFormatter } from "~/helper-function";
 
 type ChipData = {
   key: string;
   label: string;
 };
 
-const genKey = () => Math.random().toFixed(10).substring(2);
+const pushToState = (state: ChipData[], label: string) => {
+  state.push({
+    key: genKey(),
+    label,
+  });
+};
 
 export const SelectedItemsBox = () => {
   const { palette } = useTheme();
@@ -60,122 +65,72 @@ export const SelectedItemsBox = () => {
     // console.log("eff>>", );
     setChipData((state) => {
       if (admissionPaid.val) {
-        state.push({
-          key: genKey(),
-          label: `${rangePrice.val.join("-")}грн`,
-        });
+        pushToState(chipData, `${rangePrice.val.join("-")}грн`);
       }
 
       if (stateClinic.val) {
-        state.push({
-          key: genKey(),
-          label: stateClinic.title,
-        });
+        pushToState(chipData, stateClinic.title);
       }
 
       if (privateClinic.val) {
-        state.push({
-          key: genKey(),
-          label: privateClinic.title,
-        });
+        pushToState(chipData, privateClinic.title);
       }
 
       if (doctorAcceptsDeclarations.val) {
-        state.push({
-          key: genKey(),
-          label: doctorAcceptsDeclarations.title,
-        });
+        pushToState(chipData, doctorAcceptsDeclarations.title);
       }
 
       if (doctorWorksWithEHR.val) {
-        state.push({
-          key: genKey(),
-          label: doctorWorksWithEHR.title,
-        });
+        pushToState(chipData, doctorWorksWithEHR.title);
       }
 
       if (onlineConsultation.val) {
-        state.push({
-          key: genKey(),
-          label: onlineConsultation.title,
-        });
+        pushToState(chipData, onlineConsultation.title);
       }
 
       if (admissionOfChildren.val) {
-        state.push({
-          key: genKey(),
-          label: admissionOfChildren.title,
-        });
+        pushToState(chipData, admissionOfChildren.title);
       }
 
       if (admissionByNHSU.val) {
-        state.push({
-          key: genKey(),
-          label: admissionByNHSU.title,
-        });
+        pushToState(chipData, admissionByNHSU.title);
       }
 
       if (admissionByReferral.val) {
-        state.push({
-          key: genKey(),
-          label: admissionByReferral.title,
-        });
+        pushToState(chipData, admissionByReferral.title);
       }
 
       if (female.val) {
-        state.push({
-          key: genKey(),
-          label: female.title,
-        });
+        pushToState(chipData, female.title);
       }
 
       if (male.val) {
-        state.push({
-          key: genKey(),
-          label: male.title,
-        });
+        pushToState(chipData, male.title);
       }
 
       if (evaluationNo.val) {
-        state.push({
-          key: genKey(),
-          label: evaluationNo.title,
-        });
+        pushToState(chipData, evaluationNo.title);
       }
 
       if (evaluationNormally.val) {
-        state.push({
-          key: genKey(),
-          label: evaluationNormally.title,
-        });
+        pushToState(chipData, evaluationNormally.title);
       }
 
       if (evaluationGood.val) {
-        state.push({
-          key: genKey(),
-          label: evaluationGood.title,
-        });
+        pushToState(chipData, evaluationGood.title);
       }
 
       if (evaluationVeryGood.val) {
-        state.push({
-          key: genKey(),
-          label: evaluationVeryGood.title,
-        });
+        pushToState(chipData, evaluationVeryGood.title);
       }
 
       if (rangeExperience.val) {
-        state.push({
-          key: genKey(),
-          label: yearsFormatter(rangeExperience.val),
-        });
+        const { val } = rangeExperience;
+        pushToState(chipData, `Від ${val} ${yearsFormatter(val)}`);
       }
 
       if (qualification.val) {
-        state.push({
-          key: genKey(),
-          label: qualification.val,
-        });
+        pushToState(chipData, qualification.val);
       }
 
       return state;
@@ -205,11 +160,13 @@ export const SelectedItemsBox = () => {
       >
         {chipData.length > 0 && (
           <Chip
+            sx={{ display: { xs: "inline-flex", md: "none" } }}
             color="error"
             label="Скинути всі"
             onClick={() => setChipData([])}
           />
         )}
+
         {chipData.map((data) => (
           <Chip
             key={data.key}
@@ -223,7 +180,7 @@ export const SelectedItemsBox = () => {
       <Typography
         variant="body2"
         color={palette.primary.main}
-        sx={{ cursor: "pointer" }}
+        sx={{ cursor: "pointer", display: { xs: "none", md: "block" } }}
         onClick={() => setChipData([])}
       >
         Скинути всі

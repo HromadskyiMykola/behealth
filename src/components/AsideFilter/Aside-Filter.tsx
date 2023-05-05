@@ -13,11 +13,15 @@ import {
 } from "./";
 
 export const AsideFilter = () => {
-  const { palette } = useTheme();
+  const { custom } = useTheme().palette;
 
   return (
     <Stack gap="32px">
-      <Typography variant="h5" color={palette.custom.primary20}>
+      <Typography
+        variant="h5"
+        color={custom.primary20}
+        sx={{ display: { xs: "none", sm: "block" } }}
+      >
         Фільтр
       </Typography>
 
