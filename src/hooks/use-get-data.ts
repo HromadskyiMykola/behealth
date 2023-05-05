@@ -1,7 +1,8 @@
-import { TDoctor, THandleFilterChange, useApiService } from "~/common";
+import { TClinic, TDoctor, THandleFilterChange, useApiService } from "~/common";
 import { useEffect, useState } from "react";
 import {
-  optionsComparator,
+  doctorOptionsComparator,
+  clinicOptionsComparator,
   optionsExtractor,
   optionsTemplate,
 } from "~/helper-function";
@@ -28,15 +29,20 @@ export const filterOptions = {
   evaluationVeryGood: { val: false, title: "Дуже добре" },
   qualification: { val: "", title: "" },
   speciality: { val: "", title: "" },
-  // unnecessary
-  // medicalFacilityType: "",
-  // additionalOptions: "",
+  // clinic options
+  parking: { val: false, title: "Паркінг" },
+  kidsRoom: { val: false, title: "Дитяча кімната" },
+  paymentByCard: { val: false, title: "Оплата картою" },
+  zoneWiFi: { val: false, title: "Wi-Fi зона" },
+  pharmacy: { val: false, title: "Аптека" },
 };
 
-export const useDoctorsData = () => {
-  const { getDoctors } = useApiService();
+export const useGetData = () => {
+  const { getDoctors, getClinics } = useApiService();
   const [doctors, setDoctors] = useState([] as TDoctor[]);
+  const [clinics, setClinics] = useState([] as TClinic[]);
   const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
+  const [filteredClinics, setFilteredClinics] = useState([] as TClinic[]);
   const [optionsData, setOptionsData] = useState(optionsTemplate);
   const [selectedFilters, setSelectedFilters] = useState(filterOptions);
 
@@ -46,10 +52,14 @@ export const useDoctorsData = () => {
       setFilteredDoctors(res);
       setOptionsData((prev) => optionsExtractor(res, prev));
     });
-  }, []);
-  
 
-  
+    getClinics().then((res) => {
+      setClinics(res);
+      setFilteredClinics(res);
+      setOptionsData((prev) => optionsExtractor(res, prev));
+    });
+  }, []);
+
   const handleFilterChange: THandleFilterChange = (key, value) => {
     setSelectedFilters((prevOptions) => {
       const updatedOptions = { ...prevOptions };
@@ -61,16 +71,23 @@ export const useDoctorsData = () => {
 
   useEffect(() => {
     const newFilteredDoctors = doctors.filter((doctor) =>
-      optionsComparator(doctor, selectedFilters)
+      doctorOptionsComparator(doctor, selectedFilters)
+    );
+
+    const newFilteredClinics = clinics.filter((clinic) =>
+      clinicOptionsComparator(clinic, selectedFilters)
     );
 
     setFilteredDoctors(newFilteredDoctors);
+    setFilteredClinics(newFilteredClinics);
   }, [selectedFilters]);
 
   return {
     optionsData,
     doctors,
     filteredDoctors,
+    clinics,
+    filteredClinics,
     setFilteredDoctors,
     filterOptions,
     selectedFilters,
