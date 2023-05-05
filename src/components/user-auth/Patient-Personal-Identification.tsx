@@ -6,7 +6,6 @@ import {
   Grid,
   IconButton,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 
@@ -14,7 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { CustomizedInput } from "../atomic";
 
-import { useReactHookForm } from "~/hooks";
+import { useDeviceType, useReactHookForm } from "~/hooks";
 import { TAuthFormValues } from "~/common";
 import {
   RHFBirthDate,
@@ -31,19 +30,19 @@ interface IProps {
 
 export function PatientPersonalIdentification({ onSubmit, email }: IProps) {
   const [openIdentificationModal, setOpenIdentificationModal] = useState(true);
-  const { breakpoints, palette } = useTheme();
-  const isWidth380px = useMediaQuery(breakpoints.down("mobile"));
+  const { palette } = useTheme();
+  const { isWidth380 } = useDeviceType();
 
   const { control, handleSubmit, errors, isValid } = useReactHookForm();
 
   return (
     <Dialog
-      fullScreen={isWidth380px}
+      fullScreen={isWidth380}
       scroll="body"
       open={openIdentificationModal}
       sx={{
         "& .MuiPaper-root": {
-          borderRadius: isWidth380px
+          borderRadius: isWidth380
             ? {
                 xs: "0px",
               }

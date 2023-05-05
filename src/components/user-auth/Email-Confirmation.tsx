@@ -34,6 +34,7 @@ export const EmailConfirmation = () => {
       </Helmet>
 
       <PatientPersonalIdentification email={email} onSubmit={onSubmit} />
+
       <SimpleModal apiError={apiError} loading={loading} />
     </>
   );
