@@ -23,6 +23,7 @@ interface IContextData {
   filteredClinics: TClinic[];
   optionsData: TOptionsData;
   setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
+  setFilteredClinics: (value: SetStateAction<TClinic[]>) => void;
   filterOptions: TFilterOptions;
   selectedFilters: TFilterOptions;
   setSelectedFilters: (value: SetStateAction<TFilterOptions>) => void;
@@ -42,6 +43,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     filteredClinics,
     optionsData,
     setFilteredDoctors,
+    setFilteredClinics,
     filterOptions,
     selectedFilters,
     setSelectedFilters,
@@ -59,6 +61,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         filteredClinics,
         optionsData,
         setFilteredDoctors,
+        setFilteredClinics,
         filterOptions,
         selectedFilters,
         setSelectedFilters,

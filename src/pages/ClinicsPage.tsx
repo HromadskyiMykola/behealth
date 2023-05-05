@@ -1,25 +1,43 @@
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 
 import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   BreadcrumbsUkr,
+  CustomizedPaper,
   PaginationBottomBar,
   SelectTopBar,
   SkeletonInfoCards,
 } from "~/components/atomic";
 import { SelectedItemsBox } from "~/components/AsideFilter";
 
-import { FilterClinics, SearchClinics, Clinics } from "~/components/clinic";
+import {
+  FilterClinics,
+  SearchClinics,
+  SmallClinicCard,
+} from "~/components/clinic";
 
-const data = [
-  { key: 0, label: "Приватна клініка" },
-  { key: 1, label: "Державна клініка" },
-  { key: 2, label: "Повна клініка :)" },
-];
+import { FilterViewMode } from "~/components/AsideFilter";
+import { SearchBar } from "~/components/doctorsPage";
+import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
+
+import { useDataContext } from "~/providers";
+import { useDeviceType } from "~/hooks";
+
+const QTY = 5;
 
 export const ClinicsPage = () => {
-  const { primary20 } = useTheme().palette.custom;
+  const { custom } = useTheme().palette;
+  const { isWidth600, isMdDown } = useDeviceType();
+
+  const { clinics, filteredClinics, setFilteredClinics } = useDataContext();
+  const [page, setPage] = useState(1);
+
+  const count = useMemo(
+    () => Math.ceil(filteredClinics.length / QTY),
+    [filteredClinics]
+  );
 
   return (
     <>
@@ -36,29 +54,51 @@ export const ClinicsPage = () => {
 
         <Typography
           variant="h4"
-          color={primary20}
-          sx={{ mt: "26px", mb: "32px" }}
+          color={custom.primary20}
+          sx={{
+            mt: { xs: "16px", sm: "26px" },
+            mb: { xs: "16px", sm: "32px" },
+          }}
         >
           Клініки
         </Typography>
 
         <SearchClinics />
 
-        <Stack direction="row" gap="32px" sx={{ mt: "32px" }}>
-          <Box sx={{ flex: "0 1 328px" }}>
-            <SelectedItemsBox />
+        <Stack
+          direction="row"
+          gap="32px"
+          sx={{ mt: { xs: "16px", sm: "32px" } }}
+        >
+          {!isMdDown && <FilterViewMode modeType="clinic" />}
 
-            <FilterClinics />
-          </Box>
+          <Box sx={{ flex: "1 0 auto" }}>
+            {/* <SelectTopBar /> TODO: */}
 
-          <Box sx={{ flex: "1 0 auto", maxWidth: "1000px" }}>
-            {/* <SelectTopBar />   TODO:   */}
+            {isMdDown && <FilterViewMode modeType="doctor" />}
 
-            {/* {clinics.length === 0 && <SkeletonInfoCards />} */}
+            {clinics.length === 0 && <SkeletonInfoCards />}
 
-            <Clinics />
+            {filteredClinics.length > 0 &&
+              filteredClinics
+                .slice(page - 1, page - 1 + QTY)
+                .map((clinic, i) => (
+                  <SmallClinicCard
+                    key={`doc${clinic.id}-${i}`}
+                    clinic={clinic}
+                  />
+                ))}
 
-            {/* <PaginationBottomBar count={count} setPage={setPage} /> */}
+            <CustomizedPaper
+              sx={{
+                mt: { xs: "16px", sm: "24px" },
+                p: { xs: "14px 16px", sm: "16px 32px" },
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <PaginationBottomBar count={count} setPage={setPage} />
+            </CustomizedPaper>
           </Box>
         </Stack>
       </Container>

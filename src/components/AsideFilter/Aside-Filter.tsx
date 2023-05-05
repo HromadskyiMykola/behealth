@@ -12,7 +12,8 @@ import {
   RangeExperience,
 } from "./";
 
-export const AsideFilter = () => {
+type TProps = { modeType: "doctor" | "clinic" };
+export const AsideFilter = ({ modeType }: TProps) => {
   const { custom } = useTheme().palette;
 
   return (
