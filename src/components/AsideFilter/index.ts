@@ -10,3 +10,4 @@ export * from "./Gender-Of-Doctor";
 export * from "./Doctor-Qualifications";
 export * from "./Range-Cost";
 export * from "./Range-Experience";
+export * from "./Filter-View-Mode";

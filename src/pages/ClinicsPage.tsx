@@ -58,7 +58,7 @@ export const ClinicsPage = () => {
 
             <Clinics />
 
-            <PaginationBottomBar />
+            {/* <PaginationBottomBar count={count} setPage={setPage} /> */}
           </Box>
         </Stack>
       </Container>
