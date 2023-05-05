@@ -73,7 +73,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [selectedTime, setSelectedTime] = useState<any | null>(null);
-  console.log(selectedTime);
+  // console.log(selectedTime);
 
   const { city, availableHours, district, address, name, speciality, cabinet } =
     doctor;

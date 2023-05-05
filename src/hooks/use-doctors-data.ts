@@ -1,10 +1,5 @@
-import {
-  TDoctor,
-  TFilterOptions,
-  THandleFilterChange,
-  useApiService,
-} from "~/common";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { TDoctor, THandleFilterChange, useApiService } from "~/common";
+import { useEffect, useState } from "react";
 import {
   optionsComparator,
   optionsExtractor,
@@ -43,6 +38,7 @@ export const useDoctorsData = () => {
   const [doctors, setDoctors] = useState([] as TDoctor[]);
   const [filteredDoctors, setFilteredDoctors] = useState([] as TDoctor[]);
   const [optionsData, setOptionsData] = useState(optionsTemplate);
+  const [selectedFilters, setSelectedFilters] = useState(filterOptions);
 
   useEffect(() => {
     getDoctors().then((res) => {
@@ -52,45 +48,19 @@ export const useDoctorsData = () => {
     });
   }, []);
 
-  // chip labels
-
-  type ChipData = {
-    key: number;
-    label: string;
+  const handleFilterReset = () => {
+    setFilteredDoctors(doctors);
+    setSelectedFilters(filterOptions);
   };
-  const [chipData, setChipData] = useState<ChipData[]>([]);
-
-  const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
-  };
-
-  // filter
-
-  const [selectedFilters, setSelectedFilters] = useState(filterOptions);
 
   const handleFilterChange: THandleFilterChange = (key, value) => {
-    if (key === "resetFilter") {
-      setFilteredDoctors(doctors);
-      setSelectedFilters(filterOptions);
-      return;
-    }
-
     setSelectedFilters((prevOptions) => {
       const updatedOptions = { ...prevOptions };
       updatedOptions[key].val = value;
+      console.log("hand", key);
 
       return updatedOptions;
     });
-  };
-
-  const handleCheck = (e: SyntheticEvent<Element, Event>, checked: boolean) => {
-    const input = e.target as HTMLInputElement;
-    const { name } = input;
-    const key = name as keyof TFilterOptions;
-
-    handleFilterChange(key, checked);
   };
 
   useEffect(() => {
@@ -102,7 +72,6 @@ export const useDoctorsData = () => {
   }, [selectedFilters]);
 
   return {
-    handleCheck,
     optionsData,
     doctors,
     filteredDoctors,
@@ -111,5 +80,6 @@ export const useDoctorsData = () => {
     selectedFilters,
     setSelectedFilters,
     handleFilterChange,
+    handleFilterReset,
   };
 };

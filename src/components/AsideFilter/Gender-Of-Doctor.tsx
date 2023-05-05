@@ -4,20 +4,22 @@ import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
 export const GenderOfDoctor = () => {
-  const { filterOptions, handleCheck } = useDataContext();
+  const { selectedFilters, handleFilterChange } = useDataContext();
+
+  const { male, female } = selectedFilters;
 
   return (
     <OptionsWrapper label="Стать лікаря">
       <CheckBoxOption
-        name="male"
-        label={filterOptions.male.title}
-        onChange={handleCheck}
+        label={male.title}
+        checked={male.val}
+        onChange={(e, checked) => handleFilterChange("male", checked)}
       />
 
       <CheckBoxOption
-        name="female"
-        label={filterOptions.female.title}
-        onChange={handleCheck}
+        label={female.title}
+        checked={female.val}
+        onChange={(e, checked) => handleFilterChange("female", checked)}
       />
     </OptionsWrapper>
   );

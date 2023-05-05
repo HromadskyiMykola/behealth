@@ -4,20 +4,22 @@ import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
 export const ClinicType = () => {
-  const { filterOptions, handleCheck } = useDataContext();
+  const { selectedFilters, handleFilterChange } = useDataContext();
+
+  const { stateClinic, privateClinic } = selectedFilters;
 
   return (
     <OptionsWrapper label="Тип медичного закладу">
       <CheckBoxOption
-        name="stateClinic"
-        label={filterOptions.stateClinic.title}
-        onChange={handleCheck}
+        label={stateClinic.title}
+        checked={stateClinic.val}
+        onChange={(e, checked) => handleFilterChange("stateClinic", checked)}
       />
 
       <CheckBoxOption
-        name="privateClinic"
-        label={filterOptions.privateClinic.title}
-        onChange={handleCheck}
+        label={privateClinic.title}
+        checked={privateClinic.val}
+        onChange={(e, checked) => handleFilterChange("privateClinic", checked)}
       />
     </OptionsWrapper>
   );

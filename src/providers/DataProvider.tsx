@@ -25,7 +25,7 @@ interface IContextData {
   selectedFilters: TFilterOptions;
   setSelectedFilters: (value: SetStateAction<TFilterOptions>) => void;
   handleFilterChange: THandleFilterChange;
-  handleCheck: any;
+  handleFilterReset: () => void;
 }
 
 export const DataContext = createContext<IContextData>({} as IContextData);
@@ -43,7 +43,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     selectedFilters,
     setSelectedFilters,
     handleFilterChange,
-    handleCheck,
+    handleFilterReset,
   } = useDoctorsData();
 
   return (
@@ -59,7 +59,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         selectedFilters,
         setSelectedFilters,
         handleFilterChange,
-        handleCheck,
+        handleFilterReset,
       }}
     >
       {children}

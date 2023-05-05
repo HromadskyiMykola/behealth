@@ -4,32 +4,47 @@ import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
 export const DoctorAdditionalOptions = () => {
-  const { filterOptions, handleCheck } = useDataContext();
+  const { selectedFilters, handleFilterChange } = useDataContext();
+
+  const {
+    doctorAcceptsDeclarations,
+    doctorWorksWithEHR,
+    onlineConsultation,
+    admissionOfChildren,
+  } = selectedFilters;
 
   return (
     <OptionsWrapper label="Додаткові опції">
       <CheckBoxOption
-        name="doctorAcceptsDeclarations"
-        label={filterOptions.doctorAcceptsDeclarations.title}
-        onChange={handleCheck}
+        label={doctorAcceptsDeclarations.title}
+        checked={doctorAcceptsDeclarations.val}
+        onChange={(e, checked) =>
+          handleFilterChange("doctorAcceptsDeclarations", checked)
+        }
       />
 
       <CheckBoxOption
-        name="doctorWorksWithEHR"
-        label={filterOptions.doctorWorksWithEHR.title}
-        onChange={handleCheck}
+        label={doctorWorksWithEHR.title}
+        checked={doctorWorksWithEHR.val}
+        onChange={(e, checked) =>
+          handleFilterChange("doctorWorksWithEHR", checked)
+        }
       />
 
       <CheckBoxOption
-        name="onlineConsultation"
-        label={filterOptions.onlineConsultation.title}
-        onChange={handleCheck}
+        label={onlineConsultation.title}
+        checked={onlineConsultation.val}
+        onChange={(e, checked) =>
+          handleFilterChange("onlineConsultation", checked)
+        }
       />
 
       <CheckBoxOption
-        name="admissionOfChildren"
-        label={filterOptions.admissionOfChildren.title}
-        onChange={handleCheck}
+        label={admissionOfChildren.title}
+        checked={admissionOfChildren.val}
+        onChange={(e, checked) =>
+          handleFilterChange("admissionOfChildren", checked)
+        }
       />
     </OptionsWrapper>
   );

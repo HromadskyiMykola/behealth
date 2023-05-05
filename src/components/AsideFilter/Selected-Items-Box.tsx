@@ -1,38 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Chip, Stack, Typography, useTheme } from "@mui/material";
+
 import { useDataContext } from "~/providers";
-import { genKey, yearsFormatter } from "~/helper-function";
+import { yearsFormatter } from "~/helper-function";
+import { useDeviceType } from "~/hooks";
+import { TFilterOptions } from "~/common";
 
 type ChipData = {
-  key: string;
-  label: string;
+  [key: string]: {
+    key: keyof TFilterOptions;
+    label: string;
+  };
 };
 
-const pushToState = (state: ChipData[], label: string) => {
-  state.push({
-    key: genKey(),
+const updateState = (
+  state: ChipData,
+  key: keyof TFilterOptions,
+  label: string
+) => {
+  state[key] = {
+    key,
     label,
-  });
+  };
+};
+
+const deleteStateKey = (state: ChipData, key: string) => {
+  delete state[key];
 };
 
 export const SelectedItemsBox = () => {
   const { palette } = useTheme();
+  const { isWidth600 } = useDeviceType();
 
   const {
     selectedFilters,
     filteredDoctors,
-    optionsData,
-    setFilteredDoctors,
-    setSelectedFilters,
     handleFilterChange,
+    handleFilterReset,
   } = useDataContext();
-  const [isMounted, setIsMounted] = useState(false);
-  const [chipData, setChipData] = useState<ChipData[]>([]);
 
-  const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+  const [isMounted, setIsMounted] = useState(false);
+
+  const [chipData, setChipData] = useState<ChipData>({});
+
+  const chipDataKeys = useMemo(() => Object.keys(chipData), [chipData]);
+
+  const handleResetChipsData = () => {
+    setChipData({});
+    handleFilterReset();
+  };
+
+  const handleDelete = (keyToDelete: keyof TFilterOptions) => () => {
+    handleFilterChange(keyToDelete, false);
+    setChipData((prevChips) => {
+      delete prevChips[keyToDelete];
+      return { ...prevChips };
+    });
   };
 
   useEffect(() => {
@@ -62,82 +85,89 @@ export const SelectedItemsBox = () => {
       qualification,
     } = selectedFilters;
 
-    // console.log("eff>>", );
     setChipData((state) => {
-      if (admissionPaid.val) {
-        pushToState(chipData, `${rangePrice.val.join("-")}грн`);
-      }
+      admissionPaid.val
+        ? updateState(state, "admissionPaid", `${rangePrice.val.join("-")}грн`)
+        : deleteStateKey(state, "admissionPaid");
 
-      if (stateClinic.val) {
-        pushToState(chipData, stateClinic.title);
-      }
+      stateClinic.val
+        ? updateState(state, "stateClinic", stateClinic.title)
+        : deleteStateKey(state, "stateClinic");
 
-      if (privateClinic.val) {
-        pushToState(chipData, privateClinic.title);
-      }
+      privateClinic.val
+        ? updateState(state, "privateClinic", privateClinic.title)
+        : deleteStateKey(state, "privateClinic");
 
-      if (doctorAcceptsDeclarations.val) {
-        pushToState(chipData, doctorAcceptsDeclarations.title);
-      }
+      doctorAcceptsDeclarations.val
+        ? updateState(
+            state,
+            "doctorAcceptsDeclarations",
+            doctorAcceptsDeclarations.title
+          )
+        : deleteStateKey(state, "doctorAcceptsDeclarations");
 
-      if (doctorWorksWithEHR.val) {
-        pushToState(chipData, doctorWorksWithEHR.title);
-      }
+      doctorWorksWithEHR.val
+        ? updateState(state, "doctorWorksWithEHR", doctorWorksWithEHR.title)
+        : deleteStateKey(state, "doctorWorksWithEHR");
 
-      if (onlineConsultation.val) {
-        pushToState(chipData, onlineConsultation.title);
-      }
+      onlineConsultation.val
+        ? updateState(state, "onlineConsultation", onlineConsultation.title)
+        : deleteStateKey(state, "onlineConsultation");
 
-      if (admissionOfChildren.val) {
-        pushToState(chipData, admissionOfChildren.title);
-      }
+      admissionOfChildren.val
+        ? updateState(state, "admissionOfChildren", admissionOfChildren.title)
+        : deleteStateKey(state, "admissionOfChildren");
 
-      if (admissionByNHSU.val) {
-        pushToState(chipData, admissionByNHSU.title);
-      }
+      admissionByNHSU.val
+        ? updateState(state, "admissionByNHSU", admissionByNHSU.title)
+        : deleteStateKey(state, "admissionByNHSU");
 
-      if (admissionByReferral.val) {
-        pushToState(chipData, admissionByReferral.title);
-      }
+      admissionByReferral.val
+        ? updateState(state, "admissionByReferral", admissionByReferral.title)
+        : deleteStateKey(state, "admissionByReferral");
 
-      if (female.val) {
-        pushToState(chipData, female.title);
-      }
+      female.val
+        ? updateState(state, "female", female.title)
+        : deleteStateKey(state, "female");
 
-      if (male.val) {
-        pushToState(chipData, male.title);
-      }
+      male.val
+        ? updateState(state, "male", male.title)
+        : deleteStateKey(state, "male");
 
-      if (evaluationNo.val) {
-        pushToState(chipData, evaluationNo.title);
-      }
+      evaluationNo.val
+        ? updateState(state, "evaluationNo", evaluationNo.title)
+        : deleteStateKey(state, "evaluationNo");
 
-      if (evaluationNormally.val) {
-        pushToState(chipData, evaluationNormally.title);
-      }
+      evaluationNormally.val
+        ? updateState(state, "evaluationNormally", evaluationNormally.title)
+        : deleteStateKey(state, "evaluationNormally");
 
-      if (evaluationGood.val) {
-        pushToState(chipData, evaluationGood.title);
-      }
+      evaluationGood.val
+        ? updateState(state, "evaluationGood", evaluationGood.title)
+        : deleteStateKey(state, "evaluationGood");
 
-      if (evaluationVeryGood.val) {
-        pushToState(chipData, evaluationVeryGood.title);
-      }
+      evaluationVeryGood.val
+        ? updateState(state, "evaluationVeryGood", evaluationVeryGood.title)
+        : deleteStateKey(state, "evaluationVeryGood");
 
       if (rangeExperience.val) {
         const { val } = rangeExperience;
-        pushToState(chipData, `Від ${val} ${yearsFormatter(val)}`);
+        updateState(
+          state,
+          "rangeExperience",
+          `Від ${val} ${yearsFormatter(val)}`
+        );
+      } else {
+        deleteStateKey(state, "rangeExperience");
       }
 
-      if (qualification.val) {
-        pushToState(chipData, qualification.val);
-      }
+      qualification.val
+        ? updateState(state, "qualification", qualification.val)
+        : deleteStateKey(state, "qualification");
 
-      return state;
+      return { ...state };
     });
   }, [selectedFilters]);
-  // console.log("comp>>", isMounted);
-  // console.log("comp>>", selectedFilters);
 
   return (
     <Stack gap="32px">
@@ -158,33 +188,40 @@ export const SelectedItemsBox = () => {
         columnGap="8px"
         rowGap="12px"
       >
-        {chipData.length > 0 && (
+        {chipDataKeys.length > 0 && (
           <Chip
+            size={isWidth600 ? "small" : "medium"}
             sx={{ display: { xs: "inline-flex", md: "none" } }}
             color="error"
             label="Скинути всі"
-            onClick={() => setChipData([])}
+            onClick={handleResetChipsData}
           />
         )}
 
-        {chipData.map((data) => (
-          <Chip
-            key={data.key}
-            color="primary"
-            label={data.label}
-            onDelete={handleDelete(data)}
-          />
-        ))}
+        {chipDataKeys.map((item) => {
+          const { label, key } = chipData[item];
+          return (
+            <Chip
+              size={isWidth600 ? "small" : "medium"}
+              key={key}
+              color="primary"
+              label={label}
+              onDelete={handleDelete(key)}
+            />
+          );
+        })}
       </Stack>
 
-      <Typography
-        variant="body2"
-        color={palette.primary.main}
-        sx={{ cursor: "pointer", display: { xs: "none", md: "block" } }}
-        onClick={() => setChipData([])}
-      >
-        Скинути всі
-      </Typography>
+      {chipDataKeys.length > 0 && (
+        <Typography
+          variant="body2"
+          color={palette.primary.main}
+          sx={{ cursor: "pointer", display: { xs: "none", md: "block" } }}
+          onClick={handleResetChipsData}
+        >
+          Скинути всі
+        </Typography>
+      )}
     </Stack>
   );
 };

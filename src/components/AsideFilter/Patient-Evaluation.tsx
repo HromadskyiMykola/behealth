@@ -4,32 +4,43 @@ import { OptionsWrapper } from "./";
 import { CheckBoxOption } from "./Check-Box-Option";
 
 export const PatientEvaluation = () => {
-  const { filterOptions, handleCheck } = useDataContext();
+  const { selectedFilters, handleFilterChange } = useDataContext();
+
+  const {
+    evaluationNo,
+    evaluationNormally,
+    evaluationGood,
+    evaluationVeryGood,
+  } = selectedFilters;
 
   return (
     <OptionsWrapper label="Оцінювання пацієнтами">
       <CheckBoxOption
-        name="evaluationNo"
-        label={filterOptions.evaluationNo.title}
-        onChange={handleCheck}
+        label={evaluationNo.title}
+        checked={evaluationNo.val}
+        onChange={(e, checked) => handleFilterChange("evaluationNo", checked)}
       />
 
       <CheckBoxOption
-        name="evaluationNormally"
-        label={filterOptions.evaluationNormally.title}
-        onChange={handleCheck}
+        label={evaluationNormally.title}
+        checked={evaluationNormally.val}
+        onChange={(e, checked) =>
+          handleFilterChange("evaluationNormally", checked)
+        }
       />
 
       <CheckBoxOption
-        name="evaluationGood"
-        label={filterOptions.evaluationGood.title}
-        onChange={handleCheck}
+        label={evaluationGood.title}
+        checked={evaluationGood.val}
+        onChange={(e, checked) => handleFilterChange("evaluationGood", checked)}
       />
 
       <CheckBoxOption
-        name="evaluationVeryGood"
-        label={filterOptions.evaluationVeryGood.title}
-        onChange={handleCheck}
+        label={evaluationVeryGood.title}
+        checked={evaluationVeryGood.val}
+        onChange={(e, checked) =>
+          handleFilterChange("evaluationVeryGood", checked)
+        }
       />
     </OptionsWrapper>
   );
