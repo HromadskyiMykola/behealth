@@ -10,22 +10,29 @@ import { Chips } from "~/components/clinic/Chips";
 import { IconsSocialList } from "~/components/clinic/IconsSocialList";
 import { TClinic, useApiService } from "~/common";
 import { useParams } from "react-router-dom";
+import { useGetData } from "~/hooks";
 
 export const ClinicInfo = () => {
+  const { clinics } = useGetData();
   const [clinic, setClinic] = useState<TClinic | null>(null);
-  const { getClinics } = useApiService();
+  // const { getClinics } = useApiService();
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
-    (async () => {
-      const clinics = await getClinics();
-      await clinics.map((item: TClinic) => {
-        if (String(item.id) === id) {
-          setClinic(item);
-        }
-      });
-    })();
-  }, []);
+    // (async () => {
+    //   const clinics = await getClinics();
+    // await clinics.map((item: TClinic) => {
+    //   if (String(item.id) === id) {
+    //     setClinic(item);
+    //   }
+    // });
+    // })();
+    const clinic = clinics.find(
+      (item) => String(item.id) === id && item.dataType === "clinic"
+    );
+
+    clinic && setClinic(clinic);
+  }, [clinics]);
 
   useEffect(() => {
     console.log(clinic);

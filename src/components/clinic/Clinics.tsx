@@ -6,14 +6,17 @@ import {
 } from "~/components/clinic/clinic-card-constants";
 import { SmallClinicCard } from "~/components/clinic/SmallClinicCard";
 import { TClinic, useApiService } from "~/common";
+import { useGetData } from "~/hooks";
 
 export const Clinics = () => {
-  const [clinics, setClinics] = useState([]);
-  const { getClinics } = useApiService();
+  const { clinics } = useGetData();
 
-  useEffect(() => {
-    getClinics().then(setClinics);
-  }, []);
+  // const [clinics, setClinics] = useState([]);
+  // const { getClinics } = useApiService();
+
+  // useEffect(() => {
+  //   getClinics().then(setClinics);
+  // }, []);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>

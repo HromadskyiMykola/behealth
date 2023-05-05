@@ -1,5 +1,10 @@
 [
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": false,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 1,
     "region": "Вінницький",
     "city": "Вінниця",
@@ -54,6 +59,11 @@
     "doctorsIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 19, 11]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": true,
+    "pharmacy": true,
     "id": 2,
     "dataType": "clinic",
     "region": "Святошинський район",
@@ -114,6 +124,11 @@
     "doctorsIds": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": false,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 3,
     "dataType": "clinic",
     "region": "Немишлянський район",
@@ -174,6 +189,11 @@
     "doctorsIds": [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": false,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 4,
     "dataType": "clinic",
     "region": "Галицький район",
@@ -224,6 +244,11 @@
     "doctorsIds": [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": true,
+    "pharmacy": true,
     "id": 5,
     "dataType": "clinic",
     "region": "Київський район",
@@ -273,6 +298,11 @@
     "doctorsIds": [45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 6,
     "dataType": "clinic",
     "region": "Немишлянський район",
@@ -330,6 +360,11 @@
     "doctorsIds": [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 7,
     "dataType": "clinic",
     "region": "Хортицький район",
@@ -380,6 +415,11 @@
     "doctorsIds": [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 8,
     "dataType": "clinic",
     "region": "Деснянський район",
@@ -430,6 +470,11 @@
     "doctorsIds": [78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 9,
     "dataType": "clinic",
     "region": "Придніпровський район",
@@ -484,6 +529,11 @@
     "doctorsIds": [89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
   },
   {
+    "parking": true,
+    "kidsRoom": true,
+    "paymentByCard": true,
+    "zoneWiFi": false,
+    "pharmacy": true,
     "id": 10,
     "dataType": "clinic",
     "region": "Суворовського району",
