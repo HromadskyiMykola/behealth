@@ -89,6 +89,7 @@ export const useGetData = () => {
     clinics,
     filteredClinics,
     setFilteredDoctors,
+    setFilteredClinics,
     filterOptions,
     selectedFilters,
     setSelectedFilters,

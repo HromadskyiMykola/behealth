@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Chip, Stack, Typography, useTheme } from "@mui/material";
 
 import { useDataContext } from "~/providers";
-import { doctorFormatter, yearsFormatter } from "~/helper-function";
+import { numberToWord, yearsFormatter } from "~/helper-function";
 import { useDeviceType } from "~/hooks";
 import { TFilterOptions } from "~/common";
 
@@ -28,15 +28,21 @@ const deleteStateKey = (state: ChipData, key: string) => {
   delete state[key];
 };
 
-export const SelectedItemsBox = () => {
+type TProps = { modeType: "doctor" | "clinic" };
+
+export const SelectedItemsBox = ({ modeType }: TProps) => {
   const { palette } = useTheme();
   const { isWidth600 } = useDeviceType();
 
   const {
     selectedFilters,
     filteredDoctors,
+    filteredClinics,
     handleFilterChange,
   } = useDataContext();
+
+  const QTY =
+    modeType === "doctor" ? filteredDoctors.length : filteredClinics.length;
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -50,7 +56,6 @@ export const SelectedItemsBox = () => {
     );
 
     setChipData({});
-    console.log("res");
   };
 
   const handleDelete = (keyToDelete: keyof TFilterOptions) => () => {
@@ -180,7 +185,7 @@ export const SelectedItemsBox = () => {
         </Typography>
 
         <Typography variant="body2" color={palette.custom.primary20}>
-          {filteredDoctors.length} {doctorFormatter(filteredDoctors.length)}
+          {QTY} {numberToWord(QTY, modeType)}
         </Typography>
       </Stack>
 

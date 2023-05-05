@@ -63,12 +63,12 @@ export const DoctorsPage = () => {
           gap="32px"
           sx={{ mt: { xs: "16px", sm: "32px" } }}
         >
-          {!isMdDown && <FilterViewMode />}
+          {!isMdDown && <FilterViewMode modeType="doctor" />}
 
           <Box sx={{ flex: "1 0 auto" }}>
             <SelectTopBar setFilteredData={setFilteredDoctors} />
 
-            {isMdDown && <FilterViewMode />}
+            {isMdDown && <FilterViewMode modeType="doctor" />}
 
             {doctors.length === 0 && <SkeletonInfoCards />}
 

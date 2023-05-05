@@ -20,7 +20,9 @@ import { AsideFilter, SelectedItemsBox } from "./";
 
 import { useDeviceType } from "~/hooks";
 
-const MobileMode = () => {
+type TProps = { modeType: "doctor" | "clinic" };
+
+const MobileMode = ({ modeType }: TProps) => {
   const [openModal, setOpenModal] = useState(false);
   const { isWidth600, isSmDown } = useDeviceType();
   const { custom } = useTheme().palette;
@@ -88,31 +90,35 @@ const MobileMode = () => {
             <CloseIcon fontSize={isWidth600 ? "medium" : "large"} />
           </IconButton>
 
-          <SelectedItemsBox />
+          <SelectedItemsBox modeType={modeType} />
 
-          <AsideFilter />
+          <AsideFilter modeType={modeType} />
         </DialogContent>
       </Dialog>
     </>
   );
 };
 
-const DesktopMode = () => {
+const DesktopMode = ({ modeType }: TProps) => {
   return (
     <Box sx={{ flex: "0 1 328px" }}>
       <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-        <SelectedItemsBox />
+        <SelectedItemsBox modeType={modeType} />
       </CustomizedPaper>
 
       <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
-        <AsideFilter />
+        <AsideFilter modeType={modeType} />
       </CustomizedPaper>
     </Box>
   );
 };
 
-export const FilterViewMode = () => {
+export const FilterViewMode = ({ modeType }: TProps) => {
   const { isMdDown } = useDeviceType();
 
-  return isMdDown ? <MobileMode /> : <DesktopMode />;
+  return isMdDown ? (
+    <MobileMode modeType={modeType} />
+  ) : (
+    <DesktopMode modeType={modeType} />
+  );
 };
