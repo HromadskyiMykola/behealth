@@ -3,29 +3,30 @@ import {
   SetStateAction,
   createContext,
   useContext,
-  useEffect,
   useState,
 } from "react";
 import {
+  TClinic,
   TDoctor,
   TFilterOptions,
   THandleFilterChange,
   TOptionsData,
 } from "~/common";
-import { useDoctorsData } from "~/hooks";
+import { useGetData } from "~/hooks";
 
 interface IContextData {
   selectedCity: string;
   setSelectedCity: (city: string) => void;
   doctors: TDoctor[];
-  optionsData: TOptionsData;
   filteredDoctors: TDoctor[];
+  clinics: TClinic[];
+  filteredClinics: TClinic[];
+  optionsData: TOptionsData;
   setFilteredDoctors: (value: SetStateAction<TDoctor[]>) => void;
   filterOptions: TFilterOptions;
   selectedFilters: TFilterOptions;
   setSelectedFilters: (value: SetStateAction<TFilterOptions>) => void;
   handleFilterChange: THandleFilterChange;
-  handleFilterReset: () => void;
 }
 
 export const DataContext = createContext<IContextData>({} as IContextData);
@@ -37,14 +38,15 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const {
     doctors,
     filteredDoctors,
+    clinics,
+    filteredClinics,
     optionsData,
     setFilteredDoctors,
     filterOptions,
     selectedFilters,
     setSelectedFilters,
     handleFilterChange,
-    handleFilterReset,
-  } = useDoctorsData();
+  } = useGetData();
 
   return (
     <DataContext.Provider
@@ -53,13 +55,14 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         setSelectedCity,
         doctors,
         filteredDoctors,
+        clinics,
+        filteredClinics,
         optionsData,
         setFilteredDoctors,
         filterOptions,
         selectedFilters,
         setSelectedFilters,
         handleFilterChange,
-        handleFilterReset,
       }}
     >
       {children}

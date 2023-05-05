@@ -19,6 +19,7 @@ import { FilterIcon, Search as SearchIcon } from "lucide-react";
 import { TClinic, TDoctor, useApiService } from "~/common";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "~/providers/DataProvider";
+import { useGetData } from "~/hooks";
 
 const searchOptionsSpreading = {
   overflow: "hidden",
@@ -29,11 +30,12 @@ const searchOptionsSpreading = {
 
 export const Hero = () => {
   const [district, setDistrict] = useState<string>("");
-  const [doctors, setDoctors] = useState<TDoctor[]>([] as TDoctor[]);
-  const [clinics, setClinics] = useState<TClinic[]>([] as TClinic[]);
+  // const [doctors, setDoctors] = useState<TDoctor[]>([] as TDoctor[]);
+  // const [clinics, setClinics] = useState<TClinic[]>([] as TClinic[]);
   const [search, setSearch] = useState<any>([]);
   const [searchStr, setSearchStr] = useState<TDoctor | TClinic | null>(null);
-  const { getClinics, getDoctors } = useApiService();
+  // const { getClinics, getDoctors } = useApiService();
+  const { clinics, doctors } = useGetData();
   const { selectedCity, setSelectedCity } = useDataContext();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -41,12 +43,14 @@ export const Hero = () => {
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
-    (async function fetchData() {
-      const doctors = await getDoctors();
-      const clinics = await getClinics();
-      setSearch([...doctors, ...clinics]);
-    })();
-  }, []);
+    // (async function fetchData() {
+    //   const doctors = await getDoctors();
+    //   const clinics = await getClinics();
+    //   setSearch([...doctors, ...clinics]);
+    // })();
+
+    setSearch([...doctors, ...clinics]);
+  }, [clinics, doctors]);
 
   useEffect(() => {
     console.log(selectedCity);
@@ -189,8 +193,9 @@ export const Hero = () => {
                       .toLowerCase()
                       .indexOf(state.inputValue.toLowerCase()) !== -1 &&
                     (selectedCity === "Вся Україна" ||
-                      option.city.toLowerCase().indexOf(selectedCity.toLowerCase()) !==
-                        -1) &&
+                      option.city
+                        .toLowerCase()
+                        .indexOf(selectedCity.toLowerCase()) !== -1) &&
                     (district === "" ||
                       option.district
                         .toLowerCase()

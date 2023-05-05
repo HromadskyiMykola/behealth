@@ -1,6 +1,9 @@
-import { TDoctor, TFilterOptions } from "~/common";
+import { TClinic, TDoctor, TFilterOptions } from "~/common";
 
-export const optionsComparator = (data: TDoctor, selectedFilters: TFilterOptions) => {
+export const doctorOptionsComparator = (
+  data: TDoctor,
+  selectedFilters: TFilterOptions
+) => {
   if (
     selectedFilters.city.val !== "Вся Україна" &&
     selectedFilters.city.val &&
@@ -91,6 +94,65 @@ export const optionsComparator = (data: TDoctor, selectedFilters: TFilterOptions
   if (
     selectedFilters.qualification.val &&
     data.qualification !== selectedFilters.qualification.val
+  )
+    return false;
+
+  return true;
+};
+
+export const clinicOptionsComparator = (
+  data: TClinic,
+  selectedFilters: TFilterOptions
+) => {
+  if (
+    selectedFilters.city.val !== "Вся Україна" &&
+    selectedFilters.city.val &&
+    data.city !== selectedFilters.city.val
+  )
+    return false;
+
+  if (
+    selectedFilters.district.val &&
+    data.district !== selectedFilters.district.val
+  )
+    return false;
+
+  if (selectedFilters.stateClinic.val && data.clinicType !== "Державна клініка")
+    return false;
+
+  if (
+    selectedFilters.privateClinic.val &&
+    data.clinicType !== "Приватна клініка"
+  )
+    return false;
+
+  if (
+    selectedFilters.parking.val &&
+    data.parking !== selectedFilters.parking.val
+  )
+    return false;
+
+  if (
+    selectedFilters.kidsRoom.val &&
+    data.kidsRoom !== selectedFilters.kidsRoom.val
+  )
+    return false;
+
+  if (
+    selectedFilters.paymentByCard.val &&
+    data.paymentByCard !== selectedFilters.paymentByCard.val
+  )
+    return false;
+
+  if (
+    selectedFilters.zoneWiFi.val &&
+    data.zoneWiFi !== selectedFilters.zoneWiFi.val
+  )
+    return false;
+
+  if (
+    selectedFilters.pharmacy.val &&
+    data.pharmacy !== selectedFilters.pharmacy.val
   )
     return false;
 

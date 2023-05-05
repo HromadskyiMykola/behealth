@@ -348,9 +348,14 @@ export type TDoctor = {
 };
 
 export type TClinic = {
+  parking: boolean;
+  kidsRoom: boolean;
+  paymentByCard: boolean;
+  zoneWiFi: boolean;
+  pharmacy: boolean;
   id: number;
   dataType: "doctor" | "clinic";
-  clinicType: "state" | "private";
+  clinicType: string;
   city: string;
   district: string;
   name: string;

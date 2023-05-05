@@ -1,4 +1,4 @@
-import { TDoctor, TOptionsData } from "~/common";
+import { TClinic, TDoctor, TOptionsData } from "~/common";
 
 export const optionsTemplate = {
   city: ["Вся Україна"] as string[],
@@ -10,31 +10,31 @@ export const optionsTemplate = {
 };
 
 export const optionsExtractor = (
-  doctors: TDoctor[],
+  data: any,
   optionsData: TOptionsData
 ): TOptionsData => {
-  doctors.forEach((doc) => {
-    if (!optionsData.specs.includes(doc.speciality)) {
-      optionsData.specs.push(doc.speciality);
+  data.forEach((item: any) => {
+    if (!optionsData.specs.includes(item.speciality)) {
+      optionsData.specs.push(item.speciality);
     }
-    if (!optionsData.city.includes(doc.city)) {
-      optionsData.city.push(doc.city);
+    if (!optionsData.city.includes(item.city)) {
+      optionsData.city.push(item.city);
     }
-    if (!optionsData.districts.includes(doc.district)) {
-      optionsData.districts.push(doc.district);
+    if (!optionsData.districts.includes(item.district)) {
+      optionsData.districts.push(item.district);
     }
-    if (!optionsData.qualifications.includes(doc.qualification)) {
-      optionsData.qualifications.push(doc.qualification);
+    if (!optionsData.qualifications.includes(item.qualification)) {
+      optionsData.qualifications.push(item.qualification);
     }
-    if (doc.paidAppointment) {
-      const price = doc.paidAppointment;
+    if (item.paidAppointment) {
+      const price = item.paidAppointment;
       const [min, max] = optionsData.rangePrice;
 
       (min === 0 || price < min) && (optionsData.rangePrice[0] = price);
       (max === 0 || price > max) && (optionsData.rangePrice[1] = price);
     }
-    if (doc.experience) {
-      const years = doc.experience;
+    if (item.experience) {
+      const years = item.experience;
       const max = optionsData.maxExperience;
 
       years > max && (optionsData.maxExperience = years);

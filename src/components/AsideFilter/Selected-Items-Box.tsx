@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Chip, Stack, Typography, useTheme } from "@mui/material";
 
 import { useDataContext } from "~/providers";
-import { yearsFormatter } from "~/helper-function";
+import { doctorFormatter, yearsFormatter } from "~/helper-function";
 import { useDeviceType } from "~/hooks";
 import { TFilterOptions } from "~/common";
 
@@ -36,7 +36,6 @@ export const SelectedItemsBox = () => {
     selectedFilters,
     filteredDoctors,
     handleFilterChange,
-    handleFilterReset,
   } = useDataContext();
 
   const [isMounted, setIsMounted] = useState(false);
@@ -46,8 +45,12 @@ export const SelectedItemsBox = () => {
   const chipDataKeys = useMemo(() => Object.keys(chipData), [chipData]);
 
   const handleResetChipsData = () => {
+    chipDataKeys.forEach((key) =>
+      handleFilterChange(key as keyof TFilterOptions, false)
+    );
+
     setChipData({});
-    handleFilterReset();
+    console.log("res");
   };
 
   const handleDelete = (keyToDelete: keyof TFilterOptions) => () => {
@@ -173,44 +176,46 @@ export const SelectedItemsBox = () => {
     <Stack gap="32px">
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography variant="h5" color={palette.custom.primary20}>
-          Ви обрали
+          Обрано
         </Typography>
 
         <Typography variant="body2" color={palette.custom.primary20}>
-          {filteredDoctors.length} лікарів
+          {filteredDoctors.length} {doctorFormatter(filteredDoctors.length)}
         </Typography>
       </Stack>
 
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        flexWrap="wrap"
-        columnGap="8px"
-        rowGap="12px"
-      >
-        {chipDataKeys.length > 0 && (
-          <Chip
-            size={isWidth600 ? "small" : "medium"}
-            sx={{ display: { xs: "inline-flex", md: "none" } }}
-            color="error"
-            label="Скинути всі"
-            onClick={handleResetChipsData}
-          />
-        )}
-
-        {chipDataKeys.map((item) => {
-          const { label, key } = chipData[item];
-          return (
+      {chipDataKeys.length > 0 && (
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          flexWrap="wrap"
+          columnGap="8px"
+          rowGap="12px"
+        >
+          {chipDataKeys.length > 0 && (
             <Chip
               size={isWidth600 ? "small" : "medium"}
-              key={key}
-              color="primary"
-              label={label}
-              onDelete={handleDelete(key)}
+              sx={{ display: { xs: "inline-flex", md: "none" } }}
+              color="error"
+              label="Скинути всі"
+              onClick={handleResetChipsData}
             />
-          );
-        })}
-      </Stack>
+          )}
+
+          {chipDataKeys.map((item) => {
+            const { label, key } = chipData[item];
+            return (
+              <Chip
+                size={isWidth600 ? "small" : "medium"}
+                key={key}
+                color="primary"
+                label={label}
+                onDelete={handleDelete(key)}
+              />
+            );
+          })}
+        </Stack>
+      )}
 
       {chipDataKeys.length > 0 && (
         <Typography
