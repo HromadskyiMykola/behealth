@@ -381,3 +381,10 @@ export type THandleFilterChange = (
   key: keyof TFilterOptions,
   value: string | boolean | number | number[]
 ) => void;
+
+export type ChipData = {
+  [key: string]: {
+    key: keyof TFilterOptions;
+    label: string;
+  };
+};

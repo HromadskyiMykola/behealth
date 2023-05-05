@@ -10,11 +10,15 @@ import {
   DoctorQualifications,
   RangeCost,
   RangeExperience,
+  ClinicAdditionalOptions,
 } from "./";
 
 type TProps = { modeType: "doctor" | "clinic" };
 export const AsideFilter = ({ modeType }: TProps) => {
   const { custom } = useTheme().palette;
+
+  const isDoctorMode = modeType === "doctor";
+  const isClinicMode = modeType === "clinic";
 
   return (
     <Stack gap="32px">
@@ -33,28 +37,30 @@ export const AsideFilter = ({ modeType }: TProps) => {
 
         <Divider />
 
-        <DoctorAdditionalOptions />
+        {isClinicMode && <ClinicAdditionalOptions />}
 
-        <Divider />
+        {isDoctorMode && <DoctorAdditionalOptions />}
 
-        <PaymentForServices />
+        {isDoctorMode && <Divider />}
 
-        <RangeCost />
+        {isDoctorMode && <PaymentForServices />}
 
-        <Divider />
+        {isDoctorMode && <RangeCost />}
 
-        <GenderOfDoctor />
+        {isDoctorMode && <Divider />}
 
-        <Divider />
+        {isDoctorMode && <GenderOfDoctor />}
 
-        <RangeExperience />
+        {isDoctorMode && <Divider />}
 
-        <Divider />
+        {isDoctorMode && <RangeExperience />}
 
-        <PatientEvaluation />
+        {isDoctorMode && <Divider />}
+
+        {isDoctorMode && <PatientEvaluation />}
       </Stack>
 
-      <DoctorQualifications />
+      {isDoctorMode && <DoctorQualifications />}
     </Stack>
   );
 };
