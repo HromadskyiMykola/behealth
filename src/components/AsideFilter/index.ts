@@ -4,6 +4,7 @@ export * from "./Aside-Filter";
 export * from "./Select-District";
 export * from "./Clinic-Type";
 export * from "./Doctor-Additional-Options";
+export * from "./Clinic-Additional-Options";
 export * from "./Payment-For-Services";
 export * from "./Patient-Evaluation";
 export * from "./Gender-Of-Doctor";
