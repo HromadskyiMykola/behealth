@@ -12,3 +12,23 @@ export const phoneNumberFormatter = (phoneNumber: string | undefined) => {
 
 export const yearsFormatter = (val: number): string =>
   val ? `${val % 10 === 1 && val !== 11 ? "року" : "років"}` : "";
+
+export const doctorFormatter = (val: number): string => {
+  if (!val) {
+    return "";
+  }
+
+  const options = ["лікар", "лікаря", "лікарів"];
+  const mod10 = val % 10;
+  const mod100 = val % 100;
+
+  if (mod10 === 1 && mod100 !== 11) {
+    return options[0];
+  }
+
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+    return options[1];
+  }
+
+  return options[2];
+};

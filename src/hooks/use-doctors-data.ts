@@ -47,17 +47,13 @@ export const useDoctorsData = () => {
       setOptionsData((prev) => optionsExtractor(res, prev));
     });
   }, []);
+  
 
-  const handleFilterReset = () => {
-    setFilteredDoctors(doctors);
-    setSelectedFilters(filterOptions);
-  };
-
+  
   const handleFilterChange: THandleFilterChange = (key, value) => {
     setSelectedFilters((prevOptions) => {
       const updatedOptions = { ...prevOptions };
       updatedOptions[key].val = value;
-      console.log("hand", key);
 
       return updatedOptions;
     });
@@ -80,6 +76,5 @@ export const useDoctorsData = () => {
     selectedFilters,
     setSelectedFilters,
     handleFilterChange,
-    handleFilterReset,
   };
 };
