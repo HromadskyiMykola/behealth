@@ -91,16 +91,6 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
     availableTime: availableHours.availableTime,
   };
 
-  const headerItemValues = {
-    speciality: doctor.speciality,
-    experience: doctor.experience,
-    name: doctor.name,
-    reviewsCount: doctor.reviewsCount,
-    rating: doctor.rating,
-    avatar: doctor.avatar,
-    cabinet: doctor.cabinet,
-  };
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -112,7 +102,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
 
   const handleConfirm = () => {
     if (!authenticatedUser) {
-      console.log("do");
+      // console.log("do");
       setOpenMainModal(true);
       return;
     }
@@ -131,13 +121,14 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   };
   return (
     <CustomizedPaper>
-      <Stack gap="32px" direction="row">
+      <Stack
+        gap="32px"
+        direction={{ xs: "column", sm: "row", md: "column", laptop: "row" }}
+      >
         <Stack gap="32px">
-          <HeaderItem {...headerItemValues} />
+          <HeaderItem doctor={doctor} />
 
           <Stack
-            maxWidth="620px"
-            width="100%"
             gap="38px"
             p="16px"
             borderRadius="10px"
@@ -169,6 +160,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
+          alignItems="center"
           gap="16px"
         >
           <BoxCalendar>

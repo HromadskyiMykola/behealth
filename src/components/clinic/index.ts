@@ -1,4 +1,4 @@
 export * from "./SmallClinicCard";
-export * from "./SearchClinics";
 export * from "./ClinicInfo";
 export * from "./FilterClinics";
+export * from "./Search-Bar-Clinic-Page";

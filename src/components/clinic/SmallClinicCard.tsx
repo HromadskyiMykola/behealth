@@ -31,6 +31,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
   const tabletDevice = useMediaQuery(theme.breakpoints.down("md"));
 
   const {
+    id,
     address,
     name,
     clinicType,
@@ -207,7 +208,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
               <Typography variant="button">Швидкий запис</Typography>
             </Button>
 
-            <Button variant="contained" onClick={() => navigate("1")}>
+            <Button variant="contained" onClick={() => navigate(`/clinics/${id}`)}>
               <Typography variant="button">Детальніше</Typography>
             </Button>
           </Grid>

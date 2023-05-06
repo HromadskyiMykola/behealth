@@ -12,6 +12,8 @@ import {
   useMediaQuery,
   useTheme,
   IconButton,
+  AutocompleteChangeReason,
+  AutocompleteInputChangeReason,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import { RoomOutlined } from "@mui/icons-material";
@@ -20,6 +22,7 @@ import { TClinic, TDoctor, useApiService } from "~/common";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "~/providers/DataProvider";
 import { useGetData } from "~/hooks";
+import { genKey } from "~/helper-function";
 
 const searchOptionsSpreading = {
   overflow: "hidden",
@@ -33,7 +36,7 @@ export const Hero = () => {
   // const [doctors, setDoctors] = useState<TDoctor[]>([] as TDoctor[]);
   // const [clinics, setClinics] = useState<TClinic[]>([] as TClinic[]);
   const [search, setSearch] = useState<any>([]);
-  const [searchStr, setSearchStr] = useState<TDoctor | TClinic | null>(null);
+  const [searchStr, setSearchStr] = useState<string>("");
   // const { getClinics, getDoctors } = useApiService();
   const { clinics, doctors } = useGetData();
   const { selectedCity, setSelectedCity } = useDataContext();
@@ -48,46 +51,45 @@ export const Hero = () => {
     //   const clinics = await getClinics();
     //   setSearch([...doctors, ...clinics]);
     // })();
+    // console.log([...doctors, ...clinics]);
 
-    setSearch([...doctors, ...clinics]);
+    const names = [...doctors, ...clinics].map((item) => item.name);
+
+    setSearch(names);
   }, [clinics, doctors]);
 
-  useEffect(() => {
-    console.log(selectedCity);
-  }, [selectedCity]);
+  // useEffect(() => {
+  //   console.log(selectedCity);
+  // }, [selectedCity]);
+
+  const onSubmitSearch = (str: string = searchStr) => {
+    const matched = [...doctors, ...clinics].find((item) => item.name === str);
+    console.log(searchStr, matched);
+    matched?.dataType === "doctor" && navigate(`/doctors/${matched.id}`);
+    matched?.dataType === "clinic" && navigate(`/clinics/${matched.id}`);
+  };
 
   const onChangeSearch = (
     event: SyntheticEvent<Element, Event>,
-    value: any,
-    reason: any
+    value: string | null,
+    reason: AutocompleteChangeReason
   ) => {
-    if (reason === "selectOption" || reason === "createOption") {
-      setSearchStr(value || "");
-      console.log("onChange", value);
-    }
+    reason === "selectOption" && onSubmitSearch(value || searchStr);
   };
 
   const onInputChangeSearch = (
     event: SyntheticEvent<Element, Event>,
-    value: any,
-    reason: any
+    value: string,
+    reason: AutocompleteInputChangeReason
   ) => {
-    console.log("onInput", value);
+    reason === "input" && setSearchStr(value);
+
+    // console.log("onInput", value);
     // const filteredSearch = search.filter((item: any) => {
     //   return item.name.toLowerCase().includes(value.toLowerCase());
     // });
     // console.log(filteredSearch);
     // setSearch(filteredSearch);
-  };
-
-  const onSubmitSearch = () => {
-    if (searchStr) {
-      if (searchStr.dataType === "doctor") {
-        navigate(`/doctors/${searchStr.id}`);
-      } else {
-        navigate(`/clinics/${searchStr.id}`);
-      }
-    }
   };
 
   return (
@@ -180,28 +182,29 @@ export const Hero = () => {
               }}
               clearOnEscape
               blurOnSelect
+              autoHighlight
               // freeSolo
               // value={searchStr}
               onChange={onChangeSearch}
               onInputChange={onInputChangeSearch}
               options={search}
-              getOptionLabel={(option) => option.name}
-              filterOptions={(options, state) =>
-                options.filter(
-                  (option) =>
-                    option.name
-                      .toLowerCase()
-                      .indexOf(state.inputValue.toLowerCase()) !== -1 &&
-                    (selectedCity === "Вся Україна" ||
-                      option.city
-                        .toLowerCase()
-                        .indexOf(selectedCity.toLowerCase()) !== -1) &&
-                    (district === "" ||
-                      option.district
-                        .toLowerCase()
-                        .indexOf(district.toLowerCase()) !== -1)
-                )
-              }
+              // getOptionLabel={(option) => option.name}
+              // filterOptions={(options, state) =>
+              //   options.filter(
+              //     (option) =>
+              //       option.name
+              //         .toLowerCase()
+              //         .indexOf(state.inputValue.toLowerCase()) !== -1 &&
+              //       (selectedCity === "Вся Україна" ||
+              //         option.city
+              //           .toLowerCase()
+              //           .indexOf(selectedCity.toLowerCase()) !== -1) &&
+              //       (district === "" ||
+              //         option.district
+              //           .toLowerCase()
+              //           .indexOf(district.toLowerCase()) !== -1)
+              //   )
+              // }
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -224,7 +227,7 @@ export const Hero = () => {
                         <IconButton>
                           <SearchIcon
                             aria-disabled={true}
-                            onClick={onSubmitSearch}
+                            onChange={() => onSubmitSearch()}
                             color="#A4ADA8"
                           />
                         </IconButton>
@@ -233,50 +236,50 @@ export const Hero = () => {
                   }}
                 />
               )}
-              PaperComponent={({ children }) => (
-                <Paper
-                  sx={{
-                    maxHeight: "480px",
-                    overflow: "auto",
-                    scrollbarColor: "#000",
-                    "&::-webkit-scrollbar": {
-                      width: "8px",
-                      height: "32px",
-                    },
-                    "&::-webkit-scrollbar-track": {
-                      backgroundColor: "#BFC9C3",
-                      padding: "16px 4px",
-                    },
-                    "&::-webkit-scrollbar-thumb": {
-                      backgroundColor: "#3ABD98",
-                      borderRadius: "100px",
-                    },
-                    "&::-webkit-scrollbar-thumb:hover": {
-                      backgroundColor: "#5bbea3",
-                    },
-                    scrollbarWidth: "thin",
-                    "& *::-webkit-scrollbar": {
-                      width: "8px",
-                      height: "32px",
-                    },
-                    "& *::-webkit-scrollbar-track": {
-                      backgroundColor: "#BFC9C3",
-                    },
-                    "& *::-webkit-scrollbar-thumb": {
-                      backgroundColor: "#3ABD98",
-                      borderRadius: "100px",
-                    },
-                    "& *::-webkit-scrollbar-thumb:hover": {
-                      backgroundColor: "#5bbea3",
-                    },
-                  }}
-                >
-                  {children}
-                </Paper>
-              )}
+              // PaperComponent={({ children }) => (
+              //   <Paper
+              //     sx={{
+              //       maxHeight: "480px",
+              //       overflow: "auto",
+              //       scrollbarColor: "#000",
+              //       "&::-webkit-scrollbar": {
+              //         width: "8px",
+              //         height: "32px",
+              //       },
+              //       "&::-webkit-scrollbar-track": {
+              //         backgroundColor: "#BFC9C3",
+              //         padding: "16px 4px",
+              //       },
+              //       "&::-webkit-scrollbar-thumb": {
+              //         backgroundColor: "#3ABD98",
+              //         borderRadius: "100px",
+              //       },
+              //       "&::-webkit-scrollbar-thumb:hover": {
+              //         backgroundColor: "#5bbea3",
+              //       },
+              //       scrollbarWidth: "thin",
+              //       "& *::-webkit-scrollbar": {
+              //         width: "8px",
+              //         height: "32px",
+              //       },
+              //       "& *::-webkit-scrollbar-track": {
+              //         backgroundColor: "#BFC9C3",
+              //       },
+              //       "& *::-webkit-scrollbar-thumb": {
+              //         backgroundColor: "#3ABD98",
+              //         borderRadius: "100px",
+              //       },
+              //       "& *::-webkit-scrollbar-thumb:hover": {
+              //         backgroundColor: "#5bbea3",
+              //       },
+              //     }}
+              //   >
+              //     {children}
+              //   </Paper>
+              // )}
               renderOption={(props, option) => (
                 <MenuItem
-                  key={option.name}
+                  key={genKey()}
                   sx={{
                     borderBottom: "1px solid #BFC9C3",
                     p: "12px 0",
@@ -295,15 +298,15 @@ export const Hero = () => {
                       color="#212121"
                       variant="body2"
                     >
-                      {option.name}
+                      {option}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                       sx={searchOptionsSpreading}
                       color="#8E918F"
                       variant="caption"
                     >
                       {option.speciality || "Медичний заклад"}
-                    </Typography>
+                    </Typography> */}
                   </Box>
                 </MenuItem>
               )}

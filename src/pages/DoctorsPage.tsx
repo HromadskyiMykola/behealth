@@ -12,7 +12,7 @@ import {
 } from "~/components/atomic";
 
 import { FilterViewMode } from "~/components/AsideFilter";
-import { SearchBar } from "~/components/doctorsPage";
+import { SearchBarDocPage } from "~/components/doctorsPage";
 import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDataContext } from "~/providers";
@@ -22,7 +22,7 @@ const QTY = 5;
 
 export const DoctorsPage = () => {
   const { custom } = useTheme().palette;
-  const { isWidth600, isMdDown } = useDeviceType();
+  const { isMdDown } = useDeviceType();
 
   const { doctors, filteredDoctors, setFilteredDoctors } = useDataContext();
   const [page, setPage] = useState(1);
@@ -56,7 +56,7 @@ export const DoctorsPage = () => {
           Лікарі
         </Typography>
 
-        <SearchBar />
+        <SearchBarDocPage />
 
         <Stack
           direction="row"
@@ -65,8 +65,7 @@ export const DoctorsPage = () => {
         >
           {!isMdDown && <FilterViewMode modeType="doctor" />}
 
-          <Box
-          >
+          <Stack  width="100%">
             <SelectTopBar setFilteredData={setFilteredDoctors} />
 
             {isMdDown && <FilterViewMode modeType="doctor" />}
@@ -93,7 +92,7 @@ export const DoctorsPage = () => {
             >
               <PaginationBottomBar count={count} setPage={setPage} />
             </CustomizedPaper>
-          </Box>
+          </Stack>
         </Stack>
       </Container>
     </>

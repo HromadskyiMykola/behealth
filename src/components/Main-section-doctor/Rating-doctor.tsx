@@ -9,6 +9,7 @@ import {
   DOCTORS_RATING,
   REVIEWS,
 } from "~/components/Main-section-doctor/constant-main-section-doctor";
+import { TDoctor } from "~/common";
 
 const BoxRating = styled("div")(({ theme }) => ({
   display: "flex",
@@ -25,7 +26,8 @@ const BoxRatingItem = styled("div")(({ theme }) => ({
   gap: "24px",
 }));
 
-export const RatingDoctor = () => {
+export const RatingDoctor = ({ doctor }: { doctor: TDoctor }) => {
+  
   return (
     <Box display="flex" flexDirection="column" gap="32px">
       <Typography variant="h5">{`${DOCTORS_RATING} (${60})`}</Typography>
