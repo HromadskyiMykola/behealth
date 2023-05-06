@@ -3,8 +3,9 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Wallet } from "lucide-react";
 import { AppointmentScheduleDate, AppointmentScheduleTime } from "../atomic";
+import { TDoctor } from "~/common";
 
-const HeaderSection = () => {
+const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
   return (
     <Box display="flex" flexDirection="column" gap="32px">
       <Box

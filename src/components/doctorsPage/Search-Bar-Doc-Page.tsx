@@ -4,6 +4,7 @@ import {
   Autocomplete,
   AutocompleteChangeReason,
   AutocompleteInputChangeReason,
+  AutocompleteRenderInputParams,
   Button,
   IconButton,
   InputAdornment,
@@ -37,7 +38,7 @@ const filterDoctors = (doctors: TDoctor[], str: string) =>
     (doc) => doc.name.toLowerCase().indexOf(str.toLowerCase()) !== -1
   );
 
-export const SearchBar = () => {
+export const SearchBarDocPage = () => {
   const { doctors, optionsData, setFilteredDoctors } = useDataContext();
   const [selectedSpec, setSelectedSpec] = useState("");
   const [searchStr, setSearchStr] = useState("");
@@ -86,6 +87,25 @@ export const SearchBar = () => {
     }
   };
 
+  const RenderInput = (params: AutocompleteRenderInputParams) => (
+    <CustomizedInput
+      {...params}
+      label="ПІБ лікаря"
+      placeholder="Введіть імʼя лікаря"
+      InputProps={{
+        ref: params.InputProps.ref,
+        startAdornment: (
+          <InputAdornment position="start">
+            <IconButton onClick={() => onSubmitSearch()}>
+              <SearchIcon color={custom.neutral70} />
+            </IconButton>
+          </InputAdornment>
+        ),
+        endAdornment: params.InputProps.endAdornment,
+      }}
+    />
+  );
+
   return (
     <CustomizedPaper
       sx={{ p: isSmDown ? "24px 16px 28px 16px" : "32px 32px 40px 32px" }}
@@ -120,24 +140,7 @@ export const SearchBar = () => {
           options={filteredNamesBySpec}
           onChange={onChangeSearch}
           onInputChange={onInputChangeSearch}
-          renderInput={(params) => (
-            <CustomizedInput
-              {...params}
-              label="ПІБ лікаря"
-              placeholder="Введіть імʼя лікаря"
-              InputProps={{
-                ref: params.InputProps.ref,
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton onClick={() => onSubmitSearch()}>
-                      <SearchIcon color={custom.neutral70} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-                endAdornment: params.InputProps.endAdornment,
-              }}
-            />
-          )}
+          renderInput={RenderInput}
         />
 
         <Button

@@ -101,7 +101,7 @@ const MobileMode = ({ modeType }: TProps) => {
 
 const DesktopMode = ({ modeType }: TProps) => {
   return (
-    <Box sx={{ flex: "0 1 328px" }}>
+    <Box sx={{ maxWidth: "328px", width: "100%" }}>
       <CustomizedPaper sx={{ p: "24px 24px 32px 24px" }}>
         <SelectedItemsBox modeType={modeType} />
       </CustomizedPaper>

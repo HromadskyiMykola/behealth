@@ -1,1 +1,1 @@
-export * from "./Search-Bar"
+export * from "./Search-Bar-Doc-Page"

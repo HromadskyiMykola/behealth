@@ -11,6 +11,7 @@ import {
 import { TelegramIcon, ViberIcon } from "~/assets/CustomIcon/index";
 import { useTheme } from "@mui/material";
 import { styled } from "@mui/system";
+import { TDoctor } from "~/common";
 
 const BoxWithBorder = styled("div")(({ theme }) => ({
   display: "flex",
@@ -39,7 +40,7 @@ const BoxSocialMedia = styled("div")(({ theme }) => ({
   color: theme.palette.custom.secondary40,
 }));
 
-const AdmissionRulesDoctor = () => {
+const AdmissionRulesDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const { custom } = useTheme().palette;
   return (
     <Box display="flex" flexDirection="column" gap="32px">

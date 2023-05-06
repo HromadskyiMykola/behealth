@@ -3,20 +3,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { TDoctor } from "~/common";
 
-type Props = {
-  speciality: string;
-  experience: number;
-  name: string;
-};
-
-export const NameAndInfoAboutDoctor = ({
-  speciality,
-  experience,
-  name,
-}: Props) => {
+export const NameAndInfoAboutDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const { custom } = useTheme().palette;
   const navigate = useNavigate();
+
+  const { id, speciality, experience, name } = doctor;
 
   return (
     <Box display="flex" gap="4px" flexDirection="column">
@@ -28,7 +21,7 @@ export const NameAndInfoAboutDoctor = ({
       <Typography
         variant="h5"
         component="p"
-        onClick={() => navigate("1")}
+        onClick={() => navigate(`/doctors/${id}`)}
         sx={{ cursor: "pointer" }}
       >
         {name}
@@ -38,7 +31,7 @@ export const NameAndInfoAboutDoctor = ({
         <Typography variant="body2" component="span" color={custom.neutral60}>
           Стаж років:
         </Typography>
-    
+
         <Typography
           variant="subtitle2"
           component="span"

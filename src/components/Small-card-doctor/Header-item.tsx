@@ -3,24 +3,13 @@ import { Box, Rating, Stack, Typography, useTheme } from "@mui/material";
 import noAvatar from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { NameAndInfoAboutDoctor } from "~/components/Name-and-info-about-doctor";
+import { useState } from "react";
+import { TDoctor } from "~/common";
 
-type Props = {
-  speciality: string;
-  experience: number;
-  name: string;
-  reviewsCount: number;
-  rating: number;
-  avatar: string;
-};
+export const HeaderItem = ({ doctor }: { doctor: TDoctor }) => {
+  const { name, reviewsCount, rating, avatar } = doctor;
+  const [value, setValue] = useState<number | null>(rating / 15);
 
-export const HeaderItem = ({
-  speciality,
-  experience,
-  name,
-  reviewsCount,
-  rating,
-  avatar,
-}: Props) => {
   return (
     <Box display="flex" gap="24px">
       <Box>
@@ -34,14 +23,17 @@ export const HeaderItem = ({
       </Box>
 
       <Box>
-        <NameAndInfoAboutDoctor
-          speciality={speciality}
-          experience={experience}
-          name={name}
-        />
+        <NameAndInfoAboutDoctor doctor={doctor} />
 
         <Box display="flex" gap="8px" pt={1}>
-          <Rating name="rating" value={rating} precision={0.25} readOnly />
+          <Rating
+            name="rating"
+            value={value}
+            precision={0.5}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />
           <Typography variant="body2">{`${REVIEWS} (${reviewsCount})`}</Typography>
         </Box>
       </Box>

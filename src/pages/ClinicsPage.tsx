@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 
-import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+import {  Container, Stack, Typography, useTheme } from "@mui/material";
 
 import {
   BreadcrumbsUkr,
@@ -10,17 +10,14 @@ import {
   SelectTopBar,
   SkeletonInfoCards,
 } from "~/components/atomic";
-import { SelectedItemsBox } from "~/components/AsideFilter";
 
 import {
   FilterClinics,
-  SearchClinics,
+  SearchBarClinicsPage,
   SmallClinicCard,
 } from "~/components/clinic";
 
 import { FilterViewMode } from "~/components/AsideFilter";
-import { SearchBar } from "~/components/doctorsPage";
-import { SmallCardDoctor } from "~/components/Small-card-doctor/Small-card-doctor";
 
 import { useDataContext } from "~/providers";
 import { useDeviceType } from "~/hooks";
@@ -29,7 +26,7 @@ const QTY = 5;
 
 export const ClinicsPage = () => {
   const { custom } = useTheme().palette;
-  const { isWidth600, isMdDown } = useDeviceType();
+  const {  isMdDown } = useDeviceType();
 
   const { clinics, filteredClinics, setFilteredClinics } = useDataContext();
   const [page, setPage] = useState(1);
@@ -63,7 +60,7 @@ export const ClinicsPage = () => {
           Клініки
         </Typography>
 
-        <SearchClinics />
+        <SearchBarClinicsPage />
 
         <Stack
           direction="row"
@@ -72,7 +69,7 @@ export const ClinicsPage = () => {
         >
           {!isMdDown && <FilterViewMode modeType="clinic" />}
 
-          <Box>
+          <Stack width="100%">
             {/* <SelectTopBar setFilteredData={setFilteredClinics} /> */}
 
             {isMdDown && <FilterViewMode modeType="clinic" />}
@@ -99,7 +96,7 @@ export const ClinicsPage = () => {
             >
               <PaginationBottomBar count={count} setPage={setPage} />
             </CustomizedPaper>
-          </Box>
+          </Stack>
         </Stack>
       </Container>
     </>

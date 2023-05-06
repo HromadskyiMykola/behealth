@@ -7,11 +7,13 @@ import Chips from "~/components/Header-card-doctor/Chips";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { chipsMOCKdata, contactMOCKdata } from "./constant-header-doctor-card";
-import { IContactPhoneWithIcon } from "~/common";
+import { IContactPhoneWithIcon, TDoctor } from "~/common";
 import ContactPhoneWithIcon from "~/components/atomic/Contact-phone-with-icon";
 import { MapInfoDoctor } from "~/components/Map-info-doctor";
 
-const HeaderCardDoctor = () => {
+const HeaderCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
+ 
+  
   return (
     <Paper>
       <Box
