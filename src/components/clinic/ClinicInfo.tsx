@@ -1,32 +1,21 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchDocs } from "~/components/clinic/SearchDocs";
-import { CLINIC_CARD } from "~/components/clinic/clinic-card-constants";
 import { MainClinicCard } from "~/components/clinic/MainClinicCard";
-import { SmallClinicCard } from "~/components/clinic/SmallClinicCard";
 import { ClinicInfoAboutBlock } from "~/components/clinic/ClinicInfoAboutBlock";
 import { ClinicMedicine } from "~/components/clinic/ClinicMedicine";
 import { Chips } from "~/components/clinic/Chips";
 import { IconsSocialList } from "~/components/clinic/IconsSocialList";
-import { TClinic, useApiService } from "~/common";
+import { TClinic } from "~/common";
 import { useParams } from "react-router-dom";
 import { useGetData } from "~/hooks";
 
 export const ClinicInfo = () => {
   const { clinics } = useGetData();
   const [clinic, setClinic] = useState<TClinic | null>(null);
-  // const { getClinics } = useApiService();
   const { id } = useParams();
-  // console.log(id);
+
   useEffect(() => {
-    // (async () => {
-    //   const clinics = await getClinics();
-    // await clinics.map((item: TClinic) => {
-    //   if (String(item.id) === id) {
-    //     setClinic(item);
-    //   }
-    // });
-    // })();
     const clinic = clinics.find(
       (item) => String(item.id) === id && item.dataType === "clinic"
     );
@@ -34,13 +23,10 @@ export const ClinicInfo = () => {
     clinic && setClinic(clinic);
   }, [clinics]);
 
-  useEffect(() => {
-    console.log(clinic);
-  }, [clinic]);
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {clinic && <MainClinicCard clinic={clinic} />}
+
       <Box
         sx={{
           display: "flex",
@@ -53,22 +39,26 @@ export const ClinicInfo = () => {
         }}
       >
         <SearchDocs />
+
         <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
           <Typography variant="h5" color="#212121">
             Про клініку
           </Typography>
+
           {clinic && clinic.medicine && (
             <ClinicInfoAboutBlock
               title={"Напрямки роботи клініки"}
               block={<ClinicMedicine medicine={clinic.medicine} />}
             />
           )}
+
           {clinic && clinic.tags && (
             <ClinicInfoAboutBlock
               title={"Зручності в медзакладі"}
               block={<Chips chips={clinic.tags} />}
             />
           )}
+
           <ClinicInfoAboutBlock
             title={"Соціальні мережі"}
             block={<IconsSocialList />}

@@ -1,4 +1,4 @@
-import { Box, Rating, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Rating, Typography } from "@mui/material";
 
 import noAvatar from "~/assets/images/doctor-avatar.png";
 import { REVIEWS } from "~/components/Small-card-doctor/constants-small-card-doctor";

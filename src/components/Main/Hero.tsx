@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import background from "../../assets/images/hero-background.png";
 import image from "../../assets/images/hero-image.png";
 import {
@@ -8,7 +8,6 @@ import {
   Autocomplete,
   TextField,
   InputAdornment,
-  Paper,
   useMediaQuery,
   useTheme,
   IconButton,
@@ -18,9 +17,7 @@ import {
 import MenuItem from "@mui/material/MenuItem";
 import { RoomOutlined } from "@mui/icons-material";
 import { FilterIcon, Search as SearchIcon } from "lucide-react";
-import { TClinic, TDoctor, useApiService } from "~/common";
 import { useNavigate } from "react-router-dom";
-import { useDataContext } from "~/providers/DataProvider";
 import { useGetData } from "~/hooks";
 import { genKey } from "~/helper-function";
 
@@ -33,34 +30,19 @@ const searchOptionsSpreading = {
 
 export const Hero = () => {
   const [district, setDistrict] = useState<string>("");
-  // const [doctors, setDoctors] = useState<TDoctor[]>([] as TDoctor[]);
-  // const [clinics, setClinics] = useState<TClinic[]>([] as TClinic[]);
   const [search, setSearch] = useState<any>([]);
   const [searchStr, setSearchStr] = useState<string>("");
-  // const { getClinics, getDoctors } = useApiService();
   const { clinics, doctors } = useGetData();
-  const { selectedCity, setSelectedCity } = useDataContext();
   const navigate = useNavigate();
   const theme = useTheme();
   const laptopDevice = useMediaQuery(theme.breakpoints.down("laptop"));
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
-    // (async function fetchData() {
-    //   const doctors = await getDoctors();
-    //   const clinics = await getClinics();
-    //   setSearch([...doctors, ...clinics]);
-    // })();
-    // console.log([...doctors, ...clinics]);
-
     const names = [...doctors, ...clinics].map((item) => item.name);
 
     setSearch(names);
   }, [clinics, doctors]);
-
-  // useEffect(() => {
-  //   console.log(selectedCity);
-  // }, [selectedCity]);
 
   const onSubmitSearch = (str: string = searchStr) => {
     const matched = [...doctors, ...clinics].find((item) => item.name === str);
@@ -83,13 +65,6 @@ export const Hero = () => {
     reason: AutocompleteInputChangeReason
   ) => {
     reason === "input" && setSearchStr(value);
-
-    // console.log("onInput", value);
-    // const filteredSearch = search.filter((item: any) => {
-    //   return item.name.toLowerCase().includes(value.toLowerCase());
-    // });
-    // console.log(filteredSearch);
-    // setSearch(filteredSearch);
   };
 
   return (
@@ -147,6 +122,7 @@ export const Hero = () => {
             </Typography>{" "}
             не виходячи з дому
           </Typography>
+
           <Typography
             sx={{
               mb: "40px",
@@ -159,6 +135,7 @@ export const Hero = () => {
             Завдяки інноваційній медичній реформі та системі eHealth, у вас є
             можливість зручно планувати свої походи до лікарні онлайн
           </Typography>
+
           <Box
             sx={{
               width: "100%",
@@ -183,28 +160,9 @@ export const Hero = () => {
               clearOnEscape
               blurOnSelect
               autoHighlight
-              // freeSolo
-              // value={searchStr}
               onChange={onChangeSearch}
               onInputChange={onInputChangeSearch}
               options={search}
-              // getOptionLabel={(option) => option.name}
-              // filterOptions={(options, state) =>
-              //   options.filter(
-              //     (option) =>
-              //       option.name
-              //         .toLowerCase()
-              //         .indexOf(state.inputValue.toLowerCase()) !== -1 &&
-              //       (selectedCity === "Вся Україна" ||
-              //         option.city
-              //           .toLowerCase()
-              //           .indexOf(selectedCity.toLowerCase()) !== -1) &&
-              //       (district === "" ||
-              //         option.district
-              //           .toLowerCase()
-              //           .indexOf(district.toLowerCase()) !== -1)
-              //   )
-              // }
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -236,47 +194,6 @@ export const Hero = () => {
                   }}
                 />
               )}
-              // PaperComponent={({ children }) => (
-              //   <Paper
-              //     sx={{
-              //       maxHeight: "480px",
-              //       overflow: "auto",
-              //       scrollbarColor: "#000",
-              //       "&::-webkit-scrollbar": {
-              //         width: "8px",
-              //         height: "32px",
-              //       },
-              //       "&::-webkit-scrollbar-track": {
-              //         backgroundColor: "#BFC9C3",
-              //         padding: "16px 4px",
-              //       },
-              //       "&::-webkit-scrollbar-thumb": {
-              //         backgroundColor: "#3ABD98",
-              //         borderRadius: "100px",
-              //       },
-              //       "&::-webkit-scrollbar-thumb:hover": {
-              //         backgroundColor: "#5bbea3",
-              //       },
-              //       scrollbarWidth: "thin",
-              //       "& *::-webkit-scrollbar": {
-              //         width: "8px",
-              //         height: "32px",
-              //       },
-              //       "& *::-webkit-scrollbar-track": {
-              //         backgroundColor: "#BFC9C3",
-              //       },
-              //       "& *::-webkit-scrollbar-thumb": {
-              //         backgroundColor: "#3ABD98",
-              //         borderRadius: "100px",
-              //       },
-              //       "& *::-webkit-scrollbar-thumb:hover": {
-              //         backgroundColor: "#5bbea3",
-              //       },
-              //     }}
-              //   >
-              //     {children}
-              //   </Paper>
-              // )}
               renderOption={(props, option) => (
                 <MenuItem
                   key={genKey()}
@@ -300,30 +217,22 @@ export const Hero = () => {
                     >
                       {option}
                     </Typography>
-                    {/* <Typography
-                      sx={searchOptionsSpreading}
-                      color="#8E918F"
-                      variant="caption"
-                    >
-                      {option.speciality || "Медичний заклад"}
-                    </Typography> */}
                   </Box>
                 </MenuItem>
               )}
             />
+
             {sm ? (
-              <>
-                <Box
-                  sx={{
-                    p: "0 14px 0 16px",
-                    borderLeft: "1px solid #A4ADA8",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <FilterIcon color="#A4ADA8" fontSize={24} />
-                </Box>
-              </>
+              <Box
+                sx={{
+                  p: "0 14px 0 16px",
+                  borderLeft: "1px solid #A4ADA8",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <FilterIcon color="#A4ADA8" fontSize={24} />
+              </Box>
             ) : (
               <TextField
                 onChange={(e) => setDistrict(e.target.value)}
@@ -351,6 +260,7 @@ export const Hero = () => {
             )}
           </Box>
         </Box>
+
         {!laptopDevice && (
           <Box sx={{ mt: "82px" }}>
             <img src={image} alt="image" width={568} height={568} />

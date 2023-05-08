@@ -1,4 +1,3 @@
-import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
@@ -13,7 +12,6 @@ export const NameAndInfoAboutDoctor = ({ doctor }: { doctor: TDoctor }) => {
 
   return (
     <Box display="flex" gap="4px" flexDirection="column">
-      {/*//todo add rest data*/}
       <Typography variant="body2" component="p" color={custom.primary80}>
         {speciality}
       </Typography>

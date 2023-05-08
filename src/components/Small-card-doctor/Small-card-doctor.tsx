@@ -19,7 +19,6 @@ import { FormModal } from "../user-auth";
 import {
   AT_RECEPTION,
   POP_UP_DOC_APPOINTMENT_1,
-  POP_UP_DOC_APPOINTMENT_1_VALUE,
 } from "~/components/Small-card-doctor/constants-small-card-doctor";
 import { HeaderItem } from "~/components/Small-card-doctor/Header-item";
 import { MapInfoDoctor } from "~/components/Map-info-doctor";
@@ -34,6 +33,7 @@ const BoxCalendar = styled("div")(({ theme }) => ({
   borderRadius: "10px",
   padding: "26px 32px",
 }));
+
 const ModalPaper = styled(Paper)(({ theme }) => ({
   position: "absolute" as "absolute",
   top: "50%",
@@ -46,6 +46,7 @@ const ModalPaper = styled(Paper)(({ theme }) => ({
   flexDirection: "column",
   gap: "32px",
 }));
+
 const CustomList = styled(List)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -53,6 +54,7 @@ const CustomList = styled(List)(({ theme }) => ({
   listStyleType: "disc",
   paddingLeft: "32px",
 }));
+
 const CustomListItem = styled(ListItem)(({ theme }) => ({
   display: "list-item",
   paddingLeft: "0",
@@ -68,15 +70,15 @@ const CustomListItem = styled(ListItem)(({ theme }) => ({
 export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
   const { custom } = useTheme().palette;
   const { authenticatedUser } = useAuthProvider();
-  const { setOpenMainModal, setSimpleModalMessage } = useModalState();
+  const { setOpenMainModal } = useModalState();
 
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [selectedTime, setSelectedTime] = useState<any | null>(null);
-  // console.log(selectedTime);
 
   const { city, availableHours, district, address, name, speciality, cabinet } =
     doctor;
+
   const valueBookDoctor = {
     doctor: name,
     speciality: speciality,
@@ -102,7 +104,6 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
 
   const handleConfirm = () => {
     if (!authenticatedUser) {
-      // console.log("do");
       setOpenMainModal(true);
       return;
     }
@@ -112,13 +113,16 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
       setConfirm(false);
     }, 30 * 1000);
   };
+
   const handleCloseConfirm = () => {
     setOpen(false);
     setConfirm(false);
   };
+
   const setValueDateAndTime = (value: any) => {
     setSelectedTime(value);
   };
+
   return (
     <CustomizedPaper>
       <Stack
@@ -215,13 +219,7 @@ export const SmallCardDoctor = ({ doctor }: { doctor: TDoctor }) => {
                     }
                   )}
                 </CustomList>
-                <Box
-                  pt={4}
-                  display="flex"
-                  flexDirection="row"
-                  // justifyContent="space-between"
-                  gap="24px"
-                >
+                <Box pt={4} display="flex" flexDirection="row" gap="24px">
                   <Button
                     variant="outlined"
                     fullWidth

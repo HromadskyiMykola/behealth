@@ -1,9 +1,10 @@
-import Box from "@mui/material/Box";
-import React from "react";
-import Typography from "@mui/material/Typography";
+import { Box, Typography } from "@mui/material";
+
 import { Wallet } from "lucide-react";
-import { AppointmentScheduleDate, AppointmentScheduleTime } from "../atomic";
+
 import { TDoctor } from "~/common";
+
+import { AppointmentScheduleDate, AppointmentScheduleTime } from "../atomic";
 
 const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
   return (
@@ -30,6 +31,7 @@ const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
           <Typography variant="h5" display="flex" flexWrap="nowrap">
             Запис до лікаря
           </Typography>
+
           <Box
             borderBottom="1px solid #8CB0C5"
             flex="1"
@@ -39,6 +41,7 @@ const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
             }}
           ></Box>
         </Box>
+
         <Box
           display="flex"
           flexDirection="row"
@@ -57,10 +60,12 @@ const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
             whiteSpace="nowrap"
           >
             <Wallet size="20px" />
+
             <Typography variant="body2" component="p" color="#274B5D">
               Платно від 400 грн
             </Typography>
           </Box>
+
           <Box
             display="flex"
             gap="12px"
@@ -71,12 +76,14 @@ const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
             whiteSpace="nowrap"
           >
             <Wallet size="20px" />
+
             <Typography variant="body2" component="p" color="#274B5D">
               Безоплатно при заключеній декларації
             </Typography>
           </Box>
         </Box>
       </Box>
+
       <Box
         display="flex"
         flexDirection={{ xs: "column", md: "row" }}
@@ -87,6 +94,7 @@ const HeaderSection = ({ doctor }: { doctor: TDoctor }) => {
         overflow="hidden"
       >
         <AppointmentScheduleDate />
+
         <AppointmentScheduleTime />
       </Box>
     </Box>

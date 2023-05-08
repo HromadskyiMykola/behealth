@@ -1,5 +1,15 @@
-import React, { FC, useState } from "react";
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Button,
+  Box,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+
 import {
   VerifiedIcon,
   PlusIcon,
@@ -7,14 +17,12 @@ import {
   MapPinIcon,
   ClockIcon,
 } from "lucide-react";
-import { IClinicCard } from "~/components/clinic/clinic-card-constants";
-import Button from "@mui/material/Button";
+
 import FooterContactPhone from "~/components/FooterContactPhone/FooterContactPhone";
 import Life from "~/assets/CustomIcon/Life";
 import { ClinicAppointmentModal } from "~/components/clinic/ClinicAppointmentModal";
 import { Chips } from "~/components/clinic/Chips";
 import { CustomizedPaper, GoogleMapLink } from "~/components/atomic";
-import { useNavigate } from "react-router-dom";
 import { TClinic } from "~/common";
 
 const maxGridsToShow = 4;
@@ -36,7 +44,6 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
     name,
     clinicType,
     img,
-    medicine,
     phoneNumber,
     tags,
     workingHours,
@@ -67,6 +74,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
             width={136}
             height={136}
           />
+
           <Box
             sx={{
               display: "flex",
@@ -76,11 +84,13 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
           >
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography variant="body2">{clinicType}</Typography>
+
               <Typography variant="h5">{name}</Typography>
             </Box>
             {tags && <Chips chips={tags} />}
           </Box>
         </Box>
+
         <Box
           sx={{
             p: "16px",
@@ -101,12 +111,14 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
                       sx={{ display: "flex", alignItems: "center", gap: "9px" }}
                     >
                       <VerifiedIcon color="#5C5F5D" size={16} />
+
                       <Typography color="#444845" variant="caption">
                         {name}
                       </Typography>
                     </Box>
                   </Grid>
                 ))}
+
               {tags?.length > maxGridsToShow && (
                 <Grid item>
                   <Box
@@ -125,6 +137,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
                     ) : (
                       <PlusIcon color="#3DBF9A" size={16} />
                     )}
+
                     <Typography color="#3DBF9A" variant="captionS">
                       {showAll ? "Менше" : "Більше"}
                     </Typography>
@@ -133,6 +146,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
               )}
             </Grid>
           )}
+
           <Box
             sx={{
               display: "flex",
@@ -152,6 +166,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
               />
               <Typography variant="caption">{workingHours[0].hours}</Typography>
             </Box>
+
             <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
               <MapPinIcon
                 style={{
@@ -162,9 +177,11 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
                 color="#444845"
                 size={24}
               />
+
               <Typography sx={{ pr: "9px" }} variant="caption">
                 {address}
               </Typography>
+
               <GoogleMapLink address={address}>
                 <Typography color="#3DBF9A" variant="captionS">
                   Вікрити на карті
@@ -173,6 +190,7 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
             </Box>
           </Box>
         </Box>
+
         <Grid
           container
           sx={{
@@ -203,12 +221,16 @@ export const SmallClinicCard: FC<ClinicCardProps> = ({ clinic }) => {
               phone={phoneNumber}
             />
           </Grid>
+
           <Grid item sx={{ display: "flex", gap: "16px" }}>
             <Button variant="outlined" onClick={() => setIsOpen(true)}>
               <Typography variant="button">Швидкий запис</Typography>
             </Button>
 
-            <Button variant="contained" onClick={() => navigate(`/clinics/${id}`)}>
+            <Button
+              variant="contained"
+              onClick={() => navigate(`/clinics/${id}`)}
+            >
               <Typography variant="button">Детальніше</Typography>
             </Button>
           </Grid>
